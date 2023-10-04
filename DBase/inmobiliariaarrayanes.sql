@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-10-2023 a las 17:22:56
+-- Tiempo de generación: 04-10-2023 a las 17:34:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -86,7 +86,8 @@ CREATE TABLE `inspectores` (
   `id` int(11) NOT NULL,
   `idPersona` int(11) DEFAULT NULL,
   `usuario` varchar(60) DEFAULT NULL,
-  `contraseña` char(60) DEFAULT NULL
+  `contraseña` char(60) DEFAULT NULL,
+  `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -178,7 +179,8 @@ CREATE TABLE `vendedor` (
   `id` int(11) NOT NULL,
   `idPersona` int(11) DEFAULT NULL,
   `usuario` varchar(60) DEFAULT NULL,
-  `contraseña` char(60) DEFAULT NULL
+  `contraseña` char(60) DEFAULT NULL,
+  `estado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
