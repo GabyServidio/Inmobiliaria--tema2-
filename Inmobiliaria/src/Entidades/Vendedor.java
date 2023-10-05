@@ -2,22 +2,25 @@
 package Entidades;
 
 public class Vendedor {
-     private int id;
+    private int id;
     private int idPersona;
     private String usuario;
     private String contraseña;
+    private boolean estado;
 
-    public Vendedor(int id, int idPersona, String usuario, String contraseña) {
+    public Vendedor(int id, int idPersona, String usuario, String contraseña, boolean estado) {
         this.id = id;
         this.idPersona = idPersona;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.estado = estado;
     }
 
-    public Vendedor(int idPersona, String usuario, String contraseña) {
+    public Vendedor(int idPersona, String usuario, String contraseña, boolean estado) {
         this.idPersona = idPersona;
         this.usuario = usuario;
         this.contraseña = contraseña;
+        this.estado = estado;
     }
 
     public Vendedor() {
@@ -54,6 +57,16 @@ public class Vendedor {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+   
 
     
 }
