@@ -5,6 +5,10 @@
 package inmobiliaria;
 
 import AccesoADatos.Conexion;
+import AccesoADatos.InmuebleData;
+import Entidades.Inmueble;
+import static java.awt.PageAttributes.MediaType.A;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,7 +20,10 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-Conexion.getConexion();    
+    Conexion.getConexion();
+    
+    InmuebleData nuevo = new InmuebleData();
+    Entidades nue = new Entidades.Inmueble(5, 120, 5, , 2, activo, San Martin 789, A, Casa, condicionesContrato);
     }
     
 }
