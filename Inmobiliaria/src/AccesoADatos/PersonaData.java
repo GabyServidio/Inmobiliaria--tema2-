@@ -24,19 +24,20 @@ public class PersonaData {
 
     public void agregarPersona(Persona nueva) {
         SQL = "INSERT INTO `personas`(`nombre`, `apellido`, `dni`, `cuil`, `domicilio`, `telefono`, `eMail`, `estado`)"
-                + "VALUES ('?','?','?','?','?','?','?')";
+                + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?) ";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, nueva.getNombre());
             ps.setString(2, nueva.getApellido());
             ps.setInt(3, nueva.getDni());
-            ps.setInt(4, nueva.getCuil());
+            ps.setLong(4, nueva.getCuil());
             ps.setString(5, nueva.getDomicilio());
             ps.setInt(6, nueva.getTelefono());
-            ps.setString(6, nueva.getEmail());
-            ps.setBoolean(7, nueva.isEstado());
+            ps.setString(7, nueva.getEmail());
+            ps.setBoolean(8, nueva.isEstado());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
+            
             if (rs.next()) {
                 nueva.setId(rs.getInt(1)); //modifique para que tome el id generado
 
@@ -44,6 +45,7 @@ public class PersonaData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion con la base de datos." + ex);
+            System.out.println(ex);
         } finally {
             try {
                 Conexion.getConexion().close();
@@ -76,19 +78,20 @@ public class PersonaData {
 
     public void editarPersona(Persona editada) {
 
-        SQL = "UPDATE `personas` SET nombre ='?', apellido = '?', dni = ?, cuil = ?, domicilio = ?, telefono = ? eMail = '?', estado = ? WHERE personas.id = ?";
+        SQL = "UPDATE `personas` SET nombre = ?, apellido = ?, dni = ?, cuil = ?, domicilio = ?, telefono = ?, eMail = ?, estado = ? WHERE personas.id = ? ";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
 
             ps.setString(1, editada.getNombre());
             ps.setString(2, editada.getApellido());
             ps.setInt(3, editada.getDni());
-            ps.setInt(4, editada.getCuil());
+            ps.setLong(4, editada.getCuil());
             ps.setString(5, editada.getDomicilio());
             ps.setInt(6, editada.getTelefono());
             ps.setString(7, editada.getEmail());
             ps.setBoolean(8, editada.isEstado());
             ps.setInt(9, editada.getId());
+            System.out.println(ps);
             int resultado = ps.executeUpdate();
             if (resultado > -1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
@@ -241,11 +244,12 @@ public class PersonaData {
         return encontrada;
     }
 
-    public ArrayList<Persona> listarInquilinos() {
+    public ArrayList<Persona> listarInquilinos(boolean estado) {
         ArrayList<Persona> inquilinos = new ArrayList<>();
-        SQL = "SELECT * FROM personas  JOIN contrato WHERE ? = contrato.idInquilino";
+        SQL = "SELECT * FROM personas  JOIN contrato WHERE personas.id= contrato.idInquilino AND estado = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
+            ps.setBoolean(1, estado);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Persona inquilino = new Persona();
