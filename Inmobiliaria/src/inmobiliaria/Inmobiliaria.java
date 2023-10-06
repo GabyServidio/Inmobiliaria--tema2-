@@ -8,7 +8,10 @@ import AccesoADatos.Conexion;
 import AccesoADatos.InmuebleData;
 import Entidades.Inmueble;
 import static java.awt.PageAttributes.MediaType.A;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,10 +23,15 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-    Conexion.getConexion();
-    
-    InmuebleData nuevo = new InmuebleData();
-    Entidades nue = new Entidades.Inmueble(5, 120, 5, , 2, activo, San Martin 789, A, Casa, condicionesContrato);
+        
+        InmuebleData nuevo = new InmuebleData();
+        Inmueble nue = new Inmueble(1, 122, 1, 1, LocalDate.now(), 0, "DISPONIBLE", "San martin 25", "CENTRO", "LOCAL", "Prueba");
+      
+            nuevo.GuardarInmueble(nue);
+        
+//        nue.setEstadoInmueble("NODISPONIBLE");
+//        nuevo.modificarInmueble(nue);
+//        nuevo.eliminarInmueble(nue.getId());
     }
     
 }
