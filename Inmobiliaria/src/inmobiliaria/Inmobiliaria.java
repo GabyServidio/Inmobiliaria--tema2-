@@ -25,13 +25,19 @@ public class Inmobiliaria {
     public static void main(String[] args) {
         
         InmuebleData nuevo = new InmuebleData();
-        Inmueble nue = new Inmueble(1, 122, 1, 1, LocalDate.now(), 0, "DISPONIBLE", "San martin 25", "CENTRO", "LOCAL", "Prueba");
+        //Inmueble nue = new Inmueble(2, 122, 1, 1, LocalDate.now(), 0, "DISPONIBLE", "San martin 25", "CENTRO", "LOCAL", "Prueba");
       
-            nuevo.GuardarInmueble(nue);
+            //nuevo.GuardarInmueble(nue);
         
 //        nue.setEstadoInmueble("NODISPONIBLE");
 //        nuevo.modificarInmueble(nue);
 //        nuevo.eliminarInmueble(nue.getId());
+
+          //System.out.println(nuevo.listarInmueble());
+          
+          nuevo.eliminarInmueble(5);
+
+        
     }
     
 }

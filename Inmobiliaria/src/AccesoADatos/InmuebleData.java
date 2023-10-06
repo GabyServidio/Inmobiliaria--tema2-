@@ -59,9 +59,7 @@ public class InmuebleData {
     
     public Inmueble buscarInmueble(int idPropietario) {
         Inmueble inmueble = null;
-        String sql = "SELECT superficie, cantAmbientes, canBaños, fechaConstruccion,"
-                + " garage, estadoInmueble, direccion, zona, condicionesContrato"
-                + " FROM inmueble WHERE idPropietario = ?";
+        String sql = "SELECT * FROM inmueble WHERE idPropietario = ?";
         ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
@@ -76,7 +74,7 @@ public class InmuebleData {
                 inmueble.setCanBaños(rs.getInt("canBaños"));
                 inmueble.setFechaConstruccion(rs.getDate("fechaConstruccion").toLocalDate());
                 inmueble.setGarage(rs.getInt("garage"));
-                inmueble.setEstadoInmueble(rs.getString("estadoInmueble"));
+                inmueble.setEstadoInmueble(rs.getString("estado"));
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setZona(rs.getString("zona"));
                 inmueble.setTipo(rs.getString("tipo"));
@@ -115,7 +113,7 @@ public class InmuebleData {
                 inmueble.setCanBaños(rs.getInt("canBaños"));
                 inmueble.setFechaConstruccion(rs.getDate("fechaConstruccion").toLocalDate());
                 inmueble.setGarage(rs.getInt("garage"));
-                inmueble.setEstadoInmueble(rs.getString("estadoInmueble"));
+                inmueble.setEstadoInmueble(rs.getString("estado"));
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setZona(rs.getString("zona"));
                 inmueble.setTipo(rs.getString("tipo"));
@@ -139,7 +137,7 @@ public class InmuebleData {
 
         String sql = "UPDATE inmueble SET superficie = ? , cantAmbientes = ?,"
                 + " canBaños = ?, fechaConstruccion = ?, garage = ?,"
-                + " estadoInmueble = ?, direccion = ?, zona = ?, tipo = ?,"
+                + " estado = ?, direccion = ?, zona = ?, tipo = ?,"
                 + " condicionesContrato = ? WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
@@ -174,12 +172,12 @@ public class InmuebleData {
     public void eliminarInmueble(int id) {
 
         try {
-            String sql = "UPDATE alumnos SET estado = 0 WHERE id = ? ";
+            String sql = "UPDATE inmueble SET estado = 'NO DISPONIBLE' WHERE id = ? ";
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, " Se eliminó el inmueble.");
+                JOptionPane.showMessageDialog(null, " Nuevo estado del inmueble: NO DISPONIBLE");
             }
             ps.close();
         } catch (SQLException e) {
