@@ -27,3 +27,4 @@ replay_pid*
 /Inmobiliaria/src/AccesoADatos/conexion.env
 /Inmobiliaria/build/
 
+*.env

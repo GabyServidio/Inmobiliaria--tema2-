@@ -15,38 +15,39 @@ import javax.swing.JOptionPane;
 public class Conexion {
 
     private static String URL;
-    private static String USER ;
-    private static String PASS ;
-         
-    public static Connection getConexion(){
+    private static String USER;
+    private static String PASS;
+
+    public static Connection getConexion() {
         Connection conexion = null;
         recuperar();
         try {
             Class.forName("org.mariadb.jdbc.Driver");
             conexion = DriverManager.getConnection(URL, USER, PASS);
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "ERROR DE CONEXION CON EL SERVIDOR");
+            JOptionPane.showMessageDialog(null, "ERROR DE CONEXION CON EL SERVIDOR");
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "ERROR DE DRIVER");
         }
-    return conexion;
+        return conexion;
     }
-    public static void recuperar(){
-    try{
-    FileReader direccion = new FileReader("src/AccesoADatos/conexion.env");
-    BufferedReader lector = new BufferedReader(direccion);
-    Properties propiedades = new Properties();
-    propiedades.load(lector);
-    URL = propiedades.getProperty("DB_URL");
-    USER = propiedades.getProperty("DB_USER");
-    PASS = propiedades.getProperty("DB_PASS");
-        System.out.println(URL);
-    
-    }   catch (FileNotFoundException ex) {
+
+    public static void recuperar() {
+        try {
+            FileReader direccion = new FileReader("src/AccesoADatos/conexion.env");
+            BufferedReader lector = new BufferedReader(direccion);
+            Properties propiedades = new Properties();
+            propiedades.load(lector);
+            URL = propiedades.getProperty("DB_URL");
+            USER = propiedades.getProperty("DB_USER");
+            PASS = propiedades.getProperty("DB_PASS");
+
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{}
-    
+        } finally {
+        }
+
     }
 }

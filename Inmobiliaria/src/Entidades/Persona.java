@@ -13,13 +13,13 @@ public class Persona {
     protected String nombre;
     protected String apellido;
     protected int dni;
-    protected int cuil;
+    protected long cuil;
     protected String domicilio;
     protected int telefono;
     protected String email;
     protected boolean estado;
 
-    public Persona(int id, String nombre, String apellido, int dni, int cuil, String domicilio, int telefono, String email, boolean estado) {
+    public Persona(int id, String nombre, String apellido, int dni, long cuil, String domicilio, int telefono, String email, boolean estado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,7 +31,7 @@ public class Persona {
         this.estado = estado;
     }
 
-    public Persona(String nombre, String apellido, int dni, int cuil, String domicilio, int telefono, String email, boolean estado) {
+    public Persona(String nombre, String apellido, int dni, long cuil, String domicilio, int telefono, String email, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -77,11 +77,11 @@ public class Persona {
         this.dni = dni;
     }
 
-    public int getCuil() {
+    public long getCuil() {
         return cuil;
     }
 
-    public void setCuil(int cuil) {
+    public void setCuil(long cuil) {
         this.cuil = cuil;
     }
 
