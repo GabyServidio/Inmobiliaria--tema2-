@@ -22,10 +22,10 @@ public class InmuebleData {
         
     }
     
-    public void GuardarInmueble(Inmueble inmueble) throws SQLException{
+    public void GuardarInmueble(Inmueble inmueble){
         String sql = "INSERT INTO inmueble (superficie, cantAmbientes, canBaños,"
-                + " fechaConstruccion, garage, estadoInmueble, direccion, zona,"
-                + " condicionesContrato ) VALUES (?,?,?,?,?,?,?,?,?)";
+                + " fechaConstruccion, garage, estado, direccion, zona,"
+                + " condicionesContrato, idPropietario, tipo ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, inmueble.getSuperficie());
@@ -38,6 +38,7 @@ public class InmuebleData {
             ps.setString(8, inmueble.getZona());
             ps.setString(9, inmueble.getCondicionesContrato());
             ps.setInt(10, inmueble.getIdPropietario());
+            ps.setString(11, inmueble.getTipo());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {

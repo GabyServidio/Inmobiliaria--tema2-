@@ -20,13 +20,13 @@ import javax.swing.JOptionPane;
  *
  * @author fernando
  */
-public class contratoData {
+public class ContratoData {
 
     private String SQL = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    public contratoData() {
+    public ContratoData() {
     }
 
     ;
