@@ -119,9 +119,7 @@ public class InmuebleData {
                 inmueble.setZona(rs.getString("zona"));
                 inmueble.setTipo(rs.getString("tipo"));
                 inmueble.setCondicionesContrato(rs.getString("condicionesContrato"));
-                
                 inmuebles.add(inmueble);
-                
             }
             ps.close();
         } catch (SQLException ex) {
@@ -136,6 +134,61 @@ public class InmuebleData {
         return inmuebles;
     }
     
+    public void modificarInmueble(Inmueble inmueble) {
+
+        String sql = "UPDATE inmueble SET superficie = ? , cantAmbientes = ?,"
+                + " canBaños = ?, fechaConstruccion = ?, garage = ?,"
+                + " estadoInmueble = ?, direccion = ?, zona = ?, tipo = ?,"
+                + " condicionesContrato = ? WHERE id = ?";
+        try {
+            ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setInt(1, inmueble.getSuperficie());
+            ps.setInt(2, inmueble.getCantAmbientes());
+            ps.setInt(3, inmueble.getCanBaños());
+            ps.setDate(4, Date.valueOf(inmueble.getFechaConstruccion()));
+            ps.setInt(5, inmueble.getGarage());
+            ps.setString(6, inmueble.getEstadoInmueble());
+            ps.setString(7, inmueble.getDireccion());
+            ps.setString(8, inmueble.getZona());
+            ps.setString(9, inmueble.getTipo());
+            ps.setString(10, inmueble.getCondicionesContrato());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "El inmueble no existe");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble " + ex.getMessage());
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
     
-    
+    public void eliminarInmueble(int id) {
+
+        try {
+            String sql = "UPDATE alumnos SET estado = 0 WHERE id = ? ";
+            ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se eliminó el inmueble.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inmueble");
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
