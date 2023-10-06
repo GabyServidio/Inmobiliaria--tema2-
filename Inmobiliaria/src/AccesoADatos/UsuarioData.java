@@ -4,7 +4,7 @@
  */
 package AccesoADatos;
 
-import Entidades.Vendedor;
+import Entidades.Usuario;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,28 +21,29 @@ import javax.swing.JOptionPane;
  *
  * @author USUARIO
  */
-public class VendedorData {
+public class UsuarioData {
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
-    public VendedorData() {
+    public UsuarioData() {
     }
 
-    public void RegistrarVendedor(Vendedor vendedor) {
+    public void RegistrarUsuario(Usuario usuario) {
 
-        String sql = "INSERT INTO `vendedor`(`idPersona`, `usuario`, `contraseña`, `estado`)"
-                + " VALUES (?,'?','?',?)";
+        String sql = "INSERT INTO `usuario`(`idPersona`, `usuario`, `contraseña`, 'tipo', `estado`)"
+                + " VALUES (?,'?','?','?', ?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, vendedor.getIdPersona());
-            ps.setString(2, vendedor.getUsuario());
-            ps.setString(3, vendedor.getContraseña());
-            ps.setBoolean(4, vendedor.isEstado()); 
+            ps.setInt(1, usuario.getIdPersona());
+            ps.setString(2, usuario.getUsuario());
+            ps.setString(3, usuario.getContraseña());
+            ps.setString(4, usuario.getTipo());
+            ps.setBoolean(5, usuario.isEstado()); 
             ps.executeUpdate(); 
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                vendedor.setId(rs.getInt(1)); 
-                JOptionPane.showMessageDialog(null, "Vendedor registrado con exito.");
+                usuario.setId(rs.getInt(1)); 
+                JOptionPane.showMessageDialog(null, "Usuario registrado con exito.");
             }
 
         } catch (SQLException ex) {
@@ -55,27 +56,27 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
-        public Vendedor buscarVendedor(int id) {
-        Vendedor vendedor = null;
-        String sql = "SELECT idPersona, usuario, estado FROM vendedor WHERE id= ?";
+        public Usuario buscarVendedor(int id) {
+        Usuario usuario = null;
+        String sql = "SELECT idPersona, usuario, estado FROM usuario WHERE id= ?";
         ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                vendedor = new Vendedor();
-                vendedor.setId(id);
-                vendedor.setIdPersona(rs.getInt("idPersona"));
-                vendedor.setUsuario(rs.getString("usuario"));
-                vendedor.setEstado(rs.getBoolean("estado"));
+                usuario = new Usuario();
+                usuario.setId(id);
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "Esta persona no es vendedor o no existe");
+                JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");
                 ps.close();
             }
         } catch (SQLException ex) {
@@ -84,26 +85,26 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
-        return vendedor;
+        return usuario;
     }
-        public List<Vendedor> listarVendedoresActivos() {
-        List<Vendedor> vendedores = new ArrayList<>();
+        public List<Usuario> listarVendedoresActivos() {
+        List<Usuario> usuarios = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM vendedor WHERE estado = 1 ";
+            String sql = "SELECT * FROM usuarios WHERE estado = 1 ";
             ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                Vendedor vendedor = new Vendedor();
-                vendedor.setId(rs.getInt("id"));
-                vendedor.setIdPersona(rs.getInt("idPersona"));
-                vendedor.setUsuario(rs.getString("usuario"));
-                vendedor.setEstado(rs.getBoolean("estado"));
-                vendedores.add(vendedor);
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setEstado(rs.getBoolean("estado"));
+                usuarios.add(usuario);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -112,25 +113,25 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return vendedores;
+        return usuarios;
     }
-        public List<Vendedor> listarVendedoresDeBaja() {
-        List<Vendedor> vendedores = new ArrayList<>();
+        public List<Usuario> listarVendedoresDeBaja() {
+        List<Usuario> usuarios = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM vendedor WHERE estado = 0 ";
+            String sql = "SELECT * FROM usuario WHERE estado = 0 ";
             ps = Conexion.getConexion().prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                Vendedor vendedor = new Vendedor();
-                vendedor.setId(rs.getInt("id"));
-                vendedor.setIdPersona(rs.getInt("idPersona"));
-                vendedor.setUsuario(rs.getString("usuario"));
-                vendedor.setEstado(rs.getBoolean("estado"));
-                vendedores.add(vendedor);
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setEstado(rs.getBoolean("estado"));
+                usuarios.add(usuario);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -139,18 +140,18 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return vendedores;
+        return usuarios;
 }
-        public void actualizarUsuario(Vendedor vendedor){
+        public void actualizarUsuario(Usuario usuario){
             
-        String sql = "UPDATE vendedor SET usuario = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET usuario = ? WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setString(1, vendedor.getUsuario());
-            ps.setInt(2, vendedor.getId());
+            ps.setString(1, usuario.getUsuario());
+            ps.setInt(2, usuario.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Usuario modificado exitosamente.");
@@ -164,18 +165,18 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         }
         
-        public void actualizarContraseña(Vendedor vendedor){
+        public void actualizarContraseña(Usuario usuario){
             
-        String sql = "UPDATE vendedor SET contraseña = ? WHERE id = ?";
+        String sql = "UPDATE usuario SET contraseña = ? WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setString(1, vendedor.getContraseña());
-            ps.setInt(2, vendedor.getId());
+            ps.setString(1, usuario.getContraseña());
+            ps.setInt(2, usuario.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Contraseña modificada exitosamente.");
@@ -189,21 +190,21 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         }
-        public void bajaVendedor(Vendedor vendedor){
-            String sql = "UPDATE vendedor SET estado = 0 WHERE id = ?";
+        public void bajaVendedor(Usuario usuario){
+            String sql = "UPDATE usuario SET estado = 0 WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setInt(1, vendedor.getId());
+            ps.setInt(1, usuario.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Vendedor dado de baja exitosamente.");
                 
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo dar de baja al vendedor");
+                JOptionPane.showMessageDialog(null, "No se pudo dar de baja al usuario");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
@@ -211,7 +212,7 @@ public class VendedorData {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
-                Logger.getLogger(VendedorData.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         }
