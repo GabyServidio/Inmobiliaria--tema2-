@@ -139,6 +139,16 @@ public class Contrato {
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Contrato{" + "id=" + id + ",\n idInmueble=" + idInmueble + 
+                ",\n idInquilino=" + idInquilino + ",\n idGarante=" + idGarante + 
+                ",\n idVendedor=" + idVendedor + ",\n fecha=" + fecha +
+                ",\n fechaInicio=" + fechaInicio + ",\n fechaFinalizacion=" + 
+                fechaFinalizacion + ",\n precio=" + precio + ",\n estado=" +
+                estado + ",\n Descripcion=" + Descripcion + '}';
+    }
     
     
     

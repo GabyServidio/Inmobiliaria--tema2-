@@ -41,6 +41,9 @@ public class PersonaData {
             if (rs.next()) {
                 nueva.setId(rs.getInt(1)); //modifique para que tome el id generado
 
+            JOptionPane.showMessageDialog(null, "persona creada con exito");
+            }else{
+            JOptionPane.showMessageDialog(null, "Error en agregar persona ");
             }
 
         } catch (SQLException ex) {

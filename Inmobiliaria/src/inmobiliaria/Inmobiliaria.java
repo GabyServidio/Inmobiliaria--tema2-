@@ -4,14 +4,8 @@
  */
 package inmobiliaria;
 
-import AccesoADatos.Conexion;
-import AccesoADatos.InmuebleData;
-import Entidades.Inmueble;
-import static java.awt.PageAttributes.MediaType.A;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import AccesoADatos.*;
+import Entidades.*;
 
 /**
  *
@@ -23,15 +17,11 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        InmuebleData nuevo = new InmuebleData();
-        Inmueble nue = new Inmueble(1, 122, 1, 1, LocalDate.now(), 0, "DISPONIBLE", "San martin 25", "CENTRO", "LOCAL", "Prueba");
-      
-            nuevo.GuardarInmueble(nue);
-        
-//        nue.setEstadoInmueble("NODISPONIBLE");
-//        nuevo.modificarInmueble(nue);
-//        nuevo.eliminarInmueble(nue.getId());
+  ContratoData contratoData = new ContratoData();
+
+        for (Contrato listarContrato : contratoData.listarContratos()) {
+            System.out.println(listarContrato.toString());
+        }  
     }
     
 }
