@@ -17,11 +17,7 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-  ContratoData contratoData = new ContratoData();
 
-        for (Contrato listarContrato : contratoData.listarContratos()) {
-            System.out.println(listarContrato.toString());
-        }  
     }
     
 }

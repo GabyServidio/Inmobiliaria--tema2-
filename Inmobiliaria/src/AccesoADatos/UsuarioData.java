@@ -5,7 +5,6 @@
 package AccesoADatos;
 
 import Entidades.Usuario;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,6 +32,7 @@ public class UsuarioData {
 
         String sql = "INSERT INTO `usuarios`(`idPersona`, `nombre`, `contrasenia`, `tipo`, `estado`)"
                 + " VALUES (?, ?, ?, ?, ?)";
+
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, usuario.getIdPersona());
@@ -49,10 +49,11 @@ public class UsuarioData {
             }
 
         } catch (SQLException ex) {
+
             if (ex instanceof SQLIntegrityConstraintViolationException) {
-                JOptionPane.showMessageDialog(null, "Esta persona ya se encontraba registrada");
+                JOptionPane.showMessageDialog(null, "Este usuario ya se encontraba registrado");
             } else {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor" + ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios" + ex.getMessage());
             }
         } finally {
             try {
@@ -66,19 +67,26 @@ public class UsuarioData {
     public void actualizarUsuario(Usuario usuario) {
 
         String sql = "UPDATE usuarios SET nombre = ? WHERE id = ?";
+
+        ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, usuario.getUsuario());
             ps.setInt(2, usuario.getId());
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Usuario modificado exitosamente.");
-
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setTipo(rs.getString("tipo"));
+                usuario.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo actualizar el nombre de usuario");
+                JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");
+                ps.close();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios " + ex.getMessage());
         } finally {
             try {
                 Conexion.getConexion().close();
@@ -88,9 +96,68 @@ public class UsuarioData {
         }
     }
 
+    public List<Usuario> listarUsuariosActivos() {
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM usuarios WHERE estado = 1 ";
+            ps = Conexion.getConexion().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setTipo(rs.getString("tipo"));
+                usuario.setEstado(rs.getBoolean("estado"));
+                usuarios.add(usuario);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Usuario " + ex.getMessage());
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return usuarios;
+    }
+
+    public List<Usuario> listarUsuariosDeBaja() {
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM usuarios WHERE estado = 0 ";
+            ps = Conexion.getConexion().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                Usuario usuario = new Usuario();
+                usuario.setId(rs.getInt("id"));
+                usuario.setIdPersona(rs.getInt("idPersona"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setTipo(rs.getString("tipo"));
+                usuario.setEstado(rs.getBoolean("estado"));
+                usuarios.add(usuario);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Usuarios " + ex.getMessage());
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return usuarios;
+    }
+
     public void actualizarContraseña(Usuario usuario) {
 
-        String sql = "UPDATE usuarios SET contrasenia = ? WHERE id = ?";
+        String sql = "UPDATE usuarios SET contraseña = ? WHERE id = ?";
+
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, usuario.getContraseña());
@@ -103,7 +170,7 @@ public class UsuarioData {
                 JOptionPane.showMessageDialog(null, "No se pudo actualizar la contraseña");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios " + ex.getMessage());
         } finally {
             try {
                 Conexion.getConexion().close();
@@ -113,20 +180,22 @@ public class UsuarioData {
         }
     }
 
-    public void bajaVendedor(Usuario usuario) {
-        String sql = "UPDATE usuario SET estado = 0 WHERE id = ?";
+    public void bajaUsuario(Usuario usuario) {
+        String sql = "UPDATE usuarios SET estado = 0 WHERE id = ?";
+
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, usuario.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Vendedor dado de baja exitosamente.");
+
+                JOptionPane.showMessageDialog(null, "Usuario dado de baja exitosamente.");
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo dar de baja al usuario");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios " + ex.getMessage());
         } finally {
             try {
                 Conexion.getConexion().close();
@@ -135,7 +204,7 @@ public class UsuarioData {
             }
         }
     }
-    
+
     public Usuario buscarUsuario(int id) {
         Usuario usuario = null;
         String sql = "SELECT idPersona, nombre, estado FROM usuarios WHERE id= ?";
@@ -168,7 +237,7 @@ public class UsuarioData {
     }
 
     public Usuario buscarUsuario(String nombre) {
-     Usuario usuario = null;
+        Usuario usuario = null;
         String sql = "SELECT * FROM usuarios WHERE nombre = ?";
         ps = null;
         try {
@@ -197,61 +266,5 @@ public class UsuarioData {
         }
 
         return usuario;
-    }
-
-    public List<Usuario> listarUsuariosActivos() {
-        List<Usuario> usuarios = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM usuarios WHERE estado = 1 ";
-            ps = Conexion.getConexion().prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-
-                Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setIdPersona(rs.getInt("idPersona"));
-                usuario.setUsuario(rs.getString("nombre"));
-                usuario.setEstado(rs.getBoolean("estado"));
-                usuarios.add(usuario);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Vendedor " + ex.getMessage());
-        } finally {
-            try {
-                Conexion.getConexion().close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return usuarios;
-    }
-
-    public List<Usuario> listarUsuariosDeBaja() {
-        List<Usuario> usuarios = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM usuarios WHERE estado = 0 ";
-            ps = Conexion.getConexion().prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-
-                Usuario usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setIdPersona(rs.getInt("idPersona"));
-                usuario.setUsuario(rs.getString("nombre"));
-                usuario.setEstado(rs.getBoolean("estado"));
-                usuarios.add(usuario);
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Usuarios " + ex.getMessage());
-        } finally {
-            try {
-                Conexion.getConexion().close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return usuarios;
     }
 }
