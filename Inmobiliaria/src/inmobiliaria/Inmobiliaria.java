@@ -1,23 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package inmobiliaria;
 
 import AccesoADatos.*;
 import Entidades.*;
+import java.time.LocalDate;
 
-/**
- *
- * @author USUARIO
- */
 public class Inmobiliaria {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+     InspeccionData insp = new InspeccionData();
+     //Inspeccion nueva = new Inspeccion(1, 2, LocalDate.now(), "inspecion de prueba");
+     
+        for (Inspeccion inspe : insp.listarInspeciones()) {
+            System.out.println(inspe.getDescripcion());
+        }
+     
+    
     }
     
 }

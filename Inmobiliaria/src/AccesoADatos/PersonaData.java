@@ -94,7 +94,6 @@ public class PersonaData {
             ps.setString(7, editada.getEmail());
             ps.setBoolean(8, editada.isEstado());
             ps.setInt(9, editada.getId());
-            System.out.println(ps);
             int resultado = ps.executeUpdate();
             if (resultado > -1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");

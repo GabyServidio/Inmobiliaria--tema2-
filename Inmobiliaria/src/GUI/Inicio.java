@@ -30,9 +30,9 @@ public class Inicio extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlSalir = new javax.swing.JLabel();
         jtUsuario = new javax.swing.JTextField();
         jpPass = new javax.swing.JPasswordField();
+        jlSalir = new javax.swing.JLabel();
         jlIngresar = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
@@ -42,24 +42,6 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jlSalir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jlSalir.setForeground(new java.awt.Color(178, 208, 158));
-        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlSalir.setText("SALIR");
-        jlSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jlSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jlSalirMouseExited(evt);
-            }
-        });
-        jPanel1.add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 90, 30));
 
         jtUsuario.setBackground(new java.awt.Color(40, 62, 49));
         jtUsuario.setForeground(new java.awt.Color(178, 208, 158));
@@ -82,6 +64,24 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jpPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 280, 30));
+
+        jlSalir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jlSalir.setForeground(new java.awt.Color(178, 208, 158));
+        jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlSalir.setText("SALIR");
+        jlSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
+        });
+        jPanel1.add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 90, 30));
 
         jlIngresar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jlIngresar.setForeground(new java.awt.Color(178, 208, 158));
@@ -170,21 +170,26 @@ public class Inicio extends javax.swing.JFrame {
     private void jlIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseClicked
     String user = jtUsuario.getText();
     Usuario encontrado = usuarioData.buscarUsuario(user);
+        System.out.println(user);
     char[] pass = jpPass.getPassword();
-
+    String contraseña = new String(pass);
         if (encontrado !=null) {
-            if (pass.toString().equals(encontrado.getContraseña())) {
+            if (encontrado.getContraseña().equals(contraseña)) {
+                    
+                
                 switch (encontrado.getTipo()) {
                     case "V": //llama a la ventana vendedor
-                        
+                        JOptionPane.showMessageDialog(null, "ingreso como Vendedor");
+                        dispose();
                         break;
                     case "I"://llama a la ventana Inspector
-                        
-                        
+                         JOptionPane.showMessageDialog(null, "ingreso como Inspector");
+                        dispose();
                         break;
                     case"A": //llama a la ventana Admnistrador
-                        
-                        break;
+                         JOptionPane.showMessageDialog(null, "ingreso como Administrador");
+                        dispose();
+                         break;
                      
                     default:
                         throw new AssertionError();

@@ -250,6 +250,7 @@ public class UsuarioData {
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("nombre"));
                 usuario.setContraseña(rs.getString("contrasenia"));
+                usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");
