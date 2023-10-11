@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="740" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="770" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -88,14 +88,14 @@
                               <Component id="ApellidoInquilino" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="Direccion" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="DireccionInquilino" min="-2" pref="210" max="-2" attributes="0"/>
                               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                               <Component id="CuilInquilino" min="-2" pref="210" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="dniInquilino" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="DniInquilino" min="-2" pref="210" max="-2" attributes="0"/>
                               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                              <Component id="telefonoInquilino" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="TelefonoInquilino" min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
                           <Component id="eMailInquilino" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
@@ -120,13 +120,13 @@
                       </Group>
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="Direccion" min="-2" max="-2" attributes="0"/>
+                          <Component id="DireccionInquilino" min="-2" max="-2" attributes="0"/>
                           <Component id="CuilInquilino" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="dniInquilino" min="-2" max="-2" attributes="0"/>
-                          <Component id="telefonoInquilino" min="-2" max="-2" attributes="0"/>
+                          <Component id="DniInquilino" min="-2" max="-2" attributes="0"/>
+                          <Component id="TelefonoInquilino" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Component id="eMailInquilino" min="-2" max="-2" attributes="0"/>
@@ -154,6 +154,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscarInquilino1MouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="TXTinquilino1">
               <Properties>
@@ -170,7 +173,7 @@
                 <Property name="text" type="java.lang.String" value="Apellido"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="dniInquilino">
+            <Component class="javax.swing.JLabel" name="DniInquilino">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DNI"/>
               </Properties>
@@ -180,12 +183,12 @@
                 <Property name="text" type="java.lang.String" value="CUIL/CUIT"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Direccion">
+            <Component class="javax.swing.JLabel" name="DireccionInquilino">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Direccion"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="telefonoInquilino">
+            <Component class="javax.swing.JLabel" name="TelefonoInquilino">
               <Properties>
                 <Property name="text" type="java.lang.String" value="telefono"/>
               </Properties>
@@ -223,7 +226,7 @@
                               <Component id="ApellidoGarante" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="dniGarante" min="-2" pref="198" max="-2" attributes="0"/>
+                              <Component id="DniGarante" min="-2" pref="198" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="CuilGarante" min="-2" pref="210" max="-2" attributes="0"/>
                           </Group>
@@ -231,7 +234,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="DireccionGarante" min="-2" pref="210" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="telefonoGarante" min="-2" pref="220" max="-2" attributes="0"/>
+                              <Component id="TelefonoGarante" min="-2" pref="220" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -256,13 +259,13 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="dniGarante" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DniGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CuilGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="DireccionGarante" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="telefonoGarante" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TelefonoGarante" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="eMailGarante" min="-2" max="-2" attributes="0"/>
@@ -293,7 +296,7 @@
                 <Property name="text" type="java.lang.String" value="Apellido"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="dniGarante">
+            <Component class="javax.swing.JLabel" name="DniGarante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DNI"/>
               </Properties>
@@ -308,7 +311,7 @@
                 <Property name="text" type="java.lang.String" value="Direccion"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="telefonoGarante">
+            <Component class="javax.swing.JLabel" name="TelefonoGarante">
               <Properties>
                 <Property name="text" type="java.lang.String" value="telefono"/>
               </Properties>
@@ -330,8 +333,31 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscargaranteMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel2">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="420" y="10" width="340" height="390"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="340" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="390" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
         </Container>
       </SubComponents>
     </Container>

@@ -37,13 +37,13 @@ public class PersonaData {
             ps.setBoolean(8, nueva.isEstado());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
-            
+
             if (rs.next()) {
                 nueva.setId(rs.getInt(1)); //modifique para que tome el id generado
 
-            JOptionPane.showMessageDialog(null, "persona creada con exito");
-            }else{
-            JOptionPane.showMessageDialog(null, "Error en agregar persona ");
+                JOptionPane.showMessageDialog(null, "persona creada con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error en agregar persona ");
             }
 
         } catch (SQLException ex) {
@@ -110,14 +110,13 @@ public class PersonaData {
     }
 
     public Persona encontrarPersona(int dni) {
-        Persona encontrada = new Persona();
+        Persona encontrada = null;
         SQL = "SELECT * FROM personas WHERE dni = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, dni);
             rs = ps.executeQuery();
             if (rs.next()) {
-               
                 encontrada.setId(rs.getInt("id"));
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
@@ -126,8 +125,7 @@ public class PersonaData {
                 encontrada.setDomicilio(rs.getString("domicilio"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
-              
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe una persona con ese DNI");
                 ps.close();
@@ -215,9 +213,9 @@ public class PersonaData {
         }
         return encontrada;
     }
-    
-    public Persona econtrarPropietario(int dni){
-    Persona encontrada = null;
+
+    public Persona econtrarPropietario(int dni) {
+        Persona encontrada = null;
         SQL = "SELECT personas.* FROM personas INNER JOIN inmueble ON inmueble.idPropietario = personas.id  WHERE personas.dni = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);

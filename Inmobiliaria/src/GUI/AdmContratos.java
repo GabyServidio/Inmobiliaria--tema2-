@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import Entidades.Persona;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Veronica Porqueras
@@ -35,22 +38,23 @@ public class AdmContratos extends javax.swing.JDialog {
         TXTinquilino1 = new javax.swing.JLabel();
         NombreInquilino = new javax.swing.JLabel();
         ApellidoInquilino = new javax.swing.JLabel();
-        dniInquilino = new javax.swing.JLabel();
+        DniInquilino = new javax.swing.JLabel();
         CuilInquilino = new javax.swing.JLabel();
-        Direccion = new javax.swing.JLabel();
-        telefonoInquilino = new javax.swing.JLabel();
+        DireccionInquilino = new javax.swing.JLabel();
+        TelefonoInquilino = new javax.swing.JLabel();
         eMailInquilino = new javax.swing.JLabel();
         janelGarante = new javax.swing.JPanel();
         jtGarante = new javax.swing.JTextField();
         NombreGarante = new javax.swing.JLabel();
         ApellidoGarante = new javax.swing.JLabel();
-        dniGarante = new javax.swing.JLabel();
+        DniGarante = new javax.swing.JLabel();
         CuilGarante = new javax.swing.JLabel();
         DireccionGarante = new javax.swing.JLabel();
-        telefonoGarante = new javax.swing.JLabel();
+        TelefonoGarante = new javax.swing.JLabel();
         eMailGarante = new javax.swing.JLabel();
         TXTGarante = new javax.swing.JLabel();
         bBuscargarante = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +78,11 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscarInquilino1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscarInquilino1.setText("Buscar");
+        bBuscarInquilino1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bBuscarInquilino1MouseClicked(evt);
+            }
+        });
 
         TXTinquilino1.setText("Inquilino");
 
@@ -81,13 +90,13 @@ public class AdmContratos extends javax.swing.JDialog {
 
         ApellidoInquilino.setText("Apellido");
 
-        dniInquilino.setText("DNI");
+        DniInquilino.setText("DNI");
 
         CuilInquilino.setText("CUIL/CUIT");
 
-        Direccion.setText("Direccion");
+        DireccionInquilino.setText("Direccion");
 
-        telefonoInquilino.setText("telefono");
+        TelefonoInquilino.setText("telefono");
 
         eMailInquilino.setText("eMail");
 
@@ -111,13 +120,13 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addGap(30, 30, 30)
                         .addComponent(ApellidoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpInquilinoLayout.createSequentialGroup()
-                        .addComponent(Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DireccionInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(CuilInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpInquilinoLayout.createSequentialGroup()
-                        .addComponent(dniInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DniInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(telefonoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TelefonoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(eMailInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jpInquilinoLayout.setVerticalGroup(
@@ -135,12 +144,12 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addComponent(ApellidoInquilino))
                 .addGap(14, 14, 14)
                 .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Direccion)
+                    .addComponent(DireccionInquilino)
                     .addComponent(CuilInquilino))
                 .addGap(14, 14, 14)
                 .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dniInquilino)
-                    .addComponent(telefonoInquilino))
+                    .addComponent(DniInquilino)
+                    .addComponent(TelefonoInquilino))
                 .addGap(14, 14, 14)
                 .addComponent(eMailInquilino)
                 .addContainerGap(8, Short.MAX_VALUE))
@@ -160,13 +169,13 @@ public class AdmContratos extends javax.swing.JDialog {
 
         ApellidoGarante.setText("Apellido");
 
-        dniGarante.setText("DNI");
+        DniGarante.setText("DNI");
 
         CuilGarante.setText("CUIL/CUIT");
 
         DireccionGarante.setText("Direccion");
 
-        telefonoGarante.setText("telefono");
+        TelefonoGarante.setText("telefono");
 
         eMailGarante.setText("eMail");
 
@@ -174,6 +183,11 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscargarante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscargarante.setText("Buscar");
+        bBuscargarante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bBuscargaranteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout janelGaranteLayout = new javax.swing.GroupLayout(janelGarante);
         janelGarante.setLayout(janelGaranteLayout);
@@ -193,14 +207,14 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(janelGaranteLayout.createSequentialGroup()
-                        .addComponent(dniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(CuilGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(eMailGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(janelGaranteLayout.createSequentialGroup()
                         .addComponent(DireccionGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(telefonoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TelefonoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         janelGaranteLayout.setVerticalGroup(
@@ -218,12 +232,12 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addComponent(ApellidoGarante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(janelGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dniGarante)
+                    .addComponent(DniGarante)
                     .addComponent(CuilGarante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(janelGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionGarante)
-                    .addComponent(telefonoGarante))
+                    .addComponent(TelefonoGarante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(eMailGarante)
                 .addContainerGap(10, Short.MAX_VALUE))
@@ -231,11 +245,24 @@ public class AdmContratos extends javax.swing.JDialog {
 
         jPanel1.add(janelGarante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 410, 160));
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 340, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 340, 390));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,6 +279,77 @@ public class AdmContratos extends javax.swing.JDialog {
     private void jtInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtInquilinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtInquilinoActionPerformed
+
+    private void bBuscarInquilino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilino1MouseClicked
+        String dato = (String) jtInquilino.getText();
+        int dni = Integer.parseInt(dato);
+        Persona inquilino = MVendedor.controlPersona.encontrarPersona(dni);
+        if (inquilino != null) {
+            NombreInquilino.setText(inquilino.getNombre());
+            ApellidoInquilino.setText(inquilino.getApellido());
+            DireccionInquilino.setText(inquilino.getDomicilio());
+            DniInquilino.setText(inquilino.getDni() + "");
+            CuilInquilino.setText(inquilino.getCuil() + "");
+            TelefonoInquilino.setText(inquilino.getTelefono() + "");
+            eMailInquilino.setText(inquilino.getEmail());
+
+        } else {
+
+            Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
+            int opcion = JOptionPane.showOptionDialog(null,
+                    "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
+                    "Confirmacion",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, opciones, opciones[1]);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                carga.setLocationRelativeTo(null);
+                carga.setVisible(true);
+            } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                jtInquilino.setText("");
+            } else {
+            }
+
+        }
+
+    }//GEN-LAST:event_bBuscarInquilino1MouseClicked
+
+    private void bBuscargaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscargaranteMouseClicked
+        String dato = jtGarante.getText();
+        int dni = Integer.parseInt(dato);
+        Persona garante = MVendedor.controlPersona.encontrarPersona(dni);
+        if (garante != null) {
+            NombreGarante.setText(garante.getNombre());
+            ApellidoGarante.setText(garante.getApellido());
+            DireccionGarante.setText(garante.getDomicilio());
+            DniGarante.setText(garante.getDni() + "");
+            CuilGarante.setText(garante.getCuil() + "");
+            TelefonoGarante.setText(garante.getTelefono() + "");
+            eMailGarante.setText(garante.getEmail());
+
+        } else {
+
+            Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
+            int opcion = JOptionPane.showOptionDialog(null,
+                    "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
+                    "Confirmacion",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, opciones, opciones[1]);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                carga.setLocationRelativeTo(null);
+                carga.setVisible(true);
+            } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                jtInquilino.setText("");
+            } else {
+            }
+
+    }//GEN-LAST:event_bBuscargaranteMouseClicked
+    }
 
     /**
      * @param args the command line arguments
@@ -300,25 +398,26 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel ApellidoInquilino;
     private javax.swing.JLabel CuilGarante;
     private javax.swing.JLabel CuilInquilino;
-    private javax.swing.JLabel Direccion;
     private javax.swing.JLabel DireccionGarante;
+    private javax.swing.JLabel DireccionInquilino;
+    private javax.swing.JLabel DniGarante;
+    private javax.swing.JLabel DniInquilino;
     private javax.swing.JLabel NombreGarante;
     private javax.swing.JLabel NombreInquilino;
     private javax.swing.JLabel TXTGarante;
     private javax.swing.JLabel TXTinquilino1;
+    private javax.swing.JLabel TelefonoGarante;
+    private javax.swing.JLabel TelefonoInquilino;
     private javax.swing.JLabel bBuscarInquilino1;
     private javax.swing.JLabel bBuscargarante;
     private javax.swing.JLabel bCrear;
-    private javax.swing.JLabel dniGarante;
-    private javax.swing.JLabel dniInquilino;
     private javax.swing.JLabel eMailGarante;
     private javax.swing.JLabel eMailInquilino;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel janelGarante;
     private javax.swing.JPanel jpInquilino;
     private javax.swing.JTextField jtGarante;
     private javax.swing.JTextField jtInquilino;
-    private javax.swing.JLabel telefonoGarante;
-    private javax.swing.JLabel telefonoInquilino;
     // End of variables declaration//GEN-END:variables
 }
