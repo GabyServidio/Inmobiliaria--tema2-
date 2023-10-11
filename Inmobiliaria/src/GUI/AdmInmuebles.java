@@ -16,6 +16,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Administración de Inmuebles");
     }
 
     /**
@@ -27,21 +28,117 @@ public class AdmInmuebles extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jBAlta = new javax.swing.JButton();
+        jLPropietario = new javax.swing.JLabel();
+        jTPropietario = new javax.swing.JTextField();
+        jLSuperficie = new javax.swing.JLabel();
+        jLAmbientes = new javax.swing.JLabel();
+        jLBanios = new javax.swing.JLabel();
+        jLGarage = new javax.swing.JLabel();
+        jLDireccion = new javax.swing.JLabel();
+        jLEstado = new javax.swing.JLabel();
+        jLZona = new javax.swing.JLabel();
+        jLTipo = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTDireccion = new javax.swing.JTextField();
+        jTSuperficie = new javax.swing.JTextField();
+        jTZona = new javax.swing.JTextField();
+        jTAmbientes = new javax.swing.JTextField();
+        jTBanios = new javax.swing.JTextField();
+        jTGarage = new javax.swing.JTextField();
+        jTTipoInmueble = new javax.swing.JTextField();
+        jTEstado = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jBAlta.setText("ALTA");
+        jPanel1.add(jBAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+
+        jLPropietario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLPropietario.setText("Propietario :");
+        jPanel1.add(jLPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jPanel1.add(jTPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 270, -1));
+
+        jLSuperficie.setText("Superficie :");
+        jPanel1.add(jLSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jLAmbientes.setText("Cantidad de ambientes :");
+        jPanel1.add(jLAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+
+        jLBanios.setText("Cantidad de baños :");
+        jPanel1.add(jLBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+
+        jLGarage.setText("Garage :");
+        jPanel1.add(jLGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+
+        jLDireccion.setText("Dirección del Inmueble :");
+        jPanel1.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jLEstado.setText("Estado :");
+        jPanel1.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
+
+        jLZona.setText("Zona :");
+        jPanel1.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+
+        jLTipo.setText("Tipo de Inmueble :");
+        jPanel1.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        jLabel10.setText("Condiciones del propietario para el contrato :");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        jPanel1.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 220, -1));
+        jPanel1.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 40, -1));
+        jPanel1.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 40, -1));
+        jPanel1.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 40, -1));
+        jPanel1.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 40, -1));
+        jPanel1.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 40, -1));
+        jPanel1.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 40, -1));
+        jPanel1.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 70, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 350, 70));
+
+        jButton1.setText("BAJA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
+
+        jButton2.setText("SALIR");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
+
+        jButton3.setText("EDITAR");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +183,31 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAlta;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLAmbientes;
+    private javax.swing.JLabel jLBanios;
+    private javax.swing.JLabel jLDireccion;
+    private javax.swing.JLabel jLEstado;
+    private javax.swing.JLabel jLGarage;
+    private javax.swing.JLabel jLPropietario;
+    private javax.swing.JLabel jLSuperficie;
+    private javax.swing.JLabel jLTipo;
+    private javax.swing.JLabel jLZona;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTAmbientes;
+    private javax.swing.JTextField jTBanios;
+    private javax.swing.JTextField jTDireccion;
+    private javax.swing.JTextField jTEstado;
+    private javax.swing.JTextField jTGarage;
+    private javax.swing.JTextField jTPropietario;
+    private javax.swing.JTextField jTSuperficie;
+    private javax.swing.JTextField jTTipoInmueble;
+    private javax.swing.JTextField jTZona;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
