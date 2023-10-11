@@ -110,21 +110,24 @@ public class PersonaData {
     }
 
     public Persona encontrarPersona(int dni) {
-        Persona encontrada = null;
-        SQL = "SELECT * FROM `personas` WHERE dni = ?";
+        Persona encontrada = new Persona();
+        SQL = "SELECT * FROM personas WHERE dni = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, dni);
             rs = ps.executeQuery();
             if (rs.next()) {
+               
                 encontrada.setId(rs.getInt("id"));
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
                 encontrada.setDni(rs.getInt("dni"));
-                encontrada.setCuil(rs.getInt("cuil"));
+                encontrada.setCuil(rs.getLong("cuil"));
                 encontrada.setDomicilio(rs.getString("domicilio"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
+              
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No existe una persona con ese DNI");
                 ps.close();
@@ -156,7 +159,7 @@ public class PersonaData {
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
                 encontrada.setDni(rs.getInt("dni"));
-                encontrada.setCuil(rs.getInt("cuil"));
+                encontrada.setCuil(rs.getLong("cuil"));
                 encontrada.setDomicilio(rs.getString("domicilio"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
@@ -192,7 +195,7 @@ public class PersonaData {
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
                 encontrada.setDni(rs.getInt("dni"));
-                encontrada.setCuil(rs.getInt("cuil"));
+                encontrada.setCuil(rs.getLong("cuil"));
                 encontrada.setDomicilio(rs.getString("domicilio"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
@@ -225,7 +228,7 @@ public class PersonaData {
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
                 encontrada.setDni(rs.getInt("dni"));
-                encontrada.setCuil(rs.getInt("cuil"));
+                encontrada.setCuil(rs.getLong("cuil"));
                 encontrada.setDomicilio(rs.getString("domicilio"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
@@ -259,7 +262,7 @@ public class PersonaData {
                 inquilino.setNombre(rs.getString("nombre"));
                 inquilino.setApellido(rs.getString("apellido"));
                 inquilino.setDni(rs.getInt("dni"));
-                inquilino.setCuil(rs.getInt("cuil"));
+                inquilino.setCuil(rs.getLong("cuil"));
                 inquilino.setDomicilio(rs.getString("domicilio"));
                 inquilino.setEmail(rs.getString("eMail"));
                 inquilino.setEstado(rs.getBoolean("estado"));
@@ -289,7 +292,7 @@ public class PersonaData {
                 garante.setNombre(rs.getString("nombre"));
                 garante.setApellido(rs.getString("apellido"));
                 garante.setDni(rs.getInt("dni"));
-                garante.setCuil(rs.getInt("cuil"));
+                garante.setCuil(rs.getLong("cuil"));
                 garante.setDomicilio(rs.getString("domicilio"));
                 garante.setEmail(rs.getString("eMail"));
                 garante.setEstado(rs.getBoolean("estado"));
@@ -320,7 +323,7 @@ public class PersonaData {
                 propietario.setNombre(rs.getString("nombre"));
                 propietario.setApellido(rs.getString("apellido"));
                 propietario.setDni(rs.getInt("dni"));
-                propietario.setCuil(rs.getInt("cuil"));
+                propietario.setCuil(rs.getLong("cuil"));
                 propietario.setDomicilio(rs.getString("domicilio"));
                 propietario.setEmail(rs.getString("eMail"));
                 propietario.setEstado(rs.getBoolean("estado"));

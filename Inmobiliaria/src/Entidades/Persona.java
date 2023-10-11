@@ -116,6 +116,11 @@ public class Persona {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuil=" + cuil + ", domicilio=" + domicilio + ", telefono=" + telefono + ", email=" + email + ", estado=" + estado + '}';
+    }
     
     
     
