@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package GUI;
+
+import AccesoADatos.PersonaData;
+import Entidades.Persona;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,9 +12,9 @@ package GUI;
  */
 public class AdmPersona extends javax.swing.JDialog {
 
-    /**
-     * Creates new form persona
-     */
+    private Persona buscada;
+    public static PersonaData controlPer = new PersonaData();
+    
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,21 +29,121 @@ public class AdmPersona extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jTDocumento = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jREstado = new javax.swing.JRadioButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTCuil = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTDomicilio = new javax.swing.JTextField();
+        jTTelefono = new javax.swing.JTextField();
+        jTEmail = new javax.swing.JTextField();
+        jBBuscar = new javax.swing.JButton();
+        jBAlta = new javax.swing.JButton();
+        jBBaja = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
+        jBGuardar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jInternalFrame1.setVisible(true);
+        jInternalFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Documento: ");
+        jInternalFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, -1, -1));
+        jInternalFrame1.getContentPane().add(jTDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 15, 120, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Nombre: ");
+        jInternalFrame1.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jInternalFrame1.getContentPane().add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 174, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Apellido: ");
+        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jInternalFrame1.getContentPane().add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 174, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Estado:");
+        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jREstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Cuil: ");
+        jInternalFrame1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jInternalFrame1.getContentPane().add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 110, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Domicilio: ");
+        jInternalFrame1.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Telefono: ");
+        jInternalFrame1.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Emai:  ");
+        jInternalFrame1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 174, -1));
+        jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 110, -1));
+        jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 174, -1));
+
+        jBBuscar.setIcon(new javax.swing.ImageIcon("C:\\JAVA\\Desarrollo_de_Aplicaciones_Java\\Proyecto.Java\\universidadFinal\\UniversidadTrans\\src\\imagenes\\LUPA.png")); // NOI18N
+        jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
+        jInternalFrame1.getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+
+        jBAlta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBAlta.setText("Alta");
+        jInternalFrame1.getContentPane().add(jBAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+
+        jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBaja.setText("Baja");
+        jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
+
+        jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBEditar.setText("Editar");
+        jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+
+        jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBGuardar.setText("Guardar");
+        jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
+
+        jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setText("Salir");
+        jInternalFrame1.getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+         buscar();
+    }//GEN-LAST:event_jBBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -89,5 +191,88 @@ public class AdmPersona extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAlta;
+    private javax.swing.JButton jBBaja;
+    private javax.swing.JButton jBBuscar;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBSalir;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JRadioButton jREstado;
+    private javax.swing.JTextField jTApellido;
+    private javax.swing.JTextField jTCuil;
+    private javax.swing.JTextField jTDocumento;
+    private javax.swing.JTextField jTDomicilio;
+    private javax.swing.JTextField jTEmail;
+    private javax.swing.JTextField jTNombre;
+    private javax.swing.JTextField jTTelefono;
     // End of variables declaration//GEN-END:variables
+
+    public void buscar(){
+        if (jTDocumento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+        } else {
+           
+                int dni = Integer.parseInt(jTDocumento.getText());
+                buscada = controlPer.encontrarPersona(dni);
+                if (buscada == null) {
+                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
+                } else {
+                    
+                    jTNombre.setText(buscada.getNombre());
+                    jTNombre.setText(buscada.getApellido());
+                    jTCuil.setText(String.valueOf(buscada.getCuil()));
+                    jTDomicilio.setText(buscada.getDomicilio());
+                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
+                    jTEmail.setText(buscada.getEmail());
+                    jREstado.setSelected(buscada.isEstado());
+                                      
+                    
+                    if (buscada.isEstado()) {
+                        blkEliminar(true);
+                        jBEditar.setEnabled(true);
+                    } else {
+                        blkEliminar(false);
+                        jBEditar.setEnabled(true);
+                    }
+                }
+           
+        }
+     }
+     
+    public void bloquear(boolean estado) {
+        jTApellido.setEnabled(estado);
+        jTNombre.setEnabled(estado);
+        jREstado.setEnabled(estado);
+        jBEditar.setEnabled(estado);
+        if (!estado) {
+            jTApellido.setDisabledTextColor(Color.BLACK);
+            jTNombre.setDisabledTextColor(Color.BLACK);
+            jTDocumento.setDisabledTextColor(Color.BLACK);
+            
+        }
+    }
+
+    public void blkEliminar(boolean estado) {
+        jBBaja.setEnabled(estado);
+    }
+
+    public void blkGuardar(boolean estado) {
+        jBGuardar.setEnabled(estado);
+    }
+
+    public void limpiarJt() {
+        jTApellido.setText("");
+        jTNombre.setText("");
+        jTDocumento.setText("");
+        
+    }
 }

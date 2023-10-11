@@ -111,7 +111,7 @@ public class PersonaData {
 
     public Persona encontrarPersona(int dni) {
         Persona encontrada = null;
-        SQL = "SELECT * FROM `personas` WHERE dni = ?";
+        SQL = "SELECT * FROM personas WHERE dni = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, dni);
