@@ -16,7 +16,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     
     
     private Persona buscado;
-    public static PersonaData controlPersona = new PersonaData();
+    
     
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -167,7 +167,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         } else {
            
                 int dni = Integer.parseInt(jTPropietario.getText());
-                buscado = controlPersona.encontrarPersona(dni);
+                buscado = MVend;
                 if (buscado == null) {
                     JOptionPane.showMessageDialog(null, "No se encuentra el propietario");
                 } else {

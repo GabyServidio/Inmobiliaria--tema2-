@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
@@ -14,9 +15,8 @@ import java.awt.Color;
  */
 public class MVendedor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mVendedor
-     */
+    public static PersonaData controlPersona = new PersonaData();
+    
     public static Inmueble inmubleSeleccionado = null;
     public MVendedor(Usuario ven) {
         initComponents();
