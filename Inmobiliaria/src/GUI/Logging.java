@@ -1,9 +1,9 @@
-
 package GUI;
 
 import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
 import java.awt.Color;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +16,10 @@ public class Logging extends javax.swing.JFrame {
      * Creates new form log
      */
     private UsuarioData usuarioData = new UsuarioData();
+
     public Logging() {
         initComponents();
+        calendario();
     }
 
     /**
@@ -30,6 +32,11 @@ public class Logging extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
+        diaSemana = new javax.swing.JLabel();
+        dia = new javax.swing.JLabel();
+        mes = new javax.swing.JLabel();
+        Calendario = new javax.swing.JLabel();
         jtUsuario = new javax.swing.JTextField();
         jpPass = new javax.swing.JPasswordField();
         jlSalir = new javax.swing.JLabel();
@@ -42,6 +49,31 @@ public class Logging extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo100p.png"))); // NOI18N
+        jPanel1.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, -1, -1));
+
+        diaSemana.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        diaSemana.setForeground(new java.awt.Color(0, 0, 0));
+        diaSemana.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        diaSemana.setText("lunes");
+        jPanel1.add(diaSemana, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 90, -1));
+
+        dia.setFont(new java.awt.Font("DialogInput", 1, 36)); // NOI18N
+        dia.setForeground(new java.awt.Color(204, 0, 0));
+        dia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dia.setText("1");
+        jPanel1.add(dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 90, -1));
+
+        mes.setFont(new java.awt.Font("DialogInput", 1, 12)); // NOI18N
+        mes.setForeground(new java.awt.Color(51, 51, 51));
+        mes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mes.setText("mes");
+        jPanel1.add(mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 90, -1));
+
+        Calendario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/calendar.png"))); // NOI18N
+        jPanel1.add(Calendario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 130, 130));
 
         jtUsuario.setBackground(new java.awt.Color(40, 62, 49));
         jtUsuario.setForeground(new java.awt.Color(178, 208, 158));
@@ -164,38 +196,43 @@ public class Logging extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPassMouseClicked
 
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
-     dispose();
+        dispose();
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseClicked
-    String user = jtUsuario.getText();
-    Usuario encontrado = usuarioData.buscarUsuario(user);
+        String user = jtUsuario.getText();
+        Usuario encontrado = usuarioData.buscarUsuario(user);
         System.out.println(user);
-    char[] pass = jpPass.getPassword();
-    String contraseña = new String(pass);
-        if (encontrado !=null) {
+        char[] pass = jpPass.getPassword();
+        String contraseña = new String(pass);
+        if (encontrado != null) {
             if (encontrado.getContraseña().equals(contraseña)) {
-                    
-                
+
                 switch (encontrado.getTipo()) {
                     case "V": //llama a la ventana vendedor
-                        JOptionPane.showMessageDialog(null, "ingreso como Vendedor");
+                        MVendedor ven = new MVendedor(encontrado);
+                        ven.setLocationRelativeTo(null);
+                        ven.setVisible(true);
                         dispose();
                         break;
                     case "I"://llama a la ventana Inspector
-                         JOptionPane.showMessageDialog(null, "ingreso como Inspector");
+                        MInspector insp = new MInspector();
+                        insp.setLocationRelativeTo(null);
+                        insp.setVisible(true);
                         dispose();
                         break;
-                    case"A": //llama a la ventana Admnistrador
-                         JOptionPane.showMessageDialog(null, "ingreso como Administrador");
+                    case "A": //llama a la ventana Admnistrador
+                        MAdministrador adm = new MAdministrador();
+                        adm.setLocationRelativeTo(null);
+                        adm.setVisible(true);
                         dispose();
-                         break;
-                     
+                        break;
+
                     default:
                         throw new AssertionError();
                 }
-            }else{
-            JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
             }
         }
     }//GEN-LAST:event_jlIngresarMouseClicked
@@ -239,11 +276,23 @@ public class Logging extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Calendario;
     private javax.swing.JLabel bg;
+    private javax.swing.JLabel dia;
+    private javax.swing.JLabel diaSemana;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlIngresar;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JPasswordField jpPass;
     private javax.swing.JTextField jtUsuario;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel mes;
     // End of variables declaration//GEN-END:variables
+    private void calendario() {
+        LocalDate fecha = LocalDate.now();
+
+        diaSemana.setText(fecha.getDayOfWeek().toString());
+        mes.setText(fecha.getMonth().toString());
+        dia.setText(Integer.toString(fecha.getDayOfMonth()));
+    }
 }

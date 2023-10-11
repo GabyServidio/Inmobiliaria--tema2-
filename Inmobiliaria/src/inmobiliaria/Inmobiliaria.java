@@ -1,8 +1,6 @@
 package inmobiliaria;
 
-import AccesoADatos.*;
-import Entidades.*;
-import java.time.LocalDate;
+import GUI.Logging;
 
 public class Inmobiliaria {
 
@@ -10,12 +8,11 @@ public class Inmobiliaria {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        MultaData nuevo= new MultaData();
-        Multa nue = new Multa(15, 10, LocalDate.now(), LocalDate.now(), 10000.00);
         
-        nuevo.GuardarMulta(nue);
+            Logging inicio = new Logging();
+            inicio.setLocationRelativeTo(null);
+            inicio.setVisible(true);
 
     }
-    
+
 }
