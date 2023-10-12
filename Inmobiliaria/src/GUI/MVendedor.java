@@ -15,7 +15,7 @@ import java.awt.Color;
  */
 public class MVendedor extends javax.swing.JFrame {
 
-    public static PersonaData controlPersona = new PersonaData();
+    public static PersonaData controlPer = new PersonaData();
     
     public static Inmueble inmubleSeleccionado = null;
     public MVendedor(Usuario ven) {
