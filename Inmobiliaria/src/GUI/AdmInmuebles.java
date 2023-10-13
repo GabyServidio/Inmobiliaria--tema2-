@@ -6,6 +6,7 @@ package GUI;
 
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
+import static GUI.MVendedor.controlPersona;
 import javax.swing.JOptionPane;
 
 /**
@@ -167,8 +168,9 @@ public class AdmInmuebles extends javax.swing.JDialog {
         } else {
            
                 int dni = Integer.parseInt(jTPropietario.getText());
-                buscado = MVend;
+                buscado = controlPersona.encontrarPersona(dni);
                 if (buscado == null) {
+                    
                     JOptionPane.showMessageDialog(null, "No se encuentra el propietario");
                 } else {
                     
@@ -176,13 +178,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     String apellido = buscado.getApellido();
                     jTNomYApe.setText(nombre+" "+apellido);
                     jTDireccion.setText(buscado.getDomicilio());
+                              
                     
-                    
-                    jtNombre.setText(buscado.getNombre());
-                    jtApellido.setText(buscado.getApellido());
-                    jrEstado.setSelected(buscado.isEstado());
-                    jdFechaNac.setDate(java.sql.Date.valueOf(buscado.getFechaNac()));
-
                     if (buscado.isEstado()) {
                         blkEliminar(true);
                         jbEditar.setEnabled(true);
