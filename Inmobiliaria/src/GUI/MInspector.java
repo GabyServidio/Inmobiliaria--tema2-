@@ -4,12 +4,17 @@
  */
 package GUI;
 
+import AccesoADatos.InmuebleData;
+import AccesoADatos.PersonaData;
+
 /**
  *
  * @author Veronica Porqueras
  */
 public class MInspector extends javax.swing.JFrame {
 
+    public static InmuebleData controlProp = new InmuebleData();
+    public static PersonaData controlPers = new PersonaData();
     /**
      * Creates new form mInspector
      */

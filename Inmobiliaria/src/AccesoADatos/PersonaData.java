@@ -111,18 +111,21 @@ public class PersonaData {
 
     public Persona encontrarPersona(int dni) {
         Persona encontrada = null;
-        SQL = "SELECT * FROM personas WHERE dni = ?";
+        SQL = "SELECT id, nombre, apellido, dni, cuil, domicilio, telefono, eMail, estado FROM personas WHERE dni = ?";
+        ps= null;
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, dni);
             rs = ps.executeQuery();
             if (rs.next()) {
+                encontrada = new Persona();
                 encontrada.setId(rs.getInt("id"));
                 encontrada.setNombre(rs.getString("nombre"));
                 encontrada.setApellido(rs.getString("apellido"));
                 encontrada.setDni(rs.getInt("dni"));
                 encontrada.setCuil(rs.getLong("cuil"));
                 encontrada.setDomicilio(rs.getString("domicilio"));
+                encontrada.setTelefono(rs.getInt("telefono"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
 
