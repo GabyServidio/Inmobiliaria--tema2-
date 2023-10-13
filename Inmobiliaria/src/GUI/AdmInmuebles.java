@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package GUI;
 
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
-import static GUI.MVendedor.controlPersona;
+import static GUI.MVendedor.controlPer;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -148,7 +147,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,29 +165,30 @@ public class AdmInmuebles extends javax.swing.JDialog {
         if (jTPropietario.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
-           
-                int dni = Integer.parseInt(jTPropietario.getText());
-                buscado = controlPersona.encontrarPersona(dni);
-                if (buscado == null) {
-                    
-                    JOptionPane.showMessageDialog(null, "No se encuentra el propietario");
+            int dni = Integer.parseInt(jTPropietario.getText());
+            buscado = controlPer.encontrarPersona(dni);
+            if (buscado == null) {
+                Object[] opciones = {"SI", "NO", "CANCELAR"};
+                int opcion = JOptionPane.showOptionDialog(null,
+                    "El DNI ingresado no existe, desea agregarlo?",
+                    "Confirmacion",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                null, opciones, opciones[2]);
+                if (opcion == JOptionPane.YES_OPTION) {
+                        
                 } else {
                     
-                    String nombre = buscado.getNombre();
-                    String apellido = buscado.getApellido();
-                    jTNomYApe.setText(nombre+" "+apellido);
-                    jTDireccion.setText(buscado.getDomicilio());
-                              
                     
-                    if (buscado.isEstado()) {
-                        blkEliminar(true);
-                        jbEditar.setEnabled(true);
-                    } else {
-                        blkEliminar(false);
-                        jbEditar.setEnabled(true);
-                    }
+                                       
                 }
-           
+            }else{
+                String nombre = buscado.getNombre();
+                String apellido = buscado.getApellido();
+                jTNomYApe.setText(nombre+" "+apellido);
+                jTDireccion.setText(buscado.getDomicilio());
+                
+            }
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
 
