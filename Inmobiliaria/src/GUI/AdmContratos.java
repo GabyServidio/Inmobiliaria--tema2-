@@ -55,11 +55,6 @@ public class AdmContratos extends javax.swing.JDialog {
         TXTGarante = new javax.swing.JLabel();
         bBuscargarante = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jlDireccion = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jlHab = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -157,7 +152,7 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addComponent(TelefonoInquilino))
                 .addGap(14, 14, 14)
                 .addComponent(eMailInquilino)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel1.add(jpInquilino, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 170));
@@ -245,53 +240,20 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addComponent(TelefonoGarante))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(eMailGarante)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         jPanel1.add(janelGarante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 410, 160));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Inmueble");
-
-        jlDireccion.setText("Direccion");
-
-        jLabel2.setText("Habitaciones:");
-
-        jlHab.setText("           ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlHab)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jlDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 340, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlDireccion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jlHab))
-                .addGap(0, 311, Short.MAX_VALUE))
+            .addGap(0, 390, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 340, 390));
@@ -300,7 +262,7 @@ public class AdmContratos extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +283,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private void bBuscarInquilino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilino1MouseClicked
         String dato = (String) jtInquilino.getText();
         int dni = Integer.parseInt(dato);
-        Persona inquilino = MVendedor.controlPer.encontrarPersona(dni);
+        Persona inquilino = MVendedor.controlPersona.encontrarPersona(dni);
         if (inquilino != null) {
             NombreInquilino.setText(inquilino.getNombre());
             ApellidoInquilino.setText(inquilino.getApellido());
@@ -357,7 +319,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private void bBuscargaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscargaranteMouseClicked
         String dato = jtGarante.getText();
         int dni = Integer.parseInt(dato);
-        Persona garante = MVendedor.controlPer.encontrarPersona(dni);
+        Persona garante = MVendedor.controlPersona.encontrarPersona(dni);
         if (garante != null) {
             NombreGarante.setText(garante.getNombre());
             ApellidoGarante.setText(garante.getApellido());
@@ -451,14 +413,9 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel bCrear;
     private javax.swing.JLabel eMailGarante;
     private javax.swing.JLabel eMailInquilino;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel janelGarante;
-    private javax.swing.JLabel jlDireccion;
-    private javax.swing.JLabel jlHab;
     private javax.swing.JPanel jpInquilino;
     private javax.swing.JTextField jtGarante;
     private javax.swing.JTextField jtInquilino;

@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
@@ -17,7 +16,7 @@ import java.awt.Color;
 public class MVendedor extends javax.swing.JFrame {
 
     public static PersonaData controlPer = new PersonaData();
-    public static InmuebleData controlInm = new InmuebleData();
+    
     public static Inmueble inmubleSeleccionado = null;
     public MVendedor(Usuario ven) {
         initComponents();
@@ -58,6 +57,7 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 170, 50));
 
         jtNombreSombra.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jtNombreSombra.setForeground(new java.awt.Color(0, 0, 0));
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
@@ -104,9 +104,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInmueble.setText("INMUEBLES");
         jlInmueble.setOpaque(true);
         jlInmueble.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlInmuebleMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlInmuebleMouseEntered(evt);
             }
@@ -123,9 +120,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlMultas.setText("MULTAS");
         jlMultas.setOpaque(true);
         jlMultas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlMultasMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlMultasMouseEntered(evt);
             }
@@ -158,9 +152,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInquilinos.setText("INQUILINOS");
         jlInquilinos.setOpaque(true);
         jlInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlInquilinosMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlInquilinosMouseEntered(evt);
             }
@@ -236,24 +227,8 @@ public class MVendedor extends javax.swing.JFrame {
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
       AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
      
-      cont.setVisible(true);
+      cont.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jlContratosMouseClicked
-
-    private void jlInmuebleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmuebleMouseClicked
-        AdmInmuebles inmueble = new AdmInmuebles(this, rootPaneCheckingEnabled);
-        inmueble.setVisible(true);
-    }//GEN-LAST:event_jlInmuebleMouseClicked
-
-    private void jlInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseClicked
-       AdmPersona perso = new AdmPersona(this,rootPaneCheckingEnabled);
-       perso.setVisible(true);
-    }//GEN-LAST:event_jlInquilinosMouseClicked
-
-    private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
-       AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
-       multa.setVisible(true);
-        
-    }//GEN-LAST:event_jlMultasMouseClicked
 
     /**
      * @param args the command line arguments
