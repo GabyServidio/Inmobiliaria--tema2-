@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
@@ -16,7 +17,7 @@ import java.awt.Color;
 public class MVendedor extends javax.swing.JFrame {
 
     public static PersonaData controlPer = new PersonaData();
-    
+    public static InmuebleData controlInm = new InmuebleData();
     public static Inmueble inmubleSeleccionado = null;
     public MVendedor(Usuario ven) {
         initComponents();
