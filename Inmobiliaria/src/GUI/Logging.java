@@ -4,6 +4,9 @@ import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -289,10 +292,16 @@ public class Logging extends javax.swing.JFrame {
     private javax.swing.JLabel mes;
     // End of variables declaration//GEN-END:variables
     private void calendario() {
-        LocalDate fecha = LocalDate.now();
+         LocalDate fecha = LocalDate.now();
 
-        diaSemana.setText(fecha.getDayOfWeek().toString());
-        mes.setText(fecha.getMonth().toString());
-        dia.setText(Integer.toString(fecha.getDayOfMonth()));
+        DateTimeFormatter dayFormatter = DateTimeFormatter.ofPattern("EEEE", new Locale("es"));
+
+        String diaSemanaString = fecha.format(dayFormatter);
+        String mesString = fecha.getMonth().getDisplayName(TextStyle.FULL, new Locale("es"));
+        String diaString = Integer.toString(fecha.getDayOfMonth());
+
+        diaSemana.setText(diaSemanaString);
+        mes.setText(mesString);
+        dia.setText(diaString);
     }
 }
