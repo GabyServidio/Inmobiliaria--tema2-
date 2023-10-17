@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import Entidades.Inmueble;
+import Entidades.Persona;
+import java.awt.Component;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+
 /**
  *
  * @author Veronica Porqueras
@@ -13,9 +20,17 @@ public class ListarInmuebles extends javax.swing.JDialog {
     /**
      * Creates new form ListarInmjebles
      */
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+
     public ListarInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setTitle("Listar Inmuebles");
         initComponents();
+
     }
 
     /**
@@ -29,10 +44,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jtDato = new javax.swing.JTextField();
+        jcbOpcion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtInmueble = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -40,11 +55,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         jLabel1.setText("Seleccione por que desea listar:");
 
-        jTextField1.setText("Ingrese la direccion del inmueble");
+        jtDato.setText("Ingrese la direccion del inmueble");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtInmueble.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,7 +70,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtInmueble);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,11 +79,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtDato, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 10, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -80,9 +95,9 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
@@ -141,11 +156,83 @@ public class ListarInmuebles extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbOpcion;
+    private javax.swing.JTextField jtDato;
+    private javax.swing.JTable jtInmueble;
     // End of variables declaration//GEN-END:variables
+    private void llenarCombo() {
+        jcbOpcion.addItem("Direccion");
+        jcbOpcion.addItem("Zona");
+        jcbOpcion.addItem("Propietario");
+    }
+
+    private void cabecera() {
+        modelo.addColumn("Código");
+        modelo.addColumn("Zona");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Ambientes");
+        modelo.addColumn("Superficie");
+        modelo.addColumn("Garage");
+        modelo.addColumn("Baños");
+        modelo.addColumn("Condiociones Contrato");
+        modelo.addColumn("Fecha Construccion");
+        modelo.addColumn("Propietario");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Estado");
+        jtInmueble.setModel(modelo);
+    }
+
+    private void cargarTabla() {
+        for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
+            Persona propietario = MVendedor.controlPer.encontrarPersona(inmueble.getIdPropietario());
+            modelo.addRow(new Object[]{
+                inmueble.getId(),
+                inmueble.getZona(),
+                inmueble.getDireccion(),
+                inmueble.getCantAmbientes(),
+                inmueble.getSuperficie(),
+                inmueble.getGarage(),
+                inmueble.getCanBaños(),
+                inmueble.getCondicionesContrato(),
+                inmueble.getFechaConstruccion(),
+                propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                inmueble.getEstadoInmueble(),
+                inmueble.getTipo()
+            });
+        }
+
+    }
+
+    private void limpiarFila() {
+        int f = modelo.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
+
+    private void ajustarAnchoColumnas() {
+        for (int column = 0; column < jtInmueble.getColumnCount(); column++) {
+            TableColumn tableColumn = jtInmueble.getColumnModel().getColumn(column);
+            int anchoPreferido = tableColumn.getMinWidth();
+            int anchoMaximo = tableColumn.getMaxWidth();
+
+            for (int row = 0; row < jtInmueble.getRowCount(); row++) {
+                TableCellRenderer cellRenderer = jtInmueble.getCellRenderer(row, column);
+                Component c = jtInmueble.prepareRenderer(cellRenderer, row, column);
+                int ancho = c.getPreferredSize().width + jtInmueble.getIntercellSpacing().width;
+                anchoPreferido = Math.max(anchoPreferido, ancho);
+
+                // Ajuste para evitar que el ancho de la columna supere el ancho máximo establecido.
+                if (anchoPreferido >= anchoMaximo) {
+                    anchoPreferido = anchoMaximo;
+                    break;
+                }
+            }
+            tableColumn.setPreferredWidth(anchoPreferido);
+        }
+    }
+
 }
