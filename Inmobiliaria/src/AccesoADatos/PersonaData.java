@@ -1,5 +1,6 @@
 package AccesoADatos;
 
+import Entidades.Inmueble;
 import Entidades.Persona;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -249,7 +250,7 @@ public class PersonaData {
         }
         return encontrada;
     }
-
+    
     public ArrayList<Persona> listarInquilinos(boolean estado) {
         ArrayList<Persona> inquilinos = new ArrayList<>();
         SQL = "SELECT * FROM personas  JOIN contrato WHERE personas.id= contrato.idInquilino AND estado = ?";

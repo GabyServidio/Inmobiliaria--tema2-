@@ -21,6 +21,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        CargarCombo();
         setTitle("Administración de Inmuebles");
     }
 
@@ -36,7 +37,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jBAlta = new javax.swing.JButton();
         jLPropietario = new javax.swing.JLabel();
-        jTPropietario = new javax.swing.JTextField();
         jLSuperficie = new javax.swing.JLabel();
         jLAmbientes = new javax.swing.JLabel();
         jLBanios = new javax.swing.JLabel();
@@ -57,23 +57,28 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jBBaja = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTNomYApe = new javax.swing.JTextField();
+        jBGuardar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTApellido = new javax.swing.JTextField();
+        jCBuscar = new javax.swing.JComboBox<>();
+        jTDniId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jBAlta.setText("ALTA");
+        jBAlta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBAlta.setText("Alta");
         jPanel1.add(jBAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
 
         jLPropietario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLPropietario.setText("DNI del propietario :");
+        jLPropietario.setText("Buscar por :");
         jPanel1.add(jLPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        jPanel1.add(jTPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 100, -1));
 
         jLSuperficie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLSuperficie.setText("Superficie :");
@@ -125,19 +130,27 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 370, 70));
 
-        jBBaja.setText("BAJA");
+        jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBaja.setText("Baja");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBajaActionPerformed(evt);
             }
         });
-        jPanel1.add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, -1, -1));
+        jPanel1.add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 450, -1, -1));
 
-        jButton2.setText("SALIR");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 450, -1, -1));
+        jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 450, -1, -1));
 
-        jButton3.setText("EDITAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, -1));
+        jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBEditar.setText("Editar");
+        jPanel1.add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, -1));
 
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBuscar.setText("Buscar");
@@ -149,19 +162,32 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel1.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 80, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre y Apellido :");
+        jLabel1.setText("Nombre :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
-        jPanel1.add(jTNomYApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 230, -1));
+        jPanel1.add(jTNomYApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 170, -1));
+
+        jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBGuardar.setText("Guardar");
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Apellido :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
+        jPanel1.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 170, -1));
+
+        jCBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jCBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+        jPanel1.add(jTDniId, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
 
         pack();
@@ -172,26 +198,69 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        if (jTPropietario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-        } else {
-            int dni = Integer.parseInt(jTPropietario.getText());
+        String seleccionado = (String) jCBuscar.getSelectedItem();
+        if (seleccionado == "DNI Propietario") {
+            int dni = Integer.parseInt(jTDniId.getText());
             buscado = controlPer.encontrarPersona(dni);
+            
             if (buscado == null) {
+                
                 Object[] opciones = {"SI", "NO", "CANCELAR"};
                 int opcion = JOptionPane.showOptionDialog(null,
-                    "El DNI ingresado no existe, desea agregarlo?",
-                    "Confirmacion",
+                "El DNI ingresado no existe, desea agregarlo?",
+                "Confirmacion",
                 JOptionPane.DEFAULT_OPTION,
                 JOptionPane.YES_NO_OPTION,
                 null, opciones, opciones[2]);
                 if (opcion == JOptionPane.YES_OPTION) {
+                    
+                    limpiarJt();
+                    jBBuscar.setEnabled(false);
+                    jBAlta.setEnabled(false);
+                    jBBaja.setEnabled(false);
+                    jBEditar.setEnabled(false);
                     AdmPersona.controlPer.agregarPersona(buscado);
+                    
                 } else {
-                    
-                    
+                        
                                        
                 }
+            
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+        } else if (seleccionado == "ID Propietario"){
+            
+            int id = Integer.parseInt(seleccionado);
+            buscado = controlPer.encontrarPersona(id);
+            
+            if (buscado == null) {
+                
+                Object[] opciones = {"SI", "NO", "CANCELAR"};
+                int opcion = JOptionPane.showOptionDialog(null,
+                "El ID ingresado no existe.",
+                "Confirmacion",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.YES_NO_OPTION,
+                null, opciones, opciones[2]);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    
+                    limpiarJt();
+                    jBBuscar.setEnabled(false);
+                    jBAlta.setEnabled(false);
+                    jBBaja.setEnabled(false);
+                    jBEditar.setEnabled(false);
+                    AdmPersona.controlPer.agregarPersona(buscado);
+                    
+                } else {
+                        
+                                       
+                }
+                
+                
+            }
+            int dni = Integer.parseInt(jTPropietario.getText());
+            buscado = controlPer.encontrarPersona(dni);
+            if (buscado == null) {
+            
             }else{
                 String nombre = buscado.getNombre();
                 String apellido = buscado.getApellido();
@@ -201,6 +270,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,8 +321,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JButton jBAlta;
     private javax.swing.JButton jBBaja;
     private javax.swing.JButton jBBuscar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBGuardar;
+    private javax.swing.JButton jBSalir;
+    private javax.swing.JComboBox<String> jCBuscar;
     private javax.swing.JLabel jLAmbientes;
     private javax.swing.JLabel jLBanios;
     private javax.swing.JLabel jLDireccion;
@@ -261,18 +336,41 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JLabel jLZona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTAmbientes;
+    private javax.swing.JTextField jTApellido;
     private javax.swing.JTextField jTBanios;
     private javax.swing.JTextField jTDireccion;
+    private javax.swing.JTextField jTDniId;
     private javax.swing.JTextField jTEstado;
     private javax.swing.JTextField jTGarage;
     private javax.swing.JTextField jTNomYApe;
-    private javax.swing.JTextField jTPropietario;
     private javax.swing.JTextField jTSuperficie;
     private javax.swing.JTextField jTTipoInmueble;
     private javax.swing.JTextField jTZona;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    
+public void CargarCombo(){
+    jCBuscar.addItem("DNI Propietario");
+    jCBuscar.addItem("ID Propietario");
+    
+}    
+    
+public void limpiarJt() {
+    
+        jTSuperficie.setText("");
+        jTAmbientes.setText("");
+        jTBanios.setText("");
+        jTDireccion.setText("");
+        jTEstado.setText("");
+        jTGarage.setText("");
+        jTTipoInmueble.setText("");
+        jTZona.setText("");
+                
+    }
+
 }
