@@ -102,14 +102,14 @@ public class AdmPersona extends javax.swing.JDialog {
         jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 110, -1));
         jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 174, -1));
 
-        jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/LUPA.png"))); // NOI18N
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, 40));
+        jInternalFrame1.getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 1, -1, 50));
 
         jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBaja.setText("Baja");
@@ -178,7 +178,7 @@ public class AdmPersona extends javax.swing.JDialog {
         blkGuardar(true);
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
-        AdmPersona.controlPer.agregarPersona(buscada);
+        
     }//GEN-LAST:event_jBNuevaActionPerformed
 
     
