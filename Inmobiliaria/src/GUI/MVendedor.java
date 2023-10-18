@@ -9,6 +9,7 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
+import AccesoADatos.InmuebleData;
 
 /**
  *
@@ -17,8 +18,9 @@ import java.awt.Color;
 public class MVendedor extends javax.swing.JFrame {
 
     public static PersonaData controlPer = new PersonaData();
-    public static InmuebleData controlInm = new InmuebleData();
+    public static InmuebleData controlInm = null;
     public static Inmueble inmubleSeleccionado = null;
+
     public MVendedor(Usuario ven) {
         initComponents();
         jtNombreSombra.setBackground(new Color(34,65,93, 200));
