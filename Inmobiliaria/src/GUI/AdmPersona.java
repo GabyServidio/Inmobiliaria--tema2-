@@ -4,6 +4,9 @@ package GUI;
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class AdmPersona extends javax.swing.JDialog {
@@ -14,6 +17,8 @@ public class AdmPersona extends javax.swing.JDialog {
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        bloquear(false);
+        
     }
 
     
@@ -29,7 +34,6 @@ public class AdmPersona extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jREstado = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jTCuil = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -44,6 +48,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jBGuardar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jBNueva = new javax.swing.JButton();
+        jTEstado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,14 +78,7 @@ public class AdmPersona extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Estado:");
-        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-
-        jREstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jREstadoActionPerformed(evt);
-            }
-        });
-        jInternalFrame1.getContentPane().add(jREstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cuil: ");
@@ -113,14 +111,29 @@ public class AdmPersona extends javax.swing.JDialog {
 
         jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBaja.setText("Baja");
+        jBBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBajaActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
 
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBEditar.setText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditarActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
         jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -140,6 +153,7 @@ public class AdmPersona extends javax.swing.JDialog {
             }
         });
         jInternalFrame1.getContentPane().add(jBNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jInternalFrame1.getContentPane().add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 70, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,10 +181,6 @@ public class AdmPersona extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTDocumentoActionPerformed
 
-    private void jREstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jREstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jREstadoActionPerformed
-
     private void jBNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevaActionPerformed
         limpiarJt();
         jBBuscar.setEnabled(false);
@@ -178,8 +188,76 @@ public class AdmPersona extends javax.swing.JDialog {
         blkGuardar(true);
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
-        AdmPersona.controlPer.agregarPersona(buscada);
+        jTEstado = 1;
+        
     }//GEN-LAST:event_jBNuevaActionPerformed
+
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        bloquear(true);
+        blkGuardar(true);
+        
+    }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
+        bloquear(true);
+        blkGuardar(true);
+        AdmPersona.controlPer.eliminarPersona(buscada);
+    }//GEN-LAST:event_jBBajaActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        
+        try {
+            if (jTDocumento.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
+            } else {
+                Object[] opciones = {"SI", "NO", "CANCELAR"};       //Crea un Vector con los textos a mostrar
+                int opcion = JOptionPane.showOptionDialog(null,
+                        "¿Todos los datos son Correctos?",
+                        "Confirmacion",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        null, opciones, opciones[2]);
+                jTEstado.setEnabled(false);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    int dni = Integer.parseInt(jTDocumento.getText());
+                    String nombre = jTNombre.getText();
+                    String apellido = jTApellido.getText();
+//                    LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    boolean estado = jTEstado.isSelected();
+                    // verifica si el alumno a guardar es nuevo o se edita uno ya creado
+                    
+                    if (editarPersona) {
+                        Alumno nuevo = new Alumno(buscado.getId(), apellido, nombre, dni, fechaNac, estado);
+                        Principal.controlAlu.modificarAlumno(nuevo);
+                        limpiarJt();
+                        blkGuardar(false);
+                        bloquear(false);
+                        jbBuscar.setEnabled(true);
+                        alumnoEditadoGuardado = false;
+                    } else {
+                        Alumno nuevo = new Alumno(apellido, nombre, dni, fechaNac, estado);
+                        Principal.controlAlu.GuardarAlum(nuevo);
+                        limpiarJt();
+                        blkGuardar(false);
+                        bloquear(false);
+                        jbBuscar.setEnabled(true);
+                    }
+                } else if (opcion == JOptionPane.NO_OPTION) {
+
+                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                    limpiarJt();
+                    bloquear(false);
+                    blkGuardar(false);
+                    jbBuscar.setEnabled(true);
+                }
+
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
+        }
+       
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
     
     public static void main(String args[]) {
@@ -240,12 +318,12 @@ public class AdmPersona extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JRadioButton jREstado;
     private javax.swing.JTextField jTApellido;
     private javax.swing.JTextField jTCuil;
     private javax.swing.JTextField jTDocumento;
     private javax.swing.JTextField jTDomicilio;
     private javax.swing.JTextField jTEmail;
+    private javax.swing.JTextField jTEstado;
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTTelefono;
     // End of variables declaration//GEN-END:variables
@@ -270,7 +348,7 @@ public class AdmPersona extends javax.swing.JDialog {
                     jTDomicilio.setText(buscada.getDomicilio());
                     jTTelefono.setText(String.valueOf(buscada.getTelefono()));
                     jTEmail.setText(buscada.getEmail());
-                    jREstado.setSelected(buscada.isEstado());
+                    jTEstado.setText(buscada.get;);
                                       
                     
                     if (buscada.isEstado()) {
@@ -290,12 +368,24 @@ public class AdmPersona extends javax.swing.JDialog {
     public void bloquear(boolean estado) {
         jTApellido.setEnabled(estado);
         jTNombre.setEnabled(estado);
-        jREstado.setEnabled(estado);
+        jTCuil.setEnabled(estado);
+        jTTelefono.setEnabled(estado);
+        jTDomicilio.setEnabled(estado);
+        jTEmail.setEnabled(estado);
+        jTEstado.setEnabled(estado);
         jBEditar.setEnabled(estado);
+        jBBaja.setEnabled(estado);
+        jBGuardar.setEnabled(estado);
+        
         if (!estado) {
             jTApellido.setDisabledTextColor(Color.BLACK);
             jTNombre.setDisabledTextColor(Color.BLACK);
             jTDocumento.setDisabledTextColor(Color.BLACK);
+            jTCuil.setDisabledTextColor(Color.BLACK);
+            jTTelefono.setDisabledTextColor(Color.BLACK);
+            jTDomicilio.setDisabledTextColor(Color.BLACK);
+            jTEmail.setDisabledTextColor(Color.BLACK);
+            
             
         }
     }
@@ -308,6 +398,12 @@ public class AdmPersona extends javax.swing.JDialog {
         jTApellido.setText("");
         jTNombre.setText("");
         jTDocumento.setText("");
+        jTCuil.setText("");
+        jTTelefono.setText("");
+        jTDomicilio.setText("");
+        jTEmail.setText("");
+        jTEstado.setText("");
+        
         
     }
 }
