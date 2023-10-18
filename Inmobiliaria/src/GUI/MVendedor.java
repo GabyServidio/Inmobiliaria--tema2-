@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
@@ -17,8 +18,9 @@ import AccesoADatos.InmuebleData;
 public class MVendedor extends javax.swing.JFrame {
 
     public static PersonaData controlPer = new PersonaData();
-    
-    public static InmuebleData inmubleSeleccionado = null;
+    public static InmuebleData controlInm = null;
+    public static Inmueble inmubleSeleccionado = null;
+
     public MVendedor(Usuario ven) {
         initComponents();
         jtNombreSombra.setBackground(new Color(34,65,93, 200));
