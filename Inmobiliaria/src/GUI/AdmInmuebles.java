@@ -1,10 +1,13 @@
 package GUI;
 
+import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
+import Entidades.Inmueble;
 import Entidades.Persona;
 import static GUI.MVendedor.controlPer;
 import static GUI.MVendedor.inmubleSeleccionado;
 import java.awt.Color;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -22,7 +25,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jBGuardar.setEnabled(false);
-        jBAgregarInmueble.setEnabled(false);
         bloquearJt(false);
     }
     
@@ -30,8 +32,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPCondiciones = new javax.swing.JPanel();
-        jBAgregarInmueble = new javax.swing.JButton();
+        jPanel = new javax.swing.JPanel();
         jLSuperficie = new javax.swing.JLabel();
         jLAmbientes = new javax.swing.JLabel();
         jLBanios = new javax.swing.JLabel();
@@ -63,69 +64,62 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTDni = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
+        jTFechaConstruccion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPCondiciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jBAgregarInmueble.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jBAgregarInmueble.setText("Agregar Inmueble");
-        jBAgregarInmueble.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAgregarInmuebleActionPerformed(evt);
-            }
-        });
-        jPCondiciones.add(jBAgregarInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
+        jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLSuperficie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLSuperficie.setText("Superficie :");
-        jPCondiciones.add(jLSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jPanel.add(jLSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
         jLAmbientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLAmbientes.setText("Cantidad de ambientes :");
-        jPCondiciones.add(jLAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
+        jPanel.add(jLAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
 
         jLBanios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLBanios.setText("Cantidad de baños :");
-        jPCondiciones.add(jLBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        jPanel.add(jLBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
 
         jLGarage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLGarage.setText("Garage :");
-        jPCondiciones.add(jLGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+        jPanel.add(jLGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
         jLDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLDireccion.setText("Dirección del Inmueble :");
-        jPCondiciones.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        jPanel.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
         jLEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLEstado.setText("Estado :");
-        jPCondiciones.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLZona.setText("Zona :");
-        jPCondiciones.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 230, -1, -1));
 
         jLTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLTipo.setText("Tipo de Inmueble :");
-        jPCondiciones.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
+        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Condiciones del propietario para el contrato :");
-        jPCondiciones.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-        jPCondiciones.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 210, -1));
-        jPCondiciones.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 40, -1));
-        jPCondiciones.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 40, -1));
-        jPCondiciones.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 40, -1));
-        jPCondiciones.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 40, -1));
-        jPCondiciones.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 40, -1));
-        jPCondiciones.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 40, -1));
-        jPCondiciones.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 70, -1));
+        jPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        jPanel.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 210, -1));
+        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 40, -1));
+        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 230, 40, -1));
+        jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 40, -1));
+        jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 40, -1));
+        jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 40, -1));
+        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 40, -1));
+        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 70, -1));
 
         jTCondiciones.setColumns(20);
         jTCondiciones.setRows(5);
         jScrollPane1.setViewportView(jTCondiciones);
 
-        jPCondiciones.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 520, 70));
+        jPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 520, 90));
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBSalir.setText("Salir");
@@ -134,28 +128,33 @@ public class AdmInmuebles extends javax.swing.JDialog {
                 jBSalirActionPerformed(evt);
             }
         });
-        jPCondiciones.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
+        jPanel.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nombre :");
-        jPCondiciones.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-        jPCondiciones.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 180, -1));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 180, -1));
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar Inmueble");
-        jPCondiciones.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, -1, -1));
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
+        jPanel.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Apellido :");
-        jPCondiciones.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
-        jPCondiciones.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 180, -1));
-        jPCondiciones.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 72, 520, 10));
-        jPCondiciones.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 122, 520, 20));
+        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
+        jPanel.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 180, -1));
+        jPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 72, 520, 10));
+        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 122, 520, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Ingresar DNI:");
-        jPCondiciones.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-        jPCondiciones.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 100, -1));
+        jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        jPanel.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 100, -1));
 
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBuscar.setText("Buscar Propietario");
@@ -164,19 +163,24 @@ public class AdmInmuebles extends javax.swing.JDialog {
                 jBBuscarActionPerformed(evt);
             }
         });
-        jPCondiciones.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
-        jPCondiciones.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 520, -1));
+        jPanel.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 520, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Fecha de Construcción:");
+        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        jPanel.add(jTFechaConstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPCondiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPCondiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -187,14 +191,62 @@ public class AdmInmuebles extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
-    private void jBAgregarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarInmuebleActionPerformed
-        jBGuardar.setEnabled(true);
-        
-    }//GEN-LAST:event_jBAgregarInmuebleActionPerformed
-
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         buscar();
+        
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        
+        try {
+            if (jTSuperficie.getText().isEmpty() || jTAmbientes.getText().isEmpty()||
+                jTBanios.getText().isEmpty() || jTDireccion.getText().isEmpty()||
+                jTEstado.getText().isEmpty() || jTGarage.getText().isEmpty()||
+                jTTipoInmueble.getText().isEmpty()|| jTZona.getText().isEmpty()||
+                jTCondiciones.getText().isEmpty()) {
+                
+                JOptionPane.showMessageDialog(null, "todos los datos son obligatorios");
+            } else {
+                Object[] opciones = {"SI", "NO", "CANCELAR"};
+                int opcion = JOptionPane.showOptionDialog(null,
+                        "¿Todos los datos son Correctos?",
+                        "Confirmacion",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        null, opciones, opciones[2]);
+                
+                if (opcion == JOptionPane.YES_OPTION) {
+                    int superficie = Integer.parseInt(jTSuperficie.getText());
+                    int ambientes = Integer.parseInt(jTAmbientes.getText());
+                    int banios = Integer.parseInt(jTBanios.getText());
+                    String direccion = jTDireccion.getText();
+                    String estado = jTEstado.getText();
+                    int garage = Integer.parseInt(jTGarage.getText());
+                    String tipo = jTTipoInmueble.getText();
+                    String zona = jTZona.getText();
+                    String condiciones = jTCondiciones.getText();     
+                    LocalDate fechaConstruccion = LocalDate.parse(jTFechaConstruccion.getText());
+                    System.out.println(fechaConstruccion);                
+                    Inmueble nuevo = new Inmueble(buscada.getId(), superficie, ambientes, banios,
+                        fechaConstruccion, garage, estado, direccion, zona, tipo, condiciones);
+                    
+                    MVendedor.inmubleSeleccionado.GuardarInmueble(nuevo);
+                    
+                            
+                        
+                    
+                } else if (opcion == JOptionPane.NO_OPTION) {
+
+                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                    
+                }
+
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
+        }
+
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,7 +291,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBAgregarInmueble;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
@@ -255,7 +306,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPCondiciones;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -267,6 +319,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jTDireccion;
     private javax.swing.JTextField jTDni;
     private javax.swing.JTextField jTEstado;
+    private javax.swing.JTextField jTFechaConstruccion;
     private javax.swing.JTextField jTGarage;
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTSuperficie;
@@ -310,7 +363,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
             int dni = Integer.parseInt(jTDni.getText());
             buscada = MVendedor.controlPer.encontrarPersona(dni);
             if (buscada == null) {
-                JOptionPane.showMessageDialog(null, "El DNI ingresado no corresponde a un propietario");
+                //JOptionPane.showMessageDialog(null, "El DNI ingresado no corresponde a un propietario");
+                
+                ;
+                
             } else {
                 jTNombre.setText(buscada.getNombre());
                 jTApellido.setText(buscada.getApellido());
