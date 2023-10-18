@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-10-2023 a las 16:28:24
+-- Tiempo de generación: 18-10-2023 a las 17:25:49
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -41,6 +41,14 @@ CREATE TABLE `contrato` (
   `descripcion` varchar(255) DEFAULT NULL COMMENT 'pormenores del contrato, clausulas especiales'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `contrato`
+--
+
+INSERT INTO `contrato` (`id`, `idPropiedad`, `idInquilino`, `idGarante`, `idVendedor`, `fechaContrato`, `fechaInicio`, `fechaFinalizacion`, `precio`, `estado`, `descripcion`) VALUES
+(3, 2, 1, 2, 3, '2023-10-06', '2023-10-06', '2023-10-06', 0, 'NO VIGENTE', 'probando la edicion'),
+(4, 2, 3, 4, 3, '2023-10-06', '2023-10-06', '2023-10-06', 0, 'VIGENTE', 'TEST');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +70,13 @@ CREATE TABLE `inmueble` (
   `condicionesContrato` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `inmueble`
+--
+
+INSERT INTO `inmueble` (`id`, `idPropietario`, `superficie`, `cantAmbientes`, `canBaños`, `fechaConstruccion`, `garage`, `estado`, `direccion`, `zona`, `tipo`, `condicionesContrato`) VALUES
+(2, 1, 122, 1, 1, '2023-10-06', 0, 'DISPONIBLE', 'San martin 25', 'CENTRO', 'LOCAL', 'Prueba');
+
 -- --------------------------------------------------------
 
 --
@@ -75,6 +90,14 @@ CREATE TABLE `inspecciones` (
   `fecha` date DEFAULT NULL,
   `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `inspecciones`
+--
+
+INSERT INTO `inspecciones` (`id`, `idInspector`, `idInmueble`, `fecha`, `descripcion`) VALUES
+(2, 1, 2, '2023-10-09', 'inspecion de prueba'),
+(3, 1, 2, '2023-10-09', 'prueba edicion');
 
 -- --------------------------------------------------------
 
@@ -134,7 +157,7 @@ INSERT INTO `personas` (`id`, `nombre`, `apellido`, `dni`, `cuil`, `domicilio`, 
 (20, 'Sebastián', 'Gómez', 34567909, 2147483647, 'Calle 456, Pueblo', 1234567909, 'sebastian@example.com', 1),
 (36, 'Alejandro', 'Pérez', 34567905, 20345678916, 'Av. Central 789, Ciudad', 1234567905, 'alejandro@example.com', 1),
 (39, 'Camila', 'Rodríguez', 34567908, 20345678919, 'Av. Principal 123, Ciudad', 1234567908, 'camila@example.com', 1),
-(46, 'Fernando Ariel', 'Acevedo', 29983614, 20299836143, 'Arrayanes sin numero Lago puelo', 154880126, 'fernando@mail.com', 0);
+(46, 'Fernando Ariel', 'Acevedo', 29983614, 20299836143, 'Arrayanes sin numero Lago puelo', 154880126, 'fernando@mail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -144,11 +167,21 @@ INSERT INTO `personas` (`id`, `nombre`, `apellido`, `dni`, `cuil`, `domicilio`, 
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
+  `idPersona` int(11) NOT NULL,
   `nombre` varchar(30) DEFAULT NULL,
   `contrasenia` char(60) DEFAULT NULL,
   `tipo` char(1) DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `idPersona`, `nombre`, `contrasenia`, `tipo`, `estado`) VALUES
+(1, 2, 'root', '1234', 'A', 1),
+(2, 3, 'inspector', '1234', 'I', 1),
+(3, 1, 'Vendemas', 'qwer', 'V', 1);
 
 --
 -- Índices para tablas volcadas
@@ -198,7 +231,8 @@ ALTER TABLE `personas`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idPersona` (`idPersona`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -208,37 +242,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `contrato`
 --
 ALTER TABLE `contrato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `inspecciones`
 --
 ALTER TABLE `inspecciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `multa`
 --
 ALTER TABLE `multa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -272,6 +306,12 @@ ALTER TABLE `inspecciones`
 ALTER TABLE `multa`
   ADD CONSTRAINT `multa_ibfk_1` FOREIGN KEY (`idInspeccion`) REFERENCES `inspecciones` (`id`),
   ADD CONSTRAINT `multa_ibfk_2` FOREIGN KEY (`idInquilino`) REFERENCES `personas` (`id`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
