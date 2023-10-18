@@ -5,13 +5,13 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Persona;
 import static GUI.MVendedor.controlPer;
-import static GUI.MVendedor.inmubleSeleccionado;
 import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
 import javax.swing.JOptionPane;
+import static GUI.MVendedor.controlInm;
 
 /**
  *
@@ -230,7 +230,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     Inmueble nuevo = new Inmueble(buscada.getId(), superficie, ambientes, banios,
                         fechaConstruccion, garage, estado, direccion, zona, tipo, condiciones);
                     
-                    MVendedor.inmubleSeleccionado.GuardarInmueble(nuevo);
+                    MVendedor.controlInm.GuardarInmueble(nuevo);
                     
                             
                         
