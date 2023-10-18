@@ -39,7 +39,9 @@ public class Inmueble {
         this.condicionesContrato = condicionesContrato;
     }
 
-    public Inmueble(int idPropietario, int superficie, int cantAmbientes, int canBaños, LocalDate fechaConstruccion, int garage, String estadoInmueble, String direccion, String zona, String tipo, String condicionesContrato) {
+    public Inmueble(int idPropietario, int superficie, int cantAmbientes, int canBaños,
+            LocalDate fechaConstruccion, int garage, String estadoInmueble,
+            String direccion, String zona, String tipo, String condicionesContrato) {
         this.idPropietario = idPropietario;
         this.superficie = superficie;
         this.cantAmbientes = cantAmbientes;

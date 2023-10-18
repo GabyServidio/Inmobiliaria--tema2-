@@ -5,13 +5,13 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Persona;
 import static GUI.MVendedor.controlPer;
-import static GUI.MVendedor.inmubleSeleccionado;
 import java.awt.Color;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
+import java.util.Date;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import static GUI.MVendedor.controlInm;
+import java.time.ZoneId;
 
 /**
  *
@@ -65,7 +65,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jBBuscar = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
-        jTFechaConstruccion = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -93,7 +93,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
         jLEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLEstado.setText("Estado :");
-        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
+        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, -1, -1));
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLZona.setText("Zona :");
@@ -113,7 +113,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 40, -1));
         jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 40, -1));
         jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 40, -1));
-        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 70, -1));
+        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 70, -1));
 
         jTCondiciones.setColumns(20);
         jTCondiciones.setRows(5);
@@ -169,7 +169,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Fecha de Construcción:");
         jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
-        jPanel.add(jTFechaConstruccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 90, -1));
+        jPanel.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,13 +224,14 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     int garage = Integer.parseInt(jTGarage.getText());
                     String tipo = jTTipoInmueble.getText();
                     String zona = jTZona.getText();
-                    String condiciones = jTCondiciones.getText();     
-                    LocalDate fechaConstruccion = LocalDate.parse(jTFechaConstruccion.getText());
+                    String condiciones = jTCondiciones.getText();
+                    Date fecha = jDateChooser1.getDate();
+                    LocalDate fechaConstruccion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     System.out.println(fechaConstruccion);                
                     Inmueble nuevo = new Inmueble(buscada.getId(), superficie, ambientes, banios,
                         fechaConstruccion, garage, estado, direccion, zona, tipo, condiciones);
-                    
-                    MVendedor.inmubleSeleccionado.GuardarInmueble(nuevo);
+                        System.out.println(buscada.getId()+ "/n "+superficie +"/n "+ ambientes+"/n "+ banios+fechaConstruccion+"/n "+ garage+"/n "+ estado+"/n "+ direccion+"/n "+ zona+"/n "+ tipo+"/n "+ condiciones);
+                    MVendedor.controlInm.GuardarInmueble(nuevo);
                     
                             
                         
@@ -243,7 +244,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
+            JOptionPane.showMessageDialog(null, e + "el DNI solo puede contener numeros");
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -294,6 +295,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLAmbientes;
     private javax.swing.JLabel jLBanios;
     private javax.swing.JLabel jLDireccion;
@@ -319,7 +321,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jTDireccion;
     private javax.swing.JTextField jTDni;
     private javax.swing.JTextField jTEstado;
-    private javax.swing.JTextField jTFechaConstruccion;
     private javax.swing.JTextField jTGarage;
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTSuperficie;
@@ -368,6 +369,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
                 ;
                 
             } else {
+                
                 jTNombre.setText(buscada.getNombre());
                 jTApellido.setText(buscada.getApellido());
                 jTApellido.setDisabledTextColor(Color.BLACK);
