@@ -30,7 +30,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
         super(parent, modal);
         setTitle("Listar Inmuebles");
         initComponents();
-
+        llenarCombo();
+        cabecera();
+        cargarTabla();
+        ajustarAnchoColumnas();
     }
 
     /**
@@ -57,7 +60,13 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         jtDato.setText("Ingrese la direccion del inmueble");
 
-        jcbOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOpcionActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 800));
 
         jtInmueble.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +125,16 @@ public class ListarInmuebles extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
+//        switch (jcbOpcion.getSelectedItem().toString()) {
+//            case "":
+//                
+//                break;
+//            default:
+//                throw new AssertionError();
+//        }
+    }//GEN-LAST:event_jcbOpcionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -171,6 +190,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jcbOpcion.addItem("Direccion");
         jcbOpcion.addItem("Zona");
         jcbOpcion.addItem("Propietario");
+        jcbOpcion.addItem("Codigo");
     }
 
     private void cabecera() {
@@ -191,7 +211,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
     private void cargarTabla() {
         for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
-            Persona propietario = MVendedor.controlPer.encontrarPersona(inmueble.getIdPropietario());
+            Persona propietario = MVendedor.controlPer.encontrarPersonaXId(inmueble.getIdPropietario());
             modelo.addRow(new Object[]{
                 inmueble.getId(),
                 inmueble.getZona(),
