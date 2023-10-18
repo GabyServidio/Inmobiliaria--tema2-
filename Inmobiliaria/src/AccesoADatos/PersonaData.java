@@ -109,6 +109,44 @@ public class PersonaData {
         }
 
     }
+    
+    public Persona encontrarPersonaXId(int id) {
+        Persona encontrada = null;
+        SQL = "SELECT id, nombre, apellido, dni, cuil, domicilio, telefono, eMail, estado FROM personas WHERE id = ?";
+        ps= null;
+        try {
+            ps = Conexion.getConexion().prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                encontrada = new Persona();
+                encontrada.setId(rs.getInt("id"));
+                encontrada.setNombre(rs.getString("nombre"));
+                encontrada.setApellido(rs.getString("apellido"));
+                encontrada.setDni(rs.getInt("dni"));
+                encontrada.setCuil(rs.getLong("cuil"));
+                encontrada.setDomicilio(rs.getString("domicilio"));
+                encontrada.setTelefono(rs.getInt("telefono"));
+                encontrada.setEmail(rs.getString("eMail"));
+                encontrada.setEstado(rs.getBoolean("estado"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe una persona con ese DNI");
+                ps.close();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return encontrada;
+    }
 
     public Persona encontrarPersona(int dni) {
         Persona encontrada = null;
