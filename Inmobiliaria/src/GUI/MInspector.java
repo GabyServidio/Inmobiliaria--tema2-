@@ -24,9 +24,8 @@ public class MInspector extends javax.swing.JFrame {
     /**
      * Creates new form mInspector
      */
-    public MInspector(Usuario ins, Inmueble inm) {
+    public MInspector(Usuario ins) {
         inspector=ins;
-        inmuselec= inm;
         initComponents();
     }
 
