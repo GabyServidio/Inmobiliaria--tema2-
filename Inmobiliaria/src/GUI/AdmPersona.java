@@ -188,7 +188,7 @@ public class AdmPersona extends javax.swing.JDialog {
         blkGuardar(true);
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
-        jTEstado = 1;
+        jTEstado.setEnabled(false);
         
     }//GEN-LAST:event_jBNuevaActionPerformed
 
@@ -329,40 +329,40 @@ public class AdmPersona extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void buscar(){
-        if (jTDocumento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-        } else {
-           
-                int dni = Integer.parseInt(jTDocumento.getText());
-                buscada = controlPer.encontrarPersona(dni);
-                if (buscada == null) {
-                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
-                
-
-                                        
-                } else {
-                    
-                    jTNombre.setText(buscada.getNombre());
-                    jTApellido.setText(buscada.getApellido());
-                    jTCuil.setText(String.valueOf(buscada.getCuil()));
-                    jTDomicilio.setText(buscada.getDomicilio());
-                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
-                    jTEmail.setText(buscada.getEmail());
-                    jTEstado.setText(buscada.get;);
-                                      
-                    
-                    if (buscada.isEstado()) {
-                        jBBaja.setEnabled(true);
-                        jBEditar.setEnabled(true);
-                        jBGuardar.setEnabled(true);
-                    } else {
-                        jBBaja.setEnabled(false);
-                        jBEditar.setEnabled(true);
-                        jBGuardar.setEnabled(true);
-                    }
-                }
-           
-        }
+//        if (jTDocumento.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+//        } else {
+//           
+//                int dni = Integer.parseInt(jTDocumento.getText());
+//                buscada = controlPer.encontrarPersona(dni);
+//                if (buscada == null) {
+//                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
+//                
+//
+//                                        
+//                } else {
+//                    
+//                    jTNombre.setText(buscada.getNombre());
+//                    jTApellido.setText(buscada.getApellido());
+//                    jTCuil.setText(String.valueOf(buscada.getCuil()));
+//                    jTDomicilio.setText(buscada.getDomicilio());
+//                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
+//                    jTEmail.setText(buscada.getEmail());
+//                    jTEstado.setText(buscada.isEstado());
+//                                      
+//                    
+//                    if (buscada.isEstado()) {
+//                        jBBaja.setEnabled(true);
+//                        jBEditar.setEnabled(true);
+//                        jBGuardar.setEnabled(true);
+//                    } else {
+//                        jBBaja.setEnabled(false);
+//                        jBEditar.setEnabled(true);
+//                        jBGuardar.setEnabled(true);
+//                    }
+//                }
+//           
+//        }
      }
      
     public void bloquear(boolean estado) {

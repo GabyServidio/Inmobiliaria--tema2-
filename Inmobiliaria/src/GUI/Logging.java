@@ -219,7 +219,7 @@ public class Logging extends javax.swing.JFrame {
                         dispose();
                         break;
                     case "I"://llama a la ventana Inspector
-                        MInspector insp = new MInspector();
+                        MInspector insp = new MInspector(encontrado);
                         insp.setLocationRelativeTo(null);
                         insp.setVisible(true);
                         dispose();

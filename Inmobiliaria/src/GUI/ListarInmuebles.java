@@ -30,7 +30,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
         super(parent, modal);
         setTitle("Listar Inmuebles");
         initComponents();
-
+        llenarCombo();
+        cabecera();
+        cargarTabla();
+        ajustarAnchoColumnas();
     }
 
     /**
@@ -48,16 +51,42 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jcbOpcion = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtInmueble = new javax.swing.JTable();
+        jbContratar = new javax.swing.JButton();
+        jbEditar = new javax.swing.JButton();
+        jbInspeccionar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1100, 400));
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Seleccione por que desea listar:");
 
-        jtDato.setText("Ingrese la direccion del inmueble");
+        jtDato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtDatoMouseClicked(evt);
+            }
+        });
+        jtDato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtDatoActionPerformed(evt);
+            }
+        });
+        jtDato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDatoKeyReleased(evt);
+            }
+        });
 
-        jcbOpcion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOpcionActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 800));
 
         jtInmueble.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,6 +101,19 @@ public class ListarInmuebles extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jtInmueble);
 
+        jbContratar.setText("Contratar");
+
+        jbEditar.setText("Editar");
+
+        jbInspeccionar.setText("Inspeccionar");
+
+        jbSalir.setText("SALIR");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,18 +122,25 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtDato, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jtDato, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(701, 701, 701))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1078, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbContratar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbInspeccionar)
+                        .addGap(38, 38, 38)
+                        .addComponent(jbSalir)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,15 +148,19 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbContratar)
+                    .addComponent(jbEditar)
+                    .addComponent(jbInspeccionar)
+                    .addComponent(jbSalir))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
+                        .addGap(43, 43, 43)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -115,6 +168,27 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
+        cambiarInfo();
+    }//GEN-LAST:event_jcbOpcionActionPerformed
+
+    private void jtDatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDatoKeyReleased
+        limpiarFila();
+        buscar();
+    }//GEN-LAST:event_jtDatoKeyReleased
+
+    private void jtDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDatoActionPerformed
+       
+    }//GEN-LAST:event_jtDatoActionPerformed
+
+    private void jtDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatoMouseClicked
+        jtDato.setText("");
+    }//GEN-LAST:event_jtDatoMouseClicked
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +237,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbContratar;
+    private javax.swing.JButton jbEditar;
+    private javax.swing.JButton jbInspeccionar;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbOpcion;
     private javax.swing.JTextField jtDato;
     private javax.swing.JTable jtInmueble;
@@ -171,6 +249,8 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jcbOpcion.addItem("Direccion");
         jcbOpcion.addItem("Zona");
         jcbOpcion.addItem("Propietario");
+        jcbOpcion.addItem("Codigo");
+
     }
 
     private void cabecera() {
@@ -184,14 +264,14 @@ public class ListarInmuebles extends javax.swing.JDialog {
         modelo.addColumn("Condiociones Contrato");
         modelo.addColumn("Fecha Construccion");
         modelo.addColumn("Propietario");
-        modelo.addColumn("Tipo");
         modelo.addColumn("Estado");
+        modelo.addColumn("Tipo");
         jtInmueble.setModel(modelo);
     }
 
     private void cargarTabla() {
         for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
-            Persona propietario = MVendedor.controlPer.encontrarPersona(inmueble.getIdPropietario());
+            Persona propietario = MVendedor.controlPer.encontrarPersonaXId(inmueble.getIdPropietario());
             modelo.addRow(new Object[]{
                 inmueble.getId(),
                 inmueble.getZona(),
@@ -239,4 +319,126 @@ public class ListarInmuebles extends javax.swing.JDialog {
         }
     }
 
+    private void cambiarInfo() {
+        String opcion = jcbOpcion.getSelectedItem().toString();
+
+        switch (opcion) {
+            case "Direccion":
+                jtDato.setText("Ingrese la direccion del Inmueble");
+
+                break;
+            case "Zona":
+                jtDato.setText("Ingrese la Zona");
+                break;
+            case "Propietario":
+                jtDato.setText("Ingrese el DNI del propietario");
+                break;
+
+            case "Codigo":
+                jtDato.setText("Ingrese el numero de Codigo de la propiedad");
+                break;
+
+        }
+
+    }
+
+    private void buscar() {
+        String opcion = jcbOpcion.getSelectedItem().toString();
+        switch (opcion) {
+            case "Direccion":
+                
+                for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
+                    System.out.println(inmueble.getDireccion().toLowerCase().startsWith(jtDato.getText().toLowerCase()));
+                    if (inmueble.getDireccion().toLowerCase().startsWith(jtDato.getText().toLowerCase())) {
+                        Persona propietario = MVendedor.controlPer.encontrarPersonaXId(inmueble.getIdPropietario());
+                        System.out.println("entro");
+                        modelo.addRow(new Object[]{
+                            inmueble.getId(),
+                            inmueble.getZona(),
+                            inmueble.getDireccion(),
+                            inmueble.getCantAmbientes(),
+                            inmueble.getSuperficie(),
+                            inmueble.getGarage(),
+                            inmueble.getCanBaños(),
+                            inmueble.getCondicionesContrato(),
+                            inmueble.getFechaConstruccion(),
+                            propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                            inmueble.getEstadoInmueble(),
+                            inmueble.getTipo()
+                        });
+                    }
+                }
+
+            break;
+            case "Zona":
+                
+                for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
+                    if (inmueble.getZona().toLowerCase().startsWith(jtDato.getText().toLowerCase())) {
+                        Persona propietario = MVendedor.controlPer.encontrarPersonaXId(inmueble.getIdPropietario());
+                        modelo.addRow(new Object[]{
+                            inmueble.getId(),
+                            inmueble.getZona(),
+                            inmueble.getDireccion(),
+                            inmueble.getCantAmbientes(),
+                            inmueble.getSuperficie(),
+                            inmueble.getGarage(),
+                            inmueble.getCanBaños(),
+                            inmueble.getCondicionesContrato(),
+                            inmueble.getFechaConstruccion(),
+                            propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                            inmueble.getEstadoInmueble(),
+                            inmueble.getTipo()
+                        });
+                    }
+                }
+            break;
+            case "Propietario":
+                
+                for (Persona propietario : MVendedor.controlPer.listarPropietarios()) {
+                    String dni = propietario.getDni() + "";
+
+                    if (dni.startsWith(jtDato.getText())) {
+                        Inmueble inmueble = MVendedor.controlInm.buscarInmueble(propietario.getId());
+                        modelo.addRow(new Object[]{
+                            inmueble.getId(),
+                            inmueble.getZona(),
+                            inmueble.getDireccion(),
+                            inmueble.getCantAmbientes(),
+                            inmueble.getSuperficie(),
+                            inmueble.getGarage(),
+                            inmueble.getCanBaños(),
+                            inmueble.getCondicionesContrato(),
+                            inmueble.getFechaConstruccion(),
+                            propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                            inmueble.getEstadoInmueble(),
+                            inmueble.getTipo()
+                        });
+                    }
+                }
+            break;
+
+            case "Codigo":
+                
+                for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
+                    if (inmueble.getId() == Integer.parseInt(jtDato.getText())) {
+                        Persona propietario = MVendedor.controlPer.encontrarPersonaXId(inmueble.getIdPropietario());
+                        modelo.addRow(new Object[]{
+                            inmueble.getId(),
+                            inmueble.getZona(),
+                            inmueble.getDireccion(),
+                            inmueble.getCantAmbientes(),
+                            inmueble.getSuperficie(),
+                            inmueble.getGarage(),
+                            inmueble.getCanBaños(),
+                            inmueble.getCondicionesContrato(),
+                            inmueble.getFechaConstruccion(),
+                            propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                            inmueble.getEstadoInmueble(),
+                            inmueble.getTipo()
+                        });
+                    }
+                }
+            break;
+        }
+    }
 }
