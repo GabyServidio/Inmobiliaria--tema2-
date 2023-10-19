@@ -224,7 +224,7 @@ public class AdmPersona extends javax.swing.JDialog {
                     String nombre = jTNombre.getText();
                     String apellido = jTApellido.getText();
 //                    LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    boolean estado = jTEstado.isSelected();
+                    String estado = jTEstado.getText();
                     // verifica si el alumno a guardar es nuevo o se edita uno ya creado
                     
                     if (editarPersona) {
