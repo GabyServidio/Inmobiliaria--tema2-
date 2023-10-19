@@ -188,7 +188,7 @@ public class AdmPersona extends javax.swing.JDialog {
         blkGuardar(true);
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
-        jTEstado = 1;
+        jTEstado.setEnabled(false);
         
     }//GEN-LAST:event_jBNuevaActionPerformed
 
@@ -348,7 +348,7 @@ public class AdmPersona extends javax.swing.JDialog {
                     jTDomicilio.setText(buscada.getDomicilio());
                     jTTelefono.setText(String.valueOf(buscada.getTelefono()));
                     jTEmail.setText(buscada.getEmail());
-                    jTEstado.setText(buscada.get;);
+                    jTEstado.setText(buscada.isEstado());
                                       
                     
                     if (buscada.isEstado()) {
