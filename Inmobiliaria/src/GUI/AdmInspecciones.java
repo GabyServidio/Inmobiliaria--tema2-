@@ -75,10 +75,9 @@ public class AdmInspecciones extends javax.swing.JDialog {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
         jButton3.setToolTipText("Salir");
-        jButton3.setLabel("");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton3MousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
@@ -116,8 +115,15 @@ JOptionPane.showMessageDialog(this, "El campo fecha debe estar completo");
         dispose();} 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-JOptionPane.OK_CANCEL_OPTION    }//GEN-LAST:event_jButton3MousePressed
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+Object[] opcion= {"Sí", "Cancelar"};
+        int op = JOptionPane.showOptionDialog(null, "¿Desea salir sin guardar?", "Advertencia", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION,
+                null,opcion, opcion[1]); 
+        if (op== JOptionPane.YES_OPTION){
+            dispose();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
     
 
     /**
