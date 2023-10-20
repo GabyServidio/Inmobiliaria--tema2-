@@ -38,6 +38,7 @@ public class AdmInspecciones extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTADetalle = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -45,10 +46,10 @@ public class AdmInspecciones extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("FECHA DE INSPECCIÓN");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
         jLabel5.setText("Detalle de Inspección");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.png"))); // NOI18N
         jButton1.setToolTipText("Guardar");
@@ -58,17 +59,29 @@ public class AdmInspecciones extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
-        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+
+        jDCFecha.setDateFormatString("dd/MM/aaaa");
+        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
 
         jTADetalle.setColumns(20);
         jTADetalle.setRows(5);
         jScrollPane1.setViewportView(jTADetalle);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 300, 120));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 300, 140));
 
         jLabel1.setText("INSPECCIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 80, 50));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
+        jButton3.setToolTipText("Salir");
+        jButton3.setLabel("");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo3.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -99,8 +112,12 @@ JOptionPane.showMessageDialog(this, "El campo fecha debe estar completo");
 }else if (jTADetalle==null || jTADetalle.equals(" ")){
     JOptionPane.showMessageDialog(this, "El campo Detalle debe estar completo");
 }else{
-        guardar();      } 
+        guardar();
+        dispose();} 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+JOptionPane.OK_CANCEL_OPTION    }//GEN-LAST:event_jButton3MousePressed
     
 
     /**
@@ -150,6 +167,7 @@ JOptionPane.showMessageDialog(this, "El campo fecha debe estar completo");
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDCFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
