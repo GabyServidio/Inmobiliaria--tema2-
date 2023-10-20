@@ -22,7 +22,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
         initComponents();
         jBGuardar.setEnabled(false);
         armarCabecera();
-        cargarDatos();
         bloquearJt(false);
     }
     
@@ -219,7 +218,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
         
         buscar();
-        
+        cargarDatos();
+        bloquearJt(false);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
