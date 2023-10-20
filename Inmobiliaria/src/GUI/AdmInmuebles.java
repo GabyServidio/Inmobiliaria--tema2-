@@ -13,10 +13,6 @@ import javax.swing.JOptionPane;
 import static GUI.MVendedor.controlInm;
 import java.time.ZoneId;
 
-/**
- *
- * @author Veronica Porqueras
- */
 public class AdmInmuebles extends javax.swing.JDialog {
             
     private Persona buscada;
@@ -66,6 +62,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jBEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -171,6 +168,15 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
         jPanel.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, -1, -1));
 
+        jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBEditar.setText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditarActionPerformed(evt);
+            }
+        });
+        jPanel.add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 480, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,6 +255,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jBGuardarActionPerformed
 
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        
+    }//GEN-LAST:event_jBEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -293,6 +303,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;
+    private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
     private com.toedter.calendar.JDateChooser jDateChooser1;
