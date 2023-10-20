@@ -205,7 +205,6 @@ public class Logging extends javax.swing.JFrame {
     private void jlIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseClicked
         String user = jtUsuario.getText();
         Usuario encontrado = usuarioData.buscarUsuario(user);
-        System.out.println(user);
         char[] pass = jpPass.getPassword();
         String contraseña = new String(pass);
         if (encontrado != null) {
