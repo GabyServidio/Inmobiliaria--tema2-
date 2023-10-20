@@ -28,3 +28,4 @@ replay_pid*
 /Inmobiliaria/build/
 
 *.env
+Inmobiliaria/build/built-jar.properties
