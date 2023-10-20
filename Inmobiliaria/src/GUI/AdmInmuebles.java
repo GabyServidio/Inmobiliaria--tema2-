@@ -23,6 +23,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jBGuardar.setEnabled(false);
         armarCabecera();
         cargarDatos();
+        compruebaEdicion();
         bloquearJt(false);
     }
     
@@ -360,7 +361,30 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jTTipoInmueble;
     private javax.swing.JTextField jTZona;
     // End of variables declaration//GEN-END:variables
+    private void compruebaEdicion(){
+        Inmueble selec = MVendedor.inmubleSeleccionado;
+        if (selec== null) {
+           
+        }else{
+            Persona prop = MVendedor.controlPer.encontrarPersonaXId(selec.getIdPropietario());
+        jTNombre.setText(prop.getNombre());
+        jTApellido.setText(prop.getApellido());
+        jTSuperficie.setText(selec.getSuperficie()+"");
+//        jTAmbientes.setEnabled(estado);
+//        jTBanios.setEnabled(estado);
+//        jTDireccion.setEnabled(estado);
+//        jTEstado.setEnabled(estado);
+//        jTGarage.setEnabled(estado);
+//        jTTipoInmueble.setEnabled(estado);
+//        jTZona.setEnabled(estado);
+//        jTCondiciones.setEnabled(estado);
+//        jDCFechaCon.setEnabled(estado);
+         bloquearJt(false);
+         jBEditar.setEnabled(true);
+        }
     
+    
+    } 
     public void limpiarJt() {
     
         jTSuperficie.setText("");

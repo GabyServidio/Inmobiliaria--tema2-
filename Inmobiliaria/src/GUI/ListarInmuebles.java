@@ -208,6 +208,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
     }//GEN-LAST:event_jtDatoMouseClicked
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+       MVendedor.inmubleSeleccionado = null;
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
