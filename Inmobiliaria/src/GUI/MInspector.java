@@ -6,8 +6,10 @@ package GUI;
 
 import AccesoADatos.InmuebleData;
 import AccesoADatos.InspeccionData;
+import AccesoADatos.MultaData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
+import Entidades.Inspeccion;
 import Entidades.Usuario;
 
 /**
@@ -19,8 +21,10 @@ public class MInspector extends javax.swing.JFrame {
     public static InmuebleData controlProp = new InmuebleData();
     public static PersonaData controlPers = new PersonaData();
     public static InspeccionData controlInsp= new InspeccionData();
+    public static MultaData controlMulta = new MultaData();
     public static Usuario inspector= null;
     public static Inmueble inmuselec = null;
+    public static Inspeccion inspeselec= null;
     /**
      * Creates new form mInspector
      */
