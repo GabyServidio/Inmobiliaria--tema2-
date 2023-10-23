@@ -206,56 +206,59 @@ public class AdmPersona extends javax.swing.JDialog {
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         
-        try {
-            if (jTDocumento.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
-            } else {
-                Object[] opciones = {"SI", "NO", "CANCELAR"};       //Crea un Vector con los textos a mostrar
-                int opcion = JOptionPane.showOptionDialog(null,
-                        "¿Todos los datos son Correctos?",
-                        "Confirmacion",
-                        JOptionPane.DEFAULT_OPTION,
-                        JOptionPane.YES_NO_CANCEL_OPTION,
-                        null, opciones, opciones[2]);
-                jTEstado.setEnabled(false);
-
-                if (opcion == JOptionPane.YES_OPTION) {
-                    int dni = Integer.parseInt(jTDocumento.getText());
-                    String nombre = jTNombre.getText();
-                    String apellido = jTApellido.getText();
-//                    LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    String estado = jTEstado.getText();
-                    // verifica si el alumno a guardar es nuevo o se edita uno ya creado
-                    
-                    if (editarPersona) {
-                        Alumno nuevo = new Alumno(buscado.getId(), apellido, nombre, dni, fechaNac, estado);
-                        Principal.controlAlu.modificarAlumno(nuevo);
-                        limpiarJt();
-                        blkGuardar(false);
-                        bloquear(false);
-                        jbBuscar.setEnabled(true);
-                        alumnoEditadoGuardado = false;
-                    } else {
-                        Alumno nuevo = new Alumno(apellido, nombre, dni, fechaNac, estado);
-                        Principal.controlAlu.GuardarAlum(nuevo);
-                        limpiarJt();
-                        blkGuardar(false);
-                        bloquear(false);
-                        jbBuscar.setEnabled(true);
-                    }
-                } else if (opcion == JOptionPane.NO_OPTION) {
-
-                } else if (opcion == JOptionPane.CANCEL_OPTION) {
-                    limpiarJt();
-                    bloquear(false);
-                    blkGuardar(false);
-                    jbBuscar.setEnabled(true);
-                }
-
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
-        }
+//        try {
+//            if (jTDocumento.getText().isEmpty()) {
+//                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
+//            } else {
+//                Object[] opciones = {"SI", "NO", "CANCELAR"};       //Crea un Vector con los textos a mostrar
+//                int opcion = JOptionPane.showOptionDialog(null,
+//                        "¿Todos los datos son Correctos?",
+//                        "Confirmacion",
+//                        JOptionPane.DEFAULT_OPTION,
+//                        JOptionPane.YES_NO_CANCEL_OPTION,
+//                        null, opciones, opciones[2]);
+//                jTEstado.setEnabled(false);
+//
+//                if (opcion == JOptionPane.YES_OPTION) {
+//                    int dni = Integer.parseInt(jTDocumento.getText());
+//                    String nombre = jTNombre.getText();
+//                    String apellido = jTApellido.getText();
+//                    int cuil= Integer.parseInt(jTCuil.getText());
+//                    int telefono= Integer.parseInt(jTTelefono.getText());
+//                    String domicilio= jTDomicilio.getText();
+//                    String email= jTEmail.getText();
+//                    String estado = jTEstado.getText();
+//                    // verifica si el alumno a guardar es nuevo o se edita uno ya creado
+//                    
+//                    if (editarPersona) {
+//                        Alumno nuevo = new Alumno(buscado.getId(), apellido, nombre, dni, fechaNac, estado);
+//                        Principal.controlAlu.modificarAlumno(nuevo);
+//                        limpiarJt();
+//                        blkGuardar(false);
+//                        bloquear(false);
+//                        jbBuscar.setEnabled(true);
+//                        alumnoEditadoGuardado = false;
+//                    } else {
+//                        Alumno nuevo = new Alumno(apellido, nombre, dni, fechaNac, estado);
+//                        Principal.controlAlu.GuardarAlum(nuevo);
+//                        limpiarJt();
+//                        blkGuardar(false);
+//                        bloquear(false);
+//                        jbBuscar.setEnabled(true);
+//                    }
+//                } else if (opcion == JOptionPane.NO_OPTION) {
+//
+//                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+//                    limpiarJt();
+//                    bloquear(false);
+//                    blkGuardar(false);
+//                    jbBuscar.setEnabled(true);
+//                }
+//
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
+//        }
        
     }//GEN-LAST:event_jBGuardarActionPerformed
 
@@ -329,40 +332,40 @@ public class AdmPersona extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void buscar(){
-//        if (jTDocumento.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-//        } else {
-//           
-//                int dni = Integer.parseInt(jTDocumento.getText());
-//                buscada = controlPer.encontrarPersona(dni);
-//                if (buscada == null) {
-//                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
-//                
-//
-//                                        
-//                } else {
-//                    
-//                    jTNombre.setText(buscada.getNombre());
-//                    jTApellido.setText(buscada.getApellido());
-//                    jTCuil.setText(String.valueOf(buscada.getCuil()));
-//                    jTDomicilio.setText(buscada.getDomicilio());
-//                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
-//                    jTEmail.setText(buscada.getEmail());
-//                    jTEstado.setText(buscada.isEstado());
-//                                      
-//                    
-//                    if (buscada.isEstado()) {
-//                        jBBaja.setEnabled(true);
-//                        jBEditar.setEnabled(true);
-//                        jBGuardar.setEnabled(true);
-//                    } else {
-//                        jBBaja.setEnabled(false);
-//                        jBEditar.setEnabled(true);
-//                        jBGuardar.setEnabled(true);
-//                    }
-//                }
-//           
-//        }
+        if (jTDocumento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+        } else {
+           
+                int dni = Integer.parseInt(jTDocumento.getText());
+                buscada = controlPer.encontrarPersona(dni);
+                if (buscada == null) {
+                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
+                
+
+                                        
+                } else {
+                    
+                    jTNombre.setText(buscada.getNombre());
+                    jTApellido.setText(buscada.getApellido());
+                    jTCuil.setText(String.valueOf(buscada.getCuil()));
+                    jTDomicilio.setText(buscada.getDomicilio());
+                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
+                    jTEmail.setText(buscada.getEmail());
+                    jTEstado.setText(String.valueOf(buscada.isEstado()));
+                                      
+                    
+                    if (buscada.isEstado()) {
+                        jBBaja.setEnabled(true);
+                        jBEditar.setEnabled(true);
+                        jBGuardar.setEnabled(true);
+                    } else {
+                        jBBaja.setEnabled(false);
+                        jBEditar.setEnabled(true);
+                        jBGuardar.setEnabled(true);
+                    }
+                }
+           
+        }
      }
      
     public void bloquear(boolean estado) {
