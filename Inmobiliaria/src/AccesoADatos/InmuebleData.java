@@ -176,7 +176,7 @@ public class InmuebleData {
         String sql = "UPDATE inmueble SET superficie = ? , cantAmbientes = ?,"
                 + " canBaños = ?, fechaConstruccion = ?, garage = ?,"
                 + " estado = ?, direccion = ?, zona = ?, tipo = ?,"
-                + " condicionesContrato = ? WHERE id = ?";
+                + " condicionesContrato = ? WHERE idPropietario = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, inmueble.getSuperficie());

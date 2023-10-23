@@ -24,7 +24,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         initComponents();
         jBGuardar.setEnabled(false);
         compruebaEdicion();
-        bloquearJt(false);
+        //bloquearJt(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -216,6 +216,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
                         null, opciones, opciones[2]);
                 
                 if (opcion == JOptionPane.YES_OPTION) {
+                    int propi = MVendedor.inmubleSeleccionado.getId();
                     int superficie = Integer.parseInt(jTSuperficie.getText());
                     int ambientes = Integer.parseInt(jTAmbientes.getText());
                     int banios = Integer.parseInt(jTBanios.getText());
@@ -227,15 +228,16 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     String condiciones = jTCondiciones.getText();
                     Date fecha = jDCFechaCon.getDate();
                     LocalDate fechaConstruccion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    System.out.println(fechaConstruccion);                
-                    Inmueble nuevo = new Inmueble(buscada.getId(), superficie, ambientes, banios,
-                        fechaConstruccion, garage, estado, direccion, zona, tipo, condiciones);
-                        System.out.println(buscada.getId()+ "/n "+superficie +"/n "+ ambientes+"/n "+ banios+fechaConstruccion+"/n "+ garage+"/n "+ estado+"/n "+ direccion+"/n "+ zona+"/n "+ tipo+"/n "+ condiciones);
-                    MVendedor.controlInm.GuardarInmueble(nuevo);
-                    
-                            
+                    Inmueble nuevo = new Inmueble(propi, superficie, ambientes, banios, fechaConstruccion,
+                            garage, estado, direccion, zona, condiciones, tipo);
                         
                     
+                    if (nuevo == null){
+                        MVendedor.controlInm.GuardarInmueble(nuevo);
+                    }else{
+                        MVendedor.controlInm.modificarInmueble(nuevo);
+                    }
+                                   
                 } else if (opcion == JOptionPane.NO_OPTION) {
 
                 } else if (opcion == JOptionPane.CANCEL_OPTION) {
@@ -335,6 +337,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
            
         }else{
             Persona prop = MVendedor.controlPer.encontrarPersonaXId(selec.getIdPropietario());
+            jBBuscar.setEnabled(false);
+            jTDni.setText(prop.getDni()+"");
+            jTDni.setEnabled(false);
+            bloquearJt(true);
             jTNombre.setText(prop.getNombre());
             jTApellido.setText(prop.getApellido());
             jTSuperficie.setText(selec.getSuperficie()+"");
@@ -349,13 +355,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
             LocalDate fechaLocalDate = selec.getFechaConstruccion();
             Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
             jDCFechaCon.setDate(fechaDate);
-            bloquearJt(true);
-            jTNombre.setEnabled(false);
-            jTApellido.setEnabled(false);
-            jTDni.setEnabled(false);
-            jBBuscar.setEnabled(false);
             jBGuardar.setEnabled(true);
-         
+                     
         }
     
     
