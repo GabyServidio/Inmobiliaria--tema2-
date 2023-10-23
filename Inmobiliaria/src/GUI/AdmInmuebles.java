@@ -216,7 +216,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
                         null, opciones, opciones[2]);
                 
                 if (opcion == JOptionPane.YES_OPTION) {
-                    int propi = MVendedor.inmubleSeleccionado.getId();
+                    
+                    int propi = 0;
                     int superficie = Integer.parseInt(jTSuperficie.getText());
                     int ambientes = Integer.parseInt(jTAmbientes.getText());
                     int banios = Integer.parseInt(jTBanios.getText());
@@ -232,10 +233,16 @@ public class AdmInmuebles extends javax.swing.JDialog {
                             garage, estado, direccion, zona, condiciones, tipo);
                         
                     
-                    if (nuevo == null){
+                    if (MVendedor.inmubleSeleccionado == null){
+                        nuevo.setIdPropietario(buscada.getId());
                         MVendedor.controlInm.GuardarInmueble(nuevo);
                     }else{
+                        int id = MVendedor.inmubleSeleccionado.getId();
+                        nuevo.setId(id);
+                        int idPropietario = MVendedor.inmubleSeleccionado.getIdPropietario();
+                        nuevo.setIdPropietario(idPropietario);
                         MVendedor.controlInm.modificarInmueble(nuevo);
+                        MVendedor.inmubleSeleccionado = null;
                     }
                                    
                 } else if (opcion == JOptionPane.NO_OPTION) {

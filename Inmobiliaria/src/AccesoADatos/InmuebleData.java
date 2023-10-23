@@ -176,7 +176,7 @@ public class InmuebleData {
         String sql = "UPDATE inmueble SET superficie = ? , cantAmbientes = ?,"
                 + " canBaños = ?, fechaConstruccion = ?, garage = ?,"
                 + " estado = ?, direccion = ?, zona = ?, tipo = ?,"
-                + " condicionesContrato = ? WHERE idPropietario = ?";
+                + " condicionesContrato = ? WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, inmueble.getSuperficie());
@@ -189,6 +189,7 @@ public class InmuebleData {
             ps.setString(8, inmueble.getZona());
             ps.setString(9, inmueble.getTipo());
             ps.setString(10, inmueble.getCondicionesContrato());
+            ps.setInt(11, inmueble.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
