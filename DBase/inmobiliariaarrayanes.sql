@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-10-2023 a las 17:25:49
+-- Tiempo de generación: 23-10-2023 a las 16:05:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -75,7 +75,17 @@ CREATE TABLE `inmueble` (
 --
 
 INSERT INTO `inmueble` (`id`, `idPropietario`, `superficie`, `cantAmbientes`, `canBaños`, `fechaConstruccion`, `garage`, `estado`, `direccion`, `zona`, `tipo`, `condicionesContrato`) VALUES
-(2, 1, 122, 1, 1, '2023-10-06', 0, 'DISPONIBLE', 'San martin 25', 'CENTRO', 'LOCAL', 'Prueba');
+(2, 1, 122, 1, 1, '2023-10-06', 0, 'DISPONIBLE', 'San martin 25', 'CENTRO', 'LOCAL', 'Prueba'),
+(3, 1, 200, 6, 3, '2005-05-15', 1, 'Disponible', 'Calle Principal 123', 'Residencial', 'Casa', 'paticularidades'),
+(4, 2, 80, 3, 2, '2010-10-10', 0, 'En alquiler', 'Avenida Libertad 456', 'Urbana', 'Apartamento', 'Alquiler'),
+(5, 3, 600, 10, 6, '2015-07-20', 3, 'En venta', 'Calle del Sol 789', 'Costera', 'Mansión', 'Venta'),
+(6, 4, 120, 2, 1, '2018-03-05', 1, 'Disponible', 'Calle Bohemia 101', 'Cultural', 'Loft', 'Venta'),
+(7, 5, 300, 7, 4, '1990-12-12', 2, 'En alquiler', 'Calle Boscosa 11', 'Rural', 'Chalet', 'Alquiler'),
+(8, 6, 60, 2, 1, '2016-11-11', 0, 'En venta', 'Avenida Central 77', 'Urbana', 'Apartamento', 'Venta'),
+(9, 7, 150, 4, 3, '2008-06-25', 2, 'Disponible', 'Calle Altiva 22', 'Urbana', 'Penthouse', 'Venta'),
+(10, 8, 150, 5, 2, '1995-09-08', 1, 'En alquiler', 'Calle Arbolada 33', 'Rural', 'Cabaña', 'Alquiler'),
+(11, 9, 100, 3, 2, '2012-04-18', 1, 'En venta', 'Avenida Industrial 44', 'Industrial', 'Loft', 'Venta'),
+(12, 10, 250, 8, 4, '1975-03-30', 2, 'Disponible', 'Calle Colonial 55', 'Histórica', 'Casa', 'Venta');
 
 -- --------------------------------------------------------
 
@@ -248,7 +258,7 @@ ALTER TABLE `contrato`
 -- AUTO_INCREMENT de la tabla `inmueble`
 --
 ALTER TABLE `inmueble`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `inspecciones`
