@@ -189,6 +189,7 @@ public class InmuebleData {
             ps.setString(8, inmueble.getZona());
             ps.setString(9, inmueble.getTipo());
             ps.setString(10, inmueble.getCondicionesContrato());
+            ps.setInt(11, inmueble.getId());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");

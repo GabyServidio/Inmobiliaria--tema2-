@@ -219,6 +219,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
             edit.setVisible(rootPaneCheckingEnabled);
+            cargarTabla();
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
 
