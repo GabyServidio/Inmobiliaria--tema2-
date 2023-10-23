@@ -4,18 +4,17 @@ package GUI;
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
 import java.awt.Color;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class AdmPersona extends javax.swing.JDialog {
 
     private Persona buscada;
     public static PersonaData controlPer = new PersonaData();
+    private boolean personaEditada = false;
     
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setTitle("Administracion de Personas");
         initComponents();
         bloquear(false);
         
@@ -48,7 +47,9 @@ public class AdmPersona extends javax.swing.JDialog {
         jBGuardar = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jBNueva = new javax.swing.JButton();
-        jTEstado = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jTEstado = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,37 +69,37 @@ public class AdmPersona extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre: ");
-        jInternalFrame1.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
-        jInternalFrame1.getContentPane().add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 174, -1));
+        jInternalFrame1.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jInternalFrame1.getContentPane().add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Apellido: ");
-        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
-        jInternalFrame1.getContentPane().add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 174, -1));
+        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        jInternalFrame1.getContentPane().add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 110, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Estado:");
-        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cuil: ");
-        jInternalFrame1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-        jInternalFrame1.getContentPane().add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 110, -1));
+        jInternalFrame1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jInternalFrame1.getContentPane().add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 110, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Domicilio: ");
-        jInternalFrame1.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Telefono: ");
-        jInternalFrame1.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Email:  ");
-        jInternalFrame1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
-        jInternalFrame1.getContentPane().add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 174, -1));
-        jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 110, -1));
-        jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 174, -1));
+        jInternalFrame1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jInternalFrame1.getContentPane().add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 174, -1));
+        jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 110, -1));
+        jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 140, -1));
 
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBuscar.setText("Buscar");
@@ -107,7 +108,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBBuscarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, 40));
+        jInternalFrame1.getContentPane().add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, 40));
 
         jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBaja.setText("Baja");
@@ -116,7 +117,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBBajaActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
+        jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
 
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBEditar.setText("Editar");
@@ -125,7 +126,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBEditarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+        jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
@@ -134,7 +135,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
+        jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBSalir.setText("Salir");
@@ -143,7 +144,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBSalirActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, -1));
+        jInternalFrame1.getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
         jBNueva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBNueva.setText("Nueva");
@@ -152,8 +153,10 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBNuevaActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-        jInternalFrame1.getContentPane().add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 70, -1));
+        jInternalFrame1.getContentPane().add(jBNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 62, 360, 10));
+        jInternalFrame1.getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 242, 360, 20));
+        jInternalFrame1.getContentPane().add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,7 +166,7 @@ public class AdmPersona extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -189,12 +192,15 @@ public class AdmPersona extends javax.swing.JDialog {
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
         jTEstado.setEnabled(false);
+        jBNueva.setEnabled(false);
+        jTEstado.setSelected(true);
         
     }//GEN-LAST:event_jBNuevaActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         bloquear(true);
         blkGuardar(true);
+        personaEditada = true;
         
     }//GEN-LAST:event_jBEditarActionPerformed
 
@@ -205,58 +211,60 @@ public class AdmPersona extends javax.swing.JDialog {
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-//        
-//        try {
-//            if (jTDocumento.getText().isEmpty()) {
-//                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
-//            } else {
-//                Object[] opciones = {"SI", "NO", "CANCELAR"};       //Crea un Vector con los textos a mostrar
-//                int opcion = JOptionPane.showOptionDialog(null,
-//                        "¿Todos los datos son Correctos?",
-//                        "Confirmacion",
-//                        JOptionPane.DEFAULT_OPTION,
-//                        JOptionPane.YES_NO_CANCEL_OPTION,
-//                        null, opciones, opciones[2]);
-//                jTEstado.setEnabled(false);
-//
-//                if (opcion == JOptionPane.YES_OPTION) {
-//                    int dni = Integer.parseInt(jTDocumento.getText());
-//                    String nombre = jTNombre.getText();
-//                    String apellido = jTApellido.getText();
-////                    LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                    boolean estado = jTEstado.isSelected();
-//                    // verifica si el alumno a guardar es nuevo o se edita uno ya creado
-//                    
-//                    if (editarPersona) {
-//                        Alumno nuevo = new Alumno(buscado.getId(), apellido, nombre, dni, fechaNac, estado);
-//                        Principal.controlAlu.modificarAlumno(nuevo);
-//                        limpiarJt();
-//                        blkGuardar(false);
-//                        bloquear(false);
-//                        jbBuscar.setEnabled(true);
-//                        alumnoEditadoGuardado = false;
-//                    } else {
-//                        Alumno nuevo = new Alumno(apellido, nombre, dni, fechaNac, estado);
-//                        Principal.controlAlu.GuardarAlum(nuevo);
-//                        limpiarJt();
-//                        blkGuardar(false);
-//                        bloquear(false);
-//                        jbBuscar.setEnabled(true);
-//                    }
-//                } else if (opcion == JOptionPane.NO_OPTION) {
-//
-//                } else if (opcion == JOptionPane.CANCEL_OPTION) {
-//                    limpiarJt();
-//                    bloquear(false);
-//                    blkGuardar(false);
-//                    jbBuscar.setEnabled(true);
-//                }
-//
-//            }
-//        } catch (NumberFormatException e) {
-//            JOptionPane.showMessageDialog(null, "el DNI solo puede contener numeros");
-//        }
-//       
+        
+        try {
+            if (jTDocumento.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
+            } else {
+                Object[] opciones = {"SI", "NO", "CANCELAR"};       //Crea un Vector con los textos a mostrar
+                int opcion = JOptionPane.showOptionDialog(null,
+                        "¿Todos los datos son Correctos?",
+                        "Confirmacion",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        null, opciones, opciones[2]);
+                jTEstado.setEnabled(false);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    int dni = Integer.parseInt(jTDocumento.getText());
+                    String nombre = jTNombre.getText();
+                    String apellido = jTApellido.getText();
+                    Long cuil= Long.parseLong(jTCuil.getText());
+                    int telefono= Integer.parseInt(jTTelefono.getText());
+                    String domicilio= jTDomicilio.getText();
+                    String email= jTEmail.getText();
+                    boolean estado = jTEstado.isSelected();
+                    System.out.println(jTCuil.getText());                    
+                    if (personaEditada) {
+                        Persona nueva = new Persona(buscada.getId(), nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
+                        MVendedor.controlPer.editarPersona(nueva);
+                        limpiarJt();
+                        blkGuardar(false);
+                        bloquear(false);
+                        jBBuscar.setEnabled(true);
+                        personaEditada = false;
+                    } else {
+                        Persona nueva = new Persona(nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
+                        
+                        MVendedor.controlPer.agregarPersona(nueva);
+                        limpiarJt();
+                        blkGuardar(false);
+                        bloquear(false);
+                        jBBuscar.setEnabled(true);
+                    }
+                } else if (opcion == JOptionPane.NO_OPTION) {
+
+                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                    limpiarJt();
+                    bloquear(false);
+                    blkGuardar(false);
+                    jBBuscar.setEnabled(true);
+                }
+
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados");
+        }
+       
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     
@@ -318,51 +326,50 @@ public class AdmPersona extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTApellido;
     private javax.swing.JTextField jTCuil;
     private javax.swing.JTextField jTDocumento;
     private javax.swing.JTextField jTDomicilio;
     private javax.swing.JTextField jTEmail;
-    private javax.swing.JTextField jTEstado;
+    private javax.swing.JRadioButton jTEstado;
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTTelefono;
     // End of variables declaration//GEN-END:variables
 
     public void buscar(){
-//        if (jTDocumento.getText().isEmpty()) {
-//            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-//        } else {
-//           
-//                int dni = Integer.parseInt(jTDocumento.getText());
-//                buscada = controlPer.encontrarPersona(dni);
-//                if (buscada == null) {
-//                    JOptionPane.showMessageDialog(null, "No se encuentra la persona");
-//                
-//
-//                                        
-//                } else {
-//                    
-//                    jTNombre.setText(buscada.getNombre());
-//                    jTApellido.setText(buscada.getApellido());
-//                    jTCuil.setText(String.valueOf(buscada.getCuil()));
-//                    jTDomicilio.setText(buscada.getDomicilio());
-//                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
-//                    jTEmail.setText(buscada.getEmail());
-//                    jTEstado.setText(buscada.isEstado());
-//                                      
-//                    
-//                    if (buscada.isEstado()) {
-//                        jBBaja.setEnabled(true);
-//                        jBEditar.setEnabled(true);
-//                        jBGuardar.setEnabled(true);
-//                    } else {
-//                        jBBaja.setEnabled(false);
-//                        jBEditar.setEnabled(true);
-//                        jBGuardar.setEnabled(true);
-//                    }
-//                }
-//           
-//        }
+        if (jTDocumento.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+        } else {
+           
+                int dni = Integer.parseInt(jTDocumento.getText());
+                buscada = controlPer.encontrarPersona(dni);
+                if (buscada == null) {
+                                                            
+                } else {
+                    
+                    jTNombre.setText(buscada.getNombre());
+                    jTApellido.setText(buscada.getApellido());
+                    jTCuil.setText(String.valueOf(buscada.getCuil()));
+                    jTDomicilio.setText(buscada.getDomicilio());
+                    jTTelefono.setText(String.valueOf(buscada.getTelefono()));
+                    jTEmail.setText(buscada.getEmail());
+                    jTEstado.setSelected(buscada.isEstado());
+                    
+                                                         
+                    if (buscada.isEstado()) {
+                        jBBaja.setEnabled(true);
+                        jBEditar.setEnabled(true);
+                        jBGuardar.setEnabled(true);
+                    } else {
+                        jBBaja.setEnabled(false);
+                        jBEditar.setEnabled(true);
+                        jBGuardar.setEnabled(true);
+                    }
+                }
+           
+        }
      }
      
     public void bloquear(boolean estado) {
@@ -397,7 +404,7 @@ public class AdmPersona extends javax.swing.JDialog {
     public void limpiarJt() {
         jTApellido.setText("");
         jTNombre.setText("");
-        jTDocumento.setText("");
+//        jTDocumento.setText("");
         jTCuil.setText("");
         jTTelefono.setText("");
         jTDomicilio.setText("");
