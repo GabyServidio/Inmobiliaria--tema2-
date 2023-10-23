@@ -62,11 +62,11 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
-        jlInmueble1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
         jlInmueble1.setForeground(new java.awt.Color(255, 255, 255));
         jlInmueble1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlInmueble1.setText("CREAR INMUEBLE");
-        jlInmueble1.setOpaque(true);
+        jlInmueble1.setPreferredSize(new java.awt.Dimension(163, 30));
         jlInmueble1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlInmueble1MouseClicked(evt);
@@ -78,15 +78,15 @@ public class MVendedor extends javax.swing.JFrame {
                 jlInmueble1MouseExited(evt);
             }
         });
-        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 210, 50));
+        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
 
-        jtNombre.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(255, 255, 255));
         jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombre.setText("Nombre");
         jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 170, 50));
 
-        jtNombreSombra.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
@@ -95,11 +95,12 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1.add(LOGO, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
-        jlSalir.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlSalir.setForeground(new java.awt.Color(255, 255, 255));
         jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlSalir.setText("SALIR");
-        jlSalir.setOpaque(true);
+        jlSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlSalir.setPreferredSize(new java.awt.Dimension(163, 30));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlSalirMouseClicked(evt);
@@ -111,14 +112,14 @@ public class MVendedor extends javax.swing.JFrame {
                 jlSalirMouseExited(evt);
             }
         });
-        jPanel1.add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 100, 40));
+        jPanel1.add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 525, 163, 31));
 
         jlContacto.setBackground(new java.awt.Color(147, 151, 149));
-        jlContacto.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jlContacto.setFont(new java.awt.Font("Univers-Black", 0, 18)); // NOI18N
         jlContacto.setForeground(new java.awt.Color(255, 255, 255));
         jlContacto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlContacto.setText("CONTACTOS");
-        jlContacto.setOpaque(true);
+        jlContacto.setPreferredSize(new java.awt.Dimension(163, 30));
         jlContacto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlContactoMouseEntered(evt);
@@ -127,14 +128,14 @@ public class MVendedor extends javax.swing.JFrame {
                 jlContactoMouseExited(evt);
             }
         });
-        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 210, 50));
+        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 217, 163, 30));
 
         jlListarInmuebles.setBackground(new java.awt.Color(34, 65, 93));
-        jlListarInmuebles.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jlListarInmuebles.setFont(new java.awt.Font("Univers-Black", 0, 14)); // NOI18N
         jlListarInmuebles.setForeground(new java.awt.Color(255, 255, 255));
         jlListarInmuebles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlListarInmuebles.setText("LISTAR INMUEBLES");
-        jlListarInmuebles.setOpaque(true);
+        jlListarInmuebles.setPreferredSize(new java.awt.Dimension(163, 30));
         jlListarInmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlListarInmueblesMouseClicked(evt);
@@ -146,14 +147,14 @@ public class MVendedor extends javax.swing.JFrame {
                 jlListarInmueblesMouseExited(evt);
             }
         });
-        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 210, 50));
+        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 263, 163, 30));
 
         jlMultas.setBackground(new java.awt.Color(34, 65, 93));
-        jlMultas.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jlMultas.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlMultas.setForeground(new java.awt.Color(255, 255, 255));
         jlMultas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMultas.setText("MULTAS");
-        jlMultas.setOpaque(true);
+        jlMultas.setPreferredSize(new java.awt.Dimension(163, 30));
         jlMultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlMultasMouseClicked(evt);
@@ -165,14 +166,14 @@ public class MVendedor extends javax.swing.JFrame {
                 jlMultasMouseExited(evt);
             }
         });
-        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 210, 50));
+        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 359, 163, 30));
 
         jlContratos.setBackground(new java.awt.Color(34, 65, 93));
-        jlContratos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jlContratos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlContratos.setForeground(new java.awt.Color(255, 255, 255));
         jlContratos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlContratos.setText("CONTRATOS");
-        jlContratos.setOpaque(true);
+        jlContratos.setPreferredSize(new java.awt.Dimension(163, 30));
         jlContratos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlContratosMouseClicked(evt);
@@ -184,14 +185,14 @@ public class MVendedor extends javax.swing.JFrame {
                 jlContratosMouseExited(evt);
             }
         });
-        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 210, 50));
+        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 405, 163, 30));
 
         jlInquilinos.setBackground(new java.awt.Color(34, 65, 93));
-        jlInquilinos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jlInquilinos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlInquilinos.setForeground(new java.awt.Color(255, 255, 255));
         jlInquilinos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlInquilinos.setText("INQUILINOS");
-        jlInquilinos.setOpaque(true);
+        jlInquilinos.setPreferredSize(new java.awt.Dimension(163, 30));
         jlInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlInquilinosMouseClicked(evt);
@@ -203,9 +204,9 @@ public class MVendedor extends javax.swing.JFrame {
                 jlInquilinosMouseExited(evt);
             }
         });
-        jPanel1.add(jlInquilinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 210, 50));
+        jPanel1.add(jlInquilinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 452, 163, 32));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo5.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_VENTA.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

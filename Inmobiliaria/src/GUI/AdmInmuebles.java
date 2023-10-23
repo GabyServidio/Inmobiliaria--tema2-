@@ -356,7 +356,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
             Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
             jDCFechaCon.setDate(fechaDate);
             jBGuardar.setEnabled(true);
-                     
+
         }
     
     
