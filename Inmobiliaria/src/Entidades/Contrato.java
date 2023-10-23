@@ -19,7 +19,9 @@ public class Contrato {
     private String estado;
     private String Descripcion;
 
-    public Contrato(int id, int idInmueble, int idInquilino, int idGarante, int idVendedor, LocalDate fecha, LocalDate fechaInicio, LocalDate fechaFinalizacion, int precio, String estado, String Descripcion) {
+    public Contrato(int id, int idInmueble, int idInquilino, int idGarante, int idVendedor,
+            LocalDate fecha, LocalDate fechaInicio, LocalDate fechaFinalizacion, int precio,
+            String estado, String Descripcion) {
         this.id = id;
         this.idInmueble = idInmueble;
         this.idInquilino = idInquilino;
