@@ -346,7 +346,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTCondiciones.setText(selec.getCondicionesContrato());
         LocalDate fechaLocalDate = selec.getFechaConstruccion();
         Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        jDCFechaCon.setDate(fechadate);
+        jDCFechaCon.setDate(fechaDate);
         bloquearJt(false);
          
         }
