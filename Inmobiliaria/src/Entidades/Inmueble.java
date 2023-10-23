@@ -153,6 +153,11 @@ public class Inmueble {
     public void setCondicionesContrato(String condicionesContrato) {
         this.condicionesContrato = condicionesContrato;
     }
+
+    @Override
+    public String toString() {
+        return "Inmueble{" + "\n superficie=" + superficie + ", \ncantAmbientes=" + cantAmbientes + ",\n canBaños=" + canBaños + ",\n fechaConstruccion=" + fechaConstruccion + ",\n garage=" + garage + ",\n estadoInmueble=" + estadoInmueble + ",\n direccion=" + direccion + ",\n zona=" + zona + ",\n tipo=" + tipo + ",\n condicionesContrato=" + condicionesContrato + '}';
+    }
     
     
     

@@ -10,23 +10,30 @@ import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 /**
  *
  * @author Veronica Porqueras
  */
 public class MVendedor extends javax.swing.JFrame {
-
+    
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
     public static Inmueble inmubleSeleccionado = null;
+    private Usuario vendedor;
+    private final Color fondo = new Color(34, 65, 93);
+    private final Color fondoR = new Color(145, 146, 145);
 
     public MVendedor(Usuario ven) {
         initComponents();
-        jtNombreSombra.setBackground(new Color(34,65,93, 200));
+        jtNombreSombra.setBackground(new Color(34, 65, 93, 200));
+        bordes();
+        vendedor = ven;
         nombreVendedor(ven);
     }
-    private Color fondo = new Color(147,151,149);
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +107,9 @@ public class MVendedor extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlSalirMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlSalirMouseExited(evt);
+            }
         });
         jPanel1.add(jlSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 100, 40));
 
@@ -170,6 +180,9 @@ public class MVendedor extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlContratosMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlContratosMouseExited(evt);
+            }
         });
         jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, 210, 50));
 
@@ -185,6 +198,9 @@ public class MVendedor extends javax.swing.JFrame {
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlInquilinosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlInquilinosMouseExited(evt);
             }
         });
         jPanel1.add(jlInquilinos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 520, 210, 50));
@@ -218,62 +234,63 @@ public class MVendedor extends javax.swing.JFrame {
 
     private void jlListarInmueblesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseEntered
         jlListarInmuebles.setForeground(Color.BLACK);
-        jlListarInmuebles.setBackground(fondo);
+        jlListarInmuebles.setBackground(fondoR);
     }//GEN-LAST:event_jlListarInmueblesMouseEntered
 
     private void jlMultasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseEntered
-        jlMultas.setForeground(Color.WHITE);
-        jlMultas.setBackground(fondo);
+        jlMultas.setForeground(Color.BLACK);
+        jlMultas.setBackground(fondoR);
     }//GEN-LAST:event_jlMultasMouseEntered
 
     private void jlContratosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseEntered
-        jlContratos.setForeground(Color.WHITE);
-        jlContratos.setBackground(fondo);
+        jlContratos.setForeground(Color.BLACK);
+        jlContratos.setBackground(fondoR);
     }//GEN-LAST:event_jlContratosMouseEntered
 
     private void jlInquilinosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseEntered
-        jlInquilinos.setForeground(Color.WHITE);
-        jlInquilinos.setBackground(fondo);
+        jlInquilinos.setForeground(Color.BLACK);
+        jlInquilinos.setBackground(fondoR);
     }//GEN-LAST:event_jlInquilinosMouseEntered
 
     private void jlSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseEntered
-        jlSalir.setForeground(Color.WHITE);
-        jlSalir.setBackground(fondo);
+        jlSalir.setForeground(Color.BLACK);
+        jlSalir.setBackground(fondoR);
     }//GEN-LAST:event_jlSalirMouseEntered
 
     private void jlListarInmueblesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseExited
-        jlListarInmuebles.setForeground(Color.BLACK);
+        jlListarInmuebles.setForeground(Color.WHITE);
         jlListarInmuebles.setBackground(fondo);
     }//GEN-LAST:event_jlListarInmueblesMouseExited
 
     private void jlMultasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseExited
-        jlMultas.setForeground(Color.BLACK);
+        jlMultas.setForeground(Color.WHITE);
         jlMultas.setBackground(fondo);
     }//GEN-LAST:event_jlMultasMouseExited
 
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
-         dispose();
+        dispose();
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
-      AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
-     
-      cont.setVisible(true);
+        AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
+        
+        cont.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
-      ListarInmuebles listaInmueble = new ListarInmuebles(this, rootPaneCheckingEnabled);
-      listaInmueble.setVisible(true);
+        ListarInmuebles listaInmueble = new ListarInmuebles(this, rootPaneCheckingEnabled, vendedor);
+        
+        listaInmueble.setVisible(true);
     }//GEN-LAST:event_jlListarInmueblesMouseClicked
 
     private void jlInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseClicked
-       AdmPersona perso = new AdmPersona(this,rootPaneCheckingEnabled);
-       perso.setVisible(true);
+        AdmPersona perso = new AdmPersona(this, rootPaneCheckingEnabled);
+        perso.setVisible(true);
     }//GEN-LAST:event_jlInquilinosMouseClicked
 
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
-       AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
-       multa.setVisible(true);
+        AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
+        multa.setVisible(true);
         
     }//GEN-LAST:event_jlMultasMouseClicked
 
@@ -283,12 +300,29 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlInmueble1MouseClicked
 
     private void jlInmueble1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseEntered
-        // TODO add your handling code here:
+        jlInmueble1.setForeground(Color.BLACK);
+        jlInmueble1.setBackground(fondoR);
     }//GEN-LAST:event_jlInmueble1MouseEntered
 
     private void jlInmueble1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseExited
-        // TODO add your handling code here:
+        jlInmueble1.setForeground(Color.WHITE);
+        jlInmueble1.setBackground(fondo);
     }//GEN-LAST:event_jlInmueble1MouseExited
+
+    private void jlContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseExited
+        jlContratos.setForeground(Color.WHITE);
+        jlContratos.setBackground(fondo);
+    }//GEN-LAST:event_jlContratosMouseExited
+
+    private void jlInquilinosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseExited
+     jlInquilinos.setForeground(Color.WHITE);
+     jlInquilinos.setBackground(fondo);
+    }//GEN-LAST:event_jlInquilinosMouseExited
+
+    private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
+     jlSalir.setForeground(Color.WHITE);
+     jlSalir.setBackground(fondo);
+    }//GEN-LAST:event_jlSalirMouseExited
 
     /**
      * @param args the command line arguments
@@ -339,4 +373,13 @@ private void nombreVendedor(Usuario nombre) {
         jtNombreSombra.setText(nombre.getUsuario());
         jtNombre.setText(nombre.getUsuario());
     }
+    
+    private void bordes() {
+        Border border = BorderFactory.createLineBorder(fondo, 3, true);
+        Border compound = BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        jlSalir.setOpaque(true);
+        jlSalir.setBackground(fondo);
+        jlSalir.setBorder(compound);
+    }
+    
 }

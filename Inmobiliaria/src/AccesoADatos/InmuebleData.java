@@ -68,7 +68,7 @@ public class InmuebleData {
             if (rs.next()) {
                 inmueble = new Inmueble();
                 inmueble.setId(rs.getInt("id"));
-                inmueble.setIdPropietario(rs.getInt(idPropietario));
+                inmueble.setIdPropietario(rs.getInt("idPropietario"));
                 inmueble.setSuperficie(rs.getInt("superficie"));
                 inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
                 inmueble.setCanBaños(rs.getInt("canBaños"));
@@ -93,10 +93,48 @@ public class InmuebleData {
                 Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return inmueble;
     }
-    
+    public Inmueble buscarInmuebleXId(int id) {
+        Inmueble inmueble = null;
+        String sql = "SELECT * FROM inmueble WHERE id = ?";
+        ps = null;
+        try {
+            ps = Conexion.getConexion().prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                inmueble = new Inmueble();
+                inmueble.setId(rs.getInt("id"));
+                inmueble.setIdPropietario(rs.getInt("idPropietario"));
+                inmueble.setSuperficie(rs.getInt("superficie"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setCanBaños(rs.getInt("canBaños"));
+                inmueble.setFechaConstruccion(rs.getDate("fechaConstruccion").toLocalDate());
+                inmueble.setGarage(rs.getInt("garage"));
+                inmueble.setEstadoInmueble(rs.getString("estado"));
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setTipo(rs.getString("tipo"));
+                inmueble.setCondicionesContrato(rs.getString("condicionesContrato"));
+                
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el inmueble");
+                ps.close();
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Inmueble " + ex.getMessage());
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return inmueble;
+    }
     public List<Inmueble> listarInmueble() {
         List<Inmueble> inmuebles = new ArrayList<>();
         try {
