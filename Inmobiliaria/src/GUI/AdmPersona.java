@@ -4,6 +4,7 @@ package GUI;
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class AdmPersona extends javax.swing.JDialog {
@@ -16,8 +17,11 @@ public class AdmPersona extends javax.swing.JDialog {
         super(parent, modal);
         setTitle("Administracion de Personas");
         initComponents();
+        colorBG();
         bloquear(false);
-        
+        blkGuardar(false);
+        jBEditar.setEnabled(false);
+        jBBaja.setEnabled(false);
     }
 
     
@@ -50,14 +54,18 @@ public class AdmPersona extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jTEstado = new javax.swing.JRadioButton();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(8, 36, 59));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Documento: ");
+        jLabel1.setOpaque(true);
         jInternalFrame1.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jTDocumento.addActionListener(new java.awt.event.ActionListener() {
@@ -69,37 +77,37 @@ public class AdmPersona extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre: ");
-        jInternalFrame1.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-        jInternalFrame1.getContentPane().add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, -1));
+        jInternalFrame1.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jInternalFrame1.getContentPane().add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Apellido: ");
-        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
-        jInternalFrame1.getContentPane().add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 110, -1));
+        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        jInternalFrame1.getContentPane().add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Estado:");
-        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Cuil: ");
-        jInternalFrame1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
-        jInternalFrame1.getContentPane().add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 110, -1));
+        jInternalFrame1.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
+        jInternalFrame1.getContentPane().add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 110, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Domicilio: ");
-        jInternalFrame1.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Telefono: ");
-        jInternalFrame1.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+        jInternalFrame1.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Email:  ");
-        jInternalFrame1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jInternalFrame1.getContentPane().add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 174, -1));
-        jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 110, -1));
-        jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 140, -1));
+        jInternalFrame1.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        jInternalFrame1.getContentPane().add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 250, -1));
+        jInternalFrame1.getContentPane().add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 110, -1));
+        jInternalFrame1.getContentPane().add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 200, -1));
 
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBBuscar.setText("Buscar");
@@ -117,7 +125,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBBajaActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
 
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBEditar.setText("Editar");
@@ -126,7 +134,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBEditarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, -1, -1));
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
@@ -135,7 +143,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, -1, -1));
 
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBSalir.setText("Salir");
@@ -144,7 +152,7 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBSalirActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
 
         jBNueva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBNueva.setText("Nueva");
@@ -153,20 +161,23 @@ public class AdmPersona extends javax.swing.JDialog {
                 jBNuevaActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(jBNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jInternalFrame1.getContentPane().add(jBNueva, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
         jInternalFrame1.getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 62, 360, 10));
-        jInternalFrame1.getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 242, 360, 20));
-        jInternalFrame1.getContentPane().add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        jInternalFrame1.getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 312, 370, 10));
+        jInternalFrame1.getContentPane().add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
+        jInternalFrame1.getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 410, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jInternalFrame1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -199,8 +210,18 @@ public class AdmPersona extends javax.swing.JDialog {
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         bloquear(true);
-        blkGuardar(true);
+
+        if(jTEstado.isEnabled()){
+            jTEstado.setEnabled(false);
+        }else{
+            jTEstado.setEnabled(true);
+        }
+        jBEditar.setEnabled(false);
+        jBBaja.setEnabled(false);
+        jBGuardar.setEnabled(true);
         personaEditada = true;
+        jBNueva.setEnabled(false);
+        jBBuscar.setEnabled(false);
         
     }//GEN-LAST:event_jBEditarActionPerformed
 
@@ -208,6 +229,13 @@ public class AdmPersona extends javax.swing.JDialog {
         bloquear(true);
         blkGuardar(true);
         AdmPersona.controlPer.eliminarPersona(buscada);
+        bloquear(false);
+        blkGuardar(false);
+        limpiarJt();
+        jBBaja.setEnabled(false);
+        jBEditar.setEnabled(false);
+        jBNueva.setEnabled(true);
+        
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -233,7 +261,7 @@ public class AdmPersona extends javax.swing.JDialog {
                     String domicilio= jTDomicilio.getText();
                     String email= jTEmail.getText();
                     boolean estado = jTEstado.isSelected();
-                    System.out.println(jTCuil.getText());                    
+                                      
                     if (personaEditada) {
                         Persona nueva = new Persona(buscada.getId(), nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
                         MVendedor.controlPer.editarPersona(nueva);
@@ -242,6 +270,7 @@ public class AdmPersona extends javax.swing.JDialog {
                         bloquear(false);
                         jBBuscar.setEnabled(true);
                         personaEditada = false;
+                        jBNueva.setEnabled(true);
                     } else {
                         Persona nueva = new Persona(nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
                         
@@ -264,7 +293,7 @@ public class AdmPersona extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados");
         }
-       
+        
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     
@@ -311,6 +340,7 @@ public class AdmPersona extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private javax.swing.JButton jBBaja;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBEditar;
@@ -342,7 +372,7 @@ public class AdmPersona extends javax.swing.JDialog {
         if (jTDocumento.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
-           
+                
                 int dni = Integer.parseInt(jTDocumento.getText());
                 buscada = controlPer.encontrarPersona(dni);
                 if (buscada == null) {
@@ -361,7 +391,9 @@ public class AdmPersona extends javax.swing.JDialog {
                     if (buscada.isEstado()) {
                         jBBaja.setEnabled(true);
                         jBEditar.setEnabled(true);
-                        jBGuardar.setEnabled(true);
+                        jBGuardar.setEnabled(false);
+                        jBNueva.setEnabled(false);
+                
                     } else {
                         jBBaja.setEnabled(false);
                         jBEditar.setEnabled(true);
@@ -380,9 +412,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jTDomicilio.setEnabled(estado);
         jTEmail.setEnabled(estado);
         jTEstado.setEnabled(estado);
-        jBEditar.setEnabled(estado);
-        jBBaja.setEnabled(estado);
-        jBGuardar.setEnabled(estado);
+        
         
         if (!estado) {
             jTApellido.setDisabledTextColor(Color.BLACK);
@@ -392,8 +422,7 @@ public class AdmPersona extends javax.swing.JDialog {
             jTTelefono.setDisabledTextColor(Color.BLACK);
             jTDomicilio.setDisabledTextColor(Color.BLACK);
             jTEmail.setDisabledTextColor(Color.BLACK);
-            
-            
+            jTEstado.setBackground(Color.BLACK);
         }
     }
 
@@ -413,4 +442,26 @@ public class AdmPersona extends javax.swing.JDialog {
         
         
     }
+    private void colorBG(){
+    ImageIcon Fondo= new ImageIcon ("/src/img/fondo4.png");
+    BG.setIcon(Fondo);
+    Color fondo = new Color(8,36,59,240);
+            jTApellido.setBackground(fondo);
+            jTNombre.setBackground(fondo);
+            jTDocumento.setBackground(fondo);
+            jTCuil.setBackground(fondo);
+            jTTelefono.setBackground(fondo);
+            jTDomicilio.setBackground(fondo);
+            jTEmail.setBackground(fondo);
+            jTEstado.setBackground(fondo);
+            jTApellido.setForeground(Color.WHITE);
+            jTNombre.setForeground(Color.WHITE);
+            jTDocumento.setForeground(Color.WHITE);
+            jTCuil.setForeground(Color.WHITE);
+            jTTelefono.setForeground(Color.WHITE);
+            jTDomicilio.setForeground(Color.WHITE);
+            jTEmail.setForeground(Color.WHITE);
+            jTEstado.setForeground(Color.WHITE);
+    }
+    
 }
