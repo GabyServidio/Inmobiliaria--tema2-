@@ -4,12 +4,14 @@
  */
 package GUI;
 
+import AccesoADatos.ContratoData;
 import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
+import Entidades.Contrato;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
@@ -18,10 +20,11 @@ import javax.swing.border.Border;
  * @author Veronica Porqueras
  */
 public class MVendedor extends javax.swing.JFrame {
-    
+    public static ContratoData controlContrato = new ContratoData();
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
     public static Inmueble inmubleSeleccionado = null;
+    public static Contrato contratoSeleccionado = null;
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
@@ -46,7 +49,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInmueble1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
-        LOGO = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
@@ -89,9 +91,6 @@ public class MVendedor extends javax.swing.JFrame {
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
-
-        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo100p.png"))); // NOI18N
-        jPanel1.add(LOGO, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
         jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -357,7 +356,6 @@ public class MVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel LOGO;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;

@@ -6,6 +6,7 @@ package GUI;
 
 import AccesoADatos.ContratoData;
 import Entidades.Contrato;
+import Entidades.Inmueble;
 import Entidades.Persona;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -26,12 +27,15 @@ public class AdmContratos extends javax.swing.JDialog {
     private ContratoData controlContrato = new ContratoData();
     private Persona inquilino = null;
     private Persona garante = null;
+    private Color fondo = new Color(23, 36, 46, 240);
+    private Color Bup = new Color(253, 234, 185);
 
     public AdmContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         colorBG();
         cargarInmueble();
+        comprueba();
     }
 
     /**
@@ -45,6 +49,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         bCrear = new javax.swing.JLabel();
+        jBsalir = new javax.swing.JLabel();
         jpInquilino = new javax.swing.JPanel();
         jtInquilino = new javax.swing.JTextField();
         bBuscarInquilino1 = new javax.swing.JLabel();
@@ -99,8 +104,32 @@ public class AdmContratos extends javax.swing.JDialog {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bCrearMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bCrearMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bCrearMouseExited(evt);
+            }
         });
-        jPanel1.add(bCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, 30));
+        jPanel1.add(bCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 366, 90, -1));
+
+        jBsalir.setBackground(new java.awt.Color(51, 51, 255));
+        jBsalir.setFont(new java.awt.Font("Univers-Black", 0, 18)); // NOI18N
+        jBsalir.setForeground(new java.awt.Color(255, 255, 255));
+        jBsalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jBsalir.setText("SALIR");
+        jBsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBsalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jBsalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jBsalirMouseExited(evt);
+            }
+        });
+        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 364, 100, 30));
 
         jtInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         jtInquilino.setForeground(new java.awt.Color(51, 0, 51));
@@ -422,9 +451,8 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(jpInmuebleLayout.createSequentialGroup()
                         .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +460,7 @@ public class AdmContratos extends javax.swing.JDialog {
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -473,13 +501,13 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel1.add(jpInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 370, 380));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Contrato.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_ContratoCboton.png"))); // NOI18N
         BG.setMaximumSize(new java.awt.Dimension(810, 400));
         BG.setMinimumSize(new java.awt.Dimension(810, 400));
         BG.setPreferredSize(new java.awt.Dimension(810, 400));
@@ -508,73 +536,11 @@ public class AdmContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jtInquilinoActionPerformed
 
     private void bBuscarInquilino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilino1MouseClicked
-        String dato = (String) jtInquilino.getText();
-        int dni = Integer.parseInt(dato);
-        inquilino = MVendedor.controlPer.encontrarPersona(dni);
-        if (inquilino != null) {
-            NombreInquilino.setText(inquilino.getNombre());
-            ApellidoInquilino.setText(inquilino.getApellido());
-            DireccionInquilino.setText(inquilino.getDomicilio());
-            DniInquilino.setText(inquilino.getDni() + "");
-            CuilInquilino.setText(inquilino.getCuil() + "");
-            TelefonoInquilino.setText(inquilino.getTelefono() + "");
-            eMailInquilino.setText(inquilino.getEmail());
-
-        } else {
-
-            Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
-            int opcion = JOptionPane.showOptionDialog(null,
-                    "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
-                    "Confirmacion",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    null, opciones, opciones[1]);
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
-                carga.setLocationRelativeTo(null);
-                carga.setVisible(true);
-            } else if (opcion == JOptionPane.CANCEL_OPTION) {
-                jtInquilino.setText("");
-            } else {
-            }
-
-        }
-
+        buscarInquilino();
     }//GEN-LAST:event_bBuscarInquilino1MouseClicked
 
     private void bBuscargaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscargaranteMouseClicked
-        String dato = jtGarante.getText();
-        int dni = Integer.parseInt(dato);
-        garante = MVendedor.controlPer.encontrarPersona(dni);
-        if (garante != null) {
-            NombreGarante.setText(garante.getNombre());
-            ApellidoGarante.setText(garante.getApellido());
-            DireccionGarante.setText(garante.getDomicilio());
-            DniGarante.setText(garante.getDni() + "");
-            CuilGarante.setText(garante.getCuil() + "");
-            TelefonoGarante.setText(garante.getTelefono() + "");
-            eMailGarante.setText(garante.getEmail());
-
-        } else {
-
-            Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
-            int opcion = JOptionPane.showOptionDialog(null,
-                    "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
-                    "Confirmacion",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    null, opciones, opciones[1]);
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
-                carga.setLocationRelativeTo(null);
-                carga.setVisible(true);
-            } else if (opcion == JOptionPane.CANCEL_OPTION) {
-                jtInquilino.setText("");
-            } else {
-            }
-        }
+        buscarGarante();
     }//GEN-LAST:event_bBuscargaranteMouseClicked
 
     private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
@@ -613,12 +579,38 @@ public class AdmContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jtGaranteMouseClicked
 
     private void bCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseClicked
-         guardar();
+        if (MVendedor.contratoSeleccionado != null) {
+            editar();
+        } else {
+            guardar();
+        }
     }//GEN-LAST:event_bCrearMouseClicked
 
     private void jtPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPrecioMouseClicked
-       jtPrecio.setText("");
+        jtPrecio.setText("");
     }//GEN-LAST:event_jtPrecioMouseClicked
+
+       private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseEntered
+      bCrear.setForeground(Bup);
+    }//GEN-LAST:event_bCrearMouseEntered
+
+    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseExited
+      bCrear.setForeground(Color.WHITE); 
+        
+    }//GEN-LAST:event_bCrearMouseExited
+
+    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseEntered
+      jBsalir.setForeground(Bup);
+      
+    }//GEN-LAST:event_jBsalirMouseEntered
+
+    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseExited
+     jBsalir.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jBsalirMouseExited
+
+    private void jBsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseClicked
+      dispose();
+    }//GEN-LAST:event_jBsalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -683,6 +675,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel bCrear;
     private javax.swing.JLabel eMailGarante;
     private javax.swing.JLabel eMailInquilino;
+    private javax.swing.JLabel jBsalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -706,16 +699,122 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextArea jtaDetallesContrato;
     // End of variables declaration//GEN-END:variables
+ 
+    
+    private void comprueba() {
+        if (MVendedor.contratoSeleccionado != null) {
+            Contrato editar = MVendedor.contratoSeleccionado;
+            inquilino = MVendedor.controlPer.encontrarPersonaXId(editar.getIdInquilino());
+            garante = MVendedor.controlPer.encontrarPersonaXId(editar.getIdGarante());
+            Inmueble alquilado = MVendedor.controlInm.buscarInmuebleXId(editar.getIdInmueble());
+            cargaInquilino(inquilino);
+            cargaGarante(garante);
+            MVendedor.inmubleSeleccionado = alquilado;
+            jdcFirma.setDate(java.sql.Date.valueOf(editar.getFecha()));
+            jdcInicio.setDate(java.sql.Date.valueOf(editar.getFechaInicio()));
+            jdcFinalizacion.setDate(java.sql.Date.valueOf(editar.getFechaFinalizacion()));
+            jtaDetallesContrato.setText(editar.getDescripcion());
+            jtPrecio.setText(editar.getPrecio() + "");
+
+        }
+
+    }
+
     private void colorBG() {
-        Color fondo = new Color(23, 36, 46, 240);
+
         jpInquilino.setBackground(fondo);
         jpGarante.setBackground(fondo);
         jpInmueble.setBackground(fondo);
     }
-    private void cargarInmueble(){
-    jlDireccion.setText(MVendedor.inmubleSeleccionado.getDireccion());
-    jlCodigo.setText(MVendedor.inmubleSeleccionado.getId()+"");
-    
+
+    private void cargarInmueble() {
+        jlDireccion.setText(MVendedor.inmubleSeleccionado.getDireccion());
+        jlCodigo.setText(MVendedor.inmubleSeleccionado.getId() + "");
+
+    }
+
+    private void buscarInquilino() {
+        String dato = (String) jtInquilino.getText();
+        int dni = Integer.parseInt(dato);
+        inquilino = MVendedor.controlPer.encontrarPersona(dni);
+        if (inquilino != null) {
+            cargaInquilino(inquilino);
+
+        } else {
+
+            Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
+            int opcion = JOptionPane.showOptionDialog(null,
+                    "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
+                    "Confirmacion",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, opciones, opciones[1]);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                carga.setLocationRelativeTo(null);
+                carga.setVisible(true);
+            } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                jtInquilino.setText("");
+            } else {
+            }
+
+        }
+
+    }
+
+    private void cargaInquilino(Persona inquilino) {
+        NombreInquilino.setText(inquilino.getNombre());
+        ApellidoInquilino.setText(inquilino.getApellido());
+        DireccionInquilino.setText(inquilino.getDomicilio());
+        DniInquilino.setText(inquilino.getDni() + "");
+        CuilInquilino.setText(inquilino.getCuil() + "");
+        TelefonoInquilino.setText(inquilino.getTelefono() + "");
+        eMailInquilino.setText(inquilino.getEmail());
+    }
+
+    private void buscarGarante() {
+        String dato = jtGarante.getText();
+
+        if (dato.equals(jtInquilino.getText())) {
+            JOptionPane.showMessageDialog(null, "El DNI del garante no puede ser igual al inquilino");
+        } else {
+            int dni = Integer.parseInt(dato);
+            garante = MVendedor.controlPer.encontrarPersona(dni);
+            if (garante != null) {
+                cargaGarante(garante);
+
+            } else {
+
+                Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
+                int opcion = JOptionPane.showOptionDialog(null,
+                        "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
+                        "Confirmacion",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        null, opciones, opciones[1]);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                    carga.setLocationRelativeTo(null);
+                    carga.setVisible(true);
+                } else if (opcion == JOptionPane.CANCEL_OPTION) {
+                    jtInquilino.setText("");
+                } else {
+                }
+            }
+        }
+    }
+
+    private void cargaGarante(Persona garante) {
+        NombreGarante.setText(garante.getNombre());
+        ApellidoGarante.setText(garante.getApellido());
+        DireccionGarante.setText(garante.getDomicilio());
+        DniGarante.setText(garante.getDni() + "");
+        CuilGarante.setText(garante.getCuil() + "");
+        TelefonoGarante.setText(garante.getTelefono() + "");
+        eMailGarante.setText(garante.getEmail());
+
     }
 
     private void guardar() {
@@ -729,10 +828,6 @@ public class AdmContratos extends javax.swing.JDialog {
             LocalDate fInicio = jdcInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fFinaliza = jdcFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             String descripcion = jtaDetallesContrato.getText();
-            Contrato nuevo = new Contrato(idInmueble,
-                    idInquilino, idGarante, idVendedor,
-                    fContrato, fInicio, fFinaliza,
-                    precio, "VIGENTE", descripcion);
             if (fContrato == null) {
                 JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
             }
@@ -742,10 +837,84 @@ public class AdmContratos extends javax.swing.JDialog {
             if (fFinaliza == null) {
                 JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
             }
-            controlContrato.crearContrato(nuevo);
+            Contrato nuevo = new Contrato(idInmueble,
+                    idInquilino, idGarante, idVendedor,
+                    fContrato, fInicio, fFinaliza,
+                    precio, "VIGENTE", descripcion);
+            Object[] op = {"Si", "No"};
+            int sel = JOptionPane.showOptionDialog(null, "Confirmacion",
+                    "¿Son todos los datos Correctos?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, op, op[1]);
+            if (sel == JOptionPane.YES_OPTION) {
+                controlContrato.crearContrato(nuevo);
+                dispose();
+            } else {
+            }
+
         } catch (NullPointerException np) {
             JOptionPane.showMessageDialog(null, "todos los datos son Necesarios");
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(null, "Debe poner el monto del contrato");
+
+        }
+
+    }
+
+    private void editar() {
+        try {
+            int idInmueble = MVendedor.inmubleSeleccionado.getId();
+            int idInquilino = inquilino.getId();
+            int idGarante = garante.getId();
+            int idVendedor = MVendedor.vendedor.getId();
+            int precio = Integer.parseInt(jtPrecio.getText());
+            LocalDate fContrato = jdcFirma.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fInicio = jdcInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fFinaliza = jdcFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String descripcion = jtaDetallesContrato.getText();
+            if (fContrato == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            if (fInicio == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            if (fFinaliza == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            Contrato editado = new Contrato(MVendedor.contratoSeleccionado.getId(), idInmueble,
+                    idInquilino, idGarante, idVendedor,
+                    fContrato, fInicio, fFinaliza,
+                    precio, "VIGENTE", descripcion);
+            Object[] op = {"Si", "No"};
+            int sel = JOptionPane.showOptionDialog(null, "Confirmacion",
+                    "¿Son todos los datos Correctos?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, op, op[1]);
+            if (sel == JOptionPane.YES_OPTION) {
+                controlContrato.editarContrato(editado);
+                dispose();
+            } else {
+            }
+
+        } catch (NullPointerException np) {
+            JOptionPane.showMessageDialog(null, "todos los datos son Necesarios");
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(null, "Debe poner el monto del contrato");
+
         }
 
     }
 }
+//    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseEntered
+//        jBsalir.setForeground(Bup);
+//    }//GEN-LAST:event_jBsalirMouseEntered
+//
+//    private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseEntered
+//        bCrear.setForeground(Bup);
+//    }//GEN-LAST:event_bCrearMouseEntered
+//
+//    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseExited
+//        bCrear.setForeground(Color.WHITE);
+//    }//GEN-LAST:event_bCrearMouseExited
+//
+//    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseExited
+//        jBsalir.setForeground(Color.WHITE);
+//    }//GEN-LAST:event_jBsalirMouseExited

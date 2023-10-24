@@ -90,7 +90,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jtInmueble.setDragEnabled(true);
         jtInmueble.setGridColor(new java.awt.Color(118, 151, 117));
         jtInmueble.setOpaque(false);
-        jtInmueble.setShowGrid(true);
         jScrollPane1.setViewportView(jtInmueble);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 980, 330));
@@ -217,6 +216,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int fila = jtInmueble.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
+            limpiarFila();
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
             edit.setVisible(rootPaneCheckingEnabled);
             cargarTabla();
