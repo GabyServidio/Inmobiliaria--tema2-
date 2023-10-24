@@ -401,22 +401,26 @@ public class AdmInmuebles extends javax.swing.JDialog {
         if (jTDni.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
-           
+            
             int dni = Integer.parseInt(jTDni.getText());
             buscada = MVendedor.controlPer.encontrarPersona(dni);
             if (buscada == null) {
                 //JOptionPane.showMessageDialog(null, "El DNI ingresado no corresponde a un propietario");
-                
-                ;
-                
+                            
             } else {
                 
                 jTNombre.setText(buscada.getNombre());
                 jTApellido.setText(buscada.getApellido());
+                jBGuardar.setEnabled(true);
+                jBBuscar.setEnabled(false);
+                jTNombre.setEnabled(false);
+                jTApellido.setEnabled(false);
+                jTDni.setEnabled(false);
                 jTApellido.setDisabledTextColor(Color.BLACK);
                 jTNombre.setDisabledTextColor(Color.BLACK);
-                jBGuardar.setEnabled(true);
-                bloquearJt(true);
+                jTDni.setDisabledTextColor(Color.BLACK);
+                
+                
             }
         }
 
