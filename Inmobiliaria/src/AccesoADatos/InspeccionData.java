@@ -128,7 +128,6 @@ public class InspeccionData {
                 encontrada.setIdInmueble(rs.getInt("idInmueble"));
                 encontrada.setFecha(fecha.toLocalDate());
                 encontrada.setDescripcion(rs.getString("descripcion"));
-                System.out.println(encontrada.getId());
                 encontrados.add(encontrada);
             }
         } catch (SQLException ex) {

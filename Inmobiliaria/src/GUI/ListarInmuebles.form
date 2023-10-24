@@ -87,7 +87,6 @@
                   <Color blue="75" green="97" red="76" type="rgb"/>
                 </Property>
                 <Property name="opaque" type="boolean" value="false"/>
-                <Property name="showGrid" type="boolean" value="true"/>
               </Properties>
             </Component>
           </SubComponents>

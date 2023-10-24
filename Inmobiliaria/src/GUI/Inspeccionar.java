@@ -19,6 +19,7 @@ public class Inspeccionar extends javax.swing.JDialog {
     public Inspeccionar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        editarInsp();
     }
 
     /**
@@ -188,11 +189,27 @@ Object[] opcion= {"Sí", "Cancelar"};
     private javax.swing.JTextArea jTADetalle;
     // End of variables declaration//GEN-END:variables
 
-private void guardar(){
+private void editarInsp(){
+if (MInspector.inspeselec!= null){
+  
+    jDCFecha.setDate(java.sql.Date.valueOf(MInspector.inspeselec.getFecha()));
+    jTADetalle.setText(MInspector.inspeselec.getDescripcion());
+    jDCFecha.setEnabled(false);
+}
+}
+    private void guardar(){
     Date fecha = jDCFecha.getDate();
     LocalDate fechaInsp = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-Inspeccion Inspec= new Inspeccion(MInspector.inspector.getId(), MInspector.inmuselec.getId(), fechaInsp, jTADetalle.getText());
-MInspector.controlInsp.crearInspeccion(Inspec);
+    
+    Inspeccion Inspec= new Inspeccion(MInspector.inspector.getId(), MInspector.inmuselec.getId(), fechaInsp, jTADetalle.getText());
+
+        if (MInspector.inspeselec!= null){
+        MInspector.controlInsp.editarInspeccion(Inspec);
+        MInspector.inspeselec=null;
+        }else{
+        MInspector.controlInsp.crearInspeccion(Inspec);}
+        
+
 
         }
 }
