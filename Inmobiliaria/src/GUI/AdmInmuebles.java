@@ -24,7 +24,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         initComponents();
         jBGuardar.setEnabled(false);
         compruebaEdicion();
-        bloquearJt(false);
+        //bloquearJt(false);
     }
     
     @SuppressWarnings("unchecked")
@@ -216,6 +216,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
                         null, opciones, opciones[2]);
                 
                 if (opcion == JOptionPane.YES_OPTION) {
+                    
+                    int propi = 0;
                     int superficie = Integer.parseInt(jTSuperficie.getText());
                     int ambientes = Integer.parseInt(jTAmbientes.getText());
                     int banios = Integer.parseInt(jTBanios.getText());
@@ -227,15 +229,22 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     String condiciones = jTCondiciones.getText();
                     Date fecha = jDCFechaCon.getDate();
                     LocalDate fechaConstruccion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    System.out.println(fechaConstruccion);                
-                    Inmueble nuevo = new Inmueble(buscada.getId(), superficie, ambientes, banios,
-                        fechaConstruccion, garage, estado, direccion, zona, tipo, condiciones);
-                        System.out.println(buscada.getId()+ "/n "+superficie +"/n "+ ambientes+"/n "+ banios+fechaConstruccion+"/n "+ garage+"/n "+ estado+"/n "+ direccion+"/n "+ zona+"/n "+ tipo+"/n "+ condiciones);
-                    MVendedor.controlInm.GuardarInmueble(nuevo);
-                    
-                            
+                    Inmueble nuevo = new Inmueble(propi, superficie, ambientes, banios, fechaConstruccion,
+                            garage, estado, direccion, zona, condiciones, tipo);
                         
                     
+                    if (MVendedor.inmubleSeleccionado == null){
+                        nuevo.setIdPropietario(buscada.getId());
+                        MVendedor.controlInm.GuardarInmueble(nuevo);
+                    }else{
+                        int id = MVendedor.inmubleSeleccionado.getId();
+                        nuevo.setId(id);
+                        int idPropietario = MVendedor.inmubleSeleccionado.getIdPropietario();
+                        nuevo.setIdPropietario(idPropietario);
+                        MVendedor.controlInm.modificarInmueble(nuevo);
+                        MVendedor.inmubleSeleccionado = null;
+                    }
+                                   
                 } else if (opcion == JOptionPane.NO_OPTION) {
 
                 } else if (opcion == JOptionPane.CANCEL_OPTION) {
@@ -335,6 +344,10 @@ public class AdmInmuebles extends javax.swing.JDialog {
            
         }else{
             Persona prop = MVendedor.controlPer.encontrarPersonaXId(selec.getIdPropietario());
+            jBBuscar.setEnabled(false);
+            jTDni.setText(prop.getDni()+"");
+            jTDni.setEnabled(false);
+            bloquearJt(true);
             jTNombre.setText(prop.getNombre());
             jTApellido.setText(prop.getApellido());
             jTSuperficie.setText(selec.getSuperficie()+"");
@@ -349,14 +362,8 @@ public class AdmInmuebles extends javax.swing.JDialog {
             LocalDate fechaLocalDate = selec.getFechaConstruccion();
             Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
             jDCFechaCon.setDate(fechaDate);
-            bloquearJt(true);
-            jTNombre.setEnabled(false);
-            jTApellido.setEnabled(false);
-            jTDni.setEnabled(false);
-            jBBuscar.setEnabled(false);
             jBGuardar.setEnabled(true);
 
-         
         }
     
     
@@ -394,22 +401,26 @@ public class AdmInmuebles extends javax.swing.JDialog {
         if (jTDni.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
-           
+            
             int dni = Integer.parseInt(jTDni.getText());
             buscada = MVendedor.controlPer.encontrarPersona(dni);
             if (buscada == null) {
                 //JOptionPane.showMessageDialog(null, "El DNI ingresado no corresponde a un propietario");
-                
-                ;
-                
+                            
             } else {
                 
                 jTNombre.setText(buscada.getNombre());
                 jTApellido.setText(buscada.getApellido());
+                jBGuardar.setEnabled(true);
+                jBBuscar.setEnabled(false);
+                jTNombre.setEnabled(false);
+                jTApellido.setEnabled(false);
+                jTDni.setEnabled(false);
                 jTApellido.setDisabledTextColor(Color.BLACK);
                 jTNombre.setDisabledTextColor(Color.BLACK);
-                jBGuardar.setEnabled(true);
-                bloquearJt(true);
+                jTDni.setDisabledTextColor(Color.BLACK);
+                
+                
             }
         }
 

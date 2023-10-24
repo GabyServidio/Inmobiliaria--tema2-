@@ -4,8 +4,14 @@
  */
 package GUI;
 
+import AccesoADatos.ContratoData;
+import Entidades.Contrato;
 import Entidades.Persona;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +23,15 @@ public class AdmContratos extends javax.swing.JDialog {
     /**
      * Creates new form AdmContratos
      */
+    private ContratoData controlContrato = new ContratoData();
+    private Persona inquilino = null;
+    private Persona garante = null;
+
     public AdmContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         colorBG();
+        cargarInmueble();
     }
 
     /**
@@ -71,6 +82,8 @@ public class AdmContratos extends javax.swing.JDialog {
         jdcFinalizacion = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDetallesContrato = new javax.swing.JTextArea();
+        jtPrecio = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -82,20 +95,36 @@ public class AdmContratos extends javax.swing.JDialog {
         bCrear.setForeground(new java.awt.Color(255, 255, 255));
         bCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bCrear.setText("CREAR");
+        bCrear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bCrearMouseClicked(evt);
+            }
+        });
         jPanel1.add(bCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, 30));
 
         jtInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        jtInquilino.setForeground(new java.awt.Color(51, 0, 51));
         jtInquilino.setText("ingrese DNI del inquilino");
         jtInquilino.setBorder(null);
+        jtInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtInquilinoMouseClicked(evt);
+            }
+        });
         jtInquilino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtInquilinoActionPerformed(evt);
             }
         });
+        jtInquilino.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtInquilinoKeyTyped(evt);
+            }
+        });
 
         bBuscarInquilino1.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        bBuscarInquilino1.setForeground(new java.awt.Color(255, 255, 255));
         bBuscarInquilino1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
-        bBuscarInquilino1.setText("Buscar");
         bBuscarInquilino1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bBuscarInquilino1MouseClicked(evt);
@@ -103,27 +132,35 @@ public class AdmContratos extends javax.swing.JDialog {
         });
 
         TXTinquilino1.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        TXTinquilino1.setForeground(new java.awt.Color(255, 255, 255));
         TXTinquilino1.setText("Inquilino");
 
         NombreInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        NombreInquilino.setForeground(new java.awt.Color(255, 255, 255));
         NombreInquilino.setText("Nombre");
 
         ApellidoInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        ApellidoInquilino.setForeground(new java.awt.Color(255, 255, 255));
         ApellidoInquilino.setText("Apellido");
 
         DniInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        DniInquilino.setForeground(new java.awt.Color(255, 255, 255));
         DniInquilino.setText("DNI");
 
         CuilInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        CuilInquilino.setForeground(new java.awt.Color(255, 255, 255));
         CuilInquilino.setText("CUIL/CUIT");
 
         DireccionInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        DireccionInquilino.setForeground(new java.awt.Color(255, 255, 255));
         DireccionInquilino.setText("Direccion");
 
         TelefonoInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        TelefonoInquilino.setForeground(new java.awt.Color(255, 255, 255));
         TelefonoInquilino.setText("telefono");
 
         eMailInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        eMailInquilino.setForeground(new java.awt.Color(255, 255, 255));
         eMailInquilino.setText("eMail");
 
         javax.swing.GroupLayout jpInquilinoLayout = new javax.swing.GroupLayout(jpInquilino);
@@ -183,40 +220,62 @@ public class AdmContratos extends javax.swing.JDialog {
 
         jPanel1.add(jpInquilino, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 170));
 
+        jpGarante.setForeground(new java.awt.Color(255, 255, 255));
+
         jtGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        jtGarante.setForeground(new java.awt.Color(51, 0, 51));
         jtGarante.setText("ingrese DNI del Garante");
         jtGarante.setBorder(null);
+        jtGarante.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtGaranteMouseClicked(evt);
+            }
+        });
         jtGarante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtGaranteActionPerformed(evt);
             }
         });
+        jtGarante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtGaranteKeyTyped(evt);
+            }
+        });
 
         NombreGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        NombreGarante.setForeground(new java.awt.Color(255, 255, 255));
         NombreGarante.setText("Nombre");
 
         ApellidoGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        ApellidoGarante.setForeground(new java.awt.Color(255, 255, 255));
         ApellidoGarante.setText("Apellido");
 
         DniGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        DniGarante.setForeground(new java.awt.Color(255, 255, 255));
         DniGarante.setText("DNI");
 
         CuilGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        CuilGarante.setForeground(new java.awt.Color(255, 255, 255));
         CuilGarante.setText("CUIL/CUIT");
 
         DireccionGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        DireccionGarante.setForeground(new java.awt.Color(255, 255, 255));
         DireccionGarante.setText("Direccion");
 
         TelefonoGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        TelefonoGarante.setForeground(new java.awt.Color(255, 255, 255));
         TelefonoGarante.setText("telefono");
 
         eMailGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        eMailGarante.setForeground(new java.awt.Color(255, 255, 255));
         eMailGarante.setText("eMail");
 
         TXTGarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        TXTGarante.setForeground(new java.awt.Color(255, 255, 255));
         TXTGarante.setText("Garante");
 
         bBuscargarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        bBuscargarante.setForeground(new java.awt.Color(255, 255, 255));
         bBuscargarante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscargarante.setText("Buscar");
         bBuscargarante.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,34 +340,60 @@ public class AdmContratos extends javax.swing.JDialog {
 
         jPanel1.add(jpGarante, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 410, 160));
 
+        jpInmueble.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Inmueble");
 
         jlDireccion.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jlDireccion.setForeground(new java.awt.Color(255, 255, 255));
         jlDireccion.setText("Direccion");
 
         jLabelCodigo.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabelCodigo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelCodigo.setText("Codigo:");
 
         jlCodigo.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
         jlCodigo.setText("           ");
 
         jLabel2.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("FIRMA");
 
         jLabel3.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("INICIO");
 
         jLabel4.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("FINALIZACION");
 
         jtaDetallesContrato.setColumns(20);
         jtaDetallesContrato.setRows(5);
         jScrollPane1.setViewportView(jtaDetallesContrato);
+
+        jtPrecio.setForeground(new java.awt.Color(0, 0, 0));
+        jtPrecio.setText("ingrese el valor ");
+        jtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtPrecioMouseClicked(evt);
+            }
+        });
+        jtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtPrecioKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Univers LT Std 45 Light", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Precio:");
 
         javax.swing.GroupLayout jpInmuebleLayout = new javax.swing.GroupLayout(jpInmueble);
         jpInmueble.setLayout(jpInmuebleLayout);
@@ -337,16 +422,21 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(jpInmuebleLayout.createSequentialGroup()
                         .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpInmuebleLayout.createSequentialGroup()
+                                .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jtPrecio))
                         .addContainerGap())))
         );
         jpInmuebleLayout.setVerticalGroup(
@@ -355,7 +445,7 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlDireccion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -378,14 +468,18 @@ public class AdmContratos extends javax.swing.JDialog {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(2, 2, 2)
                             .addComponent(jdcFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(9, 9, 9)
+                .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel1.add(jpInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 370, 340));
+        jPanel1.add(jpInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 370, 380));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_contrato2.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Contrato.png"))); // NOI18N
         BG.setMaximumSize(new java.awt.Dimension(810, 400));
         BG.setMinimumSize(new java.awt.Dimension(810, 400));
         BG.setPreferredSize(new java.awt.Dimension(810, 400));
@@ -416,7 +510,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private void bBuscarInquilino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilino1MouseClicked
         String dato = (String) jtInquilino.getText();
         int dni = Integer.parseInt(dato);
-        Persona inquilino = MVendedor.controlPer.encontrarPersona(dni);
+        inquilino = MVendedor.controlPer.encontrarPersona(dni);
         if (inquilino != null) {
             NombreInquilino.setText(inquilino.getNombre());
             ApellidoInquilino.setText(inquilino.getApellido());
@@ -452,7 +546,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private void bBuscargaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscargaranteMouseClicked
         String dato = jtGarante.getText();
         int dni = Integer.parseInt(dato);
-        Persona garante = MVendedor.controlPer.encontrarPersona(dni);
+        garante = MVendedor.controlPer.encontrarPersona(dni);
         if (garante != null) {
             NombreGarante.setText(garante.getNombre());
             ApellidoGarante.setText(garante.getApellido());
@@ -480,9 +574,51 @@ public class AdmContratos extends javax.swing.JDialog {
                 jtInquilino.setText("");
             } else {
             }
-
+        }
     }//GEN-LAST:event_bBuscargaranteMouseClicked
-    }
+
+    private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jtPrecioKeyTyped
+
+    private void jtGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtGaranteKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jtGaranteKeyTyped
+
+    private void jtInquilinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtInquilinoKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jtInquilinoKeyTyped
+
+    private void jtInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtInquilinoMouseClicked
+        jtInquilino.setText("");
+    }//GEN-LAST:event_jtInquilinoMouseClicked
+
+    private void jtGaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGaranteMouseClicked
+        jtGarante.setText("");
+    }//GEN-LAST:event_jtGaranteMouseClicked
+
+    private void bCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseClicked
+         guardar();
+    }//GEN-LAST:event_bCrearMouseClicked
+
+    private void jtPrecioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPrecioMouseClicked
+       jtPrecio.setText("");
+    }//GEN-LAST:event_jtPrecioMouseClicked
 
     /**
      * @param args the command line arguments
@@ -551,6 +687,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCodigo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -566,13 +703,49 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JPanel jpInquilino;
     private javax.swing.JTextField jtGarante;
     private javax.swing.JTextField jtInquilino;
+    private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextArea jtaDetallesContrato;
     // End of variables declaration//GEN-END:variables
-private void colorBG(){
-    Color fondo = new Color(23, 36, 46,240);
-    jpInquilino.setBackground(fondo);
-    jpGarante.setBackground(fondo);
-    jpInmueble.setBackground(fondo);
-}
+    private void colorBG() {
+        Color fondo = new Color(23, 36, 46, 240);
+        jpInquilino.setBackground(fondo);
+        jpGarante.setBackground(fondo);
+        jpInmueble.setBackground(fondo);
+    }
+    private void cargarInmueble(){
+    jlDireccion.setText(MVendedor.inmubleSeleccionado.getDireccion());
+    jlCodigo.setText(MVendedor.inmubleSeleccionado.getId()+"");
+    
+    }
 
+    private void guardar() {
+        try {
+            int idInmueble = MVendedor.inmubleSeleccionado.getId();
+            int idInquilino = inquilino.getId();
+            int idGarante = garante.getId();
+            int idVendedor = MVendedor.vendedor.getId();
+            int precio = Integer.parseInt(jtPrecio.getText());
+            LocalDate fContrato = jdcFirma.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fInicio = jdcInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fFinaliza = jdcFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String descripcion = jtaDetallesContrato.getText();
+            Contrato nuevo = new Contrato(idInmueble,
+                    idInquilino, idGarante, idVendedor,
+                    fContrato, fInicio, fFinaliza,
+                    precio, "VIGENTE", descripcion);
+            if (fContrato == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            if (fInicio == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            if (fFinaliza == null) {
+                JOptionPane.showMessageDialog(null, "Ingrese la fecha de firma del contrato");
+            }
+            controlContrato.crearContrato(nuevo);
+        } catch (NullPointerException np) {
+            JOptionPane.showMessageDialog(null, "todos los datos son Necesarios");
+        }
+
+    }
 }

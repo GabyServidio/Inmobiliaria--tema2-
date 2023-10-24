@@ -90,6 +90,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jtInmueble.setDragEnabled(true);
         jtInmueble.setGridColor(new java.awt.Color(118, 151, 117));
         jtInmueble.setOpaque(false);
+        jtInmueble.setShowGrid(true);
         jScrollPane1.setViewportView(jtInmueble);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 980, 330));
@@ -218,6 +219,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
             edit.setVisible(rootPaneCheckingEnabled);
+            cargarTabla();
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
 
@@ -241,6 +243,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
         try {
             int fila = jtInmueble.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+            MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             AdmContratos contrato = new AdmContratos(null, rootPaneCheckingEnabled);
             contrato.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
