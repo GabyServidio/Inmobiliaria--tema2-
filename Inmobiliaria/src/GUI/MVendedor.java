@@ -22,14 +22,13 @@ public class MVendedor extends javax.swing.JFrame {
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
     public static Inmueble inmubleSeleccionado = null;
-    private Usuario vendedor;
+    public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
 
     public MVendedor(Usuario ven) {
         initComponents();
         jtNombreSombra.setBackground(new Color(34, 65, 93, 200));
-        bordes();
         vendedor = ven;
         nombreVendedor(ven);
     }
@@ -375,12 +374,5 @@ private void nombreVendedor(Usuario nombre) {
         jtNombre.setText(nombre.getUsuario());
     }
     
-    private void bordes() {
-        Border border = BorderFactory.createLineBorder(fondo, 3, true);
-        Border compound = BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3));
-        jlSalir.setOpaque(true);
-        jlSalir.setBackground(fondo);
-        jlSalir.setBorder(compound);
-    }
     
 }
