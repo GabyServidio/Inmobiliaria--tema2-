@@ -48,7 +48,10 @@ public class ListarInspecciones extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTInspecciones = new javax.swing.JTable();
+        jBEditar = new javax.swing.JButton();
         jCBBuscarPor = new javax.swing.JComboBox<>();
+        jBSalir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -117,12 +120,33 @@ public class ListarInspecciones extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 380, 140));
 
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/editarPersona.png"))); // NOI18N
+        jBEditar.setToolTipText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEditarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
+
         jCBBuscarPor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCBBuscarPorItemStateChanged(evt);
             }
         });
         getContentPane().add(jCBBuscarPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+
+        jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
+        jBSalir.setToolTipText("Salir");
+        jBSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBSalirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/editarPersona.png"))); // NOI18N
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
 
         Background.setForeground(new java.awt.Color(0, 0, 0));
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
@@ -157,6 +181,14 @@ public class ListarInspecciones extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jDCFechaPropertyChange
+
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBEditarActionPerformed
+
+    private void jBSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBSalirMouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jBSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -203,6 +235,9 @@ public class ListarInspecciones extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
     private javax.swing.JLabel Inspecciones;
+    private javax.swing.JButton jBEditar;
+    private javax.swing.JButton jBSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCBBuscarPor;
     private com.toedter.calendar.JDateChooser jDCFecha;
     private javax.swing.JLabel jLabel1;
