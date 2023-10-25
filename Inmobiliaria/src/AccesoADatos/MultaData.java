@@ -31,14 +31,13 @@ public class MultaData {
     }
     
     public void GuardarMulta(Multa multa){
-        String sql = "INSERT INTO multa (idInspeccion, idInquilino, fechaConfeccion, fechaPago, monto ) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO multa (idInspeccion, idInquilino, fechaConfeccion, monto ) VALUES (?, ?, ?, ?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, multa.getIdInspeccion());
             ps.setInt(2, multa.getIdInquilino());
             ps.setDate(3, Date.valueOf(multa.getFechaConfeccion()));
-            ps.setDate(4, Date.valueOf(multa.getFechaPago()));
-            ps.setDouble(5, multa.getMonto());
+            ps.setDouble(4, multa.getMonto());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {

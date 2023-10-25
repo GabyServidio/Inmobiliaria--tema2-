@@ -153,7 +153,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscarInquilino1.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         bBuscarInquilino1.setForeground(new java.awt.Color(255, 255, 255));
-        bBuscarInquilino1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
+        bBuscarInquilino1.setText("BUSCAR");
         bBuscarInquilino1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bBuscarInquilino1MouseClicked(evt);
@@ -305,8 +305,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscargarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         bBuscargarante.setForeground(new java.awt.Color(255, 255, 255));
-        bBuscargarante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
-        bBuscargarante.setText("Buscar");
+        bBuscargarante.setText("BUSCAR");
         bBuscargarante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bBuscargaranteMouseClicked(evt);
@@ -590,23 +589,23 @@ public class AdmContratos extends javax.swing.JDialog {
         jtPrecio.setText("");
     }//GEN-LAST:event_jtPrecioMouseClicked
 
-       private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseEntered
+       private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {                                    
       bCrear.setForeground(Bup);
-    }//GEN-LAST:event_bCrearMouseEntered
+    }                                   
 
-    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseExited
+    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {                                   
       bCrear.setForeground(Color.WHITE); 
         
-    }//GEN-LAST:event_bCrearMouseExited
+    }                                  
 
-    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseEntered
+    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {                                     
       jBsalir.setForeground(Bup);
       
-    }//GEN-LAST:event_jBsalirMouseEntered
+    }                                    
 
-    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseExited
+    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {                                    
      jBsalir.setForeground(Color.WHITE);
-    }//GEN-LAST:event_jBsalirMouseExited
+    }                                   
 
     private void jBsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseClicked
       dispose();
@@ -637,6 +636,9 @@ public class AdmContratos extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdmContratos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
@@ -915,6 +917,6 @@ public class AdmContratos extends javax.swing.JDialog {
 //        bCrear.setForeground(Color.WHITE);
 //    }//GEN-LAST:event_bCrearMouseExited
 //
-//    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseExited
+//    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {                                    
 //        jBsalir.setForeground(Color.WHITE);
-//    }//GEN-LAST:event_jBsalirMouseExited
+//    }

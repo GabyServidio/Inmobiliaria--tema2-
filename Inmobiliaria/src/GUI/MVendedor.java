@@ -20,6 +20,7 @@ import javax.swing.border.Border;
  * @author Veronica Porqueras
  */
 public class MVendedor extends javax.swing.JFrame {
+
     public static ContratoData controlContrato = new ContratoData();
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
@@ -268,17 +269,20 @@ public class MVendedor extends javax.swing.JFrame {
 
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
         dispose();
+        Logging inicio = new Logging();
+        inicio.setLocationRelativeTo(null);
+        inicio.setVisible(true);
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
         AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
-        
+
         cont.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
         ListarInmuebles listaInmueble = new ListarInmuebles(this, rootPaneCheckingEnabled, vendedor);
-        
+
         listaInmueble.setVisible(true);
     }//GEN-LAST:event_jlListarInmueblesMouseClicked
 
@@ -290,7 +294,7 @@ public class MVendedor extends javax.swing.JFrame {
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
         AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
         multa.setVisible(true);
-        
+
     }//GEN-LAST:event_jlMultasMouseClicked
 
     private void jlInmueble1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseClicked
@@ -314,13 +318,13 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlContratosMouseExited
 
     private void jlInquilinosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseExited
-     jlInquilinos.setForeground(Color.WHITE);
-     jlInquilinos.setBackground(fondo);
+        jlInquilinos.setForeground(Color.WHITE);
+        jlInquilinos.setBackground(fondo);
     }//GEN-LAST:event_jlInquilinosMouseExited
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
-     jlSalir.setForeground(Color.WHITE);
-     jlSalir.setBackground(fondo);
+        jlSalir.setForeground(Color.WHITE);
+        jlSalir.setBackground(fondo);
     }//GEN-LAST:event_jlSalirMouseExited
 
     /**
@@ -371,6 +375,5 @@ private void nombreVendedor(Usuario nombre) {
         jtNombreSombra.setText(nombre.getUsuario());
         jtNombre.setText(nombre.getUsuario());
     }
-    
-    
+
 }
