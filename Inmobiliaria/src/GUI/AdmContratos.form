@@ -85,7 +85,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="270" y="364" width="100" height="30"/>
+              <AbsoluteConstraints x="268" y="364" width="100" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -104,8 +104,8 @@
                       <Component id="TXTinquilino1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jtInquilino" min="-2" pref="220" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="bBuscarInquilino1" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="bBuscarInquilino1" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -192,7 +192,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="BUSCAR"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Img/agregarPerson.png"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscarInquilino1MouseClicked"/>
@@ -310,8 +312,8 @@
                               <Component id="TXTGarante" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jtGarante" min="-2" pref="220" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="bBuscargarante" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="bBuscargarante" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="NombreGarante" min="-2" pref="210" max="-2" attributes="0"/>
@@ -483,7 +485,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="BUSCAR"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/Img/agregarPerson.png"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscargaranteMouseClicked"/>
@@ -653,8 +657,6 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="jdcFirma">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -679,8 +681,6 @@
                 <Property name="text" type="java.lang.String" value="INICIO"/>
               </Properties>
             </Component>
-            <Component class="com.toedter.calendar.JDateChooser" name="jdcInicio">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -692,6 +692,10 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="FINALIZACION"/>
               </Properties>
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jdcFirma">
+            </Component>
+            <Component class="com.toedter.calendar.JDateChooser" name="jdcInicio">
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="jdcFinalizacion">
             </Component>
