@@ -120,6 +120,9 @@ public class MVendedor extends javax.swing.JFrame {
         jlContacto.setText("CONTACTOS");
         jlContacto.setPreferredSize(new java.awt.Dimension(163, 30));
         jlContacto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlContactoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlContactoMouseEntered(evt);
             }
@@ -275,30 +278,33 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
-        AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
-
-        cont.setVisible(true);
+      ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
+      lista.setLocationRelativeTo(null);
+      lista.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
         ListarInmuebles listaInmueble = new ListarInmuebles(this, rootPaneCheckingEnabled, vendedor);
-
+        listaInmueble.setLocationRelativeTo(null);
         listaInmueble.setVisible(true);
     }//GEN-LAST:event_jlListarInmueblesMouseClicked
 
     private void jlInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseClicked
         AdmPersona perso = new AdmPersona(this, rootPaneCheckingEnabled);
+        perso.setLocationRelativeTo(null);
         perso.setVisible(true);
     }//GEN-LAST:event_jlInquilinosMouseClicked
 
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
         AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
+        multa.setLocationRelativeTo(null);
         multa.setVisible(true);
 
     }//GEN-LAST:event_jlMultasMouseClicked
 
     private void jlInmueble1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseClicked
         AdmInmuebles inmueble = new AdmInmuebles(this, rootPaneCheckingEnabled);
+        inmueble.setLocationRelativeTo(null);
         inmueble.setVisible(true);
     }//GEN-LAST:event_jlInmueble1MouseClicked
 
@@ -326,6 +332,13 @@ public class MVendedor extends javax.swing.JFrame {
         jlSalir.setForeground(Color.WHITE);
         jlSalir.setBackground(fondo);
     }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseClicked
+       AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
+       persona.setLocationRelativeTo(null);
+       persona.setVisible(true);
+       
+    }//GEN-LAST:event_jlContactoMouseClicked
 
     /**
      * @param args the command line arguments

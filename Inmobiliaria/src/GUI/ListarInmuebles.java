@@ -359,11 +359,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
         modelo.addColumn("Superficie");
         modelo.addColumn("Garage");
         modelo.addColumn("Baños");
-        modelo.addColumn("Condiociones Contrato");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Fecha Construccion");
         modelo.addColumn("Propietario");
         modelo.addColumn("Estado");
-        modelo.addColumn("Tipo");
+        modelo.addColumn("Condiociones Contrato");
         jtInmueble.setModel(modelo);
         TableRowSorter<DefaultTableModel> ordenar = new TableRowSorter<>(modelo);
         jtInmueble.setRowSorter(ordenar);
