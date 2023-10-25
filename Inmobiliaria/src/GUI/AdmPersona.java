@@ -74,6 +74,7 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jTDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 120, -1));
 
+        jlNombre.setBackground(new java.awt.Color(8, 36, 59));
         jlNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlNombre.setText("Nombre: ");
         jPanel1.add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
