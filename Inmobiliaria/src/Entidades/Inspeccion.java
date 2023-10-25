@@ -74,6 +74,11 @@ public class Inspeccion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "Inspeccion{" + "id=" + id + ", idInspector=" + idInspector + ", idInmueble=" + idInmueble + ", fecha=" + fecha + ", descripcion=" + descripcion + '}';
+    }
     
     
 }

@@ -48,14 +48,14 @@ public class Multar extends javax.swing.JDialog {
 
         jLabel1.setText("NUEVA MULTA");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
-        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
 
         jLabel2.setText("FECHA DE CREACIÓN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
 
         jLabel3.setText("MONTO A ABONAR");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
-        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 170, -1, -1));
+        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 120, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.png"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,9 +154,8 @@ dispose();        // TODO add your handling code here:
     Date fecha = jDCFecha.getDate();
     LocalDate fechaMulta = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     double monto = Double.parseDouble(jTFMonto.getText());
-    int idInsp= MInspector.inspeselec.getId();
     
-Multa multa= new Multa(idInsp, 0, fechaMulta, null, monto);
+Multa multa= new Multa(ListarInspecciones.idInspector, ListarInspecciones.idInquilino, fechaMulta, null, monto);
 MInspector.controlMulta.GuardarMulta(multa);
 
         }    }

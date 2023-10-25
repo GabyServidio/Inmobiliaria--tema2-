@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -222,6 +223,40 @@ public class PersonaData {
 
     }
 
+    public Persona encontrarInquilinoXId(int id) {
+        Persona encontrada = null;
+        SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idInquilino "
+                + " WHERE personas.id = ?;";
+        try {
+            ps = Conexion.getConexion().prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                encontrada.setId(rs.getInt("id"));
+                encontrada.setNombre(rs.getString("nombre"));
+                encontrada.setApellido(rs.getString("apellido"));
+                encontrada.setDni(rs.getInt("dni"));
+                encontrada.setCuil(rs.getLong("cuil"));
+                encontrada.setDomicilio(rs.getString("domicilio"));
+                encontrada.setEmail(rs.getString("eMail"));
+                encontrada.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe una persona con ese ID");
+                ps.close();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return encontrada;
+    }
     public Persona encontrarGarante(int dni) {
         Persona encontrada = null;
         SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idGarante "
@@ -288,6 +323,44 @@ public class PersonaData {
         }
         return encontrada;
     }
+    
+     public Persona encontrarInquilinoxprop(int id) {
+        Persona retorna = null;
+               SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idInquilino "
+                       + "WHERE contrato.idPropiedad = ? AND contrato.fechaFinalizacion>?";
+        try {
+            ps = Conexion.getConexion().prepareStatement(SQL);
+            ps.setInt(1, id);
+            ps.setDate(2, java.sql.Date.valueOf(LocalDate.now()));
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Persona encontrada = new Persona();
+                encontrada.setId(rs.getInt("id"));
+                encontrada.setNombre(rs.getString("nombre"));
+                encontrada.setApellido(rs.getString("apellido"));
+                encontrada.setDni(rs.getInt("dni"));
+                encontrada.setCuil(rs.getLong("cuil"));
+                encontrada.setDomicilio(rs.getString("domicilio"));
+                encontrada.setEmail(rs.getString("eMail"));
+                encontrada.setEstado(rs.getBoolean("estado"));
+                retorna = encontrada;
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe inquilino con contrato activo");
+                ps.close();
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return retorna;
+    
+        }
     
     public ArrayList<Persona> listarInquilinos(boolean estado) {
         ArrayList<Persona> inquilinos = new ArrayList<>();
