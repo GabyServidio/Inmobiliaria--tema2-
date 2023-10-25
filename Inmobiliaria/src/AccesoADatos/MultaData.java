@@ -4,7 +4,6 @@
  */
 package AccesoADatos;
 
-
 import Entidades.Inmueble;
 import Entidades.Multa;
 import java.sql.Date;
@@ -23,15 +22,16 @@ import javax.swing.JOptionPane;
  * @author USUARIO
  */
 public class MultaData {
+
     private PreparedStatement ps = null;
     private ResultSet rs = null;
-    
-    public MultaData(){
-    
+
+    public MultaData() {
+
     }
-    
-    public void GuardarMulta(Multa multa){
-        String sql = "INSERT INTO multa (idInspeccion, idInquilino, fechaConfeccion, monto ) VALUES (?, ?, ?, ?)";
+
+    public void GuardarMulta(Multa multa) {
+        String sql = "INSERT INTO `multa`(`idInspeccion`, `idInquilino`, `fechaConfeccion`,  `monto`) VALUES (?, ?, ?, ?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, multa.getIdInspeccion());
@@ -43,12 +43,12 @@ public class MultaData {
             if (rs.next()) {
                 multa.setId(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "La multa se generó con exito.");
-                
+
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             Logger.getLogger(MultaData.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "No se pudo generar la multa" + ex);
-        } finally{
+        } finally {
             try {
                 Conexion.getConexion().close();
             } catch (SQLException ex) {
@@ -57,9 +57,9 @@ public class MultaData {
             }
         }
     }
-    
+
     public Multa buscarMulta(int id) {
-        
+
         Multa multa = null;
         String sql = "SELECT * FROM multa WHERE id = ?";
         ps = null;
@@ -75,7 +75,7 @@ public class MultaData {
                 multa.setFechaConfeccion(rs.getDate("fechaConfeccion").toLocalDate());
                 multa.setFechaPago(rs.getDate("fechaPago").toLocalDate());
                 multa.setMonto(rs.getDouble("monto"));
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la multa");
                 ps.close();
@@ -92,8 +92,7 @@ public class MultaData {
 
         return multa;
     }
-    
-    
+
     public List<Multa> listarMulta() {
         List<Multa> multas = new ArrayList<>();
         try {
@@ -102,7 +101,7 @@ public class MultaData {
             rs = ps.executeQuery();
             while (rs.next()) {
                 Multa multa = new Multa();
-                     
+
                 multa.setId(rs.getInt("id"));
                 multa.setIdInspeccion(rs.getInt("idInspeccion"));
                 multa.setIdInquilino(rs.getInt("idInquilino"));
@@ -121,10 +120,9 @@ public class MultaData {
             }
         }
         return multas;
-    
+
     }
-    
-    
+
     public void modificarMulta(Multa multa) {
 
         String sql = "UPDATE multa SET id = ? , idInspeccion = ?,"
@@ -141,7 +139,7 @@ public class MultaData {
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "La multa no existe");
             }
@@ -155,6 +153,5 @@ public class MultaData {
             }
         }
     }
-    
-    
+
 }

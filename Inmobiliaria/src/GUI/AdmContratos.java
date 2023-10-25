@@ -79,11 +79,11 @@ public class AdmContratos extends javax.swing.JDialog {
         jLabelCodigo = new javax.swing.JLabel();
         jlCodigo = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jdcFirma = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jdcInicio = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
+        jdcFirma = new com.toedter.calendar.JDateChooser();
+        jdcInicio = new com.toedter.calendar.JDateChooser();
         jdcFinalizacion = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDetallesContrato = new javax.swing.JTextArea();
@@ -129,7 +129,7 @@ public class AdmContratos extends javax.swing.JDialog {
                 jBsalirMouseExited(evt);
             }
         });
-        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 364, 100, 30));
+        jPanel1.add(jBsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 364, 100, 30));
 
         jtInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         jtInquilino.setForeground(new java.awt.Color(51, 0, 51));
@@ -153,7 +153,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscarInquilino1.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         bBuscarInquilino1.setForeground(new java.awt.Color(255, 255, 255));
-        bBuscarInquilino1.setText("BUSCAR");
+        bBuscarInquilino1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscarInquilino1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bBuscarInquilino1MouseClicked(evt);
@@ -201,8 +201,8 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addComponent(TXTinquilino1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bBuscarInquilino1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bBuscarInquilino1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInquilinoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -305,7 +305,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscargarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         bBuscargarante.setForeground(new java.awt.Color(255, 255, 255));
-        bBuscargarante.setText("BUSCAR");
+        bBuscargarante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscargarante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bBuscargaranteMouseClicked(evt);
@@ -323,8 +323,8 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addComponent(TXTGarante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bBuscargarante))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bBuscargarante, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpGaranteLayout.createSequentialGroup()
                         .addComponent(NombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -578,10 +578,21 @@ public class AdmContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jtGaranteMouseClicked
 
     private void bCrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseClicked
-        if (MVendedor.contratoSeleccionado != null) {
-            editar();
+        LocalDate fContrato = jdcFirma.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fInicio = jdcInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fFinaliza = jdcFinalizacion.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if (fContrato.isAfter(fInicio)) {
+            JOptionPane.showMessageDialog(null, "No se puede Firmar el contrato despues del comienzo del mismo");
+        } else if (fInicio.isAfter(fFinaliza)) {
+            JOptionPane.showMessageDialog(null, "El contrato no puede finalizar antes de comenzar  ");
         } else {
-            guardar();
+
+            if (MVendedor.contratoSeleccionado != null) {
+                editar();
+            } else {
+                guardar();
+            }
         }
     }//GEN-LAST:event_bCrearMouseClicked
 
@@ -589,26 +600,26 @@ public class AdmContratos extends javax.swing.JDialog {
         jtPrecio.setText("");
     }//GEN-LAST:event_jtPrecioMouseClicked
 
-       private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {                                    
-      bCrear.setForeground(Bup);
-    }                                   
+    private void bCrearMouseEntered(java.awt.event.MouseEvent evt) {
+        bCrear.setForeground(Bup);
+    }
 
-    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {                                   
-      bCrear.setForeground(Color.WHITE); 
-        
-    }                                  
+    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {
+        bCrear.setForeground(Color.WHITE);
 
-    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {                                     
-      jBsalir.setForeground(Bup);
-      
-    }                                    
+    }
 
-    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {                                    
-     jBsalir.setForeground(Color.WHITE);
-    }                                   
+    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {
+        jBsalir.setForeground(Bup);
+
+    }
+
+    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {
+        jBsalir.setForeground(Color.WHITE);
+    }
 
     private void jBsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseClicked
-      dispose();
+        dispose();
     }//GEN-LAST:event_jBsalirMouseClicked
 
     /**
@@ -701,8 +712,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextArea jtaDetallesContrato;
     // End of variables declaration//GEN-END:variables
- 
-    
+
     private void comprueba() {
         if (MVendedor.contratoSeleccionado != null) {
             Contrato editar = MVendedor.contratoSeleccionado;
@@ -844,8 +854,8 @@ public class AdmContratos extends javax.swing.JDialog {
                     fContrato, fInicio, fFinaliza,
                     precio, "VIGENTE", descripcion);
             Object[] op = {"Si", "No"};
-            int sel = JOptionPane.showOptionDialog(null, "Confirmacion",
-                    "¿Son todos los datos Correctos?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
+            int sel = JOptionPane.showOptionDialog(null, "¿Son todos los datos Correctos?",
+                    "Confirmacion", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
                     null, op, op[1]);
             if (sel == JOptionPane.YES_OPTION) {
                 controlContrato.crearContrato(nuevo);

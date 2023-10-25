@@ -7,6 +7,7 @@ package GUI;
 import Entidades.Inmueble;
 import Entidades.Persona;
 import Entidades.Usuario;
+import AccesoADatos.InmuebleData;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -32,11 +33,14 @@ public class ListarInmuebles extends javax.swing.JDialog {
             return false;
         }
     };
-
+    private Usuario usuario = null;
+    private InmuebleData controlInm = new InmuebleData();
     public ListarInmuebles(java.awt.Frame parent, boolean modal, Usuario user) {
         super(parent, modal);
+        usuario = user;
         setTitle("Listar Inmuebles");
         initComponents();
+        compruebaUsuario();
         llenarCombo();
         cabecera();
         cargarTabla();
@@ -200,7 +204,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
     }//GEN-LAST:event_jtDatoMouseClicked
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-       MVendedor.inmubleSeleccionado = null;
+        MVendedor.inmubleSeleccionado = null;
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
@@ -211,10 +215,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             limpiarFila();
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
+            edit.setLocationRelativeTo(null);
             edit.setVisible(rootPaneCheckingEnabled);
             cargarTabla();
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbEditarActionPerformed
@@ -223,11 +228,17 @@ public class ListarInmuebles extends javax.swing.JDialog {
         try {
             int fila = jtInmueble.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-            MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
+            if (isVendedor()) {
+                MVendedor.inmubleSeleccionado = controlInm.buscarInmuebleXId(id);
+            }else{
+                MInspector.inmuselec = controlInm.buscarInmuebleXId(id);
+            }
+                 
+                    
             Inspeccionar insp = new Inspeccionar(null, rootPaneCheckingEnabled);
             insp.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbInspeccionarActionPerformed
@@ -238,9 +249,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             AdmContratos contrato = new AdmContratos(null, rootPaneCheckingEnabled);
+            contrato.setLocationRelativeTo(null);
             contrato.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbContratarActionPerformed
@@ -546,7 +558,24 @@ public class ListarInmuebles extends javax.swing.JDialog {
         }
     }
 
-    private void blkUser() {
+    private void compruebaUsuario() {
+
+        if (usuario.getTipo().equals("I")) {
+            jbContratar.setEnabled(false);
+            jbInspeccionar.setEnabled(true);
+            jbEditar.setEnabled(false);
+        } else if (usuario.getTipo().equals("V")) {
+            jbContratar.setEnabled(true);
+            jbInspeccionar.setEnabled(false);
+        }
+    }
+
+    private boolean isVendedor() {
+        if (usuario.getTipo().equals("V")) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 

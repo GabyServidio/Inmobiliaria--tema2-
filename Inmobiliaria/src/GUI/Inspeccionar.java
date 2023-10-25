@@ -1,6 +1,4 @@
-
 package GUI;
-
 
 import Entidades.Inmueble;
 import Entidades.Inspeccion;
@@ -12,10 +10,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
 public class Inspeccionar extends javax.swing.JDialog {
 
-    
     public Inspeccionar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -107,25 +103,25 @@ public class Inspeccionar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if (jDCFecha == null){
-JOptionPane.showMessageDialog(this, "El campo fecha debe estar completo");
-}else if (jTADetalle==null || jTADetalle.equals(" ")){
-    JOptionPane.showMessageDialog(this, "El campo Detalle debe estar completo");
-}else{
-        guardar();
-        dispose();} 
+        if (jDCFecha == null) {
+            JOptionPane.showMessageDialog(this, "El campo fecha debe estar completo");
+        } else if (jTADetalle == null || jTADetalle.equals(" ")) {
+            JOptionPane.showMessageDialog(this, "El campo Detalle debe estar completo");
+        } else {
+            guardar();
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-Object[] opcion= {"Sí", "Cancelar"};
+        Object[] opcion = {"Sí", "Cancelar"};
         int op = JOptionPane.showOptionDialog(null, "¿Desea salir sin guardar?", "Advertencia", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_OPTION,
-                null,opcion, opcion[1]); 
-        if (op== JOptionPane.YES_OPTION){
+                null, opcion, opcion[1]);
+        if (op == JOptionPane.YES_OPTION) {
             dispose();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
-    
 
     /**
      * @param args the command line arguments
@@ -189,27 +185,29 @@ Object[] opcion= {"Sí", "Cancelar"};
     private javax.swing.JTextArea jTADetalle;
     // End of variables declaration//GEN-END:variables
 
-private void editarInsp(){
-if (MInspector.inspeselec!= null){
-  
-    jDCFecha.setDate(java.sql.Date.valueOf(MInspector.inspeselec.getFecha()));
-    jTADetalle.setText(MInspector.inspeselec.getDescripcion());
-    jDCFecha.setEnabled(false);
-}
-}
-    private void guardar(){
-    Date fecha = jDCFecha.getDate();
-    LocalDate fechaInsp = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    
-    Inspeccion Inspec= new Inspeccion(MInspector.inspector.getId(), MInspector.inmuselec.getId(), fechaInsp, jTADetalle.getText());
+    private void editarInsp() {
+        if (MInspector.inspeselec != null) {
 
-        if (MInspector.inspeselec!= null){
-        MInspector.controlInsp.editarInspeccion(Inspec);
-        MInspector.inspeselec=null;
-        }else{
-        MInspector.controlInsp.crearInspeccion(Inspec);}
-        
-
-
+            jDCFecha.setDate(java.sql.Date.valueOf(MInspector.inspeselec.getFecha()));
+            jTADetalle.setText(MInspector.inspeselec.getDescripcion());
+            jDCFecha.setEnabled(false);
         }
+    }
+
+    private void guardar() {
+        Date fecha = jDCFecha.getDate();
+        LocalDate fechaInsp = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        Inspeccion Inspec = new Inspeccion(MInspector.inspector.getId(),
+                MInspector.inmuselec.getId(), fechaInsp,
+                jTADetalle.getText());
+
+        if (MInspector.inspeselec != null) {
+            MInspector.controlInsp.editarInspeccion(Inspec);
+            MInspector.inspeselec = null;
+        } else {
+            MInspector.controlInsp.crearInspeccion(Inspec);
+        }
+
+    }
 }

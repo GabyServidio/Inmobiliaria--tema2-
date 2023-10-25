@@ -21,8 +21,8 @@ public class ListarInspecciones extends javax.swing.JDialog {
     };
     private boolean buscarXfecha = false;
 
-    public static String detalleInspeccion = null;
-    public static int idInspector;
+    public static Inspeccion inspEdit = null;
+    public static int idInspeccion;
     public static int idInquilino;
 
     private Inspeccion seleccionada = null;
@@ -197,8 +197,9 @@ public class ListarInspecciones extends javax.swing.JDialog {
         try {
             int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
             seleccionada = MInspector.controlInsp.buscarInspeccion(id);
-            detalleInspeccion = seleccionada.getDescripcion();
+            inspEdit = seleccionada;
             DetalleInspeccion detalleedit = new DetalleInspeccion(null, rootPaneCheckingEnabled);
+            detalleedit.setLocationRelativeTo(null);
             detalleedit.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
@@ -210,10 +211,11 @@ public class ListarInspecciones extends javax.swing.JDialog {
     int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
     seleccionada = MInspector.controlInsp.buscarInspeccion(id);
     inquilinoId= MInspector.controlPers.encontrarInquilinoxprop(id);
-    idInspector= seleccionada.getIdInspector();
+    idInspeccion= seleccionada.getId();
     idInquilino= inquilinoId.getId();
     dispose();
-    Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled);
+    Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled, idInspeccion, idInquilino);
+    nuevamulta.setLocationRelativeTo(null);
     nuevamulta.setVisible(true);
 } catch (ArrayIndexOutOfBoundsException e) {
     JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
