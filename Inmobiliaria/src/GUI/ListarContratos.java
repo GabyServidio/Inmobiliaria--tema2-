@@ -59,6 +59,10 @@ public class ListarContratos extends javax.swing.JDialog {
         jcbEstado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtContratos = new javax.swing.JTable();
+        jbBuscar = new javax.swing.JButton();
+        jbRenovar = new javax.swing.JButton();
+        jbRecindir = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -92,6 +96,18 @@ public class ListarContratos extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtContratos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 1000, 310));
+
+        jbBuscar.setText("Buscar");
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
+
+        jbRenovar.setText("Renovar");
+        jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
+
+        jbRecindir.setText("recindir");
+        jPanel1.add(jbRecindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+
+        jbSalir.setText("Salir");
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,6 +174,10 @@ public class ListarContratos extends javax.swing.JDialog {
     private com.toedter.calendar.JMonthChooser jMes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbRecindir;
+    private javax.swing.JButton jbRenovar;
+    private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbEstado;
     private javax.swing.JComboBox<String> jcbOpcion;
     private javax.swing.JTable jtContratos;
