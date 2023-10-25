@@ -85,19 +85,22 @@ public class InspeccionData {
     }
 
     public Inspeccion buscarInspeccion(int id) {
-        Inspeccion encontrada = null;
+        Inspeccion hallada = null;
         SQL = "SELECT * FROM inspecciones WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Inspeccion encontrada = new Inspeccion(); 
+                Date fecha = rs.getDate("fecha");
                 encontrada.setId(rs.getInt("id"));
                 encontrada.setIdInspector(rs.getInt("idInspector"));
                 encontrada.setIdInmueble(rs.getInt("idInmueble"));
-                encontrada.setFecha(rs.getDate("fecha").toLocalDate());
+                encontrada.setFecha(fecha.toLocalDate());
                 encontrada.setDescripcion(rs.getString("descripcion"));
-
+                hallada=encontrada;
+                System.out.println(encontrada.toString());
             } else {
                 JOptionPane.showMessageDialog(null, "no se encontró la Inspección");
             }
@@ -110,7 +113,7 @@ public class InspeccionData {
                 Logger.getLogger(InspeccionData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return encontrada;
+        return hallada;
     }
 
     public List<Inspeccion> listarInspeciones() {
@@ -128,7 +131,6 @@ public class InspeccionData {
                 encontrada.setIdInmueble(rs.getInt("idInmueble"));
                 encontrada.setFecha(fecha.toLocalDate());
                 encontrada.setDescripcion(rs.getString("descripcion"));
-                System.out.println(encontrada.getId());
                 encontrados.add(encontrada);
             }
         } catch (SQLException ex) {

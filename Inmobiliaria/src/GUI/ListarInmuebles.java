@@ -209,6 +209,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int fila = jtInmueble.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
+            limpiarFila();
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
             edit.setVisible(rootPaneCheckingEnabled);
             cargarTabla();
@@ -351,11 +352,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
         modelo.addColumn("Superficie");
         modelo.addColumn("Garage");
         modelo.addColumn("Baños");
-        modelo.addColumn("Condiociones Contrato");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Fecha Construccion");
         modelo.addColumn("Propietario");
         modelo.addColumn("Estado");
-        modelo.addColumn("Tipo");
+        modelo.addColumn("Condiociones Contrato");
         jtInmueble.setModel(modelo);
         TableRowSorter<DefaultTableModel> ordenar = new TableRowSorter<>(modelo);
         jtInmueble.setRowSorter(ordenar);

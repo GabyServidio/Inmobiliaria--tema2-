@@ -4,12 +4,14 @@
  */
 package GUI;
 
+import AccesoADatos.ContratoData;
 import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
+import Entidades.Contrato;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
@@ -18,10 +20,12 @@ import javax.swing.border.Border;
  * @author Veronica Porqueras
  */
 public class MVendedor extends javax.swing.JFrame {
-    
+
+    public static ContratoData controlContrato = new ContratoData();
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
     public static Inmueble inmubleSeleccionado = null;
+    public static Contrato contratoSeleccionado = null;
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
@@ -46,7 +50,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInmueble1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
-        LOGO = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
@@ -90,9 +93,6 @@ public class MVendedor extends javax.swing.JFrame {
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
 
-        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo100p.png"))); // NOI18N
-        jPanel1.add(LOGO, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
-
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
         jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -120,6 +120,9 @@ public class MVendedor extends javax.swing.JFrame {
         jlContacto.setText("CONTACTOS");
         jlContacto.setPreferredSize(new java.awt.Dimension(163, 30));
         jlContacto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlContactoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jlContactoMouseEntered(evt);
             }
@@ -269,33 +272,39 @@ public class MVendedor extends javax.swing.JFrame {
 
     private void jlSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseClicked
         dispose();
+        Logging inicio = new Logging();
+        inicio.setLocationRelativeTo(null);
+        inicio.setVisible(true);
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
-        AdmContratos cont = new AdmContratos(this, rootPaneCheckingEnabled);
-        
-        cont.setVisible(true);
+      ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
+      lista.setLocationRelativeTo(null);
+      lista.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
         ListarInmuebles listaInmueble = new ListarInmuebles(this, rootPaneCheckingEnabled, vendedor);
-        
+        listaInmueble.setLocationRelativeTo(null);
         listaInmueble.setVisible(true);
     }//GEN-LAST:event_jlListarInmueblesMouseClicked
 
     private void jlInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseClicked
         AdmPersona perso = new AdmPersona(this, rootPaneCheckingEnabled);
+        perso.setLocationRelativeTo(null);
         perso.setVisible(true);
     }//GEN-LAST:event_jlInquilinosMouseClicked
 
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
         AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
+        multa.setLocationRelativeTo(null);
         multa.setVisible(true);
-        
+
     }//GEN-LAST:event_jlMultasMouseClicked
 
     private void jlInmueble1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseClicked
         AdmInmuebles inmueble = new AdmInmuebles(this, rootPaneCheckingEnabled);
+        inmueble.setLocationRelativeTo(null);
         inmueble.setVisible(true);
     }//GEN-LAST:event_jlInmueble1MouseClicked
 
@@ -315,14 +324,21 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlContratosMouseExited
 
     private void jlInquilinosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInquilinosMouseExited
-     jlInquilinos.setForeground(Color.WHITE);
-     jlInquilinos.setBackground(fondo);
+        jlInquilinos.setForeground(Color.WHITE);
+        jlInquilinos.setBackground(fondo);
     }//GEN-LAST:event_jlInquilinosMouseExited
 
     private void jlSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlSalirMouseExited
-     jlSalir.setForeground(Color.WHITE);
-     jlSalir.setBackground(fondo);
+        jlSalir.setForeground(Color.WHITE);
+        jlSalir.setBackground(fondo);
     }//GEN-LAST:event_jlSalirMouseExited
+
+    private void jlContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseClicked
+       AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
+       persona.setLocationRelativeTo(null);
+       persona.setVisible(true);
+       
+    }//GEN-LAST:event_jlContactoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -357,7 +373,6 @@ public class MVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel LOGO;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;
@@ -373,6 +388,5 @@ private void nombreVendedor(Usuario nombre) {
         jtNombreSombra.setText(nombre.getUsuario());
         jtNombre.setText(nombre.getUsuario());
     }
-    
-    
+
 }
