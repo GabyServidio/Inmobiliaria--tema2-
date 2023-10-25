@@ -10,21 +10,22 @@ import java.util.Date;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-
 /**
  *
  * @author USUARIO
  */
 public class Multar extends javax.swing.JDialog {
-int idInspector;
-int idInquilino;
+
+    int idInspeccion;
+    int idInquilino;
+
     /**
      * Creates new form Multar
      */
-    public Multar(java.awt.Frame parent, boolean modal, int idInspector, int idInquilino) {
+    public Multar(java.awt.Frame parent, boolean modal, int idInspeccion, int idInquilino) {
         super(parent, modal);
-        this.idInspector=idInspector;
-        this.idInquilino=idInquilino;
+        this.idInspeccion = idInspeccion;
+        this.idInquilino = idInquilino;
         initComponents();
     }
 
@@ -92,12 +93,12 @@ int idInquilino;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-guardar();
-dispose();// TODO add your handling code here:
+        guardar();
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4MouseClicked
 
     /**
@@ -128,7 +129,7 @@ dispose();        // TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the dialog */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+ /*java.awt.EventQueue.invokeLater(new Runnable() {
            /* public void run() {
                 Multar dialog = new Multar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -154,12 +155,13 @@ dispose();        // TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void guardar() {
-        
-    Date fecha = jDCFecha.getDate();
-    LocalDate fechaMulta = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    double monto = Double.parseDouble(jTFMonto.getText());
-    
-Multa multa= new Multa(idInspector, idInquilino, fechaMulta, null, monto);
-MInspector.controlMulta.GuardarMulta(multa);
 
-        }    }
+        Date fecha = jDCFecha.getDate();
+        LocalDate fechaMulta = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double monto = Double.parseDouble(jTFMonto.getText());
+
+        Multa multa = new Multa(idInspeccion, idInquilino, fechaMulta, null, monto);
+        MInspector.controlMulta.GuardarMulta(multa);
+
+    }
+}

@@ -31,7 +31,7 @@ public class MultaData {
     }
     
     public void GuardarMulta(Multa multa){
-        String sql = "INSERT INTO multa (idInspeccion, idInquilino, fechaConfeccion, monto ) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO `multa`(`idInspeccion`, `idInquilino`, `fechaConfeccion`,  `monto`) VALUES (?, ?, ?, ?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, multa.getIdInspeccion());
