@@ -75,7 +75,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jScrollPane1.setPreferredSize(new java.awt.Dimension(600, 800));
 
         jtInmueble.setBackground(new java.awt.Color(138, 175, 188));
-        jtInmueble.setForeground(new java.awt.Color(0, 0, 0));
         jtInmueble.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -96,7 +95,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         jtDato.setBackground(new java.awt.Color(138, 175, 188));
         jtDato.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jtDato.setForeground(new java.awt.Color(0, 0, 0));
         jtDato.setBorder(null);
         jtDato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,7 +116,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
         });
         jPanel1.add(jtDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 430, 20));
 
-        jbContratar.setForeground(new java.awt.Color(0, 0, 0));
         jbContratar.setText("Contratar");
         jbContratar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +124,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
         });
         jPanel1.add(jbContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
 
-        jbEditar.setForeground(new java.awt.Color(0, 0, 0));
         jbEditar.setText("Editar");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +132,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
         });
         jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
 
-        jbInspeccionar.setForeground(new java.awt.Color(0, 0, 0));
         jbInspeccionar.setText("Inspeccionar");
         jbInspeccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,11 +150,9 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
         jLabel1.setBackground(new java.awt.Color(0, 51, 51));
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccione por que desea listar:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
-        jbSalir.setForeground(new java.awt.Color(0, 0, 0));
         jbSalir.setText("SALIR");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -359,11 +352,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
         modelo.addColumn("Superficie");
         modelo.addColumn("Garage");
         modelo.addColumn("Baños");
-        modelo.addColumn("Condiociones Contrato");
+        modelo.addColumn("Tipo");
         modelo.addColumn("Fecha Construccion");
         modelo.addColumn("Propietario");
         modelo.addColumn("Estado");
-        modelo.addColumn("Tipo");
+        modelo.addColumn("Condiociones Contrato");
         jtInmueble.setModel(modelo);
         TableRowSorter<DefaultTableModel> ordenar = new TableRowSorter<>(modelo);
         jtInmueble.setRowSorter(ordenar);
