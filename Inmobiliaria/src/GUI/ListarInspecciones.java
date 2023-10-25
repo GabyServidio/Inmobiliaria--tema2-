@@ -199,6 +199,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
             seleccionada = MInspector.controlInsp.buscarInspeccion(id);
             detalleInspeccion = seleccionada.getDescripcion();
             DetalleInspeccion detalleedit = new DetalleInspeccion(null, rootPaneCheckingEnabled);
+            detalleedit.setLocationRelativeTo(null);
             detalleedit.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
@@ -214,6 +215,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
     idInquilino= inquilinoId.getId();
     dispose();
     Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled);
+    nuevamulta.setLocationRelativeTo(null);
     nuevamulta.setVisible(true);
 } catch (ArrayIndexOutOfBoundsException e) {
     JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
