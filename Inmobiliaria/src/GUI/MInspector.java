@@ -104,7 +104,7 @@ public class MInspector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbInspeccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseClicked
-        AdmInmuebles adminm = new AdmInmuebles(null, rootPaneCheckingEnabled);
+        ListarInmuebles adminm = new ListarInmuebles(null, rootPaneCheckingEnabled, inspector);
         adminm.setVisible(true);
 
     }//GEN-LAST:event_jbInspeccionarMouseClicked

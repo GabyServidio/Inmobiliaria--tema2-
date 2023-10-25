@@ -201,9 +201,11 @@ if (MInspector.inspeselec!= null){
     Date fecha = jDCFecha.getDate();
     LocalDate fechaInsp = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     
-    Inspeccion Inspec= new Inspeccion(MInspector.inspector.getId(), MInspector.inmuselec.getId(), fechaInsp, jTADetalle.getText());
+    Inspeccion Inspec= new Inspeccion(MInspector.inspector.getId(), 
+                                      MInspector.inmuselec.getId(), fechaInsp,
+                                      jTADetalle.getText());
 
-        if (MInspector.inspeselec!= null){
+        if (MInspector.inmuselec!= null){
         MInspector.controlInsp.editarInspeccion(Inspec);
         MInspector.inspeselec=null;
         }else{
