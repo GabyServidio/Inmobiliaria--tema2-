@@ -16,12 +16,15 @@ import java.util.Date;
  * @author USUARIO
  */
 public class Multar extends javax.swing.JDialog {
-
+int idInspector;
+int idInquilino;
     /**
      * Creates new form Multar
      */
-    public Multar(java.awt.Frame parent, boolean modal) {
+    public Multar(java.awt.Frame parent, boolean modal, int idInspector, int idInquilino) {
         super(parent, modal);
+        this.idInspector=idInspector;
+        this.idInquilino=idInquilino;
         initComponents();
     }
 
@@ -125,8 +128,8 @@ dispose();        // TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
+           /* public void run() {
                 Multar dialog = new Multar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -136,7 +139,7 @@ dispose();        // TODO add your handling code here:
                 });
                 dialog.setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,11 +154,12 @@ dispose();        // TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 
     private void guardar() {
+        
     Date fecha = jDCFecha.getDate();
     LocalDate fechaMulta = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     double monto = Double.parseDouble(jTFMonto.getText());
     
-Multa multa= new Multa(ListarInspecciones.idInspector, ListarInspecciones.idInquilino, fechaMulta, null, monto);
+Multa multa= new Multa(idInspector, idInquilino, fechaMulta, null, monto);
 MInspector.controlMulta.GuardarMulta(multa);
 
         }    }
