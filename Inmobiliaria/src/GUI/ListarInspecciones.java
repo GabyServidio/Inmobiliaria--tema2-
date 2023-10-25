@@ -214,7 +214,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
     idInspector= seleccionada.getIdInspector();
     idInquilino= inquilinoId.getId();
     dispose();
-    Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled);
+    Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled, idInspector, idInquilino);
     nuevamulta.setLocationRelativeTo(null);
     nuevamulta.setVisible(true);
 } catch (ArrayIndexOutOfBoundsException e) {
