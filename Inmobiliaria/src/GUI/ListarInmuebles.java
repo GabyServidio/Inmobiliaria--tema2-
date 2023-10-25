@@ -215,10 +215,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             limpiarFila();
             AdmInmuebles edit = new AdmInmuebles(null, rootPaneCheckingEnabled);
+            edit.setLocationRelativeTo(null);
             edit.setVisible(rootPaneCheckingEnabled);
             cargarTabla();
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbEditarActionPerformed
@@ -232,12 +233,12 @@ public class ListarInmuebles extends javax.swing.JDialog {
             }else{
                 MInspector.inmuselec = controlInm.buscarInmuebleXId(id);
             }
-                    
+                 
                     
             Inspeccionar insp = new Inspeccionar(null, rootPaneCheckingEnabled);
             insp.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbInspeccionarActionPerformed
@@ -248,9 +249,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
             AdmContratos contrato = new AdmContratos(null, rootPaneCheckingEnabled);
+            contrato.setLocationRelativeTo(null);
             contrato.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
     }//GEN-LAST:event_jbContratarActionPerformed

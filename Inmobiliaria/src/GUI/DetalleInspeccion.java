@@ -34,6 +34,7 @@ public class DetalleInspeccion extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTADetalle = new javax.swing.JTextArea();
+        jbGuardar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
@@ -45,20 +46,32 @@ public class DetalleInspeccion extends javax.swing.JDialog {
         jTADetalle.setRows(5);
         jScrollPane1.setViewportView(jTADetalle);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 380, 270));
+
+        jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("Detalle de Inspección");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo4.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        guardar();
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,9 +120,18 @@ public class DetalleInspeccion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTADetalle;
+    private javax.swing.JButton jbGuardar;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarDetalle(){
-jTADetalle.setText(ListarInspecciones.detalleInspeccion);
+    private void cargarDetalle() {
+        jTADetalle.setText(ListarInspecciones.inspEdit.getDescripcion());
+    }
+
+    private void guardar() {
+
+        ListarInspecciones.inspEdit.setDescripcion(jTADetalle.getText());
+        MInspector.controlInsp.editarInspeccion(ListarInspecciones.inspEdit);
+        ListarInspecciones.inspEdit = null;
+        dispose();
     }
 }

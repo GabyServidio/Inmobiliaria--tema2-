@@ -21,7 +21,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
     };
     private boolean buscarXfecha = false;
 
-    public static String detalleInspeccion = null;
+    public static Inspeccion inspEdit = null;
     public static int idInspeccion;
     public static int idInquilino;
 
@@ -197,7 +197,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
         try {
             int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
             seleccionada = MInspector.controlInsp.buscarInspeccion(id);
-            detalleInspeccion = seleccionada.getDescripcion();
+            inspEdit = seleccionada;
             DetalleInspeccion detalleedit = new DetalleInspeccion(null, rootPaneCheckingEnabled);
             detalleedit.setLocationRelativeTo(null);
             detalleedit.setVisible(true);

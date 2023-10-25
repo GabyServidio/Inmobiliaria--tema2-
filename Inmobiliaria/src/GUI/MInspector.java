@@ -105,6 +105,7 @@ public class MInspector extends javax.swing.JFrame {
 
     private void jbInspeccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseClicked
         ListarInmuebles adminm = new ListarInmuebles(null, rootPaneCheckingEnabled, inspector);
+        adminm.setLocationRelativeTo(null);
         adminm.setVisible(true);
 
     }//GEN-LAST:event_jbInspeccionarMouseClicked
@@ -118,6 +119,7 @@ public class MInspector extends javax.swing.JFrame {
 
     private void jbListarInspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseClicked
         ListarInspecciones insp = new ListarInspecciones(null, rootPaneCheckingEnabled);
+        insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
 

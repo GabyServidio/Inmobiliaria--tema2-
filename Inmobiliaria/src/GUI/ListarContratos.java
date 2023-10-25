@@ -190,6 +190,7 @@ public class ListarContratos extends javax.swing.JDialog {
         jcbOpcion.addItem("Propietario");
         jcbOpcion.addItem("Inquilino");
         jcbOpcion.addItem("Vendedor");
+        jcbOpcion.addItem("Inmueble");
         
         
 

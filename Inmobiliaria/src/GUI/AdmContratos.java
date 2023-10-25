@@ -854,8 +854,8 @@ public class AdmContratos extends javax.swing.JDialog {
                     fContrato, fInicio, fFinaliza,
                     precio, "VIGENTE", descripcion);
             Object[] op = {"Si", "No"};
-            int sel = JOptionPane.showOptionDialog(null, "Confirmacion",
-                    "¿Son todos los datos Correctos?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
+            int sel = JOptionPane.showOptionDialog(null, "¿Son todos los datos Correctos?",
+                    "Confirmacion", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
                     null, op, op[1]);
             if (sel == JOptionPane.YES_OPTION) {
                 controlContrato.crearContrato(nuevo);
