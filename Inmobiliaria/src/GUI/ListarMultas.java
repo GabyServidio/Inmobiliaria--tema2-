@@ -36,6 +36,7 @@ public class ListarMultas extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jBSalir = new javax.swing.JButton();
         jcbOpcion = new javax.swing.JComboBox<>();
         jtDato = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,6 +51,15 @@ public class ListarMultas extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione por que desea listar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setText("SALIR");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, -1, -1));
 
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +182,12 @@ public class ListarMultas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jtDatoKeyTyped
 
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        MInspector.controlInsp = null;
+        MVendedor.controlContrato = null;
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -215,6 +231,7 @@ public class ListarMultas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
