@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -33,6 +34,7 @@ public class ListarContratos extends javax.swing.JDialog {
         }
     };
     private UsuarioData controlUsuario = new UsuarioData();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public ListarContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -61,13 +63,15 @@ public class ListarContratos extends javax.swing.JDialog {
         jcbEstado = new javax.swing.JComboBox<>();
         jtDato = new javax.swing.JTextField();
         jcbOpcion = new javax.swing.JComboBox<>();
+        jbBuscar = new javax.swing.JButton();
         jbRenovar = new javax.swing.JButton();
-        jbRecindir = new javax.swing.JButton();
+        jbRescindir = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtContratos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 130, -1));
@@ -93,9 +97,6 @@ public class ListarContratos extends javax.swing.JDialog {
             }
         });
         jtDato.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtDatoKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtDatoKeyTyped(evt);
             }
@@ -110,15 +111,34 @@ public class ListarContratos extends javax.swing.JDialog {
         });
         jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
 
-        jbRenovar.setText("Renovar");
+        jbBuscar.setText("BUSCAR");
+        jbBuscar.setBorder(null);
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+
+        jbRenovar.setText("RENOVAR");
         jbRenovar.setBorder(null);
+        jbRenovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRenovarActionPerformed(evt);
+            }
+        });
         jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
-        jbRecindir.setText("recindir");
-        jbRecindir.setBorder(null);
-        jPanel1.add(jbRecindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        jbRescindir.setText("RESCINDIR");
+        jbRescindir.setBorder(null);
+        jbRescindir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRescindirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbRescindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
 
-        jbSalir.setText("Salir");
+        jbSalir.setText("SALIR");
         jbSalir.setBorder(null);
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,43 +180,42 @@ public class ListarContratos extends javax.swing.JDialog {
         jtDato.setText("");
     }//GEN-LAST:event_jtDatoActionPerformed
 
-    private void jtDatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDatoKeyReleased
-        limpiarFila();
-        if (jtDato.getText().isEmpty()) {
-            limpiarFila();
-            cargarTabla();
-        } else {
-            buscar();
-        }
-    }//GEN-LAST:event_jtDatoKeyReleased
-
     private void jtDatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDatoKeyTyped
         char c = evt.getKeyChar();
         switch (jcbOpcion.getSelectedItem().toString()) {
             case "Propietario":
-
                 if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
                     evt.consume(); // Consumir el evento si no es una letra o espacio
                     JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
                 }
                 break;
             case "Inmueble":
-
                 if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
                     evt.consume(); // Consumir el evento si no es una letra o espacio
                     JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
                 }
                 break;
             case "Vendedor":
                 if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
                     evt.consume(); // Consumir el evento = hace que la tecla apretada no se refleje en el textField
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
                 }
                 break;
             case "Inquilino":
-
                 if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
                     evt.consume(); // Consumir el evento si no es una letra o espacio
                     JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
                 }
                 break;
 
@@ -207,6 +226,7 @@ public class ListarContratos extends javax.swing.JDialog {
 
     private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
         cambiarInfo();
+        buscar();
     }//GEN-LAST:event_jcbOpcionActionPerformed
 
     private void jtDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatoMouseClicked
@@ -221,6 +241,23 @@ public class ListarContratos extends javax.swing.JDialog {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarActionPerformed
+        renovar();
+    }//GEN-LAST:event_jbRenovarActionPerformed
+
+    private void jbRescindirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRescindirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRescindirActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        limpiarFila();
+        if (jtDato.getText().isEmpty()) {
+            cargarTabla();
+        } else {
+            buscar();
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,14 +309,29 @@ public class ListarContratos extends javax.swing.JDialog {
     private com.toedter.calendar.JMonthChooser jMes;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbRecindir;
+    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbRenovar;
+    private javax.swing.JButton jbRescindir;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbEstado;
     private javax.swing.JComboBox<String> jcbOpcion;
     private javax.swing.JTable jtContratos;
     private javax.swing.JTextField jtDato;
     // End of variables declaration//GEN-END:variables
+    private void renovar() {
+        try{
+        int fila = jtContratos.getSelectedRow();
+        int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+        MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
+        AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
+        renueva.setLocationRelativeTo(null);
+        renueva.setVisible(true);
+         } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
+
+        }
+    }
+
     private void llenarCombo() {
         jcbOpcion.addItem("Estado");
         jcbOpcion.addItem("Finalizacion");
@@ -300,10 +352,9 @@ public class ListarContratos extends javax.swing.JDialog {
                 jAnio.setVisible(false);
                 jtDato.setVisible(false);
                 jcbEstado.setVisible(true);
-                jcbEstado.addItem("DISPONIBLE");
-                jcbEstado.addItem("NO DISPONIBLE");
-                jcbEstado.addItem("EN VENTA");
-                jcbEstado.addItem("EN ALQUILER");
+                jcbEstado.addItem("VIGENTE");
+                jcbEstado.addItem("NO VIGENTE");
+                jcbEstado.addItem("RENOVADO");
                 break;
             case "Finalizacion":
                 jMes.setVisible(true);
@@ -390,9 +441,12 @@ public class ListarContratos extends javax.swing.JDialog {
 
     private void buscarXFinalizacion() {
         limpiarFila();
-        LocalDate buscado = LocalDate.of(jAnio.getYear(), jMes.getMonth(), 1);
+        int año = jAnio.getYear();
+        int mes = jMes.getMonth() + 1;
+
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            if (encontrado.getFechaFinalizacion().isAfter(buscado)) {
+            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
+            if (encontrado.getFechaFinalizacion().getMonthValue() == mes && encontrado.getFechaFinalizacion().getYear() == año) {
                 cargarFila(encontrado);
             }
         }
@@ -400,12 +454,16 @@ public class ListarContratos extends javax.swing.JDialog {
 
     private void buscarXInicio() {
         limpiarFila();
-        LocalDate buscado = LocalDate.of(jAnio.getYear(), jMes.getMonth(), 1);
+        int año = jAnio.getYear();
+        int mes = jMes.getMonth() + 1;
+
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            if (encontrado.getFechaInicio().isBefore(buscado)) {
+            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
+            if (encontrado.getFechaInicio().getMonthValue() == mes && encontrado.getFechaInicio().getYear() == año) {
                 cargarFila(encontrado);
             }
         }
+
     }
 
     private void buscarXPropietario() {
@@ -459,8 +517,8 @@ public class ListarContratos extends javax.swing.JDialog {
             codigo,
             estado,
             alquilado.getId() + ", " + alquilado.getDireccion(),
-            fechaInicio,
-            fechaFinaliza,
+            fechaInicio.format(format),
+            fechaFinaliza.format(format),
             precio,
             inquilino.getApellido() + ", " + inquilino.getNombre(),
             propietario.getApellido() + ", " + propietario.getNombre(),

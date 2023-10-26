@@ -89,6 +89,7 @@ public class AdmContratos extends javax.swing.JDialog {
         jtaDetallesContrato = new javax.swing.JTextArea();
         jtPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jlEstado = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -423,6 +424,9 @@ public class AdmContratos extends javax.swing.JDialog {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Precio:");
 
+        jlEstado.setForeground(new java.awt.Color(255, 255, 255));
+        jlEstado.setText("VIGENTE");
+
         javax.swing.GroupLayout jpInmuebleLayout = new javax.swing.GroupLayout(jpInmueble);
         jpInmueble.setLayout(jpInmuebleLayout);
         jpInmuebleLayout.setHorizontalGroup(
@@ -449,13 +453,12 @@ public class AdmContratos extends javax.swing.JDialog {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())
                     .addGroup(jpInmuebleLayout.createSequentialGroup()
-                        .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpInmuebleLayout.createSequentialGroup()
+                                .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jdcFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
@@ -463,14 +466,20 @@ public class AdmContratos extends javax.swing.JDialog {
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jtPrecio))
+                            .addGroup(jpInmuebleLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jpInmuebleLayout.setVerticalGroup(
             jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInmuebleLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlDireccion)
@@ -498,9 +507,10 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addGap(9, 9, 9)
                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jlEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -704,6 +714,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private com.toedter.calendar.JDateChooser jdcInicio;
     private javax.swing.JLabel jlCodigo;
     private javax.swing.JLabel jlDireccion;
+    private javax.swing.JLabel jlEstado;
     private javax.swing.JPanel jpGarante;
     private javax.swing.JPanel jpInmueble;
     private javax.swing.JPanel jpInquilino;
@@ -727,7 +738,7 @@ public class AdmContratos extends javax.swing.JDialog {
             jdcFinalizacion.setDate(java.sql.Date.valueOf(editar.getFechaFinalizacion()));
             jtaDetallesContrato.setText(editar.getDescripcion());
             jtPrecio.setText(editar.getPrecio() + "");
-
+            jlEstado.setText("RENOVADO");
         }
 
     }
@@ -852,7 +863,7 @@ public class AdmContratos extends javax.swing.JDialog {
             Contrato nuevo = new Contrato(idInmueble,
                     idInquilino, idGarante, idVendedor,
                     fContrato, fInicio, fFinaliza,
-                    precio, "VIGENTE", descripcion);
+                    precio, jlEstado.getText(), descripcion);
             Object[] op = {"Si", "No"};
             int sel = JOptionPane.showOptionDialog(null, "¿Son todos los datos Correctos?",
                     "Confirmacion", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
@@ -895,7 +906,7 @@ public class AdmContratos extends javax.swing.JDialog {
             Contrato editado = new Contrato(MVendedor.contratoSeleccionado.getId(), idInmueble,
                     idInquilino, idGarante, idVendedor,
                     fContrato, fInicio, fFinaliza,
-                    precio, "VIGENTE", descripcion);
+                    precio, jlEstado.getText(), descripcion);
             Object[] op = {"Si", "No"};
             int sel = JOptionPane.showOptionDialog(null, "Confirmacion",
                     "¿Son todos los datos Correctos?", JOptionPane.INFORMATION_MESSAGE, JOptionPane.YES_NO_CANCEL_OPTION,
