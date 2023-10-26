@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.ContratoData;
 import AccesoADatos.InmuebleData;
 import AccesoADatos.InspeccionData;
 import AccesoADatos.MultaData;
@@ -22,6 +23,7 @@ public class MInspector extends javax.swing.JFrame {
     public static PersonaData controlPers = new PersonaData();
     public static InspeccionData controlInsp = new InspeccionData();
     public static MultaData controlMulta = new MultaData();
+    public static ContratoData controlContrato = new ContratoData();
     public static Usuario inspector = null;
     public static Inmueble inmuselec = null;
     public static Inspeccion inspeselec = null;
