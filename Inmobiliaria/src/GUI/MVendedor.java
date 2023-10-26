@@ -28,10 +28,11 @@ public class MVendedor extends javax.swing.JFrame {
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
-    public static Font fuenteBoton = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
-    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 22);
-    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 22);
-
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+    
     
     
     public MVendedor(Usuario ven) {
@@ -54,7 +55,7 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
-        jlInmueble1 = new javax.swing.JLabel();
+        ljCrearInmueble = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
@@ -79,24 +80,24 @@ public class MVendedor extends javax.swing.JFrame {
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
 
-        jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
-        jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
-        jlInmueble1.setForeground(new java.awt.Color(255, 255, 255));
-        jlInmueble1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlInmueble1.setText("CREAR INMUEBLE");
-        jlInmueble1.setPreferredSize(new java.awt.Dimension(163, 30));
-        jlInmueble1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ljCrearInmueble.setBackground(new java.awt.Color(34, 65, 93));
+        ljCrearInmueble.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
+        ljCrearInmueble.setForeground(new java.awt.Color(255, 255, 255));
+        ljCrearInmueble.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ljCrearInmueble.setText("CREAR INMUEBLE");
+        ljCrearInmueble.setPreferredSize(new java.awt.Dimension(163, 30));
+        ljCrearInmueble.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseClicked(evt);
+                ljCrearInmuebleMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseEntered(evt);
+                ljCrearInmuebleMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseExited(evt);
+                ljCrearInmuebleMouseExited(evt);
             }
         });
-        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
+        jPanel1.add(ljCrearInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
 
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
         jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -307,21 +308,21 @@ public class MVendedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jlMultasMouseClicked
 
-    private void jlInmueble1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseClicked
+    private void ljCrearInmuebleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseClicked
         AdmInmuebles inmueble = new AdmInmuebles(this, rootPaneCheckingEnabled);
         inmueble.setLocationRelativeTo(null);
         inmueble.setVisible(true);
-    }//GEN-LAST:event_jlInmueble1MouseClicked
+    }//GEN-LAST:event_ljCrearInmuebleMouseClicked
 
-    private void jlInmueble1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseEntered
-        jlInmueble1.setForeground(Color.BLACK);
-        jlInmueble1.setBackground(fondoR);
-    }//GEN-LAST:event_jlInmueble1MouseEntered
+    private void ljCrearInmuebleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseEntered
+        ljCrearInmueble.setForeground(Color.BLACK);
+        ljCrearInmueble.setBackground(fondoR);
+    }//GEN-LAST:event_ljCrearInmuebleMouseEntered
 
-    private void jlInmueble1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseExited
-        jlInmueble1.setForeground(Color.WHITE);
-        jlInmueble1.setBackground(fondo);
-    }//GEN-LAST:event_jlInmueble1MouseExited
+    private void ljCrearInmuebleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseExited
+        ljCrearInmueble.setForeground(Color.WHITE);
+        ljCrearInmueble.setBackground(fondo);
+    }//GEN-LAST:event_ljCrearInmuebleMouseExited
 
     private void jlContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseExited
         jlContratos.setForeground(Color.WHITE);
@@ -381,13 +382,13 @@ public class MVendedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;
-    private javax.swing.JLabel jlInmueble1;
     private javax.swing.JLabel jlInquilinos;
     private javax.swing.JLabel jlListarInmuebles;
     private javax.swing.JLabel jlMultas;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jtNombre;
     private javax.swing.JLabel jtNombreSombra;
+    private javax.swing.JLabel ljCrearInmueble;
     // End of variables declaration//GEN-END:variables
 private void nombreVendedor(Usuario nombre) {
         jtNombreSombra.setText(nombre.getUsuario());
@@ -395,16 +396,17 @@ private void nombreVendedor(Usuario nombre) {
     }
 
     private void initFont() {
-        jlInmueble1.setFont(fuenteBoton);
-        jlContacto.setFont(fuenteBoton);
-        jlContratos.setFont(fuenteBoton);
-        jlInmueble1.setFont(fuenteBoton);
-        jlInquilinos.setFont(fuenteBoton);
-        jlListarInmuebles.setFont(fuenteBoton);
-        jlMultas.setFont(fuenteBoton);
-        jlSalir.setFont(fuenteBoton);
+        ljCrearInmueble.setFont(fuenteBoton18);
+        jlContacto.setFont(fuenteBoton18);
+        jlContratos.setFont(fuenteBoton18);
+        jlInquilinos.setFont(fuenteBoton18);
+        jlMultas.setFont(fuenteBoton18);
+        jlSalir.setFont(fuenteBoton18);
         jtNombre.setFont(fuenteNombre);
         jtNombreSombra.setFont(fuenteNombre);
+        
+        ljCrearInmueble.setFont(fuenteBoton14);
+        jlListarInmuebles.setFont(fuenteBoton14);
     }
 
     ;
