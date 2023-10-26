@@ -226,7 +226,7 @@ public class ListarContratos extends javax.swing.JDialog {
 
     private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
         cambiarInfo();
-        buscar();
+      
     }//GEN-LAST:event_jcbOpcionActionPerformed
 
     private void jtDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatoMouseClicked
@@ -423,6 +423,7 @@ public class ListarContratos extends javax.swing.JDialog {
                 break;
             case "Vendedor":
                 buscarXVendedor();
+                break;
             case "Inmueble":
                 buscarXInmueble();
                 break;

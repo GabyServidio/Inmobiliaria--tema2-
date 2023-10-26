@@ -296,7 +296,7 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlInquilinosMouseClicked
 
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
-        AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
+        ListarMultas multa = new ListarMultas(this, rootPaneCheckingEnabled);
         multa.setLocationRelativeTo(null);
         multa.setVisible(true);
 
