@@ -27,6 +27,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private ContratoData controlContrato = new ContratoData();
     private Persona inquilino = null;
     private Persona garante = null;
+    private Contrato editar= new Contrato();
     private Color fondo = new Color(23, 36, 46, 240);
     private Color Bup = new Color(253, 234, 185);
 
@@ -34,8 +35,8 @@ public class AdmContratos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         colorBG();
-        cargarInmueble();
         comprueba();
+        cargarInmueble();
     }
 
     /**
@@ -90,6 +91,7 @@ public class AdmContratos extends javax.swing.JDialog {
         jtPrecio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jlEstado = new javax.swing.JLabel();
+        jCBEstado = new javax.swing.JComboBox<>();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -100,7 +102,7 @@ public class AdmContratos extends javax.swing.JDialog {
         bCrear.setFont(new java.awt.Font("Univers-Black", 0, 18)); // NOI18N
         bCrear.setForeground(new java.awt.Color(255, 255, 255));
         bCrear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bCrear.setText("CREAR");
+        bCrear.setText("GUARDAR");
         bCrear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bCrearMouseClicked(evt);
@@ -406,7 +408,6 @@ public class AdmContratos extends javax.swing.JDialog {
         jtaDetallesContrato.setRows(5);
         jScrollPane1.setViewportView(jtaDetallesContrato);
 
-        jtPrecio.setForeground(new java.awt.Color(0, 0, 0));
         jtPrecio.setText("ingrese el valor ");
         jtPrecio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -426,6 +427,13 @@ public class AdmContratos extends javax.swing.JDialog {
 
         jlEstado.setForeground(new java.awt.Color(255, 255, 255));
         jlEstado.setText("VIGENTE");
+
+        jCBEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIGENTE", "NO VIGENTE", "RENOVADO", "RESCINDIDO" }));
+        jCBEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBEstadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpInmuebleLayout = new javax.swing.GroupLayout(jpInmueble);
         jpInmueble.setLayout(jpInmuebleLayout);
@@ -462,17 +470,18 @@ public class AdmContratos extends javax.swing.JDialog {
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jpInmuebleLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jlEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jlEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         jpInmuebleLayout.setVerticalGroup(
@@ -508,9 +517,10 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jlEstado))
+                    .addComponent(jlEstado)
+                    .addComponent(jCBEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -699,6 +709,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel eMailGarante;
     private javax.swing.JLabel eMailInquilino;
     private javax.swing.JLabel jBsalir;
+    private javax.swing.JComboBox<String> jCBEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -726,7 +737,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
     private void comprueba() {
         if (MVendedor.contratoSeleccionado != null) {
-            Contrato editar = MVendedor.contratoSeleccionado;
+            editar = MVendedor.contratoSeleccionado;
             inquilino = MVendedor.controlPer.encontrarPersonaXId(editar.getIdInquilino());
             garante = MVendedor.controlPer.encontrarPersonaXId(editar.getIdGarante());
             Inmueble alquilado = MVendedor.controlInm.buscarInmuebleXId(editar.getIdInmueble());
@@ -738,7 +749,7 @@ public class AdmContratos extends javax.swing.JDialog {
             jdcFinalizacion.setDate(java.sql.Date.valueOf(editar.getFechaFinalizacion()));
             jtaDetallesContrato.setText(editar.getDescripcion());
             jtPrecio.setText(editar.getPrecio() + "");
-            jlEstado.setText("RENOVADO");
+            jlEstado.setText(jCBEstado.getName());
         }
 
     }
@@ -925,7 +936,7 @@ public class AdmContratos extends javax.swing.JDialog {
         }
 
     }
-}
+
 //    private void jBsalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseEntered
 //        jBsalir.setForeground(Bup);
 //    }//GEN-LAST:event_jBsalirMouseEntered
@@ -937,7 +948,13 @@ public class AdmContratos extends javax.swing.JDialog {
 //    private void bCrearMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCrearMouseExited
 //        bCrear.setForeground(Color.WHITE);
 //    }//GEN-LAST:event_bCrearMouseExited
+
+    private void jCBEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBEstadoActionPerformed
+       String estadoSeleccionado = (String) jCBEstado.getSelectedItem();
+       jlEstado.setText(estadoSeleccionado);
+    }//GEN-LAST:event_jCBEstadoActionPerformed
 //
 //    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {                                    
 //        jBsalir.setForeground(Color.WHITE);
 //    }
+}
