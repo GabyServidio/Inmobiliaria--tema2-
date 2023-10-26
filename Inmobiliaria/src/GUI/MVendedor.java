@@ -5,15 +5,14 @@
 package GUI;
 
 import AccesoADatos.ContratoData;
-import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
 import Entidades.Contrato;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -29,9 +28,16 @@ public class MVendedor extends javax.swing.JFrame {
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
-
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+    
+    
+    
     public MVendedor(Usuario ven) {
         initComponents();
+        initFont();
         jtNombreSombra.setBackground(new Color(34, 65, 93, 200));
         vendedor = ven;
         nombreVendedor(ven);
@@ -47,9 +53,9 @@ public class MVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlInmueble1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
+        ljCrearInmueble = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
@@ -63,25 +69,6 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
-        jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
-        jlInmueble1.setForeground(new java.awt.Color(255, 255, 255));
-        jlInmueble1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlInmueble1.setText("CREAR INMUEBLE");
-        jlInmueble1.setPreferredSize(new java.awt.Dimension(163, 30));
-        jlInmueble1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jlInmueble1MouseExited(evt);
-            }
-        });
-        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
-
         jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(255, 255, 255));
         jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -92,6 +79,25 @@ public class MVendedor extends javax.swing.JFrame {
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
         jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
+
+        ljCrearInmueble.setBackground(new java.awt.Color(34, 65, 93));
+        ljCrearInmueble.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
+        ljCrearInmueble.setForeground(new java.awt.Color(255, 255, 255));
+        ljCrearInmueble.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ljCrearInmueble.setText("CREAR INMUEBLE");
+        ljCrearInmueble.setPreferredSize(new java.awt.Dimension(163, 30));
+        ljCrearInmueble.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ljCrearInmuebleMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ljCrearInmuebleMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ljCrearInmuebleMouseExited(evt);
+            }
+        });
+        jPanel1.add(ljCrearInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
 
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
         jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -278,9 +284,9 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
-      ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
-      lista.setLocationRelativeTo(null);
-      lista.setVisible(true);
+        ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
+        lista.setLocationRelativeTo(null);
+        lista.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
@@ -296,27 +302,27 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlInquilinosMouseClicked
 
     private void jlMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseClicked
-        AdmMulta multa = new AdmMulta(this, rootPaneCheckingEnabled);
+        ListarMultas multa = new ListarMultas(this, rootPaneCheckingEnabled);
         multa.setLocationRelativeTo(null);
         multa.setVisible(true);
 
     }//GEN-LAST:event_jlMultasMouseClicked
 
-    private void jlInmueble1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseClicked
+    private void ljCrearInmuebleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseClicked
         AdmInmuebles inmueble = new AdmInmuebles(this, rootPaneCheckingEnabled);
         inmueble.setLocationRelativeTo(null);
         inmueble.setVisible(true);
-    }//GEN-LAST:event_jlInmueble1MouseClicked
+    }//GEN-LAST:event_ljCrearInmuebleMouseClicked
 
-    private void jlInmueble1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseEntered
-        jlInmueble1.setForeground(Color.BLACK);
-        jlInmueble1.setBackground(fondoR);
-    }//GEN-LAST:event_jlInmueble1MouseEntered
+    private void ljCrearInmuebleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseEntered
+        ljCrearInmueble.setForeground(Color.BLACK);
+        ljCrearInmueble.setBackground(fondoR);
+    }//GEN-LAST:event_ljCrearInmuebleMouseEntered
 
-    private void jlInmueble1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseExited
-        jlInmueble1.setForeground(Color.WHITE);
-        jlInmueble1.setBackground(fondo);
-    }//GEN-LAST:event_jlInmueble1MouseExited
+    private void ljCrearInmuebleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ljCrearInmuebleMouseExited
+        ljCrearInmueble.setForeground(Color.WHITE);
+        ljCrearInmueble.setBackground(fondo);
+    }//GEN-LAST:event_ljCrearInmuebleMouseExited
 
     private void jlContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseExited
         jlContratos.setForeground(Color.WHITE);
@@ -334,10 +340,10 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jlContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseClicked
-       AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
-       persona.setLocationRelativeTo(null);
-       persona.setVisible(true);
-       
+        AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
+        persona.setLocationRelativeTo(null);
+        persona.setVisible(true);
+
     }//GEN-LAST:event_jlContactoMouseClicked
 
     /**
@@ -376,17 +382,46 @@ public class MVendedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;
-    private javax.swing.JLabel jlInmueble1;
     private javax.swing.JLabel jlInquilinos;
     private javax.swing.JLabel jlListarInmuebles;
     private javax.swing.JLabel jlMultas;
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jtNombre;
     private javax.swing.JLabel jtNombreSombra;
+    private javax.swing.JLabel ljCrearInmueble;
     // End of variables declaration//GEN-END:variables
 private void nombreVendedor(Usuario nombre) {
         jtNombreSombra.setText(nombre.getUsuario());
         jtNombre.setText(nombre.getUsuario());
     }
 
+    private void initFont() {
+        ljCrearInmueble.setFont(fuenteBoton18);
+        jlContacto.setFont(fuenteBoton18);
+        jlContratos.setFont(fuenteBoton18);
+        jlInquilinos.setFont(fuenteBoton18);
+        jlMultas.setFont(fuenteBoton18);
+        jlSalir.setFont(fuenteBoton18);
+        jtNombre.setFont(fuenteNombre);
+        jtNombreSombra.setFont(fuenteNombre);
+        
+        ljCrearInmueble.setFont(fuenteBoton14);
+        jlListarInmuebles.setFont(fuenteBoton14);
+    }
+
+    ;
+
+public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
 }

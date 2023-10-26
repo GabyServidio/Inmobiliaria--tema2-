@@ -359,7 +359,7 @@ public class ContratoData {
     public ArrayList<Contrato> listarContratosXInmueble(int id) {
         ArrayList<Contrato> contratos = new ArrayList<>();
         String dniInicio = String.valueOf(id);
-        SQL = "SELECT * FROM contrato WHERE idInmueble LIKE ? ";
+        SQL = "SELECT * FROM contrato WHERE idPropiedad LIKE ? ";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setString(1, dniInicio + "%");
