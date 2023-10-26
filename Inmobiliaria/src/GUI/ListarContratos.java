@@ -247,7 +247,7 @@ public class ListarContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jbRenovarActionPerformed
 
     private void jbRescindirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRescindirActionPerformed
-        // TODO add your handling code here:
+       rescindir();
     }//GEN-LAST:event_jbRescindirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -327,6 +327,21 @@ public class ListarContratos extends javax.swing.JDialog {
         renueva.setLocationRelativeTo(null);
         renueva.setVisible(true);
          } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
+
+        }
+    }
+    
+    private void rescindir() {
+        try{
+        
+            int fila = jtContratos.getSelectedRow();
+            int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+            MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
+            AdmContratos rescinde = new AdmContratos(null, rootPaneCheckingEnabled);
+            rescinde.setLocationRelativeTo(null);
+            rescinde.setVisible(true);
+        } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
         }
