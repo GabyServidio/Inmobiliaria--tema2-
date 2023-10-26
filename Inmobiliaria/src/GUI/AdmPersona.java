@@ -65,7 +65,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jlDocumento.setText("Documento: ");
         jPanel1.add(jlDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 7, 90, 30));
 
-        jTDocumento.setBackground(new java.awt.Color(78, 26, 52));
+        jTDocumento.setBackground(new java.awt.Color(9, 37, 60));
         jTDocumento.setForeground(new java.awt.Color(255, 255, 255));
         jTDocumento.setBorder(null);
         jTDocumento.addActionListener(new java.awt.event.ActionListener() {
@@ -81,25 +81,28 @@ public class AdmPersona extends javax.swing.JDialog {
         jlNombre.setText("Nombre: ");
         jPanel1.add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 70, 30));
 
-        jTNombre.setBackground(new java.awt.Color(78, 26, 52));
+        jTNombre.setBackground(new java.awt.Color(9, 37, 60));
+        jTNombre.setForeground(new java.awt.Color(255, 255, 255));
         jTNombre.setBorder(null);
-        jPanel1.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 76, 200, 20));
+        jPanel1.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 76, 210, 20));
 
         jlApellido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlApellido.setForeground(new java.awt.Color(255, 255, 255));
         jlApellido.setText("Apellido: ");
         jPanel1.add(jlApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
-        jTApellido.setBackground(new java.awt.Color(78, 26, 52));
+        jTApellido.setBackground(new java.awt.Color(9, 37, 60));
+        jTApellido.setForeground(new java.awt.Color(255, 255, 255));
         jTApellido.setBorder(null);
-        jPanel1.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 200, -1));
+        jPanel1.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 210, 20));
 
         jlCuil.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlCuil.setForeground(new java.awt.Color(255, 255, 255));
         jlCuil.setText("Cuil: ");
         jPanel1.add(jlCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, 30));
 
-        jTCuil.setBackground(new java.awt.Color(78, 26, 52));
+        jTCuil.setBackground(new java.awt.Color(9, 37, 60));
+        jTCuil.setForeground(new java.awt.Color(255, 255, 255));
         jTCuil.setBorder(null);
         jPanel1.add(jTCuil, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 110, 30));
 
@@ -118,20 +121,24 @@ public class AdmPersona extends javax.swing.JDialog {
         jlEmail.setText("Email:  ");
         jPanel1.add(jlEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, 30));
 
-        jTDomicilio.setBackground(new java.awt.Color(78, 26, 52));
+        jTDomicilio.setBackground(new java.awt.Color(9, 37, 60));
+        jTDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         jTDomicilio.setBorder(null);
-        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 250, -1));
+        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 214, 260, 20));
 
-        jTTelefono.setBackground(new java.awt.Color(78, 26, 52));
+        jTTelefono.setBackground(new java.awt.Color(9, 37, 60));
+        jTTelefono.setForeground(new java.awt.Color(255, 255, 255));
         jTTelefono.setBorder(null);
-        jPanel1.add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 166, 110, 20));
+        jPanel1.add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 166, 120, 20));
 
-        jTEmail.setBackground(new java.awt.Color(78, 26, 52));
+        jTEmail.setBackground(new java.awt.Color(9, 37, 60));
+        jTEmail.setForeground(new java.awt.Color(255, 255, 255));
         jTEmail.setBorder(null);
-        jPanel1.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, -1));
+        jPanel1.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 20));
 
-        jBBuscar.setBackground(new java.awt.Color(78, 26, 52));
+        jBBuscar.setBackground(new java.awt.Color(9, 37, 60));
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jBBuscar.setText("BUSCAR");
         jBBuscar.setToolTipText("BUSCAR");
         jBBuscar.setBorder(null);
@@ -142,8 +149,9 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 4, 90, 40));
 
-        jBBaja.setBackground(new java.awt.Color(78, 26, 52));
+        jBBaja.setBackground(new java.awt.Color(9, 37, 60));
         jBBaja.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBaja.setForeground(new java.awt.Color(255, 255, 255));
         jBBaja.setText("Baja");
         jBBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,8 +160,9 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jBBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
 
-        jBEditar.setBackground(new java.awt.Color(78, 26, 52));
+        jBEditar.setBackground(new java.awt.Color(9, 37, 60));
         jBEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBEditar.setForeground(new java.awt.Color(255, 255, 255));
         jBEditar.setText("Editar");
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,8 +171,9 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 320, -1, -1));
 
-        jBGuardar.setBackground(new java.awt.Color(78, 26, 52));
+        jBGuardar.setBackground(new java.awt.Color(9, 37, 60));
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jBGuardar.setText("Guardar");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,8 +182,9 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 320, -1, -1));
 
-        jBSalir.setBackground(new java.awt.Color(78, 26, 52));
+        jBSalir.setBackground(new java.awt.Color(9, 37, 60));
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setForeground(new java.awt.Color(255, 255, 255));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,8 +193,9 @@ public class AdmPersona extends javax.swing.JDialog {
         });
         jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, -1, -1));
 
-        jBNueva.setBackground(new java.awt.Color(78, 26, 52));
+        jBNueva.setBackground(new java.awt.Color(9, 37, 60));
         jBNueva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBNueva.setForeground(new java.awt.Color(255, 255, 255));
         jBNueva.setText("Nueva");
         jBNueva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,11 +206,12 @@ public class AdmPersona extends javax.swing.JDialog {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 62, 360, 10));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 302, 370, 10));
 
-        jTEstado.setBackground(new java.awt.Color(78, 26, 52));
+        jTEstado.setBackground(new java.awt.Color(9, 37, 60));
         jTEstado.setForeground(new java.awt.Color(255, 255, 255));
         jTEstado.setText("Estado");
         jPanel1.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 252, -1, 30));
 
+        BG.setForeground(new java.awt.Color(255, 255, 255));
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Personas.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 400, 410));
 
