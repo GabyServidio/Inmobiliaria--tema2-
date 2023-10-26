@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.ContratoData;
 import AccesoADatos.InmuebleData;
 import AccesoADatos.InspeccionData;
 import AccesoADatos.MultaData;
@@ -22,6 +23,7 @@ public class MInspector extends javax.swing.JFrame {
     public static PersonaData controlPers = new PersonaData();
     public static InspeccionData controlInsp = new InspeccionData();
     public static MultaData controlMulta = new MultaData();
+    public static ContratoData controlContrato = new ContratoData();
     public static Usuario inspector = null;
     public static Inmueble inmuselec = null;
     public static Inspeccion inspeselec = null;
@@ -105,6 +107,7 @@ public class MInspector extends javax.swing.JFrame {
 
     private void jbInspeccionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseClicked
         ListarInmuebles adminm = new ListarInmuebles(null, rootPaneCheckingEnabled, inspector);
+        adminm.setLocationRelativeTo(null);
         adminm.setVisible(true);
 
     }//GEN-LAST:event_jbInspeccionarMouseClicked
@@ -118,6 +121,7 @@ public class MInspector extends javax.swing.JFrame {
 
     private void jbListarInspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseClicked
         ListarInspecciones insp = new ListarInspecciones(null, rootPaneCheckingEnabled);
+        insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
 

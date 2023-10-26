@@ -110,11 +110,11 @@ public class PersonaData {
         }
 
     }
-    
+
     public Persona encontrarPersonaXId(int id) {
         Persona encontrada = null;
         SQL = "SELECT id, nombre, apellido, dni, cuil, domicilio, telefono, eMail, estado FROM personas WHERE id = ?";
-        ps= null;
+        ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
@@ -152,7 +152,7 @@ public class PersonaData {
     public Persona encontrarPersona(int dni) {
         Persona encontrada = null;
         SQL = "SELECT id, nombre, apellido, dni, cuil, domicilio, telefono, eMail, estado FROM personas WHERE dni = ?";
-        ps= null;
+        ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, dni);
@@ -257,6 +257,7 @@ public class PersonaData {
 
         return encontrada;
     }
+
     public Persona encontrarGarante(int dni) {
         Persona encontrada = null;
         SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idGarante "
@@ -323,11 +324,11 @@ public class PersonaData {
         }
         return encontrada;
     }
-    
-     public Persona encontrarInquilinoxprop(int id) {
+
+    public Persona encontrarInquilinoxprop(int id) {
         Persona retorna = null;
-               SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idInquilino "
-                       + "WHERE contrato.idPropiedad = ? AND contrato.fechaFinalizacion>?";
+        SQL = "SELECT personas.* FROM personas INNER JOIN contrato ON personas.id = contrato.idInquilino "
+                + "WHERE contrato.idPropiedad = ? AND contrato.fechaFinalizacion>?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
@@ -359,9 +360,9 @@ public class PersonaData {
             }
         }
         return retorna;
-    
-        }
-    
+
+    }
+
     public ArrayList<Persona> listarInquilinos(boolean estado) {
         ArrayList<Persona> inquilinos = new ArrayList<>();
         SQL = "SELECT * FROM personas  JOIN contrato WHERE personas.id= contrato.idInquilino AND estado = ?";
@@ -454,5 +455,7 @@ public class PersonaData {
         return propietarios;
 
     }
+    
+     
 
 }

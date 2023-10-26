@@ -224,7 +224,7 @@ public class Logging extends javax.swing.JFrame {
                         dispose();
                         break;
                     case "A": //llama a la ventana Admnistrador
-                        MAdministrador adm = new MAdministrador();
+                        MAdministrador adm = new MAdministrador(encontrado);
                         adm.setLocationRelativeTo(null);
                         adm.setVisible(true);
                         dispose();

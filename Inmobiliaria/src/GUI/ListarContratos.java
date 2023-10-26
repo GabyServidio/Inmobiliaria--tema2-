@@ -10,9 +10,12 @@ import Entidades.Inmueble;
 import Entidades.Persona;
 import Entidades.Usuario;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -31,11 +34,14 @@ public class ListarContratos extends javax.swing.JDialog {
         }
     };
     private UsuarioData controlUsuario = new UsuarioData();
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public ListarContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setTitle("Listar Contratos");
         initComponents();
+        jMes.addPropertyChangeListener("month", e -> buscar());
+        jAnio.addPropertyChangeListener("year", e -> buscar());
         llenarCombo();
         cabecera();
         cargarTabla();
@@ -54,33 +60,92 @@ public class ListarContratos extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jMes = new com.toedter.calendar.JMonthChooser();
         jAnio = new com.toedter.calendar.JYearChooser();
-        jcbOpcion = new javax.swing.JComboBox<>();
-        jtDato = new javax.swing.JTextField();
         jcbEstado = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtContratos = new javax.swing.JTable();
+        jtDato = new javax.swing.JTextField();
+        jcbOpcion = new javax.swing.JComboBox<>();
         jbBuscar = new javax.swing.JButton();
         jbRenovar = new javax.swing.JButton();
-        jbRecindir = new javax.swing.JButton();
+        jbRescindir = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtContratos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 130, -1));
         jPanel1.add(jAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
-        jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
+        jcbEstado.setBorder(null);
+        jcbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEstadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
 
+        jtDato.setBorder(null);
+        jtDato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtDatoMouseClicked(evt);
+            }
+        });
         jtDato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDatoActionPerformed(evt);
             }
         });
-        jPanel1.add(jtDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 270, -1));
+        jtDato.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDatoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(jtDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 290, 26));
 
-        jcbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
+        jcbOpcion.setBorder(null);
+        jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbOpcionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
+
+        jbBuscar.setText("BUSCAR");
+        jbBuscar.setBorder(null);
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+
+        jbRenovar.setText("RENOVAR");
+        jbRenovar.setBorder(null);
+        jbRenovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRenovarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
+
+        jbRescindir.setText("RESCINDIR");
+        jbRescindir.setBorder(null);
+        jbRescindir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRescindirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbRescindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+
+        jbSalir.setText("SALIR");
+        jbSalir.setBorder(null);
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
         jtContratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,18 +161,6 @@ public class ListarContratos extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtContratos);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 1000, 310));
-
-        jbBuscar.setText("Buscar");
-        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, -1));
-
-        jbRenovar.setText("Renovar");
-        jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
-
-        jbRecindir.setText("recindir");
-        jPanel1.add(jbRecindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
-
-        jbSalir.setText("Salir");
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,6 +179,85 @@ public class ListarContratos extends javax.swing.JDialog {
     private void jtDatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDatoActionPerformed
         jtDato.setText("");
     }//GEN-LAST:event_jtDatoActionPerformed
+
+    private void jtDatoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDatoKeyTyped
+        char c = evt.getKeyChar();
+        switch (jcbOpcion.getSelectedItem().toString()) {
+            case "Propietario":
+                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+                    evt.consume(); // Consumir el evento si no es una letra o espacio
+                    JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
+                }
+                break;
+            case "Inmueble":
+                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+                    evt.consume(); // Consumir el evento si no es una letra o espacio
+                    JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
+                }
+                break;
+            case "Vendedor":
+                if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
+                    evt.consume(); // Consumir el evento = hace que la tecla apretada no se refleje en el textField
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
+                }
+                break;
+            case "Inquilino":
+                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+                    evt.consume(); // Consumir el evento si no es una letra o espacio
+                    JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+                } else if (c == KeyEvent.VK_ENTER) {
+                    limpiarFila();
+                    buscar();
+                }
+                break;
+
+            default:
+                throw new AssertionError();
+        }
+    }//GEN-LAST:event_jtDatoKeyTyped
+
+    private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
+        cambiarInfo();
+        buscar();
+    }//GEN-LAST:event_jcbOpcionActionPerformed
+
+    private void jtDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatoMouseClicked
+        jtDato.setText("");
+    }//GEN-LAST:event_jtDatoMouseClicked
+
+    private void jcbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEstadoActionPerformed
+        limpiarFila();
+        buscar();
+    }//GEN-LAST:event_jcbEstadoActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarActionPerformed
+        renovar();
+    }//GEN-LAST:event_jbRenovarActionPerformed
+
+    private void jbRescindirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRescindirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbRescindirActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        limpiarFila();
+        if (jtDato.getText().isEmpty()) {
+            cargarTabla();
+        } else {
+            buscar();
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,6 +288,7 @@ public class ListarContratos extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 ListarContratos dialog = new ListarContratos(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -163,8 +296,10 @@ public class ListarContratos extends javax.swing.JDialog {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
+
                 });
                 dialog.setVisible(true);
+
             }
         });
     }
@@ -175,24 +310,221 @@ public class ListarContratos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscar;
-    private javax.swing.JButton jbRecindir;
     private javax.swing.JButton jbRenovar;
+    private javax.swing.JButton jbRescindir;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbEstado;
     private javax.swing.JComboBox<String> jcbOpcion;
     private javax.swing.JTable jtContratos;
     private javax.swing.JTextField jtDato;
     // End of variables declaration//GEN-END:variables
-  private void llenarCombo() {
+    private void renovar() {
+        try{
+        int fila = jtContratos.getSelectedRow();
+        int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+        MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
+        AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
+        renueva.setLocationRelativeTo(null);
+        renueva.setVisible(true);
+         } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
+
+        }
+    }
+
+    private void llenarCombo() {
         jcbOpcion.addItem("Estado");
         jcbOpcion.addItem("Finalizacion");
         jcbOpcion.addItem("Inicio");
         jcbOpcion.addItem("Propietario");
         jcbOpcion.addItem("Inquilino");
         jcbOpcion.addItem("Vendedor");
-        
-        
+        jcbOpcion.addItem("Inmueble");
 
+    }
+
+    private void cambiarInfo() {
+        String opcion = jcbOpcion.getSelectedItem().toString();
+
+        switch (opcion) {
+            case "Estado":
+                jMes.setVisible(false);
+                jAnio.setVisible(false);
+                jtDato.setVisible(false);
+                jcbEstado.setVisible(true);
+                jcbEstado.addItem("VIGENTE");
+                jcbEstado.addItem("NO VIGENTE");
+                jcbEstado.addItem("RENOVADO");
+                break;
+            case "Finalizacion":
+                jMes.setVisible(true);
+                jAnio.setVisible(true);
+                jtDato.setVisible(false);
+                jcbEstado.setVisible(false);
+                break;
+            case "Inicio":
+                jMes.setVisible(true);
+                jAnio.setVisible(true);
+                jtDato.setVisible(false);
+                jcbEstado.setVisible(false);
+                break;
+
+            case "Propietario":
+                jMes.setVisible(false);
+                jAnio.setVisible(false);
+                jtDato.setVisible(true);
+                jcbEstado.setVisible(false);
+                jtDato.setText("ingrese el DNI del propietario");
+                break;
+            case "Inquilino":
+                jMes.setVisible(false);
+                jAnio.setVisible(false);
+                jtDato.setVisible(true);
+                jcbEstado.setVisible(false);
+                jtDato.setText("ingrese el DNI del Inquilino");
+                break;
+            case "Vendedor":
+                jMes.setVisible(false);
+                jAnio.setVisible(false);
+                jtDato.setVisible(true);
+                jcbEstado.setVisible(false);
+                jtDato.setText("Ingrese el nombre de usuario del vendedor");
+                break;
+            case "Inmueble":
+                jMes.setVisible(false);
+                jAnio.setVisible(false);
+                jtDato.setVisible(true);
+                jcbEstado.setVisible(false);
+                jtDato.setText("Ingrese el numero de Codigo de la propiedad");
+                break;
+        }
+
+    }
+
+    private void buscar() {
+        String opcion = jcbOpcion.getSelectedItem().toString();
+        switch (opcion) {
+
+            case "Estado":
+                buscarXEstado();
+                break;
+            case "Finalizacion":
+                buscarXFinalizacion();
+                break;
+            case "Inicio":
+                buscarXInicio();
+                break;
+
+            case "Propietario":
+                buscarXPropietario();
+                break;
+            case "Inquilino":
+                buscarXInquilino();
+                break;
+            case "Vendedor":
+                buscarXVendedor();
+            case "Inmueble":
+                buscarXInmueble();
+                break;
+        }
+    }
+
+    private void buscarXEstado() {
+        limpiarFila();
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
+            if (encontrado.getEstado().equalsIgnoreCase((String) jcbEstado.getSelectedItem())) {
+                cargarFila(encontrado);
+            }
+        }
+
+    }
+
+    private void buscarXFinalizacion() {
+        limpiarFila();
+        int año = jAnio.getYear();
+        int mes = jMes.getMonth() + 1;
+
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
+            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
+            if (encontrado.getFechaFinalizacion().getMonthValue() == mes && encontrado.getFechaFinalizacion().getYear() == año) {
+                cargarFila(encontrado);
+            }
+        }
+    }
+
+    private void buscarXInicio() {
+        limpiarFila();
+        int año = jAnio.getYear();
+        int mes = jMes.getMonth() + 1;
+
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
+            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
+            if (encontrado.getFechaInicio().getMonthValue() == mes && encontrado.getFechaInicio().getYear() == año) {
+                cargarFila(encontrado);
+            }
+        }
+
+    }
+
+    private void buscarXPropietario() {
+        limpiarFila();
+        int dni = Integer.parseInt(jtDato.getText());
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratosXPropietario(dni)) {
+            cargarFila(encontrado);
+
+        }
+
+    }
+
+    private void buscarXInquilino() {
+        limpiarFila();
+        int dni = Integer.parseInt(jtDato.getText());
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratosXInquilno(dni)) {
+            cargarFila(encontrado);
+
+        }
+
+    }
+
+    private void buscarXVendedor() {
+        limpiarFila();
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratosXnombreUSuario(jtDato.getText())) {
+            cargarFila(encontrado);
+        }
+    }
+
+    private void buscarXInmueble() {
+        limpiarFila();
+        for (Contrato encontrado : MVendedor.controlContrato.listarContratosXInmueble(Integer.parseInt(jtDato.getText()))) {
+            cargarFila(encontrado);
+        }
+
+    }
+
+    private void cargarFila(Contrato contrato) {
+        int codigo = contrato.getId();
+        Inmueble alquilado = MVendedor.controlInm.buscarInmuebleXId(contrato.getIdInmueble());
+        Persona inquilino = MVendedor.controlPer.encontrarPersonaXId(contrato.getIdInquilino());
+        Persona propietario = MVendedor.controlPer.encontrarPersonaXId(alquilado.getIdPropietario());
+        Usuario vendedor = controlUsuario.buscarUsuario(contrato.getIdVendedor());
+        LocalDate fechaFirma = contrato.getFecha();
+        LocalDate fechaInicio = contrato.getFechaInicio();
+        LocalDate fechaFinaliza = contrato.getFechaFinalizacion();
+        int precio = contrato.getPrecio();
+        String estado = contrato.getEstado();
+        String descripcion = contrato.getDescripcion();
+        modelo.addRow(new Object[]{
+            codigo,
+            estado,
+            alquilado.getId() + ", " + alquilado.getDireccion(),
+            fechaInicio.format(format),
+            fechaFinaliza.format(format),
+            precio,
+            inquilino.getApellido() + ", " + inquilino.getNombre(),
+            propietario.getApellido() + ", " + propietario.getNombre(),
+            descripcion,
+            vendedor.getUsuario()
+        });
     }
 
     private void cabecera() {
@@ -211,18 +543,19 @@ public class ListarContratos extends javax.swing.JDialog {
         jtContratos.setRowSorter(ordenar);
     }
 
-    private void cargarTabla() {
-        for (Contrato contrato : MVendedor.controlContrato.listarContratos()) {
-            cargarFila(contrato);
-        }
-
-    }
-
     private void limpiarFila() {
         int f = modelo.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
         }
+    }
+
+    private void cargarTabla() {
+        limpiarFila();
+        for (Contrato contrato : MVendedor.controlContrato.listarContratos()) {
+            cargarFila(contrato);
+        }
+
     }
 
     private void ajustarAnchoColumnas() {
@@ -247,115 +580,15 @@ public class ListarContratos extends javax.swing.JDialog {
         }
     }
 
-    private void ajustarAnchoColumnasCabecera() {
-        JTableHeader header = jtContratos.getTableHeader();
-        TableCellRenderer defaultRenderer = header.getDefaultRenderer();
-
-        for (int i = 0; i < jtContratos.getColumnCount(); i++) {
-            TableColumn column = jtContratos.getColumnModel().getColumn(i);
-            Component comp = defaultRenderer.getTableCellRendererComponent(jtContratos, column.getHeaderValue(), false, false, 0, 0);
-            int width = comp.getPreferredSize().width;
-            column.setPreferredWidth(width);
-        }
-    }
-
-    private void cambiarInfo() {
-        String opcion = jcbOpcion.getSelectedItem().toString();
-
-        switch (opcion) {
-            case "Direccion":
-                jtDato.setText("Ingrese la direccion del Inmueble");
-
-                break;
-            case "Zona":
-                jtDato.setText("Ingrese la Zona");
-                break;
-            case "Propietario":
-                jtDato.setText("Ingrese el DNI del propietario");
-                break;
-
-            case "Codigo":
-                jtDato.setText("Ingrese el numero de Codigo de la propiedad");
-                break;
-
-        }
-
-    }
-
-    private void buscar() {
-        String opcion = jcbOpcion.getSelectedItem().toString();
-        switch (opcion) {
-                 
-            case "Estado":
-                buscarXEstado();
-                break;
-            case "Finalizacion":
-                buscarXFinalizacion();
-                break;
-            case "Inicio":
-                buscarXInicio();
-                break;
-
-            case "Propietario":
-                buscarXPropietario();
-                break;
-            case "Inquilino":
-                buscarXInquilino();
-                break;
-            case "Vendedor":
-                buscarXVendedor();
-                break;
-        }
-    }
-    private void buscarXEstado(){
-    for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-        if (encontrado.getEstado().equals(jcbEstado.getSelectedItem())) {
-            cargarFila(encontrado);
-        }
-    }
-
-}
-    private void buscarXFinalizacion(){
-    for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-        LocalDate buscado = LocalDate.of(1, jMes.getMonth(), jAnio.getYear());
-        if (encontrado.getFechaFinalizacion().isAfter(buscado)) {
-            cargarFila(encontrado);
-        }
-    }
-}
-    private void buscarXInicio(){
-//     for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-//        if (encontrado.getFechaInicio().isBefore(jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate())) {
-//            cargarFila(encontrado);
+//    private void ajustarAnchoColumnasCabecera() {
+//        JTableHeader header = jtContratos.getTableHeader();
+//        TableCellRenderer defaultRenderer = header.getDefaultRenderer();
+//
+//        for (int i = 0; i < jtContratos.getColumnCount(); i++) {
+//            TableColumn column = jtContratos.getColumnModel().getColumn(i);
+//            Component comp = defaultRenderer.getTableCellRendererComponent(jtContratos, column.getHeaderValue(), false, false, 0, 0);
+//            int width = comp.getPreferredSize().width;
+//            column.setPreferredWidth(width);
 //        }
 //    }
-    }
-    private void buscarXPropietario(){}
-    private void buscarXInquilino(){}
-    private void  buscarXVendedor(){}
-    private void cargarFila(Contrato contrato){
-            int codigo = contrato.getId();
-            Inmueble alquilado = MVendedor.controlInm.buscarInmuebleXId(contrato.getIdInmueble());
-            Persona inquilino = MVendedor.controlPer.encontrarPersonaXId(contrato.getIdInquilino());
-            Persona propietario = MVendedor.controlPer.encontrarPersonaXId(alquilado.getIdPropietario());
-            Usuario vendedor = controlUsuario.buscarUsuario(contrato.getIdVendedor());
-            LocalDate fechaFirma = contrato.getFecha();
-            LocalDate fechaInicio = contrato.getFechaInicio();
-            LocalDate fechaFinaliza = contrato.getFechaFinalizacion();
-            int precio = contrato.getPrecio();
-            String estado = contrato.getEstado();
-            String descripcion = contrato.getDescripcion();
-            modelo.addRow(new Object[]{
-                codigo,
-                estado,
-                alquilado.getId() + ", " + alquilado.getDireccion(),
-                fechaInicio,
-                fechaFinaliza,
-                precio,
-                inquilino.getApellido() + ", " + inquilino.getNombre(),
-                propietario.getApellido() + ", " + propietario.getNombre(),
-                descripcion,
-                vendedor.getUsuario()
-            });
-}
 }

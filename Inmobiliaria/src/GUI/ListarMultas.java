@@ -1,6 +1,9 @@
 
 package GUI;
 
+import Entidades.Contrato;
+import Entidades.Inspeccion;
+import Entidades.Multa;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +22,7 @@ public class ListarMultas extends javax.swing.JDialog {
         initComponents();
         llenarCombo();
         armarCabecera();
+        cargarTabla();
     }
 
     /**
@@ -32,6 +36,7 @@ public class ListarMultas extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jBSalir = new javax.swing.JButton();
         jcbOpcion = new javax.swing.JComboBox<>();
         jtDato = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -46,6 +51,15 @@ public class ListarMultas extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione por que desea listar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+
+        jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setText("SALIR");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, -1, -1));
 
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
@@ -132,9 +146,9 @@ public class ListarMultas extends javax.swing.JDialog {
     private void jtDatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDatoKeyReleased
         limpiarFila();
         if (jtDato.getText().isEmpty()) {
-            //cargarTabla();
+            cargarTabla();
         } else {
-            //buscar();
+            buscar();
         }
     }//GEN-LAST:event_jtDatoKeyReleased
 
@@ -163,15 +177,16 @@ public class ListarMultas extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
             }
             break;
-            case "Estado":
-            if (!Character.isLetter(c) && c != KeyEvent.VK_SPACE) {
-                evt.consume(); // Consumir el evento = hace que la tecla apretada no se refleje en el textField
-            }
-            break;
             default:
             throw new AssertionError();
         }
     }//GEN-LAST:event_jtDatoKeyTyped
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        MInspector.controlInsp = null;
+        MVendedor.controlContrato = null;
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +231,7 @@ public class ListarMultas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -229,14 +245,16 @@ public class ListarMultas extends javax.swing.JDialog {
         jcbOpcion.addItem("Nro. Multa");
         jcbOpcion.addItem("Nro. Inspección");
         jcbOpcion.addItem("Cod. Inquilino");
-        jcbOpcion.addItem("Estado");
+        
     }
 
     private void armarCabecera() {
         modelo.addColumn("Nro. Multa");
         modelo.addColumn("Nro. Inspección");
         modelo.addColumn("Cod. Inquilino");
-        modelo.addColumn("Estado");
+        modelo.addColumn("Fecha de Confección");
+        modelo.addColumn("Fecha de Pago");
+        modelo.addColumn("Monto");
         jtMultas.setModel(modelo);
         TableRowSorter<DefaultTableModel> ordenar = new TableRowSorter<>(modelo);
         jtMultas.setRowSorter(ordenar);
@@ -244,11 +262,9 @@ public class ListarMultas extends javax.swing.JDialog {
 
     private void cambiarInfo() {
         String opcion = jcbOpcion.getSelectedItem().toString();
-
         switch (opcion) {
             case "Nro. Multa":
                 jtDato.setText("Ingrese el número de multa");
-
                 break;
             case "Nro. Inspección":
                 jtDato.setText("Ingrese el número de inspección");
@@ -256,19 +272,102 @@ public class ListarMultas extends javax.swing.JDialog {
             case "Cod. Inquilino":
                 jtDato.setText("Ingrese código de inquilino");
                 break;
-
-            case "Estado":
-                jtDato.setText("Ingrese el estado de la multa");
-                break;
-
+            
         }
     }
 
     private void limpiarFila() {
-//        int f = modelo.getRowCount() - 1;
-//        for (; f >= 0; f--) {
-//            modelo.removeRow(f);
-        //}
+        int f = modelo.getRowCount() - 1;
+        for (; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
     }
     
+    private void cargarTabla() {
+        for (Multa multa : MInspector.controlMulta.listarMulta()){
+            Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
+            Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+            modelo.addRow(new Object[]{
+                multa.getId(),
+                multa.getIdInspeccion(),
+                multa.getIdInquilino(),
+                multa.getFechaConfeccion(),
+                multa.getFechaPago(),
+                multa.getMonto()
+            });
+        }
+
+    }
+    
+    private void buscar() {
+        String opcion = jcbOpcion.getSelectedItem().toString();
+        switch (opcion) {
+            case "Nro. Multa":
+                buscarXMulta();
+                break;
+            case "Nro. Inspección":
+                buscarXInspeccion();
+                break;
+            case "Nro. Inquilino":
+                buscarXInquilino();
+                break;
+            
+        }
+    }
+    
+    private void buscarXMulta() {
+        for (Multa multa : MInspector.controlMulta.listarMulta()){
+            if (multa.getId() == Integer.parseInt(jtDato.getText())){
+                Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
+                Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+                modelo.addRow(new Object[]{
+                    multa.getId(),
+                    multa.getIdInspeccion(),
+                    multa.getIdInquilino(),
+                    multa.getFechaConfeccion(),
+                    multa.getFechaPago(),
+                    multa.getMonto()
+                    
+                });
+            }
+        }
+    }
+    
+    private void buscarXInspeccion(){
+        for (Multa multa : MInspector.controlMulta.listarMulta()){
+            if (multa.getIdInspeccion() == Integer.parseInt(jtDato.getText())){
+                Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
+                Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+                modelo.addRow(new Object[]{
+                    multa.getId(),
+                    multa.getIdInspeccion(),
+                    multa.getIdInquilino(),
+                    multa.getFechaConfeccion(),
+                    multa.getFechaPago(),
+                    multa.getMonto()
+                    
+                });
+            }
+        }
+    }
+    
+    private void buscarXInquilino(){
+        for (Multa multa : MInspector.controlMulta.listarMulta()){
+            if (multa.getIdInquilino() == Integer.parseInt(jtDato.getText())){
+                Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
+                Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+                modelo.addRow(new Object[]{
+                    multa.getId(),
+                    multa.getIdInspeccion(),
+                    multa.getIdInquilino(),
+                    multa.getFechaConfeccion(),
+                    multa.getFechaPago(),
+                    multa.getMonto()
+                    
+                });
+            }
+        }
+    }
+    
+        
 }
