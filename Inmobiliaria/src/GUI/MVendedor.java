@@ -5,15 +5,14 @@
 package GUI;
 
 import AccesoADatos.ContratoData;
-import AccesoADatos.InmuebleData;
 import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
 import Entidades.Contrato;
-import javax.swing.BorderFactory;
-import javax.swing.border.Border;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -29,9 +28,15 @@ public class MVendedor extends javax.swing.JFrame {
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
+    public static Font fuenteBoton = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 22);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 22);
 
+    
+    
     public MVendedor(Usuario ven) {
         initComponents();
+        initFont();
         jtNombreSombra.setBackground(new Color(34, 65, 93, 200));
         vendedor = ven;
         nombreVendedor(ven);
@@ -47,9 +52,9 @@ public class MVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jlInmueble1 = new javax.swing.JLabel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
+        jlInmueble1 = new javax.swing.JLabel();
         jlSalir = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
@@ -62,6 +67,17 @@ public class MVendedor extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
+        jtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jtNombre.setText("Nombre");
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 170, 50));
+
+        jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
+        jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jtNombreSombra.setText("Nombre");
+        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
 
         jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
         jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
@@ -81,17 +97,6 @@ public class MVendedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 311, 163, 30));
-
-        jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
-        jtNombre.setForeground(new java.awt.Color(255, 255, 255));
-        jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jtNombre.setText("Nombre");
-        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 170, 50));
-
-        jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
-        jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jtNombreSombra.setText("Nombre");
-        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
 
         jlSalir.setBackground(new java.awt.Color(34, 65, 93));
         jlSalir.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -278,9 +283,9 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseClicked
-      ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
-      lista.setLocationRelativeTo(null);
-      lista.setVisible(true);
+        ListarContratos lista = new ListarContratos(null, rootPaneCheckingEnabled);
+        lista.setLocationRelativeTo(null);
+        lista.setVisible(true);
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlListarInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseClicked
@@ -334,10 +339,10 @@ public class MVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseExited
 
     private void jlContactoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseClicked
-       AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
-       persona.setLocationRelativeTo(null);
-       persona.setVisible(true);
-       
+        AdmPersona persona = new AdmPersona(null, rootPaneCheckingEnabled);
+        persona.setLocationRelativeTo(null);
+        persona.setVisible(true);
+
     }//GEN-LAST:event_jlContactoMouseClicked
 
     /**
@@ -389,4 +394,32 @@ private void nombreVendedor(Usuario nombre) {
         jtNombre.setText(nombre.getUsuario());
     }
 
+    private void initFont() {
+        jlInmueble1.setFont(fuenteBoton);
+        jlContacto.setFont(fuenteBoton);
+        jlContratos.setFont(fuenteBoton);
+        jlInmueble1.setFont(fuenteBoton);
+        jlInquilinos.setFont(fuenteBoton);
+        jlListarInmuebles.setFont(fuenteBoton);
+        jlMultas.setFont(fuenteBoton);
+        jlSalir.setFont(fuenteBoton);
+        jtNombre.setFont(fuenteNombre);
+        jtNombreSombra.setFont(fuenteNombre);
+    }
+
+    ;
+
+public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
 }
