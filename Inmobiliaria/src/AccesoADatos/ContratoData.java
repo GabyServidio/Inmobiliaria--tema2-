@@ -185,5 +185,36 @@ public class ContratoData {
         }
         return contratos;
     }
-   
+    
+    public Contrato encontrarContratoXIdInmueble(int id) {
+        Contrato encontrado = new Contrato();
+        SQL = "SELECT * FROM contrato WHERE estado <> 'NO VIGENTE' AND idPropiedad = ?";
+        try {
+            ps = Conexion.getConexion().prepareStatement(SQL);
+            ps.setInt(1, id);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getInt(5), rs.getDate(6).toLocalDate(),
+                        rs.getDate(7).toLocalDate(), rs.getDate(8).toLocalDate(),
+                        rs.getInt(9), rs.getString(10), rs.getString(11));
+                
+            }else{
+            JOptionPane.showMessageDialog(null, "No se encontro el contrato");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ContratoData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                Conexion.getConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ContratoData.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        return encontrado;
+    }
+    
 }

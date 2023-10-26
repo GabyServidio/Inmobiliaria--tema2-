@@ -1,5 +1,6 @@
 package GUI;
 
+import Entidades.Contrato;
 import Entidades.Inspeccion;
 import Entidades.Inspector;
 import Entidades.Persona;
@@ -26,7 +27,8 @@ public class ListarInspecciones extends javax.swing.JDialog {
     public static int idInquilino;
 
     private Inspeccion seleccionada = null;
-    private Persona inquilinoId = null;
+    private Persona seleInquilino = null;
+    private Contrato seleContrato = null;
 
     public ListarInspecciones(Frame parent, boolean modal) {
         super(parent, modal);
@@ -208,11 +210,16 @@ public class ListarInspecciones extends javax.swing.JDialog {
 
     private void jBMultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBMultaMouseClicked
     try {
+    int idInmueble = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 2);
+    seleContrato = MInspector.controlContrato.encontrarContratoXIdInmueble(idInmueble);
+    int idInquilino = seleContrato.getIdInquilino();
+    //seleInquilino = MInspector.controlPers.encontrarPersonaXId(idInquilino);
+    //idInquilino= seleInquilino.getId();
+    
     int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
     seleccionada = MInspector.controlInsp.buscarInspeccion(id);
-    inquilinoId= MInspector.controlPers.encontrarInquilinoxprop(id);
     idInspeccion= seleccionada.getId();
-    idInquilino= inquilinoId.getId();
+    
     dispose();
     Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled, idInspeccion, idInquilino);
     nuevamulta.setLocationRelativeTo(null);
