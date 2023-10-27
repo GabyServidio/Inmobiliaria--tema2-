@@ -285,7 +285,6 @@ public class AdmUsuarios extends javax.swing.JDialog {
             } else {
                 int dni = Integer.parseInt(jtfDni.getText());
                 buscada = controlPer.encontrarPersona(dni);
-                System.out.println(buscada.getApellido());
                 if (buscada == null) {
                     Object[] opciones = {"Si", "No"};       //Crea un Vector con los textos a mostrar
                     int opcion = JOptionPane.showOptionDialog(null,
@@ -313,7 +312,6 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         jlNombre.setText(buscada.getApellido() + ", " + buscada.getNombre());
                         jtfUsuario.setText(mostrado.getUsuario());
                         jpContrasenia.setText(mostrado.getContraseña());
-                        System.out.println(mostrado.getContraseña());
                         String comboMostrado = mostrado.getTipo();
                         switch (comboMostrado) {
                             case "A":
