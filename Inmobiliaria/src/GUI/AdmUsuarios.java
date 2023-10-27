@@ -23,6 +23,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         bloquearCampos();
+        jbEditar.setEnabled(false);
         
     }
 
@@ -72,8 +73,8 @@ public class AdmUsuarios extends javax.swing.JDialog {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtfDniKeyPressed(evt);
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniKeyTyped(evt);
             }
         });
         getContentPane().add(jtfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 52, 80, 30));
@@ -150,11 +151,12 @@ public class AdmUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarMouseClicked
 
-    private void jtfDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniKeyPressed
+    private void jtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniKeyTyped
 char c= evt.getKeyChar();
         if (c == KeyEvent.VK_ENTER){
-        buscar();}        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniKeyPressed
+        evt.consume();
+            buscar();}        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDniKeyTyped
 
     /**
      * @param args the command line arguments
@@ -227,7 +229,8 @@ char c= evt.getKeyChar();
         jchbEstado.setEnabled(false);
     }   
     public void buscar(){
-        if (jtfDni.getText().isEmpty()) {
+        try{
+        if (jtfDni.getText().isEmpty()|| jtfDni.getText().equals(" ")) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
                 int dni = Integer.parseInt(jtfDni.getText());
@@ -254,5 +257,7 @@ char c= evt.getKeyChar();
                     }
                 }
            
-        }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Debe ingresar sólo números");
+        }}
  }
