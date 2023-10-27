@@ -105,7 +105,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jtInquilino" min="-2" pref="220" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bBuscarInquilino1" min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="bBuscarInquilino" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -140,7 +140,7 @@
                               <Component id="TXTinquilino1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jtInquilino" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="bBuscarInquilino1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="bBuscarInquilino" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -184,7 +184,7 @@
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtInquilinoKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="bBuscarInquilino1">
+            <Component class="javax.swing.JLabel" name="bBuscarInquilino">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Univers LT Std 55" size="14" style="0"/>
@@ -192,12 +192,13 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Img/agregarPerson.png"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscarInquilino1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bBuscarInquilinoMouseClicked"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="TXTinquilino1">
@@ -485,6 +486,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Img/agregarPerson.png"/>
                 </Property>

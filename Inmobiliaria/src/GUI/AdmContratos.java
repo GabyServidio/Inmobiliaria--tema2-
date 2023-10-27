@@ -57,7 +57,7 @@ public class AdmContratos extends javax.swing.JDialog {
         jBsalir = new javax.swing.JLabel();
         jpInquilino = new javax.swing.JPanel();
         jtInquilino = new javax.swing.JTextField();
-        bBuscarInquilino1 = new javax.swing.JLabel();
+        bBuscarInquilino = new javax.swing.JLabel();
         TXTinquilino1 = new javax.swing.JLabel();
         NombreInquilino = new javax.swing.JLabel();
         ApellidoInquilino = new javax.swing.JLabel();
@@ -157,12 +157,13 @@ public class AdmContratos extends javax.swing.JDialog {
             }
         });
 
-        bBuscarInquilino1.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
-        bBuscarInquilino1.setForeground(new java.awt.Color(255, 255, 255));
-        bBuscarInquilino1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
-        bBuscarInquilino1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bBuscarInquilino.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
+        bBuscarInquilino.setForeground(new java.awt.Color(255, 255, 255));
+        bBuscarInquilino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bBuscarInquilino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
+        bBuscarInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bBuscarInquilino1MouseClicked(evt);
+                bBuscarInquilinoMouseClicked(evt);
             }
         });
 
@@ -208,7 +209,7 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bBuscarInquilino1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInquilinoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -235,7 +236,7 @@ public class AdmContratos extends javax.swing.JDialog {
                     .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TXTinquilino1)
                         .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bBuscarInquilino1))
+                    .addComponent(bBuscarInquilino))
                 .addGap(18, 18, 18)
                 .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NombreInquilino)
@@ -311,6 +312,7 @@ public class AdmContratos extends javax.swing.JDialog {
 
         bBuscargarante.setFont(new java.awt.Font("Univers LT Std 55", 0, 14)); // NOI18N
         bBuscargarante.setForeground(new java.awt.Color(255, 255, 255));
+        bBuscargarante.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bBuscargarante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/agregarPerson.png"))); // NOI18N
         bBuscargarante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -552,9 +554,9 @@ public class AdmContratos extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtInquilinoActionPerformed
 
-    private void bBuscarInquilino1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilino1MouseClicked
+    private void bBuscarInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscarInquilinoMouseClicked
         buscarInquilino();
-    }//GEN-LAST:event_bBuscarInquilino1MouseClicked
+    }//GEN-LAST:event_bBuscarInquilinoMouseClicked
 
     private void bBuscargaranteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bBuscargaranteMouseClicked
         buscarGarante();
@@ -701,7 +703,7 @@ public class AdmContratos extends javax.swing.JDialog {
     private javax.swing.JLabel TXTinquilino1;
     private javax.swing.JLabel TelefonoGarante;
     private javax.swing.JLabel TelefonoInquilino;
-    private javax.swing.JLabel bBuscarInquilino1;
+    private javax.swing.JLabel bBuscarInquilino;
     private javax.swing.JLabel bBuscargarante;
     private javax.swing.JLabel bCrear;
     private javax.swing.JLabel eMailGarante;
@@ -746,7 +748,7 @@ public class AdmContratos extends javax.swing.JDialog {
         TXTinquilino1.setFont(labelFont);
         TelefonoGarante.setFont(labelFont);
         TelefonoInquilino.setFont(labelFont);
-        bBuscarInquilino1.setFont(labelFont);
+        bBuscarInquilino.setFont(labelFont);
         bBuscargarante.setFont(labelFont);
         eMailGarante.setFont(labelFont);
         eMailInquilino.setFont(labelFont);
@@ -815,7 +817,6 @@ public class AdmContratos extends javax.swing.JDialog {
         inquilino = MVendedor.controlPer.encontrarPersona(dni);
         if (inquilino != null) {
             cargaInquilino(inquilino);
-
         } else {
 
             Object[] opciones = {"Si", "No", "Cancelar"};       //Crea un Vector con los textos a mostrar
