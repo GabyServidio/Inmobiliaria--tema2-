@@ -460,14 +460,15 @@ public class AdmPersona extends javax.swing.JDialog {
         
         
         if (!estado) {
-            jTApellido.setDisabledTextColor(Color.BLACK);
-            jTNombre.setDisabledTextColor(Color.BLACK);
-            jTDocumento.setDisabledTextColor(Color.BLACK);
-            jTCuil.setDisabledTextColor(Color.BLACK);
-            jTTelefono.setDisabledTextColor(Color.BLACK);
-            jTDomicilio.setDisabledTextColor(Color.BLACK);
-            jTEmail.setDisabledTextColor(Color.BLACK);
-            jTEstado.setBackground(Color.BLACK);
+            jTApellido.setDisabledTextColor(Color.WHITE);
+            jTNombre.setDisabledTextColor(Color.WHITE);
+            jTDocumento.setDisabledTextColor(Color.WHITE);
+            jTCuil.setDisabledTextColor(Color.WHITE);
+            jTTelefono.setDisabledTextColor(Color.WHITE);
+            jTDomicilio.setDisabledTextColor(Color.WHITE);
+            jTEmail.setDisabledTextColor(Color.WHITE);
+            jTEstado.setBackground(new Color(9,37,60));
+           
         }
     }
 

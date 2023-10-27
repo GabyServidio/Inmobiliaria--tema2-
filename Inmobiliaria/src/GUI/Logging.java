@@ -3,6 +3,7 @@ package GUI;
 import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
@@ -98,13 +99,18 @@ public class Logging extends javax.swing.JFrame {
                 jpPassMouseClicked(evt);
             }
         });
+        jpPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jpPassKeyTyped(evt);
+            }
+        });
         jPanel1.add(jpPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 280, 30));
 
         jlSalir.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jlSalir.setForeground(new java.awt.Color(178, 208, 158));
         jlSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlSalir.setText("SALIR");
-        jlSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlSalirMouseClicked(evt);
@@ -122,7 +128,7 @@ public class Logging extends javax.swing.JFrame {
         jlIngresar.setForeground(new java.awt.Color(178, 208, 158));
         jlIngresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlIngresar.setText("INGRESAR");
-        jlIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jlIngresarMouseClicked(evt);
@@ -203,41 +209,15 @@ public class Logging extends javax.swing.JFrame {
     }//GEN-LAST:event_jlSalirMouseClicked
 
     private void jlIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlIngresarMouseClicked
-        String user = jtUsuario.getText();
-        Usuario encontrado = usuarioData.buscarUsuario(user);
-        char[] pass = jpPass.getPassword();
-        String contraseña = new String(pass);
-        if (encontrado != null) {
-            if (encontrado.getContraseña().equals(contraseña)) {
-
-                switch (encontrado.getTipo()) {
-                    case "V": //llama a la ventana vendedor
-                        MVendedor ven = new MVendedor(encontrado);
-                        ven.setLocationRelativeTo(null);
-                        ven.setVisible(true);
-                        dispose();
-                        break;
-                    case "I"://llama a la ventana Inspector
-                        MInspector insp = new MInspector(encontrado);
-                        insp.setLocationRelativeTo(null);
-                        insp.setVisible(true);
-                        dispose();
-                        break;
-                    case "A": //llama a la ventana Admnistrador
-                        MAdministrador adm = new MAdministrador(encontrado);
-                        adm.setLocationRelativeTo(null);
-                        adm.setVisible(true);
-                        dispose();
-                        break;
-
-                    default:
-                        throw new AssertionError();
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-            }
-        }
+        ingresar();
     }//GEN-LAST:event_jlIngresarMouseClicked
+
+    private void jpPassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpPassKeyTyped
+      char c = evt.getKeyChar();
+        if ( c == KeyEvent.VK_ENTER) {
+           ingresar();
+        }
+    }//GEN-LAST:event_jpPassKeyTyped
 
     /**
      * @param args the command line arguments
@@ -302,5 +282,41 @@ public class Logging extends javax.swing.JFrame {
         diaSemana.setText(diaSemanaString);
         mes.setText(mesString);
         dia.setText(diaString);
+    }
+    private void ingresar(){
+    String user = jtUsuario.getText();
+        Usuario encontrado = usuarioData.buscarUsuario(user);
+        char[] pass = jpPass.getPassword();
+        String contraseña = new String(pass);
+        if (encontrado != null) {
+            if (encontrado.getContraseña().equals(contraseña)) {
+
+                switch (encontrado.getTipo()) {
+                    case "V": //llama a la ventana vendedor
+                        MVendedor ven = new MVendedor(encontrado);
+                        ven.setLocationRelativeTo(null);
+                        ven.setVisible(true);
+                        dispose();
+                        break;
+                    case "I"://llama a la ventana Inspector
+                        MInspector insp = new MInspector(encontrado);
+                        insp.setLocationRelativeTo(null);
+                        insp.setVisible(true);
+                        dispose();
+                        break;
+                    case "A": //llama a la ventana Admnistrador
+                        MAdministrador adm = new MAdministrador(encontrado);
+                        adm.setLocationRelativeTo(null);
+                        adm.setVisible(true);
+                        dispose();
+                        break;
+
+                    default:
+                        throw new AssertionError();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
+            }
+        }
     }
 }

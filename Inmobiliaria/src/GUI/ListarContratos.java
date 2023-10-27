@@ -226,7 +226,7 @@ public class ListarContratos extends javax.swing.JDialog {
 
     private void jcbOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbOpcionActionPerformed
         cambiarInfo();
-      
+
     }//GEN-LAST:event_jcbOpcionActionPerformed
 
     private void jtDatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDatoMouseClicked
@@ -247,7 +247,7 @@ public class ListarContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jbRenovarActionPerformed
 
     private void jbRescindirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRescindirActionPerformed
-       rescindir();
+        rescindir();
     }//GEN-LAST:event_jbRescindirActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -319,31 +319,51 @@ public class ListarContratos extends javax.swing.JDialog {
     private javax.swing.JTextField jtDato;
     // End of variables declaration//GEN-END:variables
     private void renovar() {
-        try{
-        int fila = jtContratos.getSelectedRow();
-        int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-        MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
-        AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
-        renueva.setLocationRelativeTo(null);
-        renueva.setVisible(true);
-         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
-
-        }
-    }
-    
-    private void rescindir() {
-        try{
-        
+        try {
             int fila = jtContratos.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
-            AdmContratos rescinde = new AdmContratos(null, rootPaneCheckingEnabled);
-            rescinde.setLocationRelativeTo(null);
-            rescinde.setVisible(true);
+            AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
+            renueva.setLocationRelativeTo(null);
+            renueva.setVisible(true);
+
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
+        } finally {
+            limpiarFila();
+            cargarTabla();
+        }
+    }
+
+    private void rescindir() {
+        try {
+            int fila = jtContratos.getSelectedRow();
+            int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+            Contrato rescindido = MVendedor.controlContrato.encontrarContrato(id);
+            Object[] opciones = {"si", "no"};
+            int op = JOptionPane.showOptionDialog(null,
+                    "¿Esta seguro de recindir el contrato?",
+                    "Confirmacion",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, opciones, opciones[1]);
+            System.out.println(rescindido.toString());
+            if (op == JOptionPane.YES_OPTION) {
+
+                rescindido.setEstado("NO VIGENTE");
+                MVendedor.controlContrato.editarContrato(rescindido);
+                System.out.println(rescindido.toString());
+                limpiarFila();
+                cargarTabla();
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
+
+        }finally {
+            limpiarFila();
+            cargarTabla();
         }
     }
 
