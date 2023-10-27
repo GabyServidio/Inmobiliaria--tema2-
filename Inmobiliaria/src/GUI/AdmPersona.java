@@ -124,17 +124,17 @@ public class AdmPersona extends javax.swing.JDialog {
         jTDomicilio.setBackground(new java.awt.Color(9, 37, 60));
         jTDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         jTDomicilio.setBorder(null);
-        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 214, 260, 20));
+        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 260, 20));
 
         jTTelefono.setBackground(new java.awt.Color(9, 37, 60));
         jTTelefono.setForeground(new java.awt.Color(255, 255, 255));
         jTTelefono.setBorder(null);
-        jPanel1.add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 166, 120, 20));
+        jPanel1.add(jTTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, 120, 20));
 
         jTEmail.setBackground(new java.awt.Color(9, 37, 60));
         jTEmail.setForeground(new java.awt.Color(255, 255, 255));
         jTEmail.setBorder(null);
-        jPanel1.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 20));
+        jPanel1.add(jTEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 200, 30));
 
         jBBuscar.setBackground(new java.awt.Color(9, 37, 60));
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
