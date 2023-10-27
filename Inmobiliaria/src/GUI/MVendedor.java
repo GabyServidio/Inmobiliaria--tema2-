@@ -199,7 +199,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInquilinos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlInquilinos.setForeground(new java.awt.Color(255, 255, 255));
         jlInquilinos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlInquilinos.setText("INQUILINOS");
         jlInquilinos.setPreferredSize(new java.awt.Dimension(163, 30));
         jlInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

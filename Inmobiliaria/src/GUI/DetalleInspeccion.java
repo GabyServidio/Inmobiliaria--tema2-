@@ -35,6 +35,7 @@ public class DetalleInspeccion extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTADetalle = new javax.swing.JTextArea();
         jbGuardar = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
@@ -54,7 +55,10 @@ public class DetalleInspeccion extends javax.swing.JDialog {
                 jbGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 330, 100, -1));
+
+        jbSalir.setText("Salir");
+        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -121,6 +125,7 @@ public class DetalleInspeccion extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTADetalle;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
 
     private void cargarDetalle() {
