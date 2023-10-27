@@ -10,7 +10,9 @@ import Entidades.Inmueble;
 import Entidades.Usuario;
 import java.awt.Color;
 import AccesoADatos.InmuebleData;
+import AccesoADatos.MultaData;
 import Entidades.Contrato;
+import Entidades.Multa;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
@@ -23,8 +25,10 @@ public class MVendedor extends javax.swing.JFrame {
     public static ContratoData controlContrato = new ContratoData();
     public static PersonaData controlPer = new PersonaData();
     public static InmuebleData controlInm = new InmuebleData();
+    public static MultaData controlMulta = new MultaData();
     public static Inmueble inmubleSeleccionado = null;
     public static Contrato contratoSeleccionado = null;
+    public static Multa multaSeleccionada = null;
     public static Usuario vendedor;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
@@ -69,16 +73,16 @@ public class MVendedor extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
+        jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(255, 255, 255));
         jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombre.setText("Nombre");
-        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 170, 50));
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 50));
 
-        jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 36)); // NOI18N
+        jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
-        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 170, 50));
+        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 50));
 
         ljCrearInmueble.setBackground(new java.awt.Color(34, 65, 93));
         ljCrearInmueble.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N

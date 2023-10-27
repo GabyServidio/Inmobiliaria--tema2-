@@ -5,13 +5,18 @@ import Entidades.Contrato;
 import Entidades.Inspeccion;
 import Entidades.Multa;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class ListarMultas extends javax.swing.JDialog {
-
+    private Multa seleccionada = null;
+    public static Multa multaRes = null;
     private DefaultTableModel modelo = new DefaultTableModel() {
+        
         public boolean isCellEditable(int f, int c) {
             return false;
         }
@@ -36,6 +41,7 @@ public class ListarMultas extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jBResolver = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jcbOpcion = new javax.swing.JComboBox<>();
         jtDato = new javax.swing.JTextField();
@@ -52,6 +58,15 @@ public class ListarMultas extends javax.swing.JDialog {
         jLabel2.setText("Seleccione por que desea listar:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
+        jBResolver.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBResolver.setText("RESOLVER MULTA");
+        jBResolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBResolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBResolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, -1, -1));
+
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBSalir.setText("SALIR");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +74,7 @@ public class ListarMultas extends javax.swing.JDialog {
                 jBSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, -1, -1));
+        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 20, -1, -1));
 
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +203,22 @@ public class ListarMultas extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
 
+    private void jBResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverActionPerformed
+        try {
+            int id = (int) modelo.getValueAt(jtMultas.getSelectedRow(), 0);
+            seleccionada = MVendedor.controlMulta.buscarMulta(id);
+            multaRes = seleccionada;
+            
+            MVendedor.multaSeleccionada = MVendedor.controlMulta.buscarMulta(id);
+            ResolverMulta registroEdit = new ResolverMulta(null, rootPaneCheckingEnabled);
+            registroEdit.setLocationRelativeTo(null);
+            registroEdit.setVisible(true);
+                        
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una multa");
+        }
+    }//GEN-LAST:event_jBResolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,6 +262,7 @@ public class ListarMultas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBResolver;
     private javax.swing.JButton jBSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -284,17 +316,25 @@ public class ListarMultas extends javax.swing.JDialog {
     }
     
     private void cargarTabla() {
+        
         for (Multa multa : MInspector.controlMulta.listarMulta()){
             //Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
             //Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+            Object fechaPago;
+            if (multa.getFechaPago().equals(LocalDate.MIN)){
+                fechaPago = "NO RESUELTA";
+            }else{
+                    fechaPago=multa.getFechaPago();
+            }
             modelo.addRow(new Object[]{
                 multa.getId(),
                 multa.getIdInspeccion(),
                 multa.getIdInquilino(),
                 multa.getFechaConfeccion(),
-                multa.getFechaPago(),
+                fechaPago,
                 multa.getMonto()
             });
+        
         }
 
     }

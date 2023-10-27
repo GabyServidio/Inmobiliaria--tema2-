@@ -96,22 +96,22 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLZona.setText("Zona :");
-        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
+        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
 
         jLTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLTipo.setText("Tipo de Inmueble :");
-        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Condiciones del propietario para el contrato :");
         jPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
         jPanel.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 210, -1));
-        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 40, -1));
-        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 40, -1));
+        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 40, -1));
+        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 60, -1));
         jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 20, -1));
         jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 20, -1));
         jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 20, -1));
-        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 110, -1));
+        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 110, -1));
         jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 90, -1));
 
         jTCondiciones.setColumns(20);
