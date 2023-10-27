@@ -15,7 +15,7 @@ public class AdmPersona extends javax.swing.JDialog {
     
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-//        setTitle("Administracion de Personas");
+        //setTitle("Administracion de Personas");
         initComponents();
         colorBG();
         bloquear(false);
@@ -209,7 +209,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jTEstado.setBackground(new java.awt.Color(9, 37, 60));
         jTEstado.setForeground(new java.awt.Color(255, 255, 255));
         jTEstado.setText("Estado");
-        jPanel1.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 252, -1, 30));
+        jPanel1.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 252, 80, 30));
 
         BG.setForeground(new java.awt.Color(255, 255, 255));
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Personas.png"))); // NOI18N
@@ -251,7 +251,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jTEstado.setEnabled(false);
         jBNueva.setEnabled(false);
         jTEstado.setSelected(true);
-        
+                
     }//GEN-LAST:event_jBNuevaActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
@@ -337,7 +337,7 @@ public class AdmPersona extends javax.swing.JDialog {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados");
+            JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados"+e);
         }
         
     }//GEN-LAST:event_jBGuardarActionPerformed

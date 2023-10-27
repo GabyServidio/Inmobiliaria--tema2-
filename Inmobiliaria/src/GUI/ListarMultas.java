@@ -285,8 +285,8 @@ public class ListarMultas extends javax.swing.JDialog {
     
     private void cargarTabla() {
         for (Multa multa : MInspector.controlMulta.listarMulta()){
-            Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
-            Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+            //Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
+            //Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
             modelo.addRow(new Object[]{
                 multa.getId(),
                 multa.getIdInspeccion(),
