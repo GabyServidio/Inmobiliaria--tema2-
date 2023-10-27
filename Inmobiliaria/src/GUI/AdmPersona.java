@@ -123,7 +123,7 @@ public class AdmPersona extends javax.swing.JDialog {
         jTDomicilio.setBackground(new java.awt.Color(9, 37, 60));
         jTDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         jTDomicilio.setBorder(null);
-        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 260, 20));
+        jPanel1.add(jTDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 260, 30));
 
         jTTelefono.setBackground(new java.awt.Color(9, 37, 60));
         jTTelefono.setForeground(new java.awt.Color(255, 255, 255));
