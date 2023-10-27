@@ -34,7 +34,7 @@ public class MVendedor extends javax.swing.JFrame {
     private final Color fondoR = new Color(145, 146, 145);
     public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
     public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
-    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 30);
     public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
     
     
@@ -203,7 +203,6 @@ public class MVendedor extends javax.swing.JFrame {
         jlInquilinos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
         jlInquilinos.setForeground(new java.awt.Color(255, 255, 255));
         jlInquilinos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlInquilinos.setText("INQUILINOS");
         jlInquilinos.setPreferredSize(new java.awt.Dimension(163, 30));
         jlInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -408,13 +407,12 @@ private void nombreVendedor(Usuario nombre) {
         jlSalir.setFont(fuenteBoton18);
         jtNombre.setFont(fuenteNombre);
         jtNombreSombra.setFont(fuenteNombre);
-        
         ljCrearInmueble.setFont(fuenteBoton14);
         jlListarInmuebles.setFont(fuenteBoton14);
     }
 
     ;
-
+   
 public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
         Font fuenteCargada = null;
         try {

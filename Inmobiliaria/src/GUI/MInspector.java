@@ -12,6 +12,8 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Inspeccion;
 import Entidades.Usuario;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -27,6 +29,10 @@ public class MInspector extends javax.swing.JFrame {
     public static Usuario inspector = null;
     public static Inmueble inmuselec = null;
     public static Inspeccion inspeselec = null;
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
 
     /**
      * Creates new form mInspector
@@ -34,6 +40,7 @@ public class MInspector extends javax.swing.JFrame {
     public MInspector(Usuario ins) {
         inspector = ins;
         initComponents();
+        initFont();
     }
 
     /**
@@ -165,4 +172,24 @@ public class MInspector extends javax.swing.JFrame {
     private javax.swing.JLabel jbListarInsp;
     private javax.swing.JLabel jbSalir;
     // End of variables declaration//GEN-END:variables
+    private void initFont(){
+   jbInspeccionar.setFont(fuenteBoton18);
+   jbListarInsp.setFont(fuenteBoton18);
+   jbSalir.setFont(fuenteBoton18);
+    
+    
+    }
+    public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
 }

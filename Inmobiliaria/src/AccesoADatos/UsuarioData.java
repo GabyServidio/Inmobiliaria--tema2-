@@ -207,7 +207,7 @@ public class UsuarioData {
 
     public Usuario buscarUsuario(int id) {
         Usuario usuario = null;
-        String sql = "SELECT idPersona, nombre, estado FROM usuarios WHERE id= ?";
+        String sql = "SELECT * FROM usuarios WHERE id= ?";
         ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
@@ -218,6 +218,8 @@ public class UsuarioData {
                 usuario.setId(id);
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("nombre"));
+                usuario.setContraseña(rs.getString("contrasenia"));
+                usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");

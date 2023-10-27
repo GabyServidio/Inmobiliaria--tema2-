@@ -139,7 +139,6 @@ public class ContratoData {
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
-            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
                 encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
