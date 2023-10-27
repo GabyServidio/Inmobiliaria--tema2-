@@ -1,9 +1,9 @@
-
 package GUI;
 
 import AccesoADatos.PersonaData;
 import Entidades.Persona;
 import java.awt.Color;
+import java.sql.SQLDataException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -12,7 +12,7 @@ public class AdmPersona extends javax.swing.JDialog {
     private Persona buscada;
     public static PersonaData controlPer = new PersonaData();
     private boolean personaEditada = false;
-    
+
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         //setTitle("Administracion de Personas");
@@ -24,7 +24,6 @@ public class AdmPersona extends javax.swing.JDialog {
         jBBaja.setEnabled(false);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -251,15 +250,15 @@ public class AdmPersona extends javax.swing.JDialog {
         jTEstado.setEnabled(false);
         jBNueva.setEnabled(false);
         jTEstado.setSelected(true);
-                
+
     }//GEN-LAST:event_jBNuevaActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         bloquear(true);
 
-        if(jTEstado.isEnabled()){
+        if (jTEstado.isEnabled()) {
             jTEstado.setEnabled(false);
-        }else{
+        } else {
             jTEstado.setEnabled(true);
         }
         jBEditar.setEnabled(false);
@@ -268,7 +267,7 @@ public class AdmPersona extends javax.swing.JDialog {
         personaEditada = true;
         jBNueva.setEnabled(false);
         jBBuscar.setEnabled(false);
-        
+
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBajaActionPerformed
@@ -281,11 +280,11 @@ public class AdmPersona extends javax.swing.JDialog {
         jBBaja.setEnabled(false);
         jBEditar.setEnabled(false);
         jBNueva.setEnabled(true);
-        
+
     }//GEN-LAST:event_jBBajaActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        
+
         try {
             if (jTDocumento.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un DNI válido");
@@ -302,12 +301,12 @@ public class AdmPersona extends javax.swing.JDialog {
                     int dni = Integer.parseInt(jTDocumento.getText());
                     String nombre = jTNombre.getText();
                     String apellido = jTApellido.getText();
-                    Long cuil= Long.parseLong(jTCuil.getText());
-                    int telefono= Integer.parseInt(jTTelefono.getText());
-                    String domicilio= jTDomicilio.getText();
-                    String email= jTEmail.getText();
+                    Long cuil = Long.parseLong(jTCuil.getText());
+                    int telefono = Integer.parseInt(jTTelefono.getText());
+                    String domicilio = jTDomicilio.getText();
+                    String email = jTEmail.getText();
                     boolean estado = jTEstado.isSelected();
-                                      
+
                     if (personaEditada) {
                         Persona nueva = new Persona(buscada.getId(), nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
                         MVendedor.controlPer.editarPersona(nueva);
@@ -319,7 +318,7 @@ public class AdmPersona extends javax.swing.JDialog {
                         jBNueva.setEnabled(true);
                     } else {
                         Persona nueva = new Persona(nombre, apellido, dni, cuil, domicilio, telefono, email, estado);
-                        
+
                         MVendedor.controlPer.agregarPersona(nueva);
                         limpiarJt();
                         blkGuardar(false);
@@ -337,12 +336,11 @@ public class AdmPersona extends javax.swing.JDialog {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados"+e);
+            JOptionPane.showMessageDialog(null, "Error en el formato de los datos ingresados" + e);
         }
-        
+
     }//GEN-LAST:event_jBGuardarActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -413,17 +411,19 @@ public class AdmPersona extends javax.swing.JDialog {
     private javax.swing.JLabel jlTelefono;
     // End of variables declaration//GEN-END:variables
 
-    public void buscar(){
-        if (jTDocumento.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-        } else {
-                
+    public void buscar() {
+   
+            if (jTDocumento.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+            } else {
+
                 int dni = Integer.parseInt(jTDocumento.getText());
+
                 buscada = controlPer.encontrarPersona(dni);
                 if (buscada == null) {
-                                                            
+                     JOptionPane.showMessageDialog(null, "No existe persona con ese DNI");
                 } else {
-                    
+
                     jTNombre.setText(buscada.getNombre());
                     jTApellido.setText(buscada.getApellido());
                     jTCuil.setText(String.valueOf(buscada.getCuil()));
@@ -431,24 +431,25 @@ public class AdmPersona extends javax.swing.JDialog {
                     jTTelefono.setText(String.valueOf(buscada.getTelefono()));
                     jTEmail.setText(buscada.getEmail());
                     jTEstado.setSelected(buscada.isEstado());
-                    
-                                                         
+
                     if (buscada.isEstado()) {
                         jBBaja.setEnabled(true);
                         jBEditar.setEnabled(true);
                         jBGuardar.setEnabled(false);
                         jBNueva.setEnabled(false);
-                
+
                     } else {
                         jBBaja.setEnabled(false);
                         jBEditar.setEnabled(true);
                         jBGuardar.setEnabled(true);
                     }
                 }
-           
-        }
-     }
-     
+
+            }
+
+        
+    }
+
     public void bloquear(boolean estado) {
         jTApellido.setEnabled(estado);
         jTNombre.setEnabled(estado);
@@ -457,17 +458,17 @@ public class AdmPersona extends javax.swing.JDialog {
         jTDomicilio.setEnabled(estado);
         jTEmail.setEnabled(estado);
         jTEstado.setEnabled(estado);
-        
-        
+
         if (!estado) {
-            jTApellido.setDisabledTextColor(Color.BLACK);
-            jTNombre.setDisabledTextColor(Color.BLACK);
-            jTDocumento.setDisabledTextColor(Color.BLACK);
-            jTCuil.setDisabledTextColor(Color.BLACK);
-            jTTelefono.setDisabledTextColor(Color.BLACK);
-            jTDomicilio.setDisabledTextColor(Color.BLACK);
-            jTEmail.setDisabledTextColor(Color.BLACK);
-            jTEstado.setBackground(Color.BLACK);
+            jTApellido.setDisabledTextColor(Color.WHITE);
+            jTNombre.setDisabledTextColor(Color.WHITE);
+            jTDocumento.setDisabledTextColor(Color.WHITE);
+            jTCuil.setDisabledTextColor(Color.WHITE);
+            jTTelefono.setDisabledTextColor(Color.WHITE);
+            jTDomicilio.setDisabledTextColor(Color.WHITE);
+            jTEmail.setDisabledTextColor(Color.WHITE);
+            jTEstado.setBackground(new Color(9, 37, 60));
+
         }
     }
 
@@ -484,45 +485,43 @@ public class AdmPersona extends javax.swing.JDialog {
         jTDomicilio.setText("");
         jTEmail.setText("");
         jTEstado.setText("");
-        
-        
+
     }
-    
-    private void colorBG(){
-    Color fondo = new Color(8,36,59,240);
-            jlDocumento.setBackground(fondo);
-            jlApellido.setBackground(fondo);
-            jlNombre.setBackground(fondo);
-            jlCuil.setBackground(fondo);
-            jlTelefono.setBackground(fondo);
-            jlDomicilio.setBackground(fondo);
-            jlEmail.setBackground(fondo);
-           
-            jlDocumento.setForeground(Color.WHITE);
-            jlApellido.setForeground(Color.WHITE);
-            jlNombre.setForeground(Color.WHITE);
-            jlCuil.setForeground(Color.WHITE);
-            jlTelefono.setForeground(Color.WHITE);
-            jlDomicilio.setForeground(Color.WHITE);
-            jlEmail.setForeground(Color.WHITE);
-           
-    
-            jTApellido.setBackground(fondo);
-            jTNombre.setBackground(fondo);
-            jTDocumento.setBackground(fondo);
-            jTCuil.setBackground(fondo);
-            jTTelefono.setBackground(fondo);
-            jTDomicilio.setBackground(fondo);
-            jTEmail.setBackground(fondo);
-            jTEstado.setBackground(fondo);
-            jTApellido.setForeground(Color.WHITE);
-            jTNombre.setForeground(Color.WHITE);
-            jTDocumento.setForeground(Color.WHITE);
-            jTCuil.setForeground(Color.WHITE);
-            jTTelefono.setForeground(Color.WHITE);
-            jTDomicilio.setForeground(Color.WHITE);
-            jTEmail.setForeground(Color.WHITE);
-            jTEstado.setForeground(Color.WHITE);
+
+    private void colorBG() {
+        Color fondo = new Color(8, 36, 59, 240);
+        jlDocumento.setBackground(fondo);
+        jlApellido.setBackground(fondo);
+        jlNombre.setBackground(fondo);
+        jlCuil.setBackground(fondo);
+        jlTelefono.setBackground(fondo);
+        jlDomicilio.setBackground(fondo);
+        jlEmail.setBackground(fondo);
+
+        jlDocumento.setForeground(Color.WHITE);
+        jlApellido.setForeground(Color.WHITE);
+        jlNombre.setForeground(Color.WHITE);
+        jlCuil.setForeground(Color.WHITE);
+        jlTelefono.setForeground(Color.WHITE);
+        jlDomicilio.setForeground(Color.WHITE);
+        jlEmail.setForeground(Color.WHITE);
+
+        jTApellido.setBackground(fondo);
+        jTNombre.setBackground(fondo);
+        jTDocumento.setBackground(fondo);
+        jTCuil.setBackground(fondo);
+        jTTelefono.setBackground(fondo);
+        jTDomicilio.setBackground(fondo);
+        jTEmail.setBackground(fondo);
+        jTEstado.setBackground(fondo);
+        jTApellido.setForeground(Color.WHITE);
+        jTNombre.setForeground(Color.WHITE);
+        jTDocumento.setForeground(Color.WHITE);
+        jTCuil.setForeground(Color.WHITE);
+        jTTelefono.setForeground(Color.WHITE);
+        jTDomicilio.setForeground(Color.WHITE);
+        jTEmail.setForeground(Color.WHITE);
+        jTEstado.setForeground(Color.WHITE);
     }
-    
+
 }

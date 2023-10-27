@@ -111,7 +111,7 @@ public class MultaData {
                 multa.setIdInquilino(rs.getInt("idInquilino"));
                 multa.setFechaConfeccion(rs.getDate("fechaConfeccion").toLocalDate());
                 if (fecha == null){
-                    multa.setFechaPago(LocalDate.MAX);
+                    multa.setFechaPago(LocalDate.MIN);
                 }else{
                     multa.setFechaPago(fecha.toLocalDate());
                 }

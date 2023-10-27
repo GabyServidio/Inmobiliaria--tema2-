@@ -12,6 +12,8 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Inspeccion;
 import Entidades.Usuario;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -27,6 +29,10 @@ public class MInspector extends javax.swing.JFrame {
     public static Usuario inspector = null;
     public static Inmueble inmuselec = null;
     public static Inspeccion inspeselec = null;
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
 
     /**
      * Creates new form mInspector
@@ -34,6 +40,7 @@ public class MInspector extends javax.swing.JFrame {
     public MInspector(Usuario ins) {
         inspector = ins;
         initComponents();
+        initFont();
     }
 
     /**
@@ -49,7 +56,6 @@ public class MInspector extends javax.swing.JFrame {
         jbSalir = new javax.swing.JLabel();
         jbInspeccionar = new javax.swing.JLabel();
         jbListarInsp = new javax.swing.JLabel();
-        jbListarMultas = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,7 +71,7 @@ public class MInspector extends javax.swing.JFrame {
                 jbSalirMouseClicked(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 140, 40));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 140, 40));
 
         jbInspeccionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbInspeccionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -86,15 +92,6 @@ public class MInspector extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 180, 40));
-
-        jbListarMultas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jbListarMultas.setText("LISTAR MULTAS");
-        jbListarMultas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbListarMultasMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jbListarMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
@@ -132,13 +129,6 @@ public class MInspector extends javax.swing.JFrame {
         insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
-
-    private void jbListarMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarMultasMouseClicked
-        ListarMultas multas = new ListarMultas(null, rootPaneCheckingEnabled);
-        multas.setLocationRelativeTo(null);
-        multas.setVisible(true);
-        
-    }//GEN-LAST:event_jbListarMultasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,7 +170,26 @@ public class MInspector extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jbInspeccionar;
     private javax.swing.JLabel jbListarInsp;
-    private javax.swing.JLabel jbListarMultas;
     private javax.swing.JLabel jbSalir;
     // End of variables declaration//GEN-END:variables
+    private void initFont(){
+   jbInspeccionar.setFont(fuenteBoton18);
+   jbListarInsp.setFont(fuenteBoton18);
+   jbSalir.setFont(fuenteBoton18);
+    
+    
+    }
+    public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
 }

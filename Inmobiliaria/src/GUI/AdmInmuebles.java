@@ -15,10 +15,10 @@ import java.time.ZoneId;
 import javax.swing.table.DefaultTableModel;
 
 public class AdmInmuebles extends javax.swing.JDialog {
-    private DefaultTableModel modelo = new DefaultTableModel();       
+
+    private DefaultTableModel modelo = new DefaultTableModel();
     private Persona buscada;
-    
-    
+
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -26,7 +26,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         compruebaEdicion();
         //bloquearJt(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,22 +96,22 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLZona.setText("Zona :");
-        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, -1));
+        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
 
         jLTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLTipo.setText("Tipo de Inmueble :");
-        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, -1, -1));
+        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Condiciones del propietario para el contrato :");
         jPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
         jPanel.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 210, -1));
-        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 40, -1));
-        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 40, -1));
+        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 40, -1));
+        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 60, -1));
         jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 20, -1));
         jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 20, -1));
         jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 20, -1));
-        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 110, -1));
+        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 110, -1));
         jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 90, -1));
 
         jTCondiciones.setColumns(20);
@@ -191,20 +191,20 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
-        
+
         buscar();
         bloquearJt(true);
     }//GEN-LAST:event_jBBuscarActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        
+
         try {
-            if (jTSuperficie.getText().isEmpty() || jTAmbientes.getText().isEmpty()||
-                jTBanios.getText().isEmpty() || jTDireccion.getText().isEmpty()||
-                jTEstado.getText().isEmpty() || jTGarage.getText().isEmpty()||
-                jTTipoInmueble.getText().isEmpty()|| jTZona.getText().isEmpty()||
-                jTCondiciones.getText().isEmpty()) {
-                
+            if (jTSuperficie.getText().isEmpty() || jTAmbientes.getText().isEmpty()
+                    || jTBanios.getText().isEmpty() || jTDireccion.getText().isEmpty()
+                    || jTEstado.getText().isEmpty() || jTGarage.getText().isEmpty()
+                    || jTTipoInmueble.getText().isEmpty() || jTZona.getText().isEmpty()
+                    || jTCondiciones.getText().isEmpty()) {
+
                 JOptionPane.showMessageDialog(null, "todos los datos son obligatorios");
             } else {
                 Object[] opciones = {"SI", "NO", "CANCELAR"};
@@ -214,9 +214,9 @@ public class AdmInmuebles extends javax.swing.JDialog {
                         JOptionPane.DEFAULT_OPTION,
                         JOptionPane.YES_NO_CANCEL_OPTION,
                         null, opciones, opciones[2]);
-                
+
                 if (opcion == JOptionPane.YES_OPTION) {
-                    
+
                     int propi = 0;
                     int superficie = Integer.parseInt(jTSuperficie.getText());
                     int ambientes = Integer.parseInt(jTAmbientes.getText());
@@ -231,12 +231,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     LocalDate fechaConstruccion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     Inmueble nuevo = new Inmueble(propi, superficie, ambientes, banios, fechaConstruccion,
                             garage, estado, direccion, zona, condiciones, tipo);
-                        
-                    
-                    if (MVendedor.inmubleSeleccionado == null){
+
+                    if (MVendedor.inmubleSeleccionado == null) {
                         nuevo.setIdPropietario(buscada.getId());
                         MVendedor.controlInm.GuardarInmueble(nuevo);
-                    }else{
+                    } else {
                         int id = MVendedor.inmubleSeleccionado.getId();
                         nuevo.setId(id);
                         int idPropietario = MVendedor.inmubleSeleccionado.getIdPropietario();
@@ -244,11 +243,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
                         MVendedor.controlInm.modificarInmueble(nuevo);
                         MVendedor.inmubleSeleccionado = null;
                     }
-                                   
+
                 } else if (opcion == JOptionPane.NO_OPTION) {
 
                 } else if (opcion == JOptionPane.CANCEL_OPTION) {
-                    
+
                 }
 
             }
@@ -336,26 +335,26 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jTTipoInmueble;
     private javax.swing.JTextField jTZona;
     // End of variables declaration//GEN-END:variables
-    
-    private void compruebaEdicion(){
+
+    private void compruebaEdicion() {
         Date fechadate = null;
         Inmueble selec = MVendedor.inmubleSeleccionado;
-        if (selec== null) {
-           
-        }else{
+        if (selec == null) {
+
+        } else {
             Persona prop = MVendedor.controlPer.encontrarPersonaXId(selec.getIdPropietario());
             jBBuscar.setEnabled(false);
-            jTDni.setText(prop.getDni()+"");
+            jTDni.setText(prop.getDni() + "");
             jTDni.setEnabled(false);
             bloquearJt(true);
             jTNombre.setText(prop.getNombre());
             jTApellido.setText(prop.getApellido());
-            jTSuperficie.setText(selec.getSuperficie()+"");
-            jTAmbientes.setText(selec.getCantAmbientes()+"");
-            jTBanios.setText(selec.getCanBaños()+"");
+            jTSuperficie.setText(selec.getSuperficie() + "");
+            jTAmbientes.setText(selec.getCantAmbientes() + "");
+            jTBanios.setText(selec.getCanBaños() + "");
             jTDireccion.setText(selec.getDireccion());
             jTEstado.setText(selec.getEstadoInmueble());
-            jTGarage.setText(selec.getGarage()+"");
+            jTGarage.setText(selec.getGarage() + "");
             jTTipoInmueble.setText(selec.getTipo());
             jTZona.setText(selec.getZona());
             jTCondiciones.setText(selec.getCondicionesContrato());
@@ -365,11 +364,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
             jBGuardar.setEnabled(true);
 
         }
-    
-    
-    } 
+
+    }
+
     private void limpiarJt() {
-    
+
         jTSuperficie.setText("");
         jTAmbientes.setText("");
         jTBanios.setText("");
@@ -382,7 +381,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }
 
     private void bloquearJt(boolean estado) {
-        
+
         jTNombre.setEnabled(estado);
         jTApellido.setEnabled(estado);
         jTSuperficie.setEnabled(estado);
@@ -397,19 +396,38 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jDCFechaCon.setEnabled(estado);
     }
 
-    public void buscar(){
+    public void buscar() {
         if (jTDni.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
         } else {
-            
+
             int dni = Integer.parseInt(jTDni.getText());
             buscada = MVendedor.controlPer.encontrarPersona(dni);
             if (buscada == null) {
-                //JOptionPane.showMessageDialog(null, "El DNI ingresado no corresponde a un propietario");
-                            
+                Object[] opciones = {"Si", "No"};       //Crea un Vector con los textos a mostrar
+                int opcion = JOptionPane.showOptionDialog(null,
+                        "El DNI no se encuentra en la Base de Datos ¿Desea agregar la persona?",
+                        "Confirmacion",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        null, opciones, opciones[1]);
+
+                if (opcion == JOptionPane.YES_OPTION) {
+                    AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                    carga.setLocationRelativeTo(null);
+                    carga.setVisible(true);
+                    cargaPropietario();
+                }
             } else {
-                
-                jTNombre.setText(buscada.getNombre());
+
+                cargaPropietario();
+
+            }
+        }
+
+    }
+private void cargaPropietario(){
+jTNombre.setText(buscada.getNombre());
                 jTApellido.setText(buscada.getApellido());
                 jBGuardar.setEnabled(true);
                 jBBuscar.setEnabled(false);
@@ -419,11 +437,5 @@ public class AdmInmuebles extends javax.swing.JDialog {
                 jTApellido.setDisabledTextColor(Color.BLACK);
                 jTNombre.setDisabledTextColor(Color.BLACK);
                 jTDni.setDisabledTextColor(Color.BLACK);
-                
-                
-            }
-        }
-
-    }
-       
+}
 }

@@ -205,22 +205,26 @@ public class UsuarioData {
         }
     }
 
-    public Usuario buscarUsuario(int id) {
-        Usuario usuario = null;
-        String sql = "SELECT idPersona, nombre, estado FROM usuarios WHERE id= ?";
-        ps = null;
+    public Usuario buscarUsuario(int idPersona) {
+        Usuario encontrado = null;
+        String sql = "SELECT * FROM usuarios WHERE idPersona= ?";
+
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
+            ps.setInt(1, idPersona);
             rs = ps.executeQuery();
+            System.out.println(ps);
             if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setId(id);
+                Usuario usuario = new Usuario();
+                usuario.setId(idPersona);
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("nombre"));
+                usuario.setContraseña(rs.getString("contrasenia"));
+                usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
+                
+                encontrado = usuario;
             } else {
-                JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");
                 ps.close();
             }
         } catch (SQLException ex) {
@@ -233,7 +237,7 @@ public class UsuarioData {
             }
         }
 
-        return usuario;
+        return encontrado;
     }
 
     public Usuario buscarUsuario(String nombre) {

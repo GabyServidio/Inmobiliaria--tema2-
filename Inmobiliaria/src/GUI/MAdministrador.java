@@ -4,8 +4,11 @@
  */
 package GUI;
 
+import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -13,15 +16,24 @@ import java.awt.Color;
  */
 public class MAdministrador extends javax.swing.JFrame {
 
+        public static UsuarioData controlUsuario = new UsuarioData();
+
     /**
      * Creates new form mAdministrador
      */
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+
     private Usuario user;
+
     public MAdministrador(Usuario user) {
         this.user = user;
         initComponents();
+        initFont();
     }
 
     /**
@@ -42,6 +54,7 @@ public class MAdministrador extends javax.swing.JFrame {
         jlContratos = new javax.swing.JLabel();
         jbSalir = new javax.swing.JLabel();
         jbListarInsp = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,7 +82,7 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlContactoMouseExited(evt);
             }
         });
-        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 163, 30));
+        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 163, 30));
 
         jlListarInmuebles.setBackground(new java.awt.Color(34, 65, 93));
         jlListarInmuebles.setFont(new java.awt.Font("Univers-Black", 0, 14)); // NOI18N
@@ -88,7 +101,7 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlListarInmueblesMouseExited(evt);
             }
         });
-        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 163, 30));
+        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 163, 30));
 
         jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
         jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
@@ -107,7 +120,7 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlInmueble1MouseExited(evt);
             }
         });
-        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 163, 30));
+        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 163, 30));
 
         jlMultas.setBackground(new java.awt.Color(34, 65, 93));
         jlMultas.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -126,7 +139,7 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlMultasMouseExited(evt);
             }
         });
-        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 163, 30));
+        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 163, 30));
 
         jlContratos.setBackground(new java.awt.Color(34, 65, 93));
         jlContratos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
@@ -145,7 +158,7 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlContratosMouseExited(evt);
             }
         });
-        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 163, 30));
+        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 163, 30));
 
         jbSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbSalir.setText("SALIR");
@@ -163,7 +176,10 @@ public class MAdministrador extends javax.swing.JFrame {
                 jbListarInspMouseClicked(evt);
             }
         });
-        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 140, 40));
+        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 140, 40));
+
+        jLabel1.setText("GESTIÓN DE USUARIOS");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo1.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -315,6 +331,7 @@ public class MAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
     private javax.swing.JLabel LOGO;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jbListarInsp;
     private javax.swing.JLabel jbSalir;
@@ -324,4 +341,28 @@ public class MAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jlListarInmuebles;
     private javax.swing.JLabel jlMultas;
     // End of variables declaration//GEN-END:variables
+    public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
+    private void initFont(){
+    
+    jbListarInsp.setFont(fuenteBoton18);
+    jbSalir.setFont(fuenteBoton18);
+    jlContacto.setFont(fuenteBoton18);
+    jlContratos.setFont(fuenteBoton18);
+    jlInmueble1.setFont(fuenteBoton18);
+    jlListarInmuebles.setFont(fuenteBoton18);
+    jlMultas.setFont(fuenteBoton18);
+
+}
 }
