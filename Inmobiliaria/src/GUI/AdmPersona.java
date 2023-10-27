@@ -15,7 +15,7 @@ public class AdmPersona extends javax.swing.JDialog {
     
     public AdmPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        setTitle("Administracion de Personas");
+//        setTitle("Administracion de Personas");
         initComponents();
         colorBG();
         bloquear(false);
