@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class AdmUsuarios extends javax.swing.JDialog {
 
+
     /**
      * Creates new form AdmUsuarios
      */
@@ -24,6 +25,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
         initComponents();
         bloquearCampos();
         jbEditar.setEnabled(false);
+        jbGuardar.setEnabled(false);
         
     }
 
@@ -111,11 +113,21 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jbEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbEditar.setForeground(new java.awt.Color(0, 0, 0));
         jbEditar.setText("EDITAR");
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         jbGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbGuardar.setForeground(new java.awt.Color(0, 0, 0));
         jbGuardar.setText("GUARDAR");
+        jbGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbGuardarMouseClicked(evt);
+            }
+        });
         getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
         jcbTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -126,6 +138,11 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbSalir.setForeground(new java.awt.Color(0, 0, 0));
         jbSalir.setText("SALIR");
+        jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbSalirMouseClicked(evt);
+            }
+        });
         getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -147,6 +164,13 @@ public class AdmUsuarios extends javax.swing.JDialog {
 
     private void jbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBuscarMouseClicked
     buscar();
+    if(jlNombre.getText().isEmpty()){
+    jbEditar.setEnabled(false);
+    jbGuardar.setEnabled(false);
+}else{
+    jbEditar.setEnabled(true);
+}
+    
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarMouseClicked
@@ -157,6 +181,18 @@ char c= evt.getKeyChar();
         evt.consume();
             buscar();}        // TODO add your handling code here:
     }//GEN-LAST:event_jtfDniKeyTyped
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+    jbGuardar.setEnabled(true);
+    desbloquearCampos();// TODO add your handling code here:
+    }//GEN-LAST:event_jbEditarActionPerformed
+
+    private void jbGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarMouseClicked
+guardar();    }//GEN-LAST:event_jbGuardarMouseClicked
+
+    private void jbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseClicked
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSalirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -228,6 +264,15 @@ char c= evt.getKeyChar();
         jcbTipo.setEnabled(false);
         jchbEstado.setEnabled(false);
     }   
+    
+    public void desbloquearCampos(){
+        jlNombre.setEnabled(true);
+        jtfUsuario.setEnabled(true);
+        jpContrasenia.setEnabled(true);
+        jcbTipo.setEnabled(true);
+        jchbEstado.setEnabled(true);
+    }   
+    
     public void buscar(){
         try{
         if (jtfDni.getText().isEmpty()|| jtfDni.getText().equals(" ")) {
@@ -236,7 +281,19 @@ char c= evt.getKeyChar();
                 int dni = Integer.parseInt(jtfDni.getText());
                 Persona buscada = controlPer.encontrarPersona(dni);
                 if (buscada == null) {
-                                                            
+                Object[] opciones = {"Si", "No"};       //Crea un Vector con los textos a mostrar
+            int opcion = JOptionPane.showOptionDialog(null,
+                    "No existe una persna con el DNI ingresado ¿Desea agregarla?",
+                    "Confirmacion",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    null, opciones, opciones[1]);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                carga.setLocationRelativeTo(null);
+                carga.setVisible(true);
+            }                 
                 } else {
                     int idUsuario= buscada.getId();
                     Usuario mostrado = MAdministrador.controlUsuario.buscarUsuario(idUsuario);
@@ -251,7 +308,8 @@ char c= evt.getKeyChar();
                         case "I":
                                     jcbTipo.setSelectedItem("INSPECTOR");
                                     break;
-                        case "V":   jcbTipo.setSelectedItem("VENDEDOR");
+                        case "V":   
+                                    jcbTipo.setSelectedItem("VENDEDOR");
                                     break;}
                     jchbEstado.setSelected(mostrado.isEstado());
                     }
@@ -260,4 +318,26 @@ char c= evt.getKeyChar();
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Debe ingresar sólo números");
         }}
+    
+    private void guardar(){
+        int dni = Integer.parseInt(jtfDni.getText());
+        String cbox=null;
+        String password=String.valueOf(jpContrasenia.getPassword());
+        Persona buscada = controlPer.encontrarPersona(dni);
+        int idUsuario= buscada.getId();
+        String comboEditado=String.valueOf(jcbTipo.getSelectedItem());
+                    switch(comboEditado){
+                        case "ADMINISTRADOR":
+                                    cbox="A";
+                                    break;
+                        case "INSPECTOR":
+                                    cbox="I";                                    
+                                    break;
+                        case "VENDEDOR":   
+                                    cbox="V";
+                                    break;}
+        Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(),password , cbox, jchbEstado.isSelected());
+        System.out.println(editado);
+        MAdministrador.controlUsuario.actualizarUsuario(editado);
+    }
  }
