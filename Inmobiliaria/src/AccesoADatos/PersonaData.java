@@ -4,6 +4,7 @@ import Entidades.Inmueble;
 import Entidades.Persona;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -149,7 +150,7 @@ public class PersonaData {
         return encontrada;
     }
 
-    public Persona encontrarPersona(int dni) {
+    public Persona encontrarPersona(int dni){
         Persona encontrada = null;
         SQL = "SELECT id, nombre, apellido, dni, cuil, domicilio, telefono, eMail, estado FROM personas WHERE dni = ?";
         ps = null;
@@ -168,17 +169,15 @@ public class PersonaData {
                 encontrada.setTelefono(rs.getInt("telefono"));
                 encontrada.setEmail(rs.getString("eMail"));
                 encontrada.setEstado(rs.getBoolean("estado"));
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe una persona con ese DNI");
-                ps.close();
-            }
+            } 
 
         } catch (SQLException ex) {
             Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 Conexion.getConexion().close();
+                ps.close();
+                rs.close();
             } catch (SQLException ex) {
                 Logger.getLogger(PersonaData.class.getName()).log(Level.SEVERE, null, ex);
             }
