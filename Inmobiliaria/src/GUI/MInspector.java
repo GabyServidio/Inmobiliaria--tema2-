@@ -49,6 +49,7 @@ public class MInspector extends javax.swing.JFrame {
         jbSalir = new javax.swing.JLabel();
         jbInspeccionar = new javax.swing.JLabel();
         jbListarInsp = new javax.swing.JLabel();
+        jbListarMultas = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +57,7 @@ public class MInspector extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jbSalir.setForeground(new java.awt.Color(0, 0, 0));
+        jbSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbSalir.setText("SALIR");
         jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,9 +65,9 @@ public class MInspector extends javax.swing.JFrame {
                 jbSalirMouseClicked(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 140, 40));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 140, 40));
 
-        jbInspeccionar.setForeground(new java.awt.Color(0, 0, 0));
+        jbInspeccionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbInspeccionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbInspeccionar.setText("INSPECCIONAR");
         jbInspeccionar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -74,9 +75,9 @@ public class MInspector extends javax.swing.JFrame {
                 jbInspeccionarMouseClicked(evt);
             }
         });
-        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 120, 40));
+        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 120, 40));
 
-        jbListarInsp.setForeground(new java.awt.Color(0, 0, 0));
+        jbListarInsp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jbListarInsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbListarInsp.setText("LISTAR INSPECCIONES");
         jbListarInsp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,18 +85,25 @@ public class MInspector extends javax.swing.JFrame {
                 jbListarInspMouseClicked(evt);
             }
         });
-        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 140, 40));
+        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 180, 40));
+
+        jbListarMultas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbListarMultas.setText("LISTAR MULTAS");
+        jbListarMultas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbListarMultasMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jbListarMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
-        jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,6 +132,13 @@ public class MInspector extends javax.swing.JFrame {
         insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
+
+    private void jbListarMultasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarMultasMouseClicked
+        ListarMultas multas = new ListarMultas(null, rootPaneCheckingEnabled);
+        multas.setLocationRelativeTo(null);
+        multas.setVisible(true);
+        
+    }//GEN-LAST:event_jbListarMultasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,6 +180,7 @@ public class MInspector extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jbInspeccionar;
     private javax.swing.JLabel jbListarInsp;
+    private javax.swing.JLabel jbListarMultas;
     private javax.swing.JLabel jbSalir;
     // End of variables declaration//GEN-END:variables
 }

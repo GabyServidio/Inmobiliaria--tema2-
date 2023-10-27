@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +23,8 @@ import javax.swing.JOptionPane;
  * @author USUARIO
  */
 public class MultaData {
-
+    
+    private String SQL = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
 
@@ -94,20 +96,28 @@ public class MultaData {
     }
 
     public List<Multa> listarMulta() {
-        List<Multa> multas = new ArrayList<>();
+        
+        List<Multa> encontradas = new ArrayList<>();
+        SQL = "SELECT * FROM multa";
         try {
-            String sql = "SELECT * FROM multa";
-            ps = Conexion.getConexion().prepareStatement(sql);
+            
+            ps = Conexion.getConexion().prepareStatement(SQL);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Multa multa = new Multa();
-
+                Date fecha = rs.getDate("fechaPago");
                 multa.setId(rs.getInt("id"));
                 multa.setIdInspeccion(rs.getInt("idInspeccion"));
                 multa.setIdInquilino(rs.getInt("idInquilino"));
                 multa.setFechaConfeccion(rs.getDate("fechaConfeccion").toLocalDate());
-                multa.setFechaPago(rs.getDate("fechaPago").toLocalDate());
+                if (fecha == null){
+                    multa.setFechaPago(LocalDate.MAX);
+                }else{
+                    multa.setFechaPago(fecha.toLocalDate());
+                }
+                
                 multa.setMonto(rs.getDouble("monto"));
+                encontradas.add(multa);
             }
             ps.close();
         } catch (SQLException ex) {
@@ -119,7 +129,7 @@ public class MultaData {
                 Logger.getLogger(InmuebleData.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return multas;
+        return encontradas;
 
     }
 
