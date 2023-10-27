@@ -7,6 +7,8 @@ package GUI;
 import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -21,10 +23,17 @@ public class MAdministrador extends javax.swing.JFrame {
      */
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+
     private Usuario user;
+
     public MAdministrador(Usuario user) {
         this.user = user;
         initComponents();
+        initFont();
     }
 
     /**
@@ -332,4 +341,28 @@ public class MAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jlListarInmuebles;
     private javax.swing.JLabel jlMultas;
     // End of variables declaration//GEN-END:variables
+    public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
+    }
+    private void initFont(){
+    
+    jbListarInsp.setFont(fuenteBoton18);
+    jbSalir.setFont(fuenteBoton18);
+    jlContacto.setFont(fuenteBoton18);
+    jlContratos.setFont(fuenteBoton18);
+    jlInmueble1.setFont(fuenteBoton18);
+    jlListarInmuebles.setFont(fuenteBoton18);
+    jlMultas.setFont(fuenteBoton18);
+
+}
 }
