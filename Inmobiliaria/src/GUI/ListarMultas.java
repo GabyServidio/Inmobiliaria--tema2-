@@ -318,8 +318,7 @@ public class ListarMultas extends javax.swing.JDialog {
     private void cargarTabla() {
         
         for (Multa multa : MInspector.controlMulta.listarMulta()){
-            //Inspeccion inspeccion = MInspector.controlInsp.buscarInspeccion(multa.getIdInspeccion());
-            //Contrato inquilino = MVendedor.controlContrato.encontrarContrato(multa.getIdInquilino());
+            
             Object fechaPago;
             if (multa.getFechaPago().equals(LocalDate.MIN)){
                 fechaPago = "NO RESUELTA";

@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 import javax.swing.JOptionPane;
 
 /**
@@ -98,6 +99,7 @@ public class AdmContratos extends javax.swing.JDialog {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -204,29 +206,34 @@ public class AdmContratos extends javax.swing.JDialog {
         jpInquilinoLayout.setHorizontalGroup(
             jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInquilinoLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
-                .addComponent(TXTinquilino1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jpInquilinoLayout.createSequentialGroup()
+                        .addComponent(DireccionInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TelefonoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ApellidoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CuilInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44))
+                    .addGroup(jpInquilinoLayout.createSequentialGroup()
+                        .addComponent(TXTinquilino1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpInquilinoLayout.createSequentialGroup()
+                        .addComponent(NombreInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(282, 282, 282)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInquilinoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpInquilinoLayout.createSequentialGroup()
-                        .addComponent(NombreInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(ApellidoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpInquilinoLayout.createSequentialGroup()
-                        .addComponent(DireccionInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(CuilInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpInquilinoLayout.createSequentialGroup()
-                        .addComponent(DniInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(TelefonoInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(eMailInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jpInquilinoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DniInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpInquilinoLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(eMailInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpInquilinoLayout.setVerticalGroup(
             jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,18 +245,18 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addComponent(jtInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(bBuscarInquilino))
                 .addGap(18, 18, 18)
-                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NombreInquilino)
-                    .addComponent(ApellidoInquilino))
+                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ApellidoInquilino)
+                    .addComponent(NombreInquilino))
                 .addGap(14, 14, 14)
-                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DireccionInquilino)
-                    .addComponent(CuilInquilino))
+                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CuilInquilino)
+                    .addComponent(DireccionInquilino))
                 .addGap(14, 14, 14)
-                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DniInquilino)
-                    .addComponent(TelefonoInquilino))
-                .addGap(14, 14, 14)
+                .addGroup(jpInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TelefonoInquilino)
+                    .addComponent(DniInquilino))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eMailInquilino)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,27 +332,31 @@ public class AdmContratos extends javax.swing.JDialog {
         jpGaranteLayout.setHorizontalGroup(
             jpGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpGaranteLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jpGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpGaranteLayout.createSequentialGroup()
-                        .addComponent(TXTGarante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bBuscargarante, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(jpGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpGaranteLayout.createSequentialGroup()
+                                .addComponent(TXTGarante)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bBuscargarante, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpGaranteLayout.createSequentialGroup()
+                                .addComponent(NombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpGaranteLayout.createSequentialGroup()
+                                .addComponent(DniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(CuilGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpGaranteLayout.createSequentialGroup()
+                                .addComponent(DireccionGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TelefonoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jpGaranteLayout.createSequentialGroup()
-                        .addComponent(NombreGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ApellidoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpGaranteLayout.createSequentialGroup()
-                        .addComponent(DniGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CuilGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(eMailGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jpGaranteLayout.createSequentialGroup()
-                        .addComponent(DireccionGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TelefonoGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(61, 61, 61)
+                        .addComponent(eMailGarante, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpGaranteLayout.setVerticalGroup(
@@ -369,7 +380,7 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addGroup(jpGaranteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionGarante)
                     .addComponent(TelefonoGarante))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(eMailGarante)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -443,10 +454,10 @@ public class AdmContratos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpInmuebleLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInmuebleLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(153, 153, 153)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(129, 129, 129))
                     .addGroup(jpInmuebleLayout.createSequentialGroup()
@@ -478,7 +489,7 @@ public class AdmContratos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpInmuebleLayout.createSequentialGroup()
-                                .addGap(0, 12, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jpInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jdcFinalizacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -803,6 +814,7 @@ public class AdmContratos extends javax.swing.JDialog {
         jpInquilino.setBackground(fondo);
         jpGarante.setBackground(fondo);
         jpInmueble.setBackground(fondo);
+        jlCodigo.setForeground(Color.WHITE);
     }
 
     private void cargarInmueble() {
@@ -888,11 +900,11 @@ public class AdmContratos extends javax.swing.JDialog {
         jtGarante.setText(garante.getDni()+"");
         NombreGarante.setText(garante.getNombre());
         ApellidoGarante.setText(garante.getApellido());
-        DireccionGarante.setText(garante.getDomicilio());
-        DniGarante.setText(garante.getDni() + "");
-        CuilGarante.setText(garante.getCuil() + "");
-        TelefonoGarante.setText(garante.getTelefono() + "");
-        eMailGarante.setText(garante.getEmail());
+        DireccionGarante.setText("Domicilio: "+garante.getDomicilio());
+        DniGarante.setText("DNI: "+garante.getDni());
+        CuilGarante.setText("CUIL: "+garante.getCuil());
+        TelefonoGarante.setText("tel: "+garante.getTelefono());
+        eMailGarante.setText("eMail: "+garante.getEmail());
 
     }
 
@@ -997,4 +1009,6 @@ public class AdmContratos extends javax.swing.JDialog {
 //    private void jBsalirMouseExited(java.awt.event.MouseEvent evt) {                                    
 //        jBsalir.setForeground(Color.WHITE);
 //    }
+    
+    
 }

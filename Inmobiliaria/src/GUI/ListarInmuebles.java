@@ -35,6 +35,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
     };
     private Usuario usuario = null;
     private InmuebleData controlInm = new InmuebleData();
+
     public ListarInmuebles(java.awt.Frame parent, boolean modal, Usuario user) {
         super(parent, modal);
         usuario = user;
@@ -230,11 +231,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             if (isVendedor()) {
                 MVendedor.inmubleSeleccionado = controlInm.buscarInmuebleXId(id);
-            }else{
+            } else {
                 MInspector.inmuselec = controlInm.buscarInmuebleXId(id);
             }
-                 
-                    
+
             Inspeccionar insp = new Inspeccionar(null, rootPaneCheckingEnabled);
             insp.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -248,9 +248,13 @@ public class ListarInmuebles extends javax.swing.JDialog {
             int fila = jtInmueble.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.inmubleSeleccionado = MVendedor.controlInm.buscarInmuebleXId(id);
-            AdmContratos contrato = new AdmContratos(null, rootPaneCheckingEnabled);
-            contrato.setLocationRelativeTo(null);
-            contrato.setVisible(true);
+            if (MVendedor.controlContrato.isVigente(id)) {
+                JOptionPane.showMessageDialog(null, "No se puede Crear un Contratos si hay uno Vigente");
+            } else {
+                AdmContratos contrato = new AdmContratos(null, rootPaneCheckingEnabled);
+                contrato.setLocationRelativeTo(null);
+                contrato.setVisible(true);
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
