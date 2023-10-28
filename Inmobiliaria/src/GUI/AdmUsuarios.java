@@ -16,17 +16,20 @@ import javax.swing.JOptionPane;
  */
 public class AdmUsuarios extends javax.swing.JDialog {
 
-
     /**
      * Creates new form AdmUsuarios
      */
+    private Persona buscada;
+    private Usuario mostrado;
+    private boolean editar;
+
     public AdmUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         bloquearCampos();
         jbEditar.setEnabled(false);
         jbGuardar.setEnabled(false);
-        
+
     }
 
     /**
@@ -123,9 +126,9 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jbGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jbGuardar.setForeground(new java.awt.Color(0, 0, 0));
         jbGuardar.setText("GUARDAR");
-        jbGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbGuardarMouseClicked(evt);
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
             }
         });
         getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
@@ -163,36 +166,38 @@ public class AdmUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBuscarMouseClicked
-    buscar();
-    if(jlNombre.getText().isEmpty()){
-    jbEditar.setEnabled(false);
-    jbGuardar.setEnabled(false);
-}else{
-    jbEditar.setEnabled(true);
-}
-    
+        buscar();
+        if (jlNombre.getText().isEmpty()) {
+            jbEditar.setEnabled(false);
+            jbGuardar.setEnabled(false);
+        } else {
+            jbGuardar.setText("CREAR");
+            jbGuardar.setEnabled(true);
+        }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jbBuscarMouseClicked
 
     private void jtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniKeyTyped
-char c= evt.getKeyChar();
-        if (c == KeyEvent.VK_ENTER){
-        evt.consume();
-            buscar();}        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (c == KeyEvent.VK_ENTER) {
+            evt.consume();
+            buscar();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jtfDniKeyTyped
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-    jbGuardar.setEnabled(true);
-    desbloquearCampos();// TODO add your handling code here:
+        jbGuardar.setEnabled(true);
+        desbloquearCampos();// TODO add your handling code here:
     }//GEN-LAST:event_jbEditarActionPerformed
 
-    private void jbGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarMouseClicked
-guardar();    }//GEN-LAST:event_jbGuardarMouseClicked
-
     private void jbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseClicked
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirMouseClicked
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        guardar();
+    }//GEN-LAST:event_jbGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,87 +262,109 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public void bloquearCampos(){
+    public void bloquearCampos() {
         jlNombre.setEnabled(false);
         jtfUsuario.setEnabled(false);
         jpContrasenia.setEnabled(false);
         jcbTipo.setEnabled(false);
         jchbEstado.setEnabled(false);
-    }   
-    
-    public void desbloquearCampos(){
+    }
+
+    public void desbloquearCampos() {
         jlNombre.setEnabled(true);
         jtfUsuario.setEnabled(true);
         jpContrasenia.setEnabled(true);
         jcbTipo.setEnabled(true);
         jchbEstado.setEnabled(true);
-    }   
-    
-    public void buscar(){
-        try{
-        if (jtfDni.getText().isEmpty()|| jtfDni.getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
-        } else {
-                int dni = Integer.parseInt(jtfDni.getText());
-                Persona buscada = controlPer.encontrarPersona(dni);
-                if (buscada == null) {
-                Object[] opciones = {"Si", "No"};       //Crea un Vector con los textos a mostrar
-            int opcion = JOptionPane.showOptionDialog(null,
-                    "No existe una persna con el DNI ingresado ¿Desea agregarla?",
-                    "Confirmacion",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    null, opciones, opciones[1]);
-
-            if (opcion == JOptionPane.YES_OPTION) {
-                AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
-                carga.setLocationRelativeTo(null);
-                carga.setVisible(true);
-            }                 
-                } else {
-                    int idUsuario= buscada.getId();
-                    Usuario mostrado = MAdministrador.controlUsuario.buscarUsuario(idUsuario);
-                    jlNombre.setText(buscada.getNombre()+buscada.getApellido());
-                    jtfUsuario.setText(mostrado.getUsuario());
-                    jpContrasenia.setText(mostrado.getContraseña()); System.out.println(mostrado.getContraseña());
-                    String comboMostrado=mostrado.getTipo();
-                    switch(comboMostrado){
-                        case "A":
-                                    jcbTipo.setSelectedItem("ADMINISTRADOR");
-                                    break;
-                        case "I":
-                                    jcbTipo.setSelectedItem("INSPECTOR");
-                                    break;
-                        case "V":   
-                                    jcbTipo.setSelectedItem("VENDEDOR");
-                                    break;}
-                    jchbEstado.setSelected(mostrado.isEstado());
-                    }
-                }
-           
-        }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Debe ingresar sólo números");
-        }}
-    
-    private void guardar(){
-        int dni = Integer.parseInt(jtfDni.getText());
-        String cbox=null;
-        String password=String.valueOf(jpContrasenia.getPassword());
-        Persona buscada = controlPer.encontrarPersona(dni);
-        int idUsuario= buscada.getId();
-        String comboEditado=String.valueOf(jcbTipo.getSelectedItem());
-                    switch(comboEditado){
-                        case "ADMINISTRADOR":
-                                    cbox="A";
-                                    break;
-                        case "INSPECTOR":
-                                    cbox="I";                                    
-                                    break;
-                        case "VENDEDOR":   
-                                    cbox="V";
-                                    break;}
-        Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(),password , cbox, jchbEstado.isSelected());
-        System.out.println(editado);
-        MAdministrador.controlUsuario.actualizarUsuario(editado);
     }
- }
+
+    public void buscar() {
+        try {
+            if (jtfDni.getText().isEmpty() || jtfDni.getText().equals(" ")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
+            } else {
+                int dni = Integer.parseInt(jtfDni.getText());
+                buscada = controlPer.encontrarPersona(dni);
+                if (buscada == null) {
+                    Object[] opciones = {"Si", "No"};       //Crea un Vector con los textos a mostrar
+                    int opcion = JOptionPane.showOptionDialog(null,
+                            "No existe una persona con el DNI ingresado ¿Desea agregarla?",
+                            "Confirmacion",
+                            JOptionPane.DEFAULT_OPTION,
+                            JOptionPane.YES_NO_CANCEL_OPTION,
+                            null, opciones, opciones[1]);
+
+                    if (opcion == JOptionPane.YES_OPTION) {
+                        AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
+                        carga.setLocationRelativeTo(null);
+                        carga.setVisible(true);
+                    }
+                } else {
+                    int idUsuario = buscada.getId();
+
+                    mostrado = MAdministrador.controlUsuario.buscarUsuario(idUsuario);
+                    if (mostrado == null) {
+                        jlNombre.setText(buscada.getNombre() + buscada.getApellido());
+                        editar = false;
+                        desbloquearCampos();
+                    } else {
+                        editar = true;
+                        jlNombre.setText(buscada.getApellido() + ", " + buscada.getNombre());
+                        jtfUsuario.setText(mostrado.getUsuario());
+                        jpContrasenia.setText(mostrado.getContraseña());
+                        String comboMostrado = mostrado.getTipo();
+                        switch (comboMostrado) {
+                            case "A":
+                                jcbTipo.setSelectedItem("ADMINISTRADOR");
+                                break;
+                            case "I":
+                                jcbTipo.setSelectedItem("INSPECTOR");
+                                break;
+                            case "V":
+                                jcbTipo.setSelectedItem("VENDEDOR");
+                                break;
+                        }
+                        jchbEstado.setSelected(mostrado.isEstado());
+                    }
+
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar sólo números");
+        }
+    }
+
+    private void guardar() {
+        if (jtfUsuario.getText().isEmpty() || jpContrasenia.getPassword() == null) {
+            JOptionPane.showConfirmDialog(null, "Todos los campos son necesarios!");
+        } else {
+            int dni = Integer.parseInt(jtfDni.getText());
+            String cbox = null;
+            String password = String.valueOf(jpContrasenia.getPassword());
+            buscada = controlPer.encontrarPersona(dni);
+            int idUsuario = buscada.getId();
+            String comboEditado = String.valueOf(jcbTipo.getSelectedItem());
+            switch (comboEditado) {
+                case "ADMINISTRADOR":
+                    cbox = "A";
+                    break;
+                case "INSPECTOR":
+                    cbox = "I";
+                    break;
+                case "VENDEDOR":
+                    cbox = "V";
+                    break;
+            }
+
+            if (editar) {
+                Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                MAdministrador.controlUsuario.actualizarUsuario(editado);
+            } else {
+                Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                MAdministrador.controlUsuario.RegistrarUsuario(editado);
+
+            }
+        }
+    }
+}
