@@ -5,6 +5,13 @@
  */
 package GUI;
 
+
+import Entidades.Multa;
+import Entidades.Persona;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  *
  * @author Test
@@ -17,6 +24,7 @@ public class ResolverMulta extends javax.swing.JDialog {
     public ResolverMulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        compruebaEdicion();
     }
 
     /**
@@ -48,7 +56,7 @@ public class ResolverMulta extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jBGuardar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDCFechaPago = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -133,7 +141,7 @@ public class ResolverMulta extends javax.swing.JDialog {
                         .addGap(27, 27, 27)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDCFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
@@ -184,7 +192,7 @@ public class ResolverMulta extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6)
                                 .addComponent(jTMontoMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDCFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -247,7 +255,7 @@ public class ResolverMulta extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDCFechaPago;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -267,4 +275,26 @@ public class ResolverMulta extends javax.swing.JDialog {
     private javax.swing.JTextField jTIdMulta;
     private javax.swing.JTextField jTMontoMulta;
     // End of variables declaration//GEN-END:variables
+
+    private void compruebaEdicion(){
+        Date fechadate = null;
+        Multa selec = MVendedor.multaSeleccionada;
+        
+        if (selec== null) {
+            System.out.println("No tiene una multa para trabajar");
+        }else{
+            Persona prop = MVendedor.controlPer.encontrarPersonaXId(selec.getIdInquilino());
+            jTIdMulta.setText(selec.getId()+"");
+            jTIdInspeccion.setText(selec.getIdInspeccion()+"");
+            jTIdInquilino.setText(selec.getIdInquilino()+"");
+            String nombre = prop.getNombre();
+            String apellido = prop.getApellido();
+            jTApeYNomInquilino.setText(nombre + apellido);
+            jTFechaConfeccion.setText(selec.getFechaConfeccion()+"");
+            LocalDate fechaLocalDate = selec.getFechaPago();
+            Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            jDCFechaPago.setDate(fechaDate);
+            jTMontoMulta.setText(selec.getMonto()+"");
+        }
+    }
 }
