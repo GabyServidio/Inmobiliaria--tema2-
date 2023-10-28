@@ -243,6 +243,7 @@ public class ListarContratos extends javax.swing.JDialog {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRenovarActionPerformed
+
         renovar();
     }//GEN-LAST:event_jbRenovarActionPerformed
 
@@ -323,10 +324,13 @@ public class ListarContratos extends javax.swing.JDialog {
             int fila = jtContratos.getSelectedRow();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             MVendedor.contratoSeleccionado = MVendedor.controlContrato.encontrarContrato(id);
-            AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
-            renueva.setLocationRelativeTo(null);
-            renueva.setVisible(true);
-
+            if (MVendedor.controlContrato.isVigente(MVendedor.contratoSeleccionado.getId())) {
+                JOptionPane.showMessageDialog(null, "No se Puede renovar el contrato si hay un contrato Vigente");
+            } else {
+                AdmContratos renueva = new AdmContratos(null, rootPaneCheckingEnabled);
+                renueva.setLocationRelativeTo(null);
+                renueva.setVisible(true);
+            }
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
@@ -361,7 +365,7 @@ public class ListarContratos extends javax.swing.JDialog {
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
 
-        }finally {
+        } finally {
             limpiarFila();
             cargarTabla();
         }
