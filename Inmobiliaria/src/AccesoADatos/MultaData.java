@@ -33,13 +33,14 @@ public class MultaData {
     }
 
     public void GuardarMulta(Multa multa) {
-        String sql = "INSERT INTO `multa`(`idInspeccion`, `idInquilino`, `fechaConfeccion`,  `monto`) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO `multa`(`idInspeccion`, `idInquilino`, `fechaConfeccion`, `fechaPago`, `monto`) VALUES (?, ?, ?, ?, ?)";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, multa.getIdInspeccion());
             ps.setInt(2, multa.getIdInquilino());
             ps.setDate(3, Date.valueOf(multa.getFechaConfeccion()));
-            ps.setDouble(4, multa.getMonto());
+            ps.setDate(4, Date.valueOf(multa.getFechaPago()));
+            ps.setDouble(5, multa.getMonto());
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -135,9 +136,9 @@ public class MultaData {
 
     public void modificarMulta(Multa multa) {
 
-        String sql = "UPDATE multa SET id = ? , idInspeccion = ?,"
+        String sql = "UPDATE multa SET idInspeccion = ?,"
                 + " idInquilino = ?, fechaConfeccion = ?, fechaPago = ?,"
-                + " monto = ?";
+                + " monto = ? WHERE id = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, multa.getIdInspeccion());
@@ -145,6 +146,7 @@ public class MultaData {
             ps.setDate(3, Date.valueOf(multa.getFechaConfeccion()));
             ps.setDate(4, Date.valueOf(multa.getFechaPago()));
             ps.setDouble(5, multa.getMonto());
+            ps.setInt(6, multa.getId());
             ps.executeUpdate();
             int exito = ps.executeUpdate();
             if (exito == 1) {

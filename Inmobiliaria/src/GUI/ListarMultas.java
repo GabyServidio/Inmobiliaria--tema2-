@@ -320,8 +320,8 @@ public class ListarMultas extends javax.swing.JDialog {
         for (Multa multa : MInspector.controlMulta.listarMulta()){
             
             Object fechaPago;
-            if (multa.getFechaPago().equals(LocalDate.MIN)){
-                fechaPago = "NO RESUELTA";
+            if ( multa.getFechaPago().isBefore(multa.getFechaConfeccion())){
+                fechaPago = "MULTA IMPAGA";
             }else{
                     fechaPago=multa.getFechaPago();
             }
