@@ -33,7 +33,7 @@ public class MInspector extends javax.swing.JFrame {
     public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
     public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
     public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
-
+    private int xMouse, yMouse;
     /**
      * Creates new form mInspector
      */
@@ -53,17 +53,58 @@ public class MInspector extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        barra = new javax.swing.JPanel();
+        jlNombre = new javax.swing.JLabel();
+        jlNombreSombra = new javax.swing.JLabel();
         jbSalir = new javax.swing.JLabel();
         jbInspeccionar = new javax.swing.JLabel();
         jbListarInsp = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        barra.setFocusable(false);
+        barra.setOpaque(false);
+        barra.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barraMouseDragged(evt);
+            }
+        });
+        barra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barraMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout barraLayout = new javax.swing.GroupLayout(barra);
+        barra.setLayout(barraLayout);
+        barraLayout.setHorizontalGroup(
+            barraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        barraLayout.setVerticalGroup(
+            barraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 20));
+
+        jlNombre.setForeground(new java.awt.Color(255, 255, 255));
+        jlNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNombre.setText("jLabel1");
+        jPanel1.add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 66, 352, 60));
+
+        jlNombreSombra.setForeground(new java.awt.Color(174, 78, 75));
+        jlNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlNombreSombra.setText("jLabel1");
+        jPanel1.add(jlNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 68, 352, 60));
+
         jbSalir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbSalir.setText("SALIR");
         jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -71,9 +112,10 @@ public class MInspector extends javax.swing.JFrame {
                 jbSalirMouseClicked(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 140, 40));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 523, 142, 40));
 
         jbInspeccionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbInspeccionar.setForeground(new java.awt.Color(255, 255, 255));
         jbInspeccionar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbInspeccionar.setText("INSPECCIONAR");
         jbInspeccionar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -81,9 +123,10 @@ public class MInspector extends javax.swing.JFrame {
                 jbInspeccionarMouseClicked(evt);
             }
         });
-        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 120, 40));
+        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 424, 203, 40));
 
         jbListarInsp.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jbListarInsp.setForeground(new java.awt.Color(255, 255, 255));
         jbListarInsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbListarInsp.setText("LISTAR INSPECCIONES");
         jbListarInsp.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -91,9 +134,9 @@ public class MInspector extends javax.swing.JFrame {
                 jbListarInspMouseClicked(evt);
             }
         });
-        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 180, 40));
+        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 352, 203, 40));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Inspector.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,6 +172,17 @@ public class MInspector extends javax.swing.JFrame {
         insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
+
+    private void barraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraMousePressed
+      xMouse = evt.getX();
+      yMouse = evt.getY();
+    }//GEN-LAST:event_barraMousePressed
+
+    private void barraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraMouseDragged
+       int x = evt.getXOnScreen();
+       int y = evt.getYOnScreen();
+       this.setLocation(x-xMouse, y-yMouse);
+    }//GEN-LAST:event_barraMouseDragged
 
     /**
      * @param args the command line arguments
@@ -167,18 +221,25 @@ public class MInspector extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JPanel barra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jbInspeccionar;
     private javax.swing.JLabel jbListarInsp;
     private javax.swing.JLabel jbSalir;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreSombra;
     // End of variables declaration//GEN-END:variables
-    private void initFont(){
-   jbInspeccionar.setFont(fuenteBoton18);
-   jbListarInsp.setFont(fuenteBoton18);
-   jbSalir.setFont(fuenteBoton18);
-    
-    
+    private void initFont() {
+        jbInspeccionar.setFont(fuenteBoton18);
+        jbListarInsp.setFont(fuenteBoton18);
+        jbSalir.setFont(fuenteBoton18);
+        jlNombre.setFont(fuenteNombre);
+        jlNombreSombra.setFont(fuenteNombre);
+        
+        jlNombre.setText(inspector.getUsuario());
+        jlNombreSombra.setText(inspector.getUsuario());
     }
+
     public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
         Font fuenteCargada = null;
         try {

@@ -10,6 +10,7 @@ import Entidades.Usuario;
 import AccesoADatos.InmuebleData;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -35,12 +36,14 @@ public class ListarInmuebles extends javax.swing.JDialog {
     };
     private Usuario usuario = null;
     private InmuebleData controlInm = new InmuebleData();
-
+    private Font button = MVendedor.fuenteBoton18;
+    private Font label = MVendedor.fuenteLabel;
     public ListarInmuebles(java.awt.Frame parent, boolean modal, Usuario user) {
         super(parent, modal);
         usuario = user;
         setTitle("Listar Inmuebles");
         initComponents();
+        initFont();
         compruebaUsuario();
         llenarCombo();
         cabecera();
@@ -65,8 +68,8 @@ public class ListarInmuebles extends javax.swing.JDialog {
         jbEditar = new javax.swing.JButton();
         jbInspeccionar = new javax.swing.JButton();
         jcbOpcion = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
         jbSalir = new javax.swing.JButton();
+        jlSeleccione = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -127,7 +130,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbContratarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, -1, -1));
+        jPanel1.add(jbContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, -1));
 
         jbEditar.setText("Editar");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +138,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
 
         jbInspeccionar.setText("Inspeccionar");
         jbInspeccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +146,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbInspeccionarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
 
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
@@ -153,18 +156,20 @@ public class ListarInmuebles extends javax.swing.JDialog {
         });
         jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 200, 30));
 
-        jLabel1.setBackground(new java.awt.Color(0, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
-        jLabel1.setText("Seleccione por que desea listar:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
-
         jbSalir.setText("SALIR");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 20, -1, -1));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, -1, -1));
+
+        jlSeleccione.setBackground(new java.awt.Color(138, 175, 188));
+        jlSeleccione.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
+        jlSeleccione.setForeground(new java.awt.Color(255, 255, 255));
+        jlSeleccione.setText("Seleccione por que desea listar:");
+        jlSeleccione.setOpaque(true);
+        jPanel1.add(jlSeleccione, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/1000x400x70o.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -70, -1, -1));
@@ -340,7 +345,6 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbContratar;
@@ -348,10 +352,24 @@ public class ListarInmuebles extends javax.swing.JDialog {
     private javax.swing.JButton jbInspeccionar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox<String> jcbOpcion;
+    private javax.swing.JLabel jlSeleccione;
     private javax.swing.JTextField jtDato;
     private javax.swing.JTable jtInmueble;
     // End of variables declaration//GEN-END:variables
-
+    private void initFont(){
+        Color bgColor = new Color(138,175,188);
+       
+    jbContratar.setFont(button);
+    jbEditar.setFont(button);
+    jbInspeccionar.setFont(button);
+    jbSalir.setFont(button);
+    jcbOpcion.setFont(label);
+    jlSeleccione.setFont(label);
+    jtDato.setFont(label);
+    jtInmueble.setFont(label);
+    jcbOpcion.setBackground(bgColor);
+    jtInmueble.setBackground(bgColor);
+    }
     private void llenarCombo() {
         jcbOpcion.addItem("Direccion");
         jcbOpcion.addItem("Zona");

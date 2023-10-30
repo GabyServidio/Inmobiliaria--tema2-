@@ -26,7 +26,9 @@ public class AdmUsuarios extends javax.swing.JDialog {
     public AdmUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        limpiarCampos();
         bloquearCampos();
+        jbGuardar.setText("GUARDAR");
         jbEditar.setEnabled(false);
         jbGuardar.setEnabled(false);
 
@@ -166,13 +168,16 @@ public class AdmUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBuscarMouseClicked
+        limpiarCampos();
         buscar();
-        if (jlNombre.getText().isEmpty()) {
+        if (jtfUsuario.getText().isEmpty()) {
             jbEditar.setEnabled(false);
-            jbGuardar.setEnabled(false);
-        } else {
-            jbGuardar.setText("CREAR");
             jbGuardar.setEnabled(true);
+            jbGuardar.setText("CREAR");
+        } else {
+            jbEditar.setEnabled(true);
+            jbGuardar.setText("GUARDAR");
+            jbGuardar.setEnabled(false);
         }
 
         // TODO add your handling code here:
@@ -188,15 +193,18 @@ public class AdmUsuarios extends javax.swing.JDialog {
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
         jbGuardar.setEnabled(true);
+        jbEditar.setEnabled(false);
         desbloquearCampos();// TODO add your handling code here:
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jbSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseClicked
+        limpiarCampos();
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirMouseClicked
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         guardar();
+        limpiarCampos();
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     /**
@@ -278,6 +286,13 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jchbEstado.setEnabled(true);
     }
 
+    public void limpiarCampos(){
+        jlNombre.setText("");
+        jtfUsuario.setText("");
+        jpContrasenia.setText("");
+        jcbTipo.setSelectedItem("");
+        jchbEstado.setEnabled(false);
+    }
     public void buscar() {
         try {
             if (jtfDni.getText().isEmpty() || jtfDni.getText().equals(" ")) {
@@ -298,6 +313,8 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
                         carga.setLocationRelativeTo(null);
                         carga.setVisible(true);
+                    }else if (opcion == JOptionPane.NO_OPTION){
+                        jtfDni.setText("");
                     }
                 } else {
                     int idUsuario = buscada.getId();
@@ -360,6 +377,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
             if (editar) {
                 Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.actualizarUsuario(editado);
+                System.out.println(editado);
             } else {
                 Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.RegistrarUsuario(editado);

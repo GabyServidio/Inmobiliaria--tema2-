@@ -16,18 +16,20 @@ import java.awt.GraphicsEnvironment;
  */
 public class MAdministrador extends javax.swing.JFrame {
 
-        public static UsuarioData controlUsuario = new UsuarioData();
+    public static UsuarioData controlUsuario = new UsuarioData();
 
     /**
      * Creates new form mAdministrador
      */
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
+    private final Color bOff = new Color(63, 104, 89);
+    private final Color bOn = new Color(230, 239, 236);
     public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
     public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
-    public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
-    public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
-
+    public static Font nombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font label = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+    private int xMouse,yMouse;
     private Usuario user;
 
     public MAdministrador(Usuario user) {
@@ -46,7 +48,9 @@ public class MAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        LOGO = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jlNombre = new javax.swing.JLabel();
+        jlNombreSombra = new javax.swing.JLabel();
         jlContacto = new javax.swing.JLabel();
         jlListarInmuebles = new javax.swing.JLabel();
         jlInmueble1 = new javax.swing.JLabel();
@@ -54,20 +58,52 @@ public class MAdministrador extends javax.swing.JFrame {
         jlContratos = new javax.swing.JLabel();
         jbSalir = new javax.swing.JLabel();
         jbListarInsp = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jlGestionUser = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LOGO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo100p.png"))); // NOI18N
-        jPanel1.add(LOGO, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 150, -1));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel2.setOpaque(false);
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 20));
+
+        jlNombre.setForeground(new java.awt.Color(208, 210, 207));
+        jlNombre.setText("jLabel2");
+        jPanel1.add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 290, 60));
+
+        jlNombreSombra.setForeground(new java.awt.Color(57, 95, 82));
+        jlNombreSombra.setText("jLabel2");
+        jPanel1.add(jlNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(52, 32, 290, 60));
 
         jlContacto.setBackground(new java.awt.Color(147, 151, 149));
         jlContacto.setFont(new java.awt.Font("Univers-Black", 0, 18)); // NOI18N
-        jlContacto.setForeground(new java.awt.Color(255, 255, 255));
+        jlContacto.setForeground(new java.awt.Color(63, 104, 89));
         jlContacto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlContacto.setText("CONTACTOS");
         jlContacto.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -82,11 +118,11 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlContactoMouseExited(evt);
             }
         });
-        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 163, 30));
+        jPanel1.add(jlContacto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 30));
 
         jlListarInmuebles.setBackground(new java.awt.Color(34, 65, 93));
         jlListarInmuebles.setFont(new java.awt.Font("Univers-Black", 0, 14)); // NOI18N
-        jlListarInmuebles.setForeground(new java.awt.Color(255, 255, 255));
+        jlListarInmuebles.setForeground(new java.awt.Color(63, 104, 89));
         jlListarInmuebles.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlListarInmuebles.setText("LISTAR INMUEBLES");
         jlListarInmuebles.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -101,11 +137,11 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlListarInmueblesMouseExited(evt);
             }
         });
-        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 163, 30));
+        jPanel1.add(jlListarInmuebles, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 245, 180, 30));
 
         jlInmueble1.setBackground(new java.awt.Color(34, 65, 93));
         jlInmueble1.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
-        jlInmueble1.setForeground(new java.awt.Color(255, 255, 255));
+        jlInmueble1.setForeground(new java.awt.Color(63, 104, 89));
         jlInmueble1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlInmueble1.setText("CREAR INMUEBLE");
         jlInmueble1.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -120,11 +156,11 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlInmueble1MouseExited(evt);
             }
         });
-        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 163, 30));
+        jPanel1.add(jlInmueble1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 180, 30));
 
         jlMultas.setBackground(new java.awt.Color(34, 65, 93));
         jlMultas.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
-        jlMultas.setForeground(new java.awt.Color(255, 255, 255));
+        jlMultas.setForeground(new java.awt.Color(63, 104, 89));
         jlMultas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlMultas.setText("MULTAS");
         jlMultas.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -139,11 +175,11 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlMultasMouseExited(evt);
             }
         });
-        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 163, 30));
+        jPanel1.add(jlMultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 335, 180, 30));
 
         jlContratos.setBackground(new java.awt.Color(34, 65, 93));
         jlContratos.setFont(new java.awt.Font("Univers-Black", 1, 18)); // NOI18N
-        jlContratos.setForeground(new java.awt.Color(255, 255, 255));
+        jlContratos.setForeground(new java.awt.Color(63, 104, 89));
         jlContratos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlContratos.setText("CONTRATOS");
         jlContratos.setPreferredSize(new java.awt.Dimension(163, 30));
@@ -158,30 +194,57 @@ public class MAdministrador extends javax.swing.JFrame {
                 jlContratosMouseExited(evt);
             }
         });
-        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, 163, 30));
+        jPanel1.add(jlContratos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 180, 30));
 
+        jbSalir.setForeground(new java.awt.Color(63, 104, 89));
         jbSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbSalir.setText("SALIR");
         jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbSalirMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbSalirMouseExited(evt);
+            }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 140, 40));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 335, 180, 30));
 
+        jbListarInsp.setForeground(new java.awt.Color(63, 104, 89));
         jbListarInsp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jbListarInsp.setText("LISTAR INSPECCIONES");
         jbListarInsp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbListarInspMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbListarInspMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbListarInspMouseExited(evt);
+            }
         });
-        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 140, 40));
+        jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 180, 30));
 
-        jLabel1.setText("GESTIÓN DE USUARIOS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+        jlGestionUser.setForeground(new java.awt.Color(63, 104, 89));
+        jlGestionUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlGestionUser.setText("GESTIÓN USUARIOS");
+        jlGestionUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlGestionUserMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlGestionUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlGestionUserMouseExited(evt);
+            }
+        });
+        jPanel1.add(jlGestionUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 245, 180, 30));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo1.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_administrador.png"))); // NOI18N
         jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,12 +269,12 @@ public class MAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jlContactoMouseClicked
 
     private void jlContactoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseEntered
-        jlContacto.setForeground(Color.BLACK);
+        jlContacto.setForeground(bOn);
         jlContacto.setBackground(fondo);
     }//GEN-LAST:event_jlContactoMouseEntered
 
     private void jlContactoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContactoMouseExited
-        jlContacto.setForeground(Color.WHITE);
+        jlContacto.setForeground(bOff);
         jlContacto.setBackground(fondo);
     }//GEN-LAST:event_jlContactoMouseExited
 
@@ -222,12 +285,12 @@ public class MAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jlListarInmueblesMouseClicked
 
     private void jlListarInmueblesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseEntered
-        jlListarInmuebles.setForeground(Color.BLACK);
+        jlListarInmuebles.setForeground(bOn);
         jlListarInmuebles.setBackground(fondoR);
     }//GEN-LAST:event_jlListarInmueblesMouseEntered
 
     private void jlListarInmueblesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlListarInmueblesMouseExited
-        jlListarInmuebles.setForeground(Color.WHITE);
+        jlListarInmuebles.setForeground(bOff);
         jlListarInmuebles.setBackground(fondo);
     }//GEN-LAST:event_jlListarInmueblesMouseExited
 
@@ -238,12 +301,12 @@ public class MAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jlInmueble1MouseClicked
 
     private void jlInmueble1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseEntered
-        jlInmueble1.setForeground(Color.BLACK);
+        jlInmueble1.setForeground(bOn);
         jlInmueble1.setBackground(fondoR);
     }//GEN-LAST:event_jlInmueble1MouseEntered
 
     private void jlInmueble1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlInmueble1MouseExited
-        jlInmueble1.setForeground(Color.WHITE);
+        jlInmueble1.setForeground(bOff);
         jlInmueble1.setBackground(fondo);
     }//GEN-LAST:event_jlInmueble1MouseExited
 
@@ -254,12 +317,12 @@ public class MAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jlMultasMouseClicked
 
     private void jlMultasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseEntered
-        jlMultas.setForeground(Color.BLACK);
+        jlMultas.setForeground(bOn);
         jlMultas.setBackground(fondoR);
     }//GEN-LAST:event_jlMultasMouseEntered
 
     private void jlMultasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlMultasMouseExited
-        jlMultas.setForeground(Color.WHITE);
+        jlMultas.setForeground(bOff);
         jlMultas.setBackground(fondo);
     }//GEN-LAST:event_jlMultasMouseExited
 
@@ -270,12 +333,12 @@ public class MAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_jlContratosMouseClicked
 
     private void jlContratosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseEntered
-        jlContratos.setForeground(Color.BLACK);
+        jlContratos.setForeground(bOn);
         jlContratos.setBackground(fondoR);
     }//GEN-LAST:event_jlContratosMouseEntered
 
     private void jlContratosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlContratosMouseExited
-        jlContratos.setForeground(Color.WHITE);
+        jlContratos.setForeground(bOff);
         jlContratos.setBackground(fondo);
     }//GEN-LAST:event_jlContratosMouseExited
 
@@ -291,6 +354,48 @@ public class MAdministrador extends javax.swing.JFrame {
         insp.setLocationRelativeTo(null);
         insp.setVisible(true);
     }//GEN-LAST:event_jbListarInspMouseClicked
+
+    private void jbListarInspMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseEntered
+        jbListarInsp.setForeground(bOn);
+
+    }//GEN-LAST:event_jbListarInspMouseEntered
+
+    private void jbListarInspMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseExited
+        jbListarInsp.setForeground(bOff);
+    }//GEN-LAST:event_jbListarInspMouseExited
+
+    private void jlGestionUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGestionUserMouseEntered
+        jlGestionUser.setForeground(bOn);
+    }//GEN-LAST:event_jlGestionUserMouseEntered
+
+    private void jlGestionUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGestionUserMouseExited
+        jlGestionUser.setForeground(bOff);
+    }//GEN-LAST:event_jlGestionUserMouseExited
+
+    private void jbSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseEntered
+        jbSalir.setForeground(bOn);
+    }//GEN-LAST:event_jbSalirMouseEntered
+
+    private void jbSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseExited
+        jbSalir.setForeground(bOff);
+    }//GEN-LAST:event_jbSalirMouseExited
+
+    private void jlGestionUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlGestionUserMouseClicked
+        AdmUsuarios user = new AdmUsuarios(null, rootPaneCheckingEnabled);
+        user.setLocationRelativeTo(null);
+        user.setVisible(true);
+    }//GEN-LAST:event_jlGestionUserMouseClicked
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+      int x = evt.getXOnScreen();
+      int y = evt.getYOnScreen();
+      this.setLocation(x-xMouse, y-yMouse);
+    }//GEN-LAST:event_jPanel2MouseDragged
 
     /**
      * @param args the command line arguments
@@ -330,16 +435,18 @@ public class MAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel LOGO;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jbListarInsp;
     private javax.swing.JLabel jbSalir;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;
+    private javax.swing.JLabel jlGestionUser;
     private javax.swing.JLabel jlInmueble1;
     private javax.swing.JLabel jlListarInmuebles;
     private javax.swing.JLabel jlMultas;
+    private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlNombreSombra;
     // End of variables declaration//GEN-END:variables
     public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
         Font fuenteCargada = null;
@@ -354,15 +461,21 @@ public class MAdministrador extends javax.swing.JFrame {
         }
         return fuenteCargada;
     }
-    private void initFont(){
-    
-    jbListarInsp.setFont(fuenteBoton18);
-    jbSalir.setFont(fuenteBoton18);
-    jlContacto.setFont(fuenteBoton18);
-    jlContratos.setFont(fuenteBoton18);
-    jlInmueble1.setFont(fuenteBoton18);
-    jlListarInmuebles.setFont(fuenteBoton18);
-    jlMultas.setFont(fuenteBoton18);
 
-}
+    private void initFont() {
+
+        jbListarInsp.setFont(fuenteBoton18);
+        jbSalir.setFont(fuenteBoton18);
+        jlContacto.setFont(fuenteBoton18);
+        jlContratos.setFont(fuenteBoton18);
+        jlInmueble1.setFont(fuenteBoton18);
+        jlListarInmuebles.setFont(fuenteBoton18);
+        jlMultas.setFont(fuenteBoton18);
+        jlGestionUser.setFont(fuenteBoton18);
+        jlNombre.setText(user.getUsuario());
+        jlNombreSombra.setText(user.getUsuario());
+        jlNombre.setFont(nombre);
+        jlNombreSombra.setFont(nombre);
+
+    }
 }
