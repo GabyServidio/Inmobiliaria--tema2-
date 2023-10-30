@@ -8,6 +8,7 @@ import AccesoADatos.UsuarioData;
 import Entidades.Persona;
 import Entidades.Usuario;
 import static GUI.AdmPersona.controlPer;
+import static GUI.MAdministrador.nombre;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -360,6 +361,8 @@ public class AdmUsuarios extends javax.swing.JDialog {
         if (jtfUsuario.getText().isEmpty() || jpContrasenia.getPassword() == null) {
             JOptionPane.showConfirmDialog(null, "Todos los campos son necesarios!");
         } else {
+            if (validarUser(jtfUsuario.getText())){
+                
             
                 int dni = Integer.parseInt(jtfDni.getText());
                 String cbox = null;
@@ -378,20 +381,23 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         cbox = "V";
                         break;
                 }
-            
-            if (editar) {
-                Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
-                MAdministrador.controlUsuario.actualizarUsuario(editado);
-                mostrado = null;
-            } else {
-                Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
-                MAdministrador.controlUsuario.RegistrarUsuario(editado);
+                
+                if (editar) {
+                    Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                    MAdministrador.controlUsuario.actualizarUsuario(editado);
+                    mostrado = null;
+                } else {
+                    Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                    MAdministrador.controlUsuario.RegistrarUsuario(editado);
 
+                }
             }
+                
+            
         }
     }
     
-    public boolean validarUser(String nombre, int idUsuario, char tipo){
+    public boolean validarUser(String nombre){
         Usuario encontrado = MAdministrador.controlUsuario.buscarUsuario(nombre);
         if (encontrado != null){
             JOptionPane.showMessageDialog(null, " Ya existe el usuario "+ encontrado.getUsuario()+", ingrese otro.");
