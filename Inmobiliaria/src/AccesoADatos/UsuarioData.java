@@ -217,7 +217,7 @@ public class UsuarioData {
             System.out.println(ps);
             if (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setId(idPersona);
+                usuario.setId(rs.getInt("id"));
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("nombre"));
                 usuario.setContraseña(rs.getString("contrasenia"));

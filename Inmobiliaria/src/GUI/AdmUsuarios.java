@@ -170,11 +170,13 @@ public class AdmUsuarios extends javax.swing.JDialog {
     private void jbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBuscarMouseClicked
         limpiarCampos();
         buscar();
-        if (jtfUsuario.getText().isEmpty()) {
+        if (mostrado==null) {
+            editar=false;
             jbEditar.setEnabled(false);
             jbGuardar.setEnabled(true);
             jbGuardar.setText("CREAR");
         } else {
+            editar=true;
             jbEditar.setEnabled(true);
             jbGuardar.setText("GUARDAR");
             jbGuardar.setEnabled(false);
@@ -317,9 +319,9 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         jtfDni.setText("");
                     }
                 } else {
-                    int idUsuario = buscada.getId();
+                    int idPersona = buscada.getId();
 
-                    mostrado = MAdministrador.controlUsuario.buscarUsuario(idUsuario);
+                    mostrado = MAdministrador.controlUsuario.buscarUsuario(idPersona);
                     if (mostrado == null) {
                         jlNombre.setText(buscada.getNombre() + buscada.getApellido());
                         editar = false;
@@ -375,7 +377,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
             }
 
             if (editar) {
-                Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                Usuario editado = new Usuario(mostrado.getIdPersona(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.actualizarUsuario(editado);
                 System.out.println(editado);
             } else {
