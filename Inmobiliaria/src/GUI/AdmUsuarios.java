@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import AccesoADatos.UsuarioData;
 import Entidades.Persona;
 import Entidades.Usuario;
 import static GUI.AdmPersona.controlPer;
@@ -358,24 +359,25 @@ public class AdmUsuarios extends javax.swing.JDialog {
         if (jtfUsuario.getText().isEmpty() || jpContrasenia.getPassword() == null) {
             JOptionPane.showConfirmDialog(null, "Todos los campos son necesarios!");
         } else {
-            int dni = Integer.parseInt(jtfDni.getText());
-            String cbox = null;
-            String password = String.valueOf(jpContrasenia.getPassword());
-            buscada = controlPer.encontrarPersona(dni);
-            int idUsuario = buscada.getId();
-            String comboEditado = String.valueOf(jcbTipo.getSelectedItem());
-            switch (comboEditado) {
-                case "ADMINISTRADOR":
-                    cbox = "A";
-                    break;
-                case "INSPECTOR":
-                    cbox = "I";
-                    break;
-                case "VENDEDOR":
-                    cbox = "V";
-                    break;
-            }
-
+            
+                int dni = Integer.parseInt(jtfDni.getText());
+                String cbox = null;
+                String password = String.valueOf(jpContrasenia.getPassword());
+                buscada = controlPer.encontrarPersona(dni);
+                int idUsuario = buscada.getId();
+                String comboEditado = String.valueOf(jcbTipo.getSelectedItem());
+                switch (comboEditado) {
+                    case "ADMINISTRADOR":
+                        cbox = "A";
+                        break;
+                    case "INSPECTOR":
+                        cbox = "I";
+                        break;
+                    case "VENDEDOR":
+                        cbox = "V";
+                        break;
+                }
+            
             if (editar) {
                 Usuario editado = new Usuario(mostrado.getIdPersona(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.actualizarUsuario(editado);
@@ -387,4 +389,15 @@ public class AdmUsuarios extends javax.swing.JDialog {
             }
         }
     }
+    
+    public boolean validarUser(String nombre, int idUsuario, char tipo){
+        Usuario encontrado = MAdministrador.controlUsuario.buscarUsuario(nombre);
+        if (encontrado != null){
+            JOptionPane.showMessageDialog(null, " Ya existe el usuario "+ encontrado.getUsuario()+", ingrese otro.");
+            return false;
+        }
+        return true;
+    }
+    
+        
 }
