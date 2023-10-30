@@ -10,7 +10,6 @@ import java.util.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import static GUI.MVendedor.controlInm;
-//import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.time.ZoneId;
 import javax.swing.table.DefaultTableModel;
 
