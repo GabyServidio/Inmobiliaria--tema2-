@@ -65,6 +65,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jDCFechaCon = new com.toedter.calendar.JDateChooser();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -147,28 +148,38 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLabel2.setText("Apellido :");
         jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
         jPanel.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 180, -1));
-        jPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 72, 510, 10));
+        jPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 510, 10));
         jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 122, 510, 20));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(25, 25, 25));
         jLabel3.setText("Ingresar DNI:");
-        jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
-        jPanel.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 100, -1));
+        jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 44, -1, 28));
 
+        jTDni.setBackground(new java.awt.Color(125, 159, 175));
+        jTDni.setForeground(new java.awt.Color(25, 25, 25));
+        jTDni.setBorder(null);
+        jPanel.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 44, 150, 28));
+
+        jBBuscar.setBackground(new java.awt.Color(125, 159, 175));
         jBBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBBuscar.setForeground(new java.awt.Color(25, 25, 25));
         jBBuscar.setText("Buscar Propietario");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBBuscarActionPerformed(evt);
             }
         });
-        jPanel.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
-        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 520, 20));
+        jPanel.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
+        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 520, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Fecha de Construcción:");
         jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
         jPanel.add(jDCFechaCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_AdmInmueble.png"))); // NOI18N
+        jPanel.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,6 +311,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private javax.swing.JButton jBBuscar;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
