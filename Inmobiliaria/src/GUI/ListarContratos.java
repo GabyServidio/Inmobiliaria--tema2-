@@ -546,7 +546,7 @@ public class ListarContratos extends javax.swing.JDialog {
         Inmueble alquilado = MVendedor.controlInm.buscarInmuebleXId(contrato.getIdInmueble());
         Persona inquilino = MVendedor.controlPer.encontrarPersonaXId(contrato.getIdInquilino());
         Persona propietario = MVendedor.controlPer.encontrarPersonaXId(alquilado.getIdPropietario());
-        Usuario vendedor = controlUsuario.buscarUsuario(contrato.getIdVendedor());
+        Usuario vendedor = controlUsuario.buscarUsuarioxIdPersona(contrato.getIdVendedor());
         LocalDate fechaFirma = contrato.getFecha();
         LocalDate fechaInicio = contrato.getFechaInicio();
         LocalDate fechaFinaliza = contrato.getFechaFinalizacion();
