@@ -66,33 +66,34 @@ public class UsuarioData {
 
     public void actualizarUsuario(Usuario usuario) {
 
-        String sql = "UPDATE usuarios SET nombre = ? WHERE id = ?";
+        String sql = "UPDATE `usuarios` SET `nombre`='?',`contrasenia`='?',"
+                + "`tipo`='?',`estado`='?' WHERE id = ?";
 
         ps = null;
         try {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setString(1, usuario.getUsuario());
-            ps.setInt(2, usuario.getId());
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                usuario = new Usuario();
-                usuario.setId(rs.getInt("id"));
-                usuario.setIdPersona(rs.getInt("idPersona"));
-                usuario.setUsuario(rs.getString("usuario"));
-                usuario.setContraseña(rs.getString("contrasenia"));
-                usuario.setTipo(rs.getString("tipo"));
-                usuario.setEstado(rs.getBoolean("estado"));
+            ps.setString(2, usuario.getContraseña());
+            ps.setString(3, usuario.getTipo());
+            ps.setBoolean(4, usuario.isEstado());
+            ps.setInt(5, usuario.getId());
+            int resultado = ps.executeUpdate();
+            if (resultado > -1) {
+                JOptionPane.showMessageDialog(null, "Usuario Modificado Correctamente");
+
             } else {
-                JOptionPane.showMessageDialog(null, "Esta persona no es usuario o no existe");
-                ps.close();
+                JOptionPane.showMessageDialog(null, "No se modifico el usuario");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios " + ex.getMessage());
         } finally {
             try {
                 Conexion.getConexion().close();
+                ps.close();
+                rs.close();
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioData.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }
@@ -206,7 +207,7 @@ public class UsuarioData {
         }
     }
 
-    public Usuario buscarUsuario(int idPersona) {
+    public Usuario buscarUsuarioxIdPersona(int idPersona) {
         Usuario encontrado = null;
         String sql = "SELECT * FROM usuarios WHERE idPersona= ?";
 
@@ -223,7 +224,6 @@ public class UsuarioData {
                 usuario.setContraseña(rs.getString("contrasenia"));
                 usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
-                
                 encontrado = usuario;
             } else {
                 ps.close();

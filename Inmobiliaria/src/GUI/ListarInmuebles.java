@@ -38,6 +38,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
     private InmuebleData controlInm = new InmuebleData();
     private Font button = MVendedor.fuenteBoton18;
     private Font label = MVendedor.fuenteLabel;
+
     public ListarInmuebles(java.awt.Frame parent, boolean modal, Usuario user) {
         super(parent, modal);
         usuario = user;
@@ -47,6 +48,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
         compruebaUsuario();
         llenarCombo();
         cabecera();
+        limpiarFila();
         cargarTabla();
         ajustarAnchoColumnas();
     }
@@ -356,20 +358,21 @@ public class ListarInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jtDato;
     private javax.swing.JTable jtInmueble;
     // End of variables declaration//GEN-END:variables
-    private void initFont(){
-        Color bgColor = new Color(138,175,188);
-       
-    jbContratar.setFont(button);
-    jbEditar.setFont(button);
-    jbInspeccionar.setFont(button);
-    jbSalir.setFont(button);
-    jcbOpcion.setFont(label);
-    jlSeleccione.setFont(label);
-    jtDato.setFont(label);
-    jtInmueble.setFont(label);
-    jcbOpcion.setBackground(bgColor);
-    jtInmueble.setBackground(bgColor);
+    private void initFont() {
+        Color bgColor = new Color(138, 175, 188);
+
+        jbContratar.setFont(button);
+        jbEditar.setFont(button);
+        jbInspeccionar.setFont(button);
+        jbSalir.setFont(button);
+        jcbOpcion.setFont(label);
+        jlSeleccione.setFont(label);
+        jtDato.setFont(label);
+        jtInmueble.setFont(label);
+        jcbOpcion.setBackground(bgColor);
+        jtInmueble.setBackground(bgColor);
     }
+
     private void llenarCombo() {
         jcbOpcion.addItem("Direccion");
         jcbOpcion.addItem("Zona");
@@ -452,17 +455,24 @@ public class ListarInmuebles extends javax.swing.JDialog {
         switch (opcion) {
             case "Direccion":
                 jtDato.setText("Ingrese la direccion del Inmueble");
-
+                limpiarFila();
+                cargarTabla();
                 break;
             case "Zona":
                 jtDato.setText("Ingrese la Zona");
+                limpiarFila();
+                cargarTabla();
                 break;
             case "Propietario":
                 jtDato.setText("Ingrese el DNI del propietario");
+                limpiarFila();
+                cargarTabla();
                 break;
 
             case "Codigo":
                 jtDato.setText("Ingrese el numero de Codigo de la propiedad");
+                limpiarFila();
+                cargarTabla();
                 break;
 
         }
@@ -556,26 +566,31 @@ public class ListarInmuebles extends javax.swing.JDialog {
     }
 
     private void buscarXPropietario() {
-
+        limpiarFila();
         for (Persona propietario : MVendedor.controlPer.listarPropietarios()) {
             String dni = propietario.getDni() + "";
 
             if (dni.startsWith(jtDato.getText())) {
-                Inmueble inmueble = MVendedor.controlInm.buscarInmueble(propietario.getId());
-                modelo.addRow(new Object[]{
-                    inmueble.getId(),
-                    inmueble.getZona(),
-                    inmueble.getDireccion(),
-                    inmueble.getCantAmbientes(),
-                    inmueble.getSuperficie(),
-                    inmueble.getGarage(),
-                    inmueble.getCanBaños(),
-                    inmueble.getCondicionesContrato(),
-                    inmueble.getFechaConstruccion(),
-                    propietario.getApellido().concat(", ").concat(propietario.getNombre()),
-                    inmueble.getEstadoInmueble(),
-                    inmueble.getTipo()
-                });
+                for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
+                    if (inmueble.getIdPropietario() == propietario.getId()) {
+                        modelo.addRow(new Object[]{
+                            inmueble.getId(),
+                            inmueble.getZona(),
+                            inmueble.getDireccion(),
+                            inmueble.getCantAmbientes(),
+                            inmueble.getSuperficie(),
+                            inmueble.getGarage(),
+                            inmueble.getCanBaños(),
+                            inmueble.getCondicionesContrato(),
+                            inmueble.getFechaConstruccion(),
+                            propietario.getApellido().concat(", ").concat(propietario.getNombre()),
+                            inmueble.getEstadoInmueble(),
+                            inmueble.getTipo()
+
+                        });
+                    }
+                }
+                break;
             }
         }
     }

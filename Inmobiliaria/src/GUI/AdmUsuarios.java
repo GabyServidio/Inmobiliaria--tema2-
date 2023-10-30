@@ -321,7 +321,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
                 } else {
                     int idPersona = buscada.getId();
 
-                    mostrado = MAdministrador.controlUsuario.buscarUsuario(idPersona);
+                    mostrado = MAdministrador.controlUsuario.buscarUsuarioxIdPersona(idPersona);
                     if (mostrado == null) {
                         jlNombre.setText(buscada.getNombre() + buscada.getApellido());
                         editar = false;
@@ -332,6 +332,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         jtfUsuario.setText(mostrado.getUsuario());
                         jpContrasenia.setText(mostrado.getContraseña());
                         String comboMostrado = mostrado.getTipo();
+                        System.out.println(mostrado.toString());
                         switch (comboMostrado) {
                             case "A":
                                 jcbTipo.setSelectedItem("ADMINISTRADOR");
@@ -377,9 +378,9 @@ public class AdmUsuarios extends javax.swing.JDialog {
             }
 
             if (editar) {
-                Usuario editado = new Usuario(mostrado.getIdPersona(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.actualizarUsuario(editado);
-                System.out.println(editado);
+                mostrado = null;
             } else {
                 Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                 MAdministrador.controlUsuario.RegistrarUsuario(editado);
