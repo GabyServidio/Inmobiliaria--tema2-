@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package GUI;
 
 import AccesoADatos.ContratoData;
@@ -30,6 +27,7 @@ public class MVendedor extends javax.swing.JFrame {
     public static Contrato contratoSeleccionado = null;
     public static Multa multaSeleccionada = null;
     public static Usuario vendedor;
+    private int xMouse, yMouse;
     private final Color fondo = new Color(34, 65, 93);
     private final Color fondoR = new Color(145, 146, 145);
     public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
@@ -57,6 +55,9 @@ public class MVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Barra = new javax.swing.JPanel();
+        jtvendedor = new javax.swing.JLabel();
+        jtvendedorSombra = new javax.swing.JLabel();
         jtNombre = new javax.swing.JLabel();
         jtNombreSombra = new javax.swing.JLabel();
         ljCrearInmueble = new javax.swing.JLabel();
@@ -69,20 +70,53 @@ public class MVendedor extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Barra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Barra.setOpaque(false);
+        Barra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BarraMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BarraLayout = new javax.swing.GroupLayout(Barra);
+        Barra.setLayout(BarraLayout);
+        BarraLayout.setHorizontalGroup(
+            BarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        BarraLayout.setVerticalGroup(
+            BarraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(Barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 20));
+
+        jtvendedor.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
+        jtvendedor.setForeground(new java.awt.Color(255, 255, 255));
+        jtvendedor.setText("Vendedor:");
+        jPanel1.add(jtvendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 220, 40));
+
+        jtvendedorSombra.setBackground(new java.awt.Color(28, 11, 17));
+        jtvendedorSombra.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
+        jtvendedorSombra.setForeground(new java.awt.Color(28, 11, 17));
+        jtvendedorSombra.setText("Vendedor:");
+        jPanel1.add(jtvendedorSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 21, 220, 40));
 
         jtNombre.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
         jtNombre.setForeground(new java.awt.Color(255, 255, 255));
         jtNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombre.setText("Nombre");
-        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 240, 50));
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 240, 60));
 
         jtNombreSombra.setFont(new java.awt.Font("Univers-Black", 2, 24)); // NOI18N
         jtNombreSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jtNombreSombra.setText("Nombre");
-        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 50));
+        jPanel1.add(jtNombreSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 72, 240, 60));
 
         ljCrearInmueble.setBackground(new java.awt.Color(34, 65, 93));
         ljCrearInmueble.setFont(new java.awt.Font("Univers-Black", 1, 14)); // NOI18N
@@ -349,6 +383,11 @@ public class MVendedor extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jlContactoMouseClicked
 
+    private void BarraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BarraMousePressed
+       xMouse = evt.getX();
+       yMouse = evt.getY();
+    }//GEN-LAST:event_BarraMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +421,7 @@ public class MVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JPanel Barra;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlContacto;
     private javax.swing.JLabel jlContratos;
@@ -391,6 +431,8 @@ public class MVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel jlSalir;
     private javax.swing.JLabel jtNombre;
     private javax.swing.JLabel jtNombreSombra;
+    private javax.swing.JLabel jtvendedor;
+    private javax.swing.JLabel jtvendedorSombra;
     private javax.swing.JLabel ljCrearInmueble;
     // End of variables declaration//GEN-END:variables
 private void nombreVendedor(Usuario nombre) {

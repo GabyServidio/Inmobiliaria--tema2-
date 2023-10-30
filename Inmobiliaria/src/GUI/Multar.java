@@ -3,6 +3,7 @@ package GUI;
 import Entidades.Inspeccion;
 import Entidades.Multa;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -155,12 +156,17 @@ public class Multar extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void guardar() {
-
+        
+        //LocalDate fechamulta = jDCFecha.getDate();
         Date fecha = jDCFecha.getDate();
+        System.out.println(fecha);
         LocalDate fechaMulta = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                
+        LocalDate fechaP = LocalDate.of(2000, 01, 01);
+        
         double monto = Double.parseDouble(jTFMonto.getText());
-
-        Multa multa = new Multa(idInspeccion, idInquilino, fechaMulta, null, monto);
+        
+        Multa multa = new Multa(idInspeccion, idInquilino, fechaMulta, fechaP, monto);
         MInspector.controlMulta.GuardarMulta(multa);
 
     }

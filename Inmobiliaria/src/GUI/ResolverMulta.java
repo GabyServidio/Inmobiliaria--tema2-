@@ -8,6 +8,7 @@ package GUI;
 
 import Entidades.Multa;
 import Entidades.Persona;
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -18,13 +19,13 @@ import java.util.Date;
  */
 public class ResolverMulta extends javax.swing.JDialog {
 
-    /**
-     * Creates new form resolverMulta
-     */
+    private boolean estado;
+    
     public ResolverMulta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         compruebaEdicion();
+        bloquearJ(false);
     }
 
     /**
@@ -88,6 +89,11 @@ public class ResolverMulta extends javax.swing.JDialog {
 
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jBGuardar.setText("GUARDAR");
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Fecha de Resolución:");
 
@@ -110,7 +116,7 @@ public class ResolverMulta extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTFechaConfeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTFechaConfeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -140,8 +146,8 @@ public class ResolverMulta extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDCFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDCFechaPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
@@ -208,6 +214,12 @@ public class ResolverMulta extends javax.swing.JDialog {
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBSalirActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        
+        guardar();
+        jBGuardar.setEnabled(false);
+    }//GEN-LAST:event_jBGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,7 +289,7 @@ public class ResolverMulta extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void compruebaEdicion(){
-        Date fechadate = null;
+        //Date fechadate = null;
         Multa selec = MVendedor.multaSeleccionada;
         
         if (selec== null) {
@@ -289,7 +301,7 @@ public class ResolverMulta extends javax.swing.JDialog {
             jTIdInquilino.setText(selec.getIdInquilino()+"");
             String nombre = prop.getNombre();
             String apellido = prop.getApellido();
-            jTApeYNomInquilino.setText(nombre + apellido);
+            jTApeYNomInquilino.setText(" "+nombre +" "+ apellido);
             jTFechaConfeccion.setText(selec.getFechaConfeccion()+"");
             LocalDate fechaLocalDate = selec.getFechaPago();
             Date fechaDate = Date.from(fechaLocalDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -297,4 +309,29 @@ public class ResolverMulta extends javax.swing.JDialog {
             jTMontoMulta.setText(selec.getMonto()+"");
         }
     }
+    
+    private void guardar() {
+        
+        int id = Integer.parseInt(jTIdMulta.getText());
+        int idInspeccion = Integer.parseInt(jTIdInspeccion.getText());
+        int idInquilino = Integer.parseInt(jTIdInquilino.getText());
+        LocalDate fechaMulta = LocalDate.parse(jTFechaConfeccion.getText());
+        Date f = jDCFechaPago.getDate();
+        LocalDate fechaPago = f.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        double monto = Double.parseDouble(jTMontoMulta.getText());
+               
+        Multa multa = new Multa(id, idInspeccion, idInquilino, fechaMulta, fechaPago, monto);
+        MInspector.controlMulta.modificarMulta(multa);
+
+    }
+    
+    private void bloquearJ(boolean estado){
+        
+        jTIdMulta.setEditable(estado);
+        jTIdInspeccion.setEditable(estado);
+        jTIdInquilino.setEditable(estado);
+        jTFechaConfeccion.setEditable(estado);
+        jTApeYNomInquilino.setEditable(estado);
+    }
+    
 }

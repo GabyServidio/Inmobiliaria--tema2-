@@ -79,6 +79,7 @@ public class UsuarioData {
                 usuario.setId(rs.getInt("id"));
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("usuario"));
+                usuario.setContraseña(rs.getString("contrasenia"));
                 usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
             } else {
@@ -216,7 +217,7 @@ public class UsuarioData {
             System.out.println(ps);
             if (rs.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setId(idPersona);
+                usuario.setId(rs.getInt("id"));
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("nombre"));
                 usuario.setContraseña(rs.getString("contrasenia"));

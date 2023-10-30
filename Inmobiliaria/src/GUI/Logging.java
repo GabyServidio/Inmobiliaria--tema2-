@@ -2,7 +2,10 @@ package GUI;
 
 import AccesoADatos.UsuarioData;
 import Entidades.Usuario;
+import static GUI.MAdministrador.cargarFuentePersonalizada;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,10 +22,16 @@ public class Logging extends javax.swing.JFrame {
     /**
      * Creates new form log
      */
+    public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
+    public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
+    public static Font nombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
+    public static Font label = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
+    
     private UsuarioData usuarioData = new UsuarioData();
-
+    private int xMouse, yMouse;
     public Logging() {
         initComponents();
+        initFont();
         calendario();
     }
 
@@ -36,6 +45,7 @@ public class Logging extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        barra = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         diaSemana = new javax.swing.JLabel();
         dia = new javax.swing.JLabel();
@@ -49,10 +59,37 @@ public class Logging extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
+        setUndecorated(true);
         setResizable(false);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        barra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        barra.setOpaque(false);
+        barra.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                barraMouseDragged(evt);
+            }
+        });
+        barra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                barraMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout barraLayout = new javax.swing.GroupLayout(barra);
+        barra.setLayout(barraLayout);
+        barraLayout.setHorizontalGroup(
+            barraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        barraLayout.setVerticalGroup(
+            barraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 20));
 
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/logo100p.png"))); // NOI18N
@@ -219,6 +256,17 @@ public class Logging extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jpPassKeyTyped
 
+    private void barraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraMousePressed
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_barraMousePressed
+
+    private void barraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barraMouseDragged
+       int  x= evt.getXOnScreen();
+       int  y = evt.getYOnScreen();
+       this.setLocation(x-xMouse, y-yMouse);
+    }//GEN-LAST:event_barraMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -259,6 +307,7 @@ public class Logging extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Calendario;
+    private javax.swing.JPanel barra;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel dia;
     private javax.swing.JLabel diaSemana;
@@ -270,6 +319,14 @@ public class Logging extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JLabel mes;
     // End of variables declaration//GEN-END:variables
+    private void initFont(){
+     jlIngresar.setFont(fuenteBoton14);
+     jlSalir.setFont(fuenteBoton14);
+     jtUsuario.setFont(label);
+     jpPass.setFont(label);
+    
+    }
+    
     private void calendario() {
          LocalDate fecha = LocalDate.now();
 
@@ -318,5 +375,20 @@ public class Logging extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
             }
         }
+    }
+    
+    
+      public static Font cargarFuentePersonalizada(String rutaFuente, float tamanio) {
+        Font fuenteCargada = null;
+        try {
+            fuenteCargada = Font.createFont(Font.TRUETYPE_FONT, new java.io.File(rutaFuente));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(fuenteCargada);
+            fuenteCargada = fuenteCargada.deriveFont(tamanio);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Error al cargar la fuente: " + e);
+        }
+        return fuenteCargada;
     }
 }
