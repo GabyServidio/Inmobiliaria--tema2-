@@ -39,7 +39,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLEstado = new javax.swing.JLabel();
         jLZona = new javax.swing.JLabel();
         jLTipo = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jTDireccion = new javax.swing.JTextField();
         jTSuperficie = new javax.swing.JTextField();
         jTZona = new javax.swing.JTextField();
@@ -56,12 +55,9 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jBGuardar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTApellido = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
         jTDni = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jDCFechaCon = new com.toedter.calendar.JDateChooser();
         BG = new javax.swing.JLabel();
@@ -71,84 +67,137 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLSuperficie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLSuperficie.setForeground(new java.awt.Color(0, 0, 0));
         jLSuperficie.setText("Superficie :");
-        jPanel.add(jLSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        jPanel.add(jLSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 192, -1, 30));
 
         jLAmbientes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLAmbientes.setForeground(new java.awt.Color(0, 0, 0));
         jLAmbientes.setText("Cantidad de ambientes :");
-        jPanel.add(jLAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        jPanel.add(jLAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 286, -1, 30));
 
         jLBanios.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLBanios.setForeground(new java.awt.Color(0, 0, 0));
         jLBanios.setText("Cantidad de baños :");
-        jPanel.add(jLBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        jPanel.add(jLBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 239, -1, 30));
 
         jLGarage.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLGarage.setForeground(new java.awt.Color(0, 0, 0));
         jLGarage.setText("Garage :");
-        jPanel.add(jLGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
+        jPanel.add(jLGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 239, -1, 30));
 
         jLDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jLDireccion.setText("Dirección del Inmueble :");
-        jPanel.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel.add(jLDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 145, -1, 30));
 
         jLEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLEstado.setForeground(new java.awt.Color(0, 0, 0));
         jLEstado.setText("Estado :");
-        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
+        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 239, -1, 30));
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLZona.setForeground(new java.awt.Color(0, 0, 0));
         jLZona.setText("Zona :");
-        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
+        jPanel.add(jLZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 192, -1, 30));
 
         jLTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLTipo.setForeground(new java.awt.Color(0, 0, 0));
         jLTipo.setText("Tipo de Inmueble :");
-        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 192, -1, 30));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Condiciones del propietario para el contrato :");
-        jPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
-        jPanel.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 210, -1));
-        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 40, -1));
-        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 60, -1));
-        jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 20, -1));
-        jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 20, -1));
-        jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 20, -1));
-        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 110, -1));
-        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 90, -1));
+        jTDireccion.setBackground(new java.awt.Color(125, 159, 175));
+        jTDireccion.setForeground(new java.awt.Color(0, 0, 0));
+        jTDireccion.setBorder(null);
+        jPanel.add(jTDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 145, 210, 30));
 
+        jTSuperficie.setBackground(new java.awt.Color(125, 159, 175));
+        jTSuperficie.setForeground(new java.awt.Color(0, 0, 0));
+        jTSuperficie.setBorder(null);
+        jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 192, 40, 30));
+
+        jTZona.setBackground(new java.awt.Color(125, 159, 175));
+        jTZona.setForeground(new java.awt.Color(0, 0, 0));
+        jTZona.setBorder(null);
+        jPanel.add(jTZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 192, 60, 30));
+
+        jTAmbientes.setBackground(new java.awt.Color(125, 159, 175));
+        jTAmbientes.setForeground(new java.awt.Color(0, 0, 0));
+        jTAmbientes.setBorder(null);
+        jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 286, 20, 30));
+
+        jTBanios.setBackground(new java.awt.Color(125, 159, 175));
+        jTBanios.setForeground(new java.awt.Color(0, 0, 0));
+        jTBanios.setBorder(null);
+        jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 239, 20, 30));
+
+        jTGarage.setBackground(new java.awt.Color(125, 159, 175));
+        jTGarage.setForeground(new java.awt.Color(0, 0, 0));
+        jTGarage.setBorder(null);
+        jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 239, 20, 30));
+
+        jTTipoInmueble.setBackground(new java.awt.Color(125, 159, 175));
+        jTTipoInmueble.setForeground(new java.awt.Color(0, 0, 0));
+        jTTipoInmueble.setBorder(null);
+        jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 192, 110, 30));
+
+        jTEstado.setBackground(new java.awt.Color(125, 159, 175));
+        jTEstado.setForeground(new java.awt.Color(0, 0, 0));
+        jTEstado.setBorder(null);
+        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 239, 90, 30));
+
+        jTCondiciones.setBackground(new java.awt.Color(125, 159, 175));
         jTCondiciones.setColumns(20);
+        jTCondiciones.setForeground(new java.awt.Color(0, 0, 0));
         jTCondiciones.setRows(5);
+        jTCondiciones.setText("Condiciones Particulares del Contrato");
+        jTCondiciones.setBorder(null);
+        jTCondiciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTCondiciones);
 
-        jPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 490, 50));
+        jPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 500, 110));
 
+        jBSalir.setBackground(new java.awt.Color(125, 159, 175));
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setForeground(new java.awt.Color(0, 0, 0));
         jBSalir.setText("Salir");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirActionPerformed(evt);
             }
         });
-        jPanel.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 450, -1, -1));
+        jPanel.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, -1, 40));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre :");
-        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-        jPanel.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 180, -1));
+        jPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 97, -1, 30));
 
+        jTNombre.setBackground(new java.awt.Color(125, 159, 175));
+        jTNombre.setForeground(new java.awt.Color(0, 0, 0));
+        jTNombre.setBorder(null);
+        jPanel.add(jTNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 97, 180, 30));
+
+        jBGuardar.setBackground(new java.awt.Color(125, 159, 175));
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBGuardar.setForeground(new java.awt.Color(0, 0, 0));
         jBGuardar.setText("Guardar Inmueble");
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
-        jPanel.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 450, -1, -1));
+        jPanel.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 470, -1, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Apellido :");
-        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, -1, -1));
-        jPanel.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 180, -1));
-        jPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 510, 10));
-        jPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 122, 510, 20));
+        jPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 97, -1, 30));
+
+        jTApellido.setBackground(new java.awt.Color(125, 159, 175));
+        jTApellido.setForeground(new java.awt.Color(0, 0, 0));
+        jTApellido.setBorder(null);
+        jPanel.add(jTApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 97, 170, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(25, 25, 25));
@@ -156,7 +205,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 44, -1, 28));
 
         jTDni.setBackground(new java.awt.Color(125, 159, 175));
-        jTDni.setForeground(new java.awt.Color(25, 25, 25));
+        jTDni.setForeground(new java.awt.Color(0, 0, 0));
         jTDni.setBorder(null);
         jPanel.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 44, 150, 28));
 
@@ -170,12 +219,15 @@ public class AdmInmuebles extends javax.swing.JDialog {
             }
         });
         jPanel.add(jBBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
-        jPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 520, 20));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Fecha de Construcción:");
-        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
-        jPanel.add(jDCFechaCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, -1, -1));
+        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 286, -1, 30));
+
+        jDCFechaCon.setBackground(new java.awt.Color(125, 159, 175));
+        jDCFechaCon.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel.add(jDCFechaCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 286, -1, 30));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_AdmInmueble.png"))); // NOI18N
         jPanel.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -240,7 +292,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     Date fecha = jDCFechaCon.getDate();
                     LocalDate fechaConstruccion = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     Inmueble nuevo = new Inmueble(propi, superficie, ambientes, banios, fechaConstruccion,
-                            garage, estado, direccion, zona, condiciones, tipo);
+                            garage, estado, direccion, zona, tipo, condiciones);
 
                     if (MVendedor.inmubleSeleccionado == null) {
                         nuevo.setIdPropietario(buscada.getId());
@@ -324,15 +376,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JLabel jLTipo;
     private javax.swing.JLabel jLZona;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTAmbientes;
     private javax.swing.JTextField jTApellido;
     private javax.swing.JTextField jTBanios;
