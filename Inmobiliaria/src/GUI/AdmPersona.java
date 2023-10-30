@@ -254,13 +254,14 @@ public class AdmPersona extends javax.swing.JDialog {
     }//GEN-LAST:event_jBNuevaActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        bloquear(true);
+        
 
         if (jTEstado.isEnabled()) {
             jTEstado.setEnabled(false);
         } else {
             jTEstado.setEnabled(true);
         }
+        bloquear(true);
         jBEditar.setEnabled(false);
         jBBaja.setEnabled(false);
         jBGuardar.setEnabled(true);
