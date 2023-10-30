@@ -79,6 +79,7 @@ public class UsuarioData {
                 usuario.setId(rs.getInt("id"));
                 usuario.setIdPersona(rs.getInt("idPersona"));
                 usuario.setUsuario(rs.getString("usuario"));
+                usuario.setContraseña(rs.getString("contrasenia"));
                 usuario.setTipo(rs.getString("tipo"));
                 usuario.setEstado(rs.getBoolean("estado"));
             } else {
