@@ -60,6 +60,7 @@ public class ListarInspecciones extends javax.swing.JDialog {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTFDato.addMouseListener(new java.awt.event.MouseAdapter() {

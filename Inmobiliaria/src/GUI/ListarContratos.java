@@ -9,7 +9,10 @@ import Entidades.Contrato;
 import Entidades.Inmueble;
 import Entidades.Persona;
 import Entidades.Usuario;
+import static GUI.MVendedor.fuenteBoton12;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.Month;
@@ -35,17 +38,21 @@ public class ListarContratos extends javax.swing.JDialog {
     };
     private UsuarioData controlUsuario = new UsuarioData();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private Font button = MVendedor.fuenteBoton18;
+    private Font label = MVendedor.fuenteLabel;
 
     public ListarContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setTitle("Listar Contratos");
         initComponents();
+        
         jMes.addPropertyChangeListener("month", e -> buscar());
         jAnio.addPropertyChangeListener("year", e -> buscar());
         llenarCombo();
         cabecera();
         cargarTabla();
         ajustarAnchoColumnas();
+        initFont();
     }
 
     /**
@@ -352,6 +359,17 @@ public class ListarContratos extends javax.swing.JDialog {
     private javax.swing.JTable jtContratos;
     private javax.swing.JTextField jtDato;
     // End of variables declaration//GEN-END:variables
+    
+    private void initFont() {
+        Color bgColor = new Color(138, 175, 188);
+
+        jbSalir.setFont(button);
+        jbRescindir.setFont(button);
+        jbBuscar.setFont(button);
+        jbRenovar.setFont(button);
+
+    }
+    
     private void renovar() {
         try {
             int fila = jtContratos.getSelectedRow();
