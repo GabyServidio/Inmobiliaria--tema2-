@@ -250,7 +250,7 @@ public class ContratoData {
 
     public ArrayList<Contrato> listarContratos() {
         ArrayList<Contrato> contratos = new ArrayList<>();
-        SQL = "SELECT * FROM contrato;";
+        SQL = "SELECT * FROM contrato";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             rs = ps.executeQuery();
