@@ -51,7 +51,7 @@ public class UsuarioData {
         } catch (SQLException ex) {
 
             if (ex instanceof SQLIntegrityConstraintViolationException) {
-                JOptionPane.showMessageDialog(null, "Este usuario ya se encontraba registrado");
+                JOptionPane.showMessageDialog(null, "Esta persona ya tiene un usuario registrado");
             } else {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Usuarios" + ex.getMessage());
             }
@@ -273,4 +273,6 @@ public class UsuarioData {
 
         return usuario;
     }
+    
+    
 }
