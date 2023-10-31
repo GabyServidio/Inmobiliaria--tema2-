@@ -40,7 +40,6 @@ public class UsuarioData {
             ps.setString(3, usuario.getContraseña());
             ps.setString(4, usuario.getTipo());
             ps.setBoolean(5, usuario.isEstado());
-            System.out.println(ps);
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -66,8 +65,7 @@ public class UsuarioData {
 
     public void actualizarUsuario(Usuario usuario) {
 
-        String sql = "UPDATE `usuarios` SET `nombre`='?',`contrasenia`='?',"
-                + "`tipo`='?',`estado`='?' WHERE id = ?";
+        String sql = "UPDATE `usuarios` SET `nombre`= ? ,`contrasenia`= ? , `tipo`= ? ,`estado`= ?  WHERE id = ?";
 
         ps = null;
         try {
@@ -78,7 +76,7 @@ public class UsuarioData {
             ps.setBoolean(4, usuario.isEstado());
             ps.setInt(5, usuario.getId());
             int resultado = ps.executeUpdate();
-            if (resultado > -1) {
+            if (resultado == 1) {
                 JOptionPane.showMessageDialog(null, "Usuario Modificado Correctamente");
 
             } else {
@@ -215,7 +213,6 @@ public class UsuarioData {
             ps = Conexion.getConexion().prepareStatement(sql);
             ps.setInt(1, idPersona);
             rs = ps.executeQuery();
-            System.out.println(ps);
             if (rs.next()) {
                 Usuario usuario = new Usuario();
                 usuario.setId(rs.getInt("id"));

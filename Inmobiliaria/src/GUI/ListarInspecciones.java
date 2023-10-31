@@ -85,11 +85,9 @@ public class ListarInspecciones extends javax.swing.JDialog {
         getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
         jDCFecha.getAccessibleContext().setAccessibleDescription("");
 
-        Inspecciones.setForeground(new java.awt.Color(0, 0, 0));
         Inspecciones.setText("INSPECCIONES");
         getContentPane().add(Inspecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, 40));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("BUSCAR POR");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 126, 90, 20));
 
@@ -142,9 +140,9 @@ public class ListarInspecciones extends javax.swing.JDialog {
         getContentPane().add(jCBBuscarPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
 
         jBMulta.setText("MULTAR");
-        jBMulta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBMultaMouseClicked(evt);
+        jBMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMultaActionPerformed(evt);
             }
         });
         getContentPane().add(jBMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
@@ -158,7 +156,6 @@ public class ListarInspecciones extends javax.swing.JDialog {
         });
         getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        Background.setForeground(new java.awt.Color(0, 0, 0));
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
         Background.setText("BUSCAR POR");
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 450));
@@ -208,26 +205,27 @@ public class ListarInspecciones extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jBEditarMouseClicked
 
-    private void jBMultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBMultaMouseClicked
-    try {
-    int idInmueble = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 2);
-    seleContrato = MInspector.controlContrato.encontrarContratoXIdInmueble(idInmueble);
-    int idInquilino = seleContrato.getIdInquilino();
-    //seleInquilino = MInspector.controlPers.encontrarPersonaXId(idInquilino);
-    //idInquilino= seleInquilino.getId();
-    
-    int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
-    seleccionada = MInspector.controlInsp.buscarInspeccion(id);
-    idInspeccion= seleccionada.getId();
-    
-    dispose();
-    Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled, idInspeccion, idInquilino);
-    nuevamulta.setLocationRelativeTo(null);
-    nuevamulta.setVisible(true);
-} catch (ArrayIndexOutOfBoundsException e) {
-    JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
-}        // TODO add your handling code here:
-    }//GEN-LAST:event_jBMultaMouseClicked
+    private void jBMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMultaActionPerformed
+        try {
+            int idInmueble = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 2);
+            seleContrato = MInspector.controlContrato.encontrarContratoXIdInmueble(idInmueble);
+            int idInquilino = seleContrato.getIdInquilino();
+            int id = (int) modelo.getValueAt(jTInspecciones.getSelectedRow(), 0);
+            seleccionada = MInspector.controlInsp.buscarInspeccion(id);
+            idInspeccion = seleccionada.getId();
+            dispose();
+            
+            if (seleContrato != null) {
+                Multar nuevamulta = new Multar(null, rootPaneCheckingEnabled, idInspeccion, idInquilino);
+                nuevamulta.setLocationRelativeTo(null);
+                nuevamulta.setVisible(true);
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una inspección ");
+        } catch(NullPointerException np){
+        }
+    }//GEN-LAST:event_jBMultaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

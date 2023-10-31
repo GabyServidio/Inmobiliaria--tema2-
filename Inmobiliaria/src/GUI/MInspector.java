@@ -12,6 +12,7 @@ import AccesoADatos.PersonaData;
 import Entidades.Inmueble;
 import Entidades.Inspeccion;
 import Entidades.Usuario;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
@@ -29,6 +30,8 @@ public class MInspector extends javax.swing.JFrame {
     public static Usuario inspector = null;
     public static Inmueble inmuselec = null;
     public static Inspeccion inspeselec = null;
+    private Color bUp = new Color(251,237,220);
+    private Color bDown = Color.WHITE;
     public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
     public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
     public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 32);
@@ -122,6 +125,12 @@ public class MInspector extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbInspeccionarMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbInspeccionarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbInspeccionarMouseExited(evt);
+            }
         });
         jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 424, 203, 40));
 
@@ -132,6 +141,12 @@ public class MInspector extends javax.swing.JFrame {
         jbListarInsp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbListarInspMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbListarInspMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbListarInspMouseExited(evt);
             }
         });
         jPanel1.add(jbListarInsp, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 352, 203, 40));
@@ -184,6 +199,22 @@ public class MInspector extends javax.swing.JFrame {
        this.setLocation(x-xMouse, y-yMouse);
     }//GEN-LAST:event_barraMouseDragged
 
+    private void jbListarInspMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseEntered
+       jbListarInsp.setForeground(bUp);
+    }//GEN-LAST:event_jbListarInspMouseEntered
+
+    private void jbInspeccionarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseEntered
+    jbInspeccionar.setForeground(bUp);
+    }//GEN-LAST:event_jbInspeccionarMouseEntered
+
+    private void jbListarInspMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbListarInspMouseExited
+     jbListarInsp.setForeground(bDown);
+    }//GEN-LAST:event_jbListarInspMouseExited
+
+    private void jbInspeccionarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseExited
+       jbInspeccionar.setForeground(bDown);
+    }//GEN-LAST:event_jbInspeccionarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +262,7 @@ public class MInspector extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private void initFont() {
         jbInspeccionar.setFont(fuenteBoton18);
-        jbListarInsp.setFont(fuenteBoton18);
+        jbListarInsp.setFont(fuenteBoton14);
         jbSalir.setFont(fuenteBoton18);
         jlNombre.setFont(fuenteNombre);
         jlNombreSombra.setFont(fuenteNombre);
