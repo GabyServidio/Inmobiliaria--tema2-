@@ -1,0 +1,10 @@
+
+def sumar(num1, num2):
+    suma= num1 + num2
+    return suma
+
+x=int(input("Ingrese el primero numero: "))
+y=int(input("Ingrese el segundo numero: "))
+
+resultado= sumar(x, y)
+print(resultado)

@@ -1,0 +1,10 @@
+def es_palindromo(cadena):
+    x = cadena[::-1]
+    
+    if x == cadena:
+        print("La palabra es un palindromo")
+    else:
+        print("La palabra no es un palindromo")
+
+pala= input("Ingresa una palabra y vemos si es un palindromo: ")
+es_palindromo(pala)

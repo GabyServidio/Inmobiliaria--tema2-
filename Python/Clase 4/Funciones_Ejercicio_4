@@ -1,0 +1,13 @@
+def invertir_numero(num):
+    return num[::-1]
+
+def es_capicua(numero):
+    
+    if invertir_numero(numero) == numero:
+        return True
+    else:
+        return False
+    
+numero1= (input("Ingrese un numero y vemos si es capicua: "))
+j=es_capicua(numero1)
+print(j)

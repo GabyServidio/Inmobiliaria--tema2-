@@ -1,0 +1,5 @@
+def invertir_cadena(palabra):
+    return palabra[::-1]
+
+pala= input("Ingresa una palabra y la damos vuelta: ")
+print(invertir_cadena(pala))

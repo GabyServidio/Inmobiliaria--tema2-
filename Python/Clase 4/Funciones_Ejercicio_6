@@ -1,0 +1,9 @@
+def es_par(num1):
+    if num1 % 2 == 0:
+        print("el numero " + str(num1) + " es par")
+    else:
+        print("No es par")
+
+x=int(input("Ingrese un numero: "))
+
+es_par(x)
