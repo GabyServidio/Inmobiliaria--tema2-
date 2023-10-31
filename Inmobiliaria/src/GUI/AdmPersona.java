@@ -14,7 +14,7 @@ public class AdmPersona extends javax.swing.JDialog {
     public static PersonaData controlPer = new PersonaData();
     private boolean personaEditada = false;
     private Font label = MVendedor.fuenteLabel;
-    private Font boton = MVendedor.fuenteBoton14;
+    private Font boton = MVendedor.fuenteBoton12;
     private Font nombre = MVendedor.fuenteBoton18;
     private int xMouse, yMouse;
     public AdmPersona(java.awt.Frame parent, boolean modal) {

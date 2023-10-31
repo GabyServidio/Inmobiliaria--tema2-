@@ -28,23 +28,25 @@ public class ContratoData {
 
     public ContratoData() {
     }
-    public boolean isVigente(int idPropiedad){
-    SQL = "SELECT * FROM contrato WHERE contrato.idPropiedad = ? AND contrato.estado = 'VIGENTE'";
-    boolean retornar = false;
+
+    public boolean isVigente(int idPropiedad) {
+        SQL = "SELECT * FROM contrato WHERE contrato.idPropiedad = ? AND contrato.estado = 'VIGENTE'";
+        boolean retornar = false;
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, idPropiedad);
             rs = ps.executeQuery();
-            if(rs.next()){
-            retornar = true;
+            if (rs.next()) {
+                retornar = true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratoData.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
         }
-    
-    return retornar;
+
+        return retornar;
     }
+
     public void crearContrato(Contrato nuevo) {
         SQL = "INSERT INTO contrato (idPropiedad, idInquilino, idGarante, idVendedor, "
                 + "fechaContrato, fechaInicio, fechaFinalizacion, precio, estado, descripcion) VALUES "
@@ -190,7 +192,6 @@ public class ContratoData {
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
-            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
                 encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -218,19 +219,18 @@ public class ContratoData {
     }
 
     public Contrato encontrarContratoXIdInmueble(int id) {
-        Contrato encontrado = new Contrato();
+        Contrato regresado = null;
         SQL = "SELECT * FROM contrato WHERE estado <> 'NO VIGENTE' AND idPropiedad = ?";
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
-            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
-                encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                Contrato encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
                         rs.getInt(4), rs.getInt(5), rs.getDate(6).toLocalDate(),
                         rs.getDate(7).toLocalDate(), rs.getDate(8).toLocalDate(),
                         rs.getInt(9), rs.getString(10), rs.getString(11));
-
+                regresado = encontrado;
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el contrato");
             }
@@ -245,7 +245,7 @@ public class ContratoData {
             }
 
         }
-        return encontrado;
+        return regresado;
     }
 
     public ArrayList<Contrato> listarContratos() {

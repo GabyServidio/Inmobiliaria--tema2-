@@ -58,9 +58,9 @@ public class ListarContratos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jcbEstado = new javax.swing.JComboBox<>();
         jMes = new com.toedter.calendar.JMonthChooser();
         jAnio = new com.toedter.calendar.JYearChooser();
-        jcbEstado = new javax.swing.JComboBox<>();
         jtDato = new javax.swing.JTextField();
         jcbOpcion = new javax.swing.JComboBox<>();
         jbBuscar = new javax.swing.JButton();
@@ -69,22 +69,32 @@ public class ListarContratos extends javax.swing.JDialog {
         jbSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtContratos = new javax.swing.JTable();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 130, -1));
-        jPanel1.add(jAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
 
+        jcbEstado.setBackground(new java.awt.Color(23, 80, 109));
+        jcbEstado.setForeground(new java.awt.Color(255, 255, 255));
         jcbEstado.setBorder(null);
         jcbEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbEstadoActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 130, -1));
+        jPanel1.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 8, 130, 45));
 
+        jMes.setBackground(new java.awt.Color(23, 80, 109));
+        jMes.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 8, 130, 45));
+
+        jAnio.setBackground(new java.awt.Color(23, 80, 109));
+        jPanel1.add(jAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 8, -1, 45));
+
+        jtDato.setBackground(new java.awt.Color(23, 80, 109));
+        jtDato.setForeground(new java.awt.Color(255, 255, 255));
         jtDato.setBorder(null);
         jtDato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,16 +111,21 @@ public class ListarContratos extends javax.swing.JDialog {
                 jtDatoKeyTyped(evt);
             }
         });
-        jPanel1.add(jtDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 290, 26));
+        jPanel1.add(jtDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 8, 290, 45));
 
+        jcbOpcion.setBackground(new java.awt.Color(23, 80, 109));
+        jcbOpcion.setForeground(new java.awt.Color(255, 255, 255));
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbOpcionActionPerformed(evt);
             }
         });
-        jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, -1));
+        jPanel1.add(jcbOpcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, 140, 45));
 
+        jbBuscar.setBackground(new java.awt.Color(23, 80, 119));
+        jbBuscar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jbBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jbBuscar.setText("BUSCAR");
         jbBuscar.setBorder(null);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,8 +133,11 @@ public class ListarContratos extends javax.swing.JDialog {
                 jbBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, -1));
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, -1, 42));
 
+        jbRenovar.setBackground(new java.awt.Color(23, 80, 119));
+        jbRenovar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jbRenovar.setForeground(new java.awt.Color(255, 255, 255));
         jbRenovar.setText("RENOVAR");
         jbRenovar.setBorder(null);
         jbRenovar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,8 +145,11 @@ public class ListarContratos extends javax.swing.JDialog {
                 jbRenovarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
+        jPanel1.add(jbRenovar, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 10, -1, 42));
 
+        jbRescindir.setBackground(new java.awt.Color(23, 80, 119));
+        jbRescindir.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jbRescindir.setForeground(new java.awt.Color(255, 255, 255));
         jbRescindir.setText("RESCINDIR");
         jbRescindir.setBorder(null);
         jbRescindir.addActionListener(new java.awt.event.ActionListener() {
@@ -136,8 +157,11 @@ public class ListarContratos extends javax.swing.JDialog {
                 jbRescindirActionPerformed(evt);
             }
         });
-        jPanel1.add(jbRescindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, -1, -1));
+        jPanel1.add(jbRescindir, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, -1, 42));
 
+        jbSalir.setBackground(new java.awt.Color(23, 80, 119));
+        jbSalir.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("SALIR");
         jbSalir.setBorder(null);
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -145,8 +169,12 @@ public class ListarContratos extends javax.swing.JDialog {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 10, -1, -1));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 10, -1, 42));
 
+        jScrollPane1.setOpaque(false);
+
+        jtContratos.setBackground(new java.awt.Color(23, 80, 119));
+        jtContratos.setForeground(new java.awt.Color(255, 255, 255));
         jtContratos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -158,9 +186,13 @@ public class ListarContratos extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtContratos.setOpaque(false);
         jScrollPane1.setViewportView(jtContratos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 1000, 310));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 980, 380));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_ListarContactos.png"))); // NOI18N
+        jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,6 +338,7 @@ public class ListarContratos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private com.toedter.calendar.JYearChooser jAnio;
     private com.toedter.calendar.JMonthChooser jMes;
     private javax.swing.JPanel jPanel1;
@@ -379,7 +412,10 @@ public class ListarContratos extends javax.swing.JDialog {
         jcbOpcion.addItem("Inquilino");
         jcbOpcion.addItem("Vendedor");
         jcbOpcion.addItem("Inmueble");
-
+        
+        jcbEstado.addItem("VIGENTE");
+        jcbEstado.addItem("NO VIGENTE");
+        jcbEstado.addItem("RENOVADO");
     }
 
     private void cambiarInfo() {
@@ -391,9 +427,7 @@ public class ListarContratos extends javax.swing.JDialog {
                 jAnio.setVisible(false);
                 jtDato.setVisible(false);
                 jcbEstado.setVisible(true);
-                jcbEstado.addItem("VIGENTE");
-                jcbEstado.addItem("NO VIGENTE");
-                jcbEstado.addItem("RENOVADO");
+
                 break;
             case "Finalizacion":
                 jMes.setVisible(true);

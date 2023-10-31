@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -132,7 +134,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbContratarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, -1, -1));
+        jPanel1.add(jbContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         jbEditar.setText("Editar");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +142,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbEditarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
+        jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
 
         jbInspeccionar.setText("Inspeccionar");
         jbInspeccionar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +150,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbInspeccionarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 20, -1, -1));
+        jPanel1.add(jbInspeccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, -1, -1));
 
         jcbOpcion.setBorder(null);
         jcbOpcion.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +166,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 jbSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, -1, -1));
+        jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 20, -1, -1));
 
         jlSeleccione.setBackground(new java.awt.Color(138, 175, 188));
         jlSeleccione.setFont(new java.awt.Font("Consolas", 1, 12)); // NOI18N
@@ -243,6 +245,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             }
 
             Inspeccionar insp = new Inspeccionar(null, rootPaneCheckingEnabled);
+            insp.setLocationRelativeTo(null);
             insp.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
@@ -382,18 +385,19 @@ public class ListarInmuebles extends javax.swing.JDialog {
     }
 
     private void cabecera() {
-        modelo.addColumn("Código");
+        modelo.addColumn("Cod.");
         modelo.addColumn("Zona");
         modelo.addColumn("Direccion");
-        modelo.addColumn("Ambientes");
-        modelo.addColumn("Superficie");
+        modelo.addColumn("Amb.");
+        modelo.addColumn("Sup.");
         modelo.addColumn("Garage");
         modelo.addColumn("Baños");
+        modelo.addColumn("Estado");
         modelo.addColumn("Tipo");
+        modelo.addColumn("Condiciones del Contrato");
         modelo.addColumn("Fecha Construccion");
         modelo.addColumn("Propietario");
-        modelo.addColumn("Estado");
-        modelo.addColumn("Condiociones Contrato");
+
         jtInmueble.setModel(modelo);
         TableRowSorter<DefaultTableModel> ordenar = new TableRowSorter<>(modelo);
         jtInmueble.setRowSorter(ordenar);
@@ -410,12 +414,11 @@ public class ListarInmuebles extends javax.swing.JDialog {
                 inmueble.getSuperficie(),
                 inmueble.getGarage(),
                 inmueble.getCanBaños(),
+                inmueble.getEstadoInmueble(),
+                inmueble.getTipo(),
                 inmueble.getCondicionesContrato(),
                 inmueble.getFechaConstruccion(),
-                propietario.getApellido().concat(", ").concat(propietario.getNombre()),
-                inmueble.getEstadoInmueble(),
-                inmueble.getTipo()
-            });
+                propietario.getApellido().concat(", ").concat(propietario.getNombre()),});
         }
 
     }
@@ -567,12 +570,12 @@ public class ListarInmuebles extends javax.swing.JDialog {
 
     private void buscarXPropietario() {
         limpiarFila();
+        Set<Integer> inmueblesAgregados = new HashSet<>();
         for (Persona propietario : MVendedor.controlPer.listarPropietarios()) {
             String dni = propietario.getDni() + "";
-
             if (dni.startsWith(jtDato.getText())) {
                 for (Inmueble inmueble : MVendedor.controlInm.listarInmueble()) {
-                    if (inmueble.getIdPropietario() == propietario.getId()) {
+                    if (inmueble.getIdPropietario() == propietario.getId() && !inmueblesAgregados.contains(inmueble.getId())) {
                         modelo.addRow(new Object[]{
                             inmueble.getId(),
                             inmueble.getZona(),
@@ -586,11 +589,10 @@ public class ListarInmuebles extends javax.swing.JDialog {
                             propietario.getApellido().concat(", ").concat(propietario.getNombre()),
                             inmueble.getEstadoInmueble(),
                             inmueble.getTipo()
-
                         });
+                        inmueblesAgregados.add(inmueble.getId());
                     }
                 }
-                break;
             }
         }
     }
