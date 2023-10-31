@@ -38,7 +38,6 @@ public class ResolverMulta extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -54,158 +53,125 @@ public class ResolverMulta extends javax.swing.JDialog {
         jTFechaConfeccion = new javax.swing.JTextField();
         jTMontoMulta = new javax.swing.JTextField();
         jBSalir = new javax.swing.JButton();
-        jSeparator3 = new javax.swing.JSeparator();
         jBGuardar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jDCFechaPago = new com.toedter.calendar.JDateChooser();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
+        setPreferredSize(new java.awt.Dimension(530, 345));
+        setResizable(false);
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(530, 350));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Resolución de la Multa");
-
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setText("Nro. de la Multa:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 49, -1, 30));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 204));
         jLabel3.setText("Nro. de la Inspección:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 49, -1, 30));
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 204));
         jLabel4.setText("Nro. del Inquilino:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 91, -1, 30));
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 204));
         jLabel5.setText("Fecha de Confección de la multa:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 137, -1, 30));
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("Monto de la multa:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 182, -1, 30));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 204));
         jLabel8.setText("Nombre y Apellido:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 91, -1, 30));
 
+        jTIdMulta.setBackground(new java.awt.Color(45, 27, 66));
+        jTIdMulta.setForeground(new java.awt.Color(255, 255, 204));
+        jTIdMulta.setBorder(null);
+        jTIdMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTIdMultaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTIdMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 49, 70, 30));
+
+        jTIdInspeccion.setBackground(new java.awt.Color(45, 27, 66));
+        jTIdInspeccion.setForeground(new java.awt.Color(255, 255, 204));
+        jTIdInspeccion.setBorder(null);
+        jPanel1.add(jTIdInspeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 49, 110, 30));
+
+        jTIdInquilino.setBackground(new java.awt.Color(45, 27, 66));
+        jTIdInquilino.setForeground(new java.awt.Color(255, 255, 204));
+        jTIdInquilino.setBorder(null);
+        jPanel1.add(jTIdInquilino, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 91, 60, 30));
+
+        jTApeYNomInquilino.setBackground(new java.awt.Color(45, 27, 66));
+        jTApeYNomInquilino.setForeground(new java.awt.Color(255, 255, 204));
+        jTApeYNomInquilino.setBorder(null);
+        jPanel1.add(jTApeYNomInquilino, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 91, 70, 30));
+
+        jTFechaConfeccion.setBackground(new java.awt.Color(45, 27, 66));
+        jTFechaConfeccion.setForeground(new java.awt.Color(255, 255, 204));
+        jTFechaConfeccion.setBorder(null);
+        jPanel1.add(jTFechaConfeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 137, 140, 30));
+
+        jTMontoMulta.setBackground(new java.awt.Color(45, 27, 66));
+        jTMontoMulta.setForeground(new java.awt.Color(255, 255, 204));
+        jTMontoMulta.setBorder(null);
+        jPanel1.add(jTMontoMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 182, 60, 30));
+
+        jBSalir.setBackground(new java.awt.Color(45, 27, 66));
         jBSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBSalir.setForeground(new java.awt.Color(255, 255, 204));
         jBSalir.setText("SALIR");
+        jBSalir.setBorder(null);
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 80, 40));
 
+        jBGuardar.setBackground(new java.awt.Color(45, 27, 66));
         jBGuardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jBGuardar.setForeground(new java.awt.Color(255, 255, 204));
         jBGuardar.setText("GUARDAR");
+        jBGuardar.setBorder(null);
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(jBGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 80, 40));
 
+        jLabel9.setForeground(new java.awt.Color(255, 255, 204));
         jLabel9.setText("Fecha de Resolución:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 182, -1, 30));
+
+        jDCFechaPago.setBackground(new java.awt.Color(45, 27, 66));
+        jDCFechaPago.setForeground(new java.awt.Color(255, 255, 204));
+        jPanel1.add(jDCFechaPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 182, -1, 30));
+
+        BG.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_ResMulta.png"))); // NOI18N
+        jPanel1.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTFechaConfeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTIdInquilino))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTIdMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(24, 24, 24)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTIdInspeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel8)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jTApeYNomInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, Short.MAX_VALUE))))))
-                            .addComponent(jSeparator2)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDCFechaPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTMontoMulta, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBGuardar)
-                .addGap(18, 18, 18)
-                .addComponent(jBSalir)
-                .addGap(56, 56, 56))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jTIdMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTIdInspeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)
-                            .addComponent(jTIdInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTApeYNomInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTFechaConfeccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(jTMontoMulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jDCFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBGuardar)
-                    .addComponent(jBSalir))
-                .addContainerGap(24, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
 
         pack();
@@ -220,6 +186,10 @@ public class ResolverMulta extends javax.swing.JDialog {
         guardar();
         jBGuardar.setEnabled(false);
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jTIdMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdMultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTIdMultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,25 +220,25 @@ public class ResolverMulta extends javax.swing.JDialog {
         //</editor-fold>
 
         /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ResolverMulta dialog = new ResolverMulta(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                ResolverMulta dialog = new ResolverMultaBGvax.swing.JFrame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                dialog.setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
     private com.toedter.calendar.JDateChooser jDCFechaPago;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -279,7 +249,6 @@ public class ResolverMulta extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField jTApeYNomInquilino;
     private javax.swing.JTextField jTFechaConfeccion;
     private javax.swing.JTextField jTIdInquilino;
