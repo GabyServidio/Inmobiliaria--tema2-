@@ -380,17 +380,15 @@ public class ListarContratos extends javax.swing.JDialog {
             Contrato rescindido = MVendedor.controlContrato.encontrarContrato(id);
             Object[] opciones = {"si", "no"};
             int op = JOptionPane.showOptionDialog(null,
-                    "¿Esta seguro de recindir el contrato?",
+                    "¿Esta seguro de rescindir el contrato?",
                     "Confirmacion",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     null, opciones, opciones[1]);
-            System.out.println(rescindido.toString());
             if (op == JOptionPane.YES_OPTION) {
 
                 rescindido.setEstado("NO VIGENTE");
                 MVendedor.controlContrato.editarContrato(rescindido);
-                System.out.println(rescindido.toString());
                 limpiarFila();
                 cargarTabla();
             }
@@ -519,7 +517,6 @@ public class ListarContratos extends javax.swing.JDialog {
         int mes = jMes.getMonth() + 1;
 
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
             if (encontrado.getFechaFinalizacion().getMonthValue() == mes && encontrado.getFechaFinalizacion().getYear() == año) {
                 cargarFila(encontrado);
             }
@@ -532,7 +529,6 @@ public class ListarContratos extends javax.swing.JDialog {
         int mes = jMes.getMonth() + 1;
 
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
             if (encontrado.getFechaInicio().getMonthValue() == mes && encontrado.getFechaInicio().getYear() == año) {
                 cargarFila(encontrado);
             }
