@@ -49,19 +49,21 @@ public class ListarInspecciones extends javax.swing.JDialog {
 
         jTFDato = new javax.swing.JTextField();
         jDCFecha = new com.toedter.calendar.JDateChooser();
-        Inspecciones = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jBEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTInspecciones = new javax.swing.JTable();
         jCBBuscarPor = new javax.swing.JComboBox<>();
+        jBEditar = new javax.swing.JButton();
         jBMulta = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTFDato.setBackground(new java.awt.Color(51, 33, 71));
+        jTFDato.setForeground(new java.awt.Color(251, 227, 185));
         jTFDato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTFDatoMouseClicked(evt);
@@ -72,9 +74,10 @@ public class ListarInspecciones extends javax.swing.JDialog {
                 jTFDatoKeyReleased(evt);
             }
         });
-        getContentPane().add(jTFDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 160, -1));
+        getContentPane().add(jTFDato, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 109, 160, 40));
         jTFDato.getAccessibleContext().setAccessibleDescription("Ingrese la fecha");
 
+        jDCFecha.setForeground(new java.awt.Color(251, 227, 185));
         jDCFecha.setToolTipText("dd/MM/yyyy");
         jDCFecha.setDateFormatString("Ingrese Fecha");
         jDCFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -82,24 +85,16 @@ public class ListarInspecciones extends javax.swing.JDialog {
                 jDCFechaPropertyChange(evt);
             }
         });
-        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 109, -1, 40));
         jDCFecha.getAccessibleContext().setAccessibleDescription("");
 
-        Inspecciones.setText("INSPECCIONES");
-        getContentPane().add(Inspecciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, 40));
-
+        jLabel1.setBackground(new java.awt.Color(51, 33, 71));
+        jLabel1.setForeground(new java.awt.Color(251, 227, 185));
         jLabel1.setText("BUSCAR POR");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 126, 90, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 109, 90, 40));
 
-        jBEditar.setText("EDITAR");
-        jBEditar.setToolTipText("Editar");
-        jBEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBEditarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, -1));
-
+        jScrollPane1.setBackground(new java.awt.Color(51, 33, 71));
+        jScrollPane1.setForeground(new java.awt.Color(251, 227, 185));
         jScrollPane1.setOpaque(false);
 
         jTInspecciones.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,23 +125,40 @@ public class ListarInspecciones extends javax.swing.JDialog {
             jTInspecciones.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 380, 140));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 176, 380, 190));
 
+        jCBBuscarPor.setBackground(new java.awt.Color(51, 33, 71));
+        jCBBuscarPor.setForeground(new java.awt.Color(251, 227, 185));
         jCBBuscarPor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jCBBuscarPorItemStateChanged(evt);
             }
         });
-        getContentPane().add(jCBBuscarPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
+        getContentPane().add(jCBBuscarPor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 109, 110, 40));
 
+        jBEditar.setBackground(new java.awt.Color(51, 33, 71));
+        jBEditar.setForeground(new java.awt.Color(251, 227, 185));
+        jBEditar.setText("EDITAR");
+        jBEditar.setToolTipText("Editar");
+        jBEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBEditarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jBEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 387, -1, 45));
+
+        jBMulta.setBackground(new java.awt.Color(51, 33, 71));
+        jBMulta.setForeground(new java.awt.Color(251, 227, 185));
         jBMulta.setText("MULTAR");
         jBMulta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBMultaActionPerformed(evt);
             }
         });
-        getContentPane().add(jBMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
+        getContentPane().add(jBMulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 387, -1, 45));
 
+        jBSalir.setBackground(new java.awt.Color(51, 33, 71));
+        jBSalir.setForeground(new java.awt.Color(251, 227, 185));
         jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
         jBSalir.setToolTipText("Salir");
         jBSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,9 +166,9 @@ public class ListarInspecciones extends javax.swing.JDialog {
                 jBSalirMouseClicked(evt);
             }
         });
-        getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
+        getContentPane().add(jBSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 387, -1, 45));
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo6.png"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_ListarInspecciones.png"))); // NOI18N
         Background.setText("BUSCAR POR");
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 450));
 
@@ -268,7 +280,6 @@ public class ListarInspecciones extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
-    private javax.swing.JLabel Inspecciones;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBMulta;
     private javax.swing.JButton jBSalir;

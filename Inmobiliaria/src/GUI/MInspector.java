@@ -114,6 +114,12 @@ public class MInspector extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbSalirMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbSalirMouseExited(evt);
+            }
         });
         jPanel1.add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 523, 142, 40));
 
@@ -214,6 +220,14 @@ public class MInspector extends javax.swing.JFrame {
     private void jbInspeccionarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbInspeccionarMouseExited
        jbInspeccionar.setForeground(bDown);
     }//GEN-LAST:event_jbInspeccionarMouseExited
+
+    private void jbSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseEntered
+     jbSalir.setForeground(bUp);
+    }//GEN-LAST:event_jbSalirMouseEntered
+
+    private void jbSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSalirMouseExited
+       jbSalir.setForeground(bDown);
+    }//GEN-LAST:event_jbSalirMouseExited
 
     /**
      * @param args the command line arguments
