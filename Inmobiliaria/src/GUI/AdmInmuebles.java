@@ -70,6 +70,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
