@@ -23,10 +23,10 @@ public class AdmUsuarios extends javax.swing.JDialog {
     private Persona buscada;
     private Usuario mostrado;
     private boolean editar;
-    private Font label = MVendedor.fuenteLabel;
-    private Font boton = MVendedor.fuenteBoton14;
-    private Font nombre = MVendedor.fuenteBoton18;
-    private Font title = MVendedor.fuenteNombre;
+    private final Font label = MVendedor.fuenteLabel;
+    private final Font boton = MVendedor.fuenteBoton12;
+    private final Font nombre = MVendedor.fuenteBoton18;
+    private final Font title = MVendedor.fuenteNombre;
 
     public AdmUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -49,12 +49,11 @@ public class AdmUsuarios extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlTitle = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jlNombre = new javax.swing.JLabel();
         jtfDni = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jlNombre = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jchbEstado = new javax.swing.JCheckBox();
@@ -73,100 +72,113 @@ public class AdmUsuarios extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(410, 440));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jlTitle.setForeground(new java.awt.Color(0, 0, 0));
-        jlTitle.setText("USUARIOS");
-        getContentPane().add(jlTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
-
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("INGRESE EL DNI DE LA PERSONA");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("INGRESE EL DNI DE LA PERSONA:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 105, -1, 30));
 
+        jlNombre.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 147, 320, 30));
+
+        jtfDni.setBackground(new java.awt.Color(30, 62, 88));
+        jtfDni.setForeground(new java.awt.Color(255, 255, 255));
+        jtfDni.setBorder(null);
         jtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfDniKeyTyped(evt);
             }
         });
-        getContentPane().add(jtfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 52, 80, 30));
+        getContentPane().add(jtfDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 105, 190, 30));
 
+        jbBuscar.setBackground(new java.awt.Color(30, 62, 88));
+        jbBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jbBuscar.setText("Buscar");
         jbBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbBuscarMouseClicked(evt);
             }
         });
-        getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
+        getContentPane().add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 332, 100, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("NOMBRE");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-        getContentPane().add(jlNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 230, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 147, 60, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("USUARIO");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 192, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CONTRASEÑA");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 237, 90, 30));
 
+        jchbEstado.setBackground(new java.awt.Color(30, 62, 88));
         jchbEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jchbEstado.setForeground(new java.awt.Color(0, 0, 0));
+        jchbEstado.setForeground(new java.awt.Color(255, 255, 255));
         jchbEstado.setText("EN ACTIVIDAD");
-        getContentPane().add(jchbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        getContentPane().add(jchbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 283, -1, 30));
 
+        jbEditar.setBackground(new java.awt.Color(30, 62, 88));
         jbEditar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jbEditar.setForeground(new java.awt.Color(0, 0, 0));
+        jbEditar.setForeground(new java.awt.Color(255, 255, 255));
         jbEditar.setText("EDITAR");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
+        getContentPane().add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 332, 100, 40));
 
+        jbGuardar.setBackground(new java.awt.Color(30, 62, 88));
         jbGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jbGuardar.setForeground(new java.awt.Color(0, 0, 0));
+        jbGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jbGuardar.setText("GUARDAR");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 332, 100, 40));
 
+        jcbTipo.setBackground(new java.awt.Color(30, 62, 88));
         jcbTipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jcbTipo.setForeground(new java.awt.Color(0, 0, 0));
+        jcbTipo.setForeground(new java.awt.Color(255, 255, 255));
         jcbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "INSPECTOR", "VENDEDOR" }));
-        getContentPane().add(jcbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        getContentPane().add(jcbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 283, -1, 30));
 
+        jbSalir.setBackground(new java.awt.Color(30, 62, 88));
         jbSalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jbSalir.setForeground(new java.awt.Color(0, 0, 0));
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("SALIR");
         jbSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jbSalirMouseClicked(evt);
             }
         });
-        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 332, 90, 40));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("TIPO");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
-        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 130, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 283, -1, 30));
 
+        jtfUsuario.setBackground(new java.awt.Color(30, 62, 88));
+        jtfUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jtfUsuario.setBorder(null);
+        getContentPane().add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 192, 300, 30));
+
+        jpContrasenia.setBackground(new java.awt.Color(30, 62, 88));
+        jpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         jpContrasenia.setText("jPasswordField1");
-        getContentPane().add(jpContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 130, -1));
+        jpContrasenia.setBorder(null);
+        getContentPane().add(jpContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 237, 280, 30));
 
         Background.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Background.setForeground(new java.awt.Color(0, 0, 0));
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo4.png"))); // NOI18N
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 460));
+        Background.setForeground(new java.awt.Color(255, 255, 255));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_usuarios.png"))); // NOI18N
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 420, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -269,13 +281,12 @@ public class AdmUsuarios extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jcbTipo;
     private javax.swing.JCheckBox jchbEstado;
     private javax.swing.JLabel jlNombre;
-    private javax.swing.JLabel jlTitle;
     private javax.swing.JPasswordField jpContrasenia;
     private javax.swing.JTextField jtfDni;
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
    private void initFont() {
-        jlTitle.setFont(title);
+
         jLabel2.setFont(label);
         jLabel3.setFont(label);
         jLabel5.setFont(label);
@@ -381,50 +392,46 @@ public class AdmUsuarios extends javax.swing.JDialog {
         if (jtfUsuario.getText().isEmpty() || jpContrasenia.getPassword() == null) {
             JOptionPane.showConfirmDialog(null, "Todos los campos son necesarios!");
         } else {
-            if (validarUser(jtfUsuario.getText())){
-                
-            
-                int dni = Integer.parseInt(jtfDni.getText());
-                String cbox = null;
-                String password = String.valueOf(jpContrasenia.getPassword());
-                buscada = controlPer.encontrarPersona(dni);
-                int idUsuario = buscada.getId();
-                String comboEditado = String.valueOf(jcbTipo.getSelectedItem());
-                switch (comboEditado) {
-                    case "ADMINISTRADOR":
-                        cbox = "A";
-                        break;
-                    case "INSPECTOR":
-                        cbox = "I";
-                        break;
-                    case "VENDEDOR":
-                        cbox = "V";
-                        break;
-                }
-                
-                if (editar) {
-                    Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
-                    MAdministrador.controlUsuario.actualizarUsuario(editado);
-                    mostrado = null;
-                } else {
+            int dni = Integer.parseInt(jtfDni.getText());
+            String cbox = null;
+            String password = String.valueOf(jpContrasenia.getPassword());
+            buscada = controlPer.encontrarPersona(dni);
+            int idUsuario = buscada.getId();
+            String comboEditado = String.valueOf(jcbTipo.getSelectedItem());
+            switch (comboEditado) {
+                case "ADMINISTRADOR":
+                    cbox = "A";
+                    break;
+                case "INSPECTOR":
+                    cbox = "I";
+                    break;
+                case "VENDEDOR":
+                    cbox = "V";
+                    break;
+            }
+
+            if (editar) {
+                Usuario editado = new Usuario(mostrado.getId(), idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
+                MAdministrador.controlUsuario.actualizarUsuario(editado);
+                mostrado = null;
+            } else {
+                if (validarUser(jtfUsuario.getText())) {
                     Usuario editado = new Usuario(idUsuario, jtfUsuario.getText(), password, cbox, jchbEstado.isSelected());
                     MAdministrador.controlUsuario.RegistrarUsuario(editado);
-
                 }
+
             }
-                
-            
+
         }
     }
-    
-    public boolean validarUser(String nombre){
+
+    public boolean validarUser(String nombre) {
         Usuario encontrado = MAdministrador.controlUsuario.buscarUsuario(nombre);
-        if (encontrado != null){
-            JOptionPane.showMessageDialog(null, " Ya existe el usuario "+ encontrado.getUsuario()+", ingrese otro.");
+        if (encontrado != null) {
+            JOptionPane.showMessageDialog(null, " Ya existe el usuario " + encontrado.getUsuario() + ", ingrese otro.");
             return false;
         }
         return true;
     }
-    
-        
+
 }
