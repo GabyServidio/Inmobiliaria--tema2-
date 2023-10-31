@@ -213,6 +213,7 @@ public class ListarMultas extends javax.swing.JDialog {
             ResolverMulta registroEdit = new ResolverMulta(null, rootPaneCheckingEnabled);
             registroEdit.setLocationRelativeTo(null);
             registroEdit.setVisible(true);
+            
                         
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una multa");
