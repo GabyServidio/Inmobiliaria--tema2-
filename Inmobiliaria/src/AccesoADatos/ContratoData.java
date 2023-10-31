@@ -28,23 +28,25 @@ public class ContratoData {
 
     public ContratoData() {
     }
-    public boolean isVigente(int idPropiedad){
-    SQL = "SELECT * FROM contrato WHERE contrato.idPropiedad = ? AND contrato.estado = 'VIGENTE'";
-    boolean retornar = false;
+
+    public boolean isVigente(int idPropiedad) {
+        SQL = "SELECT * FROM contrato WHERE contrato.idPropiedad = ? AND contrato.estado = 'VIGENTE'";
+        boolean retornar = false;
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, idPropiedad);
             rs = ps.executeQuery();
-            if(rs.next()){
-            retornar = true;
+            if (rs.next()) {
+                retornar = true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContratoData.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
         }
-    
-    return retornar;
+
+        return retornar;
     }
+
     public void crearContrato(Contrato nuevo) {
         SQL = "INSERT INTO contrato (idPropiedad, idInquilino, idGarante, idVendedor, "
                 + "fechaContrato, fechaInicio, fechaFinalizacion, precio, estado, descripcion) VALUES "
@@ -190,7 +192,6 @@ public class ContratoData {
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
-            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
                 encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -223,7 +224,6 @@ public class ContratoData {
         try {
             ps = Conexion.getConexion().prepareStatement(SQL);
             ps.setInt(1, id);
-            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
                 encontrado = new Contrato(rs.getInt(1), rs.getInt(2), rs.getInt(3),

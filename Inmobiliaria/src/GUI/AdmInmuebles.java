@@ -10,6 +10,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import static GUI.MVendedor.controlInm;
+import java.awt.event.KeyEvent;
 import java.time.ZoneId;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,12 +18,13 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     private Persona buscada;
-
+    private String jTEstado;
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jBGuardar.setEnabled(false);
         compruebaEdicion();
+        cargarCombo();
         //bloquearJt(false);
     }
 
@@ -39,6 +41,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLEstado = new javax.swing.JLabel();
         jLZona = new javax.swing.JLabel();
         jLTipo = new javax.swing.JLabel();
+        jcbEstado = new javax.swing.JComboBox<>();
         jTDireccion = new javax.swing.JTextField();
         jTSuperficie = new javax.swing.JTextField();
         jTZona = new javax.swing.JTextField();
@@ -46,7 +49,6 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTBanios = new javax.swing.JTextField();
         jTGarage = new javax.swing.JTextField();
         jTTipoInmueble = new javax.swing.JTextField();
-        jTEstado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTCondiciones = new javax.swing.JTextArea();
         jBSalir = new javax.swing.JButton();
@@ -94,7 +96,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLEstado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLEstado.setForeground(new java.awt.Color(0, 0, 0));
         jLEstado.setText("Estado :");
-        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 239, -1, 30));
+        jPanel.add(jLEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 239, 60, 30));
 
         jLZona.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLZona.setForeground(new java.awt.Color(0, 0, 0));
@@ -106,6 +108,9 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLTipo.setText("Tipo de Inmueble :");
         jPanel.add(jLTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 192, -1, 30));
 
+        jcbEstado.setBackground(new java.awt.Color(125, 159, 175));
+        jPanel.add(jcbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 239, 150, 30));
+
         jTDireccion.setBackground(new java.awt.Color(125, 159, 175));
         jTDireccion.setForeground(new java.awt.Color(0, 0, 0));
         jTDireccion.setBorder(null);
@@ -114,6 +119,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTSuperficie.setBackground(new java.awt.Color(125, 159, 175));
         jTSuperficie.setForeground(new java.awt.Color(0, 0, 0));
         jTSuperficie.setBorder(null);
+        jTSuperficie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTSuperficieKeyTyped(evt);
+            }
+        });
         jPanel.add(jTSuperficie, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 192, 40, 30));
 
         jTZona.setBackground(new java.awt.Color(125, 159, 175));
@@ -124,27 +134,37 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTAmbientes.setBackground(new java.awt.Color(125, 159, 175));
         jTAmbientes.setForeground(new java.awt.Color(0, 0, 0));
         jTAmbientes.setBorder(null);
-        jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 286, 20, 30));
+        jTAmbientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTAmbientesKeyTyped(evt);
+            }
+        });
+        jPanel.add(jTAmbientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 286, 30, 30));
 
         jTBanios.setBackground(new java.awt.Color(125, 159, 175));
         jTBanios.setForeground(new java.awt.Color(0, 0, 0));
         jTBanios.setBorder(null);
+        jTBanios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTBaniosKeyTyped(evt);
+            }
+        });
         jPanel.add(jTBanios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 239, 20, 30));
 
         jTGarage.setBackground(new java.awt.Color(125, 159, 175));
         jTGarage.setForeground(new java.awt.Color(0, 0, 0));
         jTGarage.setBorder(null);
+        jTGarage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTGarageKeyTyped(evt);
+            }
+        });
         jPanel.add(jTGarage, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 239, 20, 30));
 
         jTTipoInmueble.setBackground(new java.awt.Color(125, 159, 175));
         jTTipoInmueble.setForeground(new java.awt.Color(0, 0, 0));
         jTTipoInmueble.setBorder(null);
         jPanel.add(jTTipoInmueble, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 192, 110, 30));
-
-        jTEstado.setBackground(new java.awt.Color(125, 159, 175));
-        jTEstado.setForeground(new java.awt.Color(0, 0, 0));
-        jTEstado.setBorder(null);
-        jPanel.add(jTEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 239, 90, 30));
 
         jTCondiciones.setBackground(new java.awt.Color(125, 159, 175));
         jTCondiciones.setColumns(20);
@@ -153,6 +173,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTCondiciones.setText("Condiciones Particulares del Contrato");
         jTCondiciones.setBorder(null);
         jTCondiciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTCondiciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTCondicionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTCondiciones);
 
         jPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 500, 110));
@@ -207,6 +232,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTDni.setBackground(new java.awt.Color(125, 159, 175));
         jTDni.setForeground(new java.awt.Color(0, 0, 0));
         jTDni.setBorder(null);
+        jTDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTDniKeyTyped(evt);
+            }
+        });
         jPanel.add(jTDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 44, 150, 28));
 
         jBBuscar.setBackground(new java.awt.Color(125, 159, 175));
@@ -223,11 +253,11 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Fecha de Construcción:");
-        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 286, -1, 30));
+        jPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 286, -1, 30));
 
         jDCFechaCon.setBackground(new java.awt.Color(125, 159, 175));
         jDCFechaCon.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel.add(jDCFechaCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 286, -1, 30));
+        jPanel.add(jDCFechaCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 286, 150, 30));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_AdmInmueble.png"))); // NOI18N
         jPanel.add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -263,7 +293,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         try {
             if (jTSuperficie.getText().isEmpty() || jTAmbientes.getText().isEmpty()
                     || jTBanios.getText().isEmpty() || jTDireccion.getText().isEmpty()
-                    || jTEstado.getText().isEmpty() || jTGarage.getText().isEmpty()
+                    || jTGarage.getText().isEmpty()
                     || jTTipoInmueble.getText().isEmpty() || jTZona.getText().isEmpty()
                     || jTCondiciones.getText().isEmpty()) {
 
@@ -284,7 +314,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
                     int ambientes = Integer.parseInt(jTAmbientes.getText());
                     int banios = Integer.parseInt(jTBanios.getText());
                     String direccion = jTDireccion.getText();
-                    String estado = jTEstado.getText();
+                    String estado = jcbEstado.getSelectedItem().toString();
                     int garage = Integer.parseInt(jTGarage.getText());
                     String tipo = jTTipoInmueble.getText();
                     String zona = jTZona.getText();
@@ -314,10 +344,61 @@ public class AdmInmuebles extends javax.swing.JDialog {
 
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e + "el DNI solo puede contener numeros");
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jTSuperficieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTSuperficieKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jTSuperficieKeyTyped
+
+    private void jTBaniosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTBaniosKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jTBaniosKeyTyped
+
+    private void jTGarageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTGarageKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jTGarageKeyTyped
+
+    private void jTAmbientesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTAmbientesKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jTAmbientesKeyTyped
+
+    private void jTDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDniKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_ENTER) {
+            evt.consume(); // Consumir el evento si no es una letra o espacio
+            JOptionPane.showMessageDialog(null, "Solo se pueden poner Numeros");
+
+        }
+    }//GEN-LAST:event_jTDniKeyTyped
+
+    private void jTCondicionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCondicionesMouseClicked
+       if(MVendedor.inmubleSeleccionado == null){
+       jTCondiciones.setText("");
+       }
+    }//GEN-LAST:event_jTCondicionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -387,14 +468,19 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextArea jTCondiciones;
     private javax.swing.JTextField jTDireccion;
     private javax.swing.JTextField jTDni;
-    private javax.swing.JTextField jTEstado;
     private javax.swing.JTextField jTGarage;
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTSuperficie;
     private javax.swing.JTextField jTTipoInmueble;
     private javax.swing.JTextField jTZona;
+    private javax.swing.JComboBox<String> jcbEstado;
     // End of variables declaration//GEN-END:variables
-
+    private void cargarCombo(){
+    jcbEstado.addItem("DISPONIBLE");
+    jcbEstado.addItem("NO DISPONIBLE");
+    jcbEstado.addItem("RESERVADO");
+    
+    }
     private void compruebaEdicion() {
         Date fechadate = null;
         Inmueble selec = MVendedor.inmubleSeleccionado;
@@ -412,7 +498,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
             jTAmbientes.setText(selec.getCantAmbientes() + "");
             jTBanios.setText(selec.getCanBaños() + "");
             jTDireccion.setText(selec.getDireccion());
-            jTEstado.setText(selec.getEstadoInmueble());
+            jcbEstado.setSelectedItem(selec.getEstadoInmueble());
             jTGarage.setText(selec.getGarage() + "");
             jTTipoInmueble.setText(selec.getTipo());
             jTZona.setText(selec.getZona());
@@ -432,7 +518,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTAmbientes.setText("");
         jTBanios.setText("");
         jTDireccion.setText("");
-        jTEstado.setText("");
+        jTEstado = jcbEstado.getSelectedItem().toString();
         jTGarage.setText("");
         jTTipoInmueble.setText("");
         jTZona.setText("");
@@ -447,7 +533,7 @@ public class AdmInmuebles extends javax.swing.JDialog {
         jTAmbientes.setEnabled(estado);
         jTBanios.setEnabled(estado);
         jTDireccion.setEnabled(estado);
-        jTEstado.setEnabled(estado);
+        jcbEstado.setEnabled(estado);
         jTGarage.setEnabled(estado);
         jTTipoInmueble.setEnabled(estado);
         jTZona.setEnabled(estado);
@@ -485,16 +571,17 @@ public class AdmInmuebles extends javax.swing.JDialog {
         }
 
     }
-private void cargaPropietario(){
-jTNombre.setText(buscada.getNombre());
-                jTApellido.setText(buscada.getApellido());
-                jBGuardar.setEnabled(true);
-                jBBuscar.setEnabled(false);
-                jTNombre.setEnabled(false);
-                jTApellido.setEnabled(false);
-                jTDni.setEnabled(false);
-                jTApellido.setDisabledTextColor(Color.BLACK);
-                jTNombre.setDisabledTextColor(Color.BLACK);
-                jTDni.setDisabledTextColor(Color.BLACK);
-}
+
+    private void cargaPropietario() {
+        jTNombre.setText(buscada.getNombre());
+        jTApellido.setText(buscada.getApellido());
+        jBGuardar.setEnabled(true);
+        jBBuscar.setEnabled(false);
+        jTNombre.setEnabled(false);
+        jTApellido.setEnabled(false);
+        jTDni.setEnabled(false);
+        jTApellido.setDisabledTextColor(Color.BLACK);
+        jTNombre.setDisabledTextColor(Color.BLACK);
+        jTDni.setDisabledTextColor(Color.BLACK);
+    }
 }

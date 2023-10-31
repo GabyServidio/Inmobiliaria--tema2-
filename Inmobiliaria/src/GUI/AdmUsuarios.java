@@ -7,6 +7,7 @@ package GUI;
 import Entidades.Persona;
 import Entidades.Usuario;
 import static GUI.AdmPersona.controlPer;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -16,16 +17,18 @@ import javax.swing.JOptionPane;
  */
 public class AdmUsuarios extends javax.swing.JDialog {
 
-    /**
-     * Creates new form AdmUsuarios
-     */
     private Persona buscada;
     private Usuario mostrado;
     private boolean editar;
+    private Font label = MVendedor.fuenteLabel;
+    private Font boton = MVendedor.fuenteBoton14;
+    private Font nombre = MVendedor.fuenteBoton18;
+    private Font title = MVendedor.fuenteNombre;
 
     public AdmUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initFont();
         limpiarCampos();
         bloquearCampos();
         jbGuardar.setText("GUARDAR");
@@ -43,8 +46,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlTitle = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtfDni = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
@@ -63,16 +65,15 @@ public class AdmUsuarios extends javax.swing.JDialog {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(new java.awt.Dimension(382, 371));
+        setPreferredSize(new java.awt.Dimension(410, 440));
+        setResizable(false);
+        setSize(new java.awt.Dimension(410, 440));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(578, 367, -1, -1));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("USUARIOS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, -1, -1));
+        jlTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jlTitle.setForeground(new java.awt.Color(0, 0, 0));
+        jlTitle.setText("USUARIOS");
+        getContentPane().add(jlTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -162,7 +163,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
         Background.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Background.setForeground(new java.awt.Color(0, 0, 0));
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo4.png"))); // NOI18N
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 367));
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,13 +171,13 @@ public class AdmUsuarios extends javax.swing.JDialog {
     private void jbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBuscarMouseClicked
         limpiarCampos();
         buscar();
-        if (mostrado==null) {
-            editar=false;
+        if (mostrado == null) {
+            editar = false;
             jbEditar.setEnabled(false);
             jbGuardar.setEnabled(true);
             jbGuardar.setText("CREAR");
         } else {
-            editar=true;
+            editar = true;
             jbEditar.setEnabled(true);
             jbGuardar.setText("GUARDAR");
             jbGuardar.setEnabled(false);
@@ -253,13 +254,11 @@ public class AdmUsuarios extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbGuardar;
@@ -267,12 +266,31 @@ public class AdmUsuarios extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jcbTipo;
     private javax.swing.JCheckBox jchbEstado;
     private javax.swing.JLabel jlNombre;
+    private javax.swing.JLabel jlTitle;
     private javax.swing.JPasswordField jpContrasenia;
     private javax.swing.JTextField jtfDni;
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
+   private void initFont() {
+        jlTitle.setFont(title);
+        jLabel2.setFont(label);
+        jLabel3.setFont(label);
+        jLabel5.setFont(label);
+        jLabel6.setFont(label);
+        jLabel7.setFont(label);
+        jcbTipo.setFont(label);
+        jchbEstado.setFont(label);
+        jlNombre.setFont(label);
+        jpContrasenia.setFont(label);
+        jtfDni.setFont(label);
+        jtfUsuario.setFont(label);
+        jbBuscar.setFont(nombre);
+        jbEditar.setFont(boton);
+        jbGuardar.setFont(boton);
+        jbSalir.setFont(boton);
+    }
 
-    public void bloquearCampos() {
+    private void bloquearCampos() {
         jlNombre.setEnabled(false);
         jtfUsuario.setEnabled(false);
         jpContrasenia.setEnabled(false);
@@ -280,7 +298,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jchbEstado.setEnabled(false);
     }
 
-    public void desbloquearCampos() {
+    private void desbloquearCampos() {
         jlNombre.setEnabled(true);
         jtfUsuario.setEnabled(true);
         jpContrasenia.setEnabled(true);
@@ -288,14 +306,15 @@ public class AdmUsuarios extends javax.swing.JDialog {
         jchbEstado.setEnabled(true);
     }
 
-    public void limpiarCampos(){
+    private void limpiarCampos() {
         jlNombre.setText("");
         jtfUsuario.setText("");
         jpContrasenia.setText("");
         jcbTipo.setSelectedItem("");
         jchbEstado.setEnabled(false);
     }
-    public void buscar() {
+
+    private void buscar() {
         try {
             if (jtfDni.getText().isEmpty() || jtfDni.getText().equals(" ")) {
                 JOptionPane.showMessageDialog(null, "Debe ingresar un DNI");
@@ -315,7 +334,7 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         AdmPersona carga = new AdmPersona(null, rootPaneCheckingEnabled);
                         carga.setLocationRelativeTo(null);
                         carga.setVisible(true);
-                    }else if (opcion == JOptionPane.NO_OPTION){
+                    } else if (opcion == JOptionPane.NO_OPTION) {
                         jtfDni.setText("");
                     }
                 } else {
