@@ -245,6 +245,7 @@ public class ListarInmuebles extends javax.swing.JDialog {
             }
 
             Inspeccionar insp = new Inspeccionar(null, rootPaneCheckingEnabled);
+            insp.setLocationRelativeTo(null);
             insp.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe Seleccionar una fila primero");
