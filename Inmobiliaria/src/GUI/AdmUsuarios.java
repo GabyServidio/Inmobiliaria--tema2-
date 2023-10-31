@@ -365,7 +365,6 @@ public class AdmUsuarios extends javax.swing.JDialog {
                         jtfUsuario.setText(mostrado.getUsuario());
                         jpContrasenia.setText(mostrado.getContraseña());
                         String comboMostrado = mostrado.getTipo();
-                        System.out.println(mostrado.toString());
                         switch (comboMostrado) {
                             case "A":
                                 jcbTipo.setSelectedItem("ADMINISTRADOR");

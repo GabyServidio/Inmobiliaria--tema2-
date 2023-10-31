@@ -33,9 +33,10 @@ public class MVendedor extends javax.swing.JFrame {
     public static Font fuenteBoton18 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 18);
     public static Font fuenteBoton14 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 14);
     public static Font fuenteBoton12 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 12);
+    public static Font fuenteBoton6 = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 6);
     public static Font fuenteNombre = cargarFuentePersonalizada("src/Img/font/UniversBlack.ttf", 30);
     public static Font fuenteLabel = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 12);
-    
+    public static Font fuenteLabel6 = cargarFuentePersonalizada("src/Img/font/Univers-light-normal.ttf", 6);
     
     
     public MVendedor(Usuario ven) {

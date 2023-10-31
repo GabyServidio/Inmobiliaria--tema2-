@@ -2,6 +2,7 @@ package GUI;
 
 import Entidades.Inspeccion;
 import Entidades.Multa;
+import java.awt.Font;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -19,7 +20,7 @@ public class Multar extends javax.swing.JDialog {
 
     int idInspeccion;
     int idInquilino;
-
+    private Font label = MVendedor.fuenteLabel;
     /**
      * Creates new form Multar
      */
@@ -28,6 +29,7 @@ public class Multar extends javax.swing.JDialog {
         this.idInspeccion = idInspeccion;
         this.idInquilino = idInquilino;
         initComponents();
+        initFont();
     }
 
     /**
@@ -39,7 +41,6 @@ public class Multar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jDCFecha = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,19 +50,30 @@ public class Multar extends javax.swing.JDialog {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(400, 400));
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(400, 410));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("NUEVA MULTA");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
-        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+        jDCFecha.setBackground(new java.awt.Color(51, 33, 71));
+        jDCFecha.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 167, 210, 40));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("FECHA DE CREACIÓN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 167, 120, 40));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MONTO A ABONAR");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, -1, -1));
-        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 120, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 250, 120, 40));
 
+        jTFMonto.setBackground(new java.awt.Color(51, 33, 71));
+        jTFMonto.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 220, 40));
+
+        jButton3.setBackground(new java.awt.Color(51, 33, 71));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.png"))); // NOI18N
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,18 +85,22 @@ public class Multar extends javax.swing.JDialog {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 30, 30));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, 70, 40));
 
+        jButton4.setBackground(new java.awt.Color(51, 33, 71));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, 40, 30));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 60, 40));
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo3.png"))); // NOI18N
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 250));
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Multar.png"))); // NOI18N
+        Background.setAlignmentY(0.0F);
+        Background.setPreferredSize(new java.awt.Dimension(400, 410));
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 440, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -149,12 +165,17 @@ public class Multar extends javax.swing.JDialog {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private com.toedter.calendar.JDateChooser jDCFecha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTFMonto;
     // End of variables declaration//GEN-END:variables
-
+    private void initFont(){
+    jDCFecha.setFont(label);
+    jLabel2.setFont(label);
+    jLabel3.setFont(label);
+    jTFMonto.setFont(label);
+    
+    }
     private void guardar() {
         
         //LocalDate fechamulta = jDCFecha.getDate();

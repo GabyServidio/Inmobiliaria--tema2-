@@ -9,7 +9,10 @@ import Entidades.Contrato;
 import Entidades.Inmueble;
 import Entidades.Persona;
 import Entidades.Usuario;
+import static GUI.MVendedor.fuenteBoton12;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import java.time.Month;
@@ -35,17 +38,21 @@ public class ListarContratos extends javax.swing.JDialog {
     };
     private UsuarioData controlUsuario = new UsuarioData();
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private Font button = MVendedor.fuenteBoton18;
+    private Font label = MVendedor.fuenteLabel;
 
     public ListarContratos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setTitle("Listar Contratos");
         initComponents();
+        
         jMes.addPropertyChangeListener("month", e -> buscar());
         jAnio.addPropertyChangeListener("year", e -> buscar());
         llenarCombo();
         cabecera();
         cargarTabla();
         ajustarAnchoColumnas();
+        initFont();
     }
 
     /**
@@ -352,6 +359,17 @@ public class ListarContratos extends javax.swing.JDialog {
     private javax.swing.JTable jtContratos;
     private javax.swing.JTextField jtDato;
     // End of variables declaration//GEN-END:variables
+    
+    private void initFont() {
+        Color bgColor = new Color(138, 175, 188);
+
+        jbSalir.setFont(button);
+        jbRescindir.setFont(button);
+        jbBuscar.setFont(button);
+        jbRenovar.setFont(button);
+
+    }
+    
     private void renovar() {
         try {
             int fila = jtContratos.getSelectedRow();
@@ -380,17 +398,15 @@ public class ListarContratos extends javax.swing.JDialog {
             Contrato rescindido = MVendedor.controlContrato.encontrarContrato(id);
             Object[] opciones = {"si", "no"};
             int op = JOptionPane.showOptionDialog(null,
-                    "¿Esta seguro de recindir el contrato?",
+                    "¿Esta seguro de rescindir el contrato?",
                     "Confirmacion",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     null, opciones, opciones[1]);
-            System.out.println(rescindido.toString());
             if (op == JOptionPane.YES_OPTION) {
 
                 rescindido.setEstado("NO VIGENTE");
                 MVendedor.controlContrato.editarContrato(rescindido);
-                System.out.println(rescindido.toString());
                 limpiarFila();
                 cargarTabla();
             }
@@ -519,7 +535,6 @@ public class ListarContratos extends javax.swing.JDialog {
         int mes = jMes.getMonth() + 1;
 
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
             if (encontrado.getFechaFinalizacion().getMonthValue() == mes && encontrado.getFechaFinalizacion().getYear() == año) {
                 cargarFila(encontrado);
             }
@@ -532,7 +547,6 @@ public class ListarContratos extends javax.swing.JDialog {
         int mes = jMes.getMonth() + 1;
 
         for (Contrato encontrado : MVendedor.controlContrato.listarContratos()) {
-            System.out.println("DATO: " + encontrado.getFechaFinalizacion().toString());
             if (encontrado.getFechaInicio().getMonthValue() == mes && encontrado.getFechaInicio().getYear() == año) {
                 cargarFila(encontrado);
             }
@@ -654,15 +668,4 @@ public class ListarContratos extends javax.swing.JDialog {
         }
     }
 
-//    private void ajustarAnchoColumnasCabecera() {
-//        JTableHeader header = jtContratos.getTableHeader();
-//        TableCellRenderer defaultRenderer = header.getDefaultRenderer();
-//
-//        for (int i = 0; i < jtContratos.getColumnCount(); i++) {
-//            TableColumn column = jtContratos.getColumnModel().getColumn(i);
-//            Component comp = defaultRenderer.getTableCellRendererComponent(jtContratos, column.getHeaderValue(), false, false, 0, 0);
-//            int width = comp.getPreferredSize().width;
-//            column.setPreferredWidth(width);
-//        }
-//    }
 }
