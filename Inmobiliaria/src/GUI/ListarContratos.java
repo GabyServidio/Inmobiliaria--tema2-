@@ -668,15 +668,4 @@ public class ListarContratos extends javax.swing.JDialog {
         }
     }
 
-//    private void ajustarAnchoColumnasCabecera() {
-//        JTableHeader header = jtContratos.getTableHeader();
-//        TableCellRenderer defaultRenderer = header.getDefaultRenderer();
-//
-//        for (int i = 0; i < jtContratos.getColumnCount(); i++) {
-//            TableColumn column = jtContratos.getColumnModel().getColumn(i);
-//            Component comp = defaultRenderer.getTableCellRendererComponent(jtContratos, column.getHeaderValue(), false, false, 0, 0);
-//            int width = comp.getPreferredSize().width;
-//            column.setPreferredWidth(width);
-//        }
-//    }
 }

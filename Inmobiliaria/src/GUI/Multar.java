@@ -50,24 +50,27 @@ public class Multar extends javax.swing.JDialog {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setMaximumSize(new java.awt.Dimension(400, 400));
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(400, 410));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jDCFecha.setBackground(new java.awt.Color(51, 33, 71));
         jDCFecha.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 163, 210, 40));
+        getContentPane().add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 167, 210, 40));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("FECHA DE CREACIÓN");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 163, 120, 40));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 167, 120, 40));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("MONTO A ABONAR");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 246, 120, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 250, 120, 40));
 
         jTFMonto.setBackground(new java.awt.Color(51, 33, 71));
         jTFMonto.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 246, 220, 40));
+        getContentPane().add(jTFMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 220, 40));
 
         jButton3.setBackground(new java.awt.Color(51, 33, 71));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,7 +99,8 @@ public class Multar extends javax.swing.JDialog {
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Multar.png"))); // NOI18N
         Background.setAlignmentY(0.0F);
-        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 440, 430));
+        Background.setPreferredSize(new java.awt.Dimension(400, 410));
+        getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 440, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

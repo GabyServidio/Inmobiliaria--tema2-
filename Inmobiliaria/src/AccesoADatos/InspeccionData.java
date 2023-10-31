@@ -100,7 +100,7 @@ public class InspeccionData {
                 encontrada.setFecha(fecha.toLocalDate());
                 encontrada.setDescripcion(rs.getString("descripcion"));
                 hallada=encontrada;
-                System.out.println(encontrada.toString());
+               
             } else {
                 JOptionPane.showMessageDialog(null, "no se encontró la Inspección");
             }
