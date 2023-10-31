@@ -64,6 +64,11 @@ public class DetalleInspeccion extends javax.swing.JDialog {
         jbSalir.setBackground(new java.awt.Color(45, 27, 66));
         jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
         getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 337, 100, -1));
 
         Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_DetalleInspeccion.png"))); // NOI18N
@@ -75,6 +80,10 @@ public class DetalleInspeccion extends javax.swing.JDialog {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         guardar();
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
     /**
      * @param args the command line arguments
