@@ -10,6 +10,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import static GUI.MVendedor.controlInm;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.time.ZoneId;
 import javax.swing.table.DefaultTableModel;
@@ -19,9 +20,13 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private DefaultTableModel modelo = new DefaultTableModel();
     private Persona buscada;
     private String jTEstado;
+    private Font label = MVendedor.fuenteLabel;
+    private Font button = MVendedor.fuenteBoton14;
+
     public AdmInmuebles(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initFont();
         jBGuardar.setEnabled(false);
         compruebaEdicion();
         cargarCombo();
@@ -395,9 +400,9 @@ public class AdmInmuebles extends javax.swing.JDialog {
     }//GEN-LAST:event_jTDniKeyTyped
 
     private void jTCondicionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCondicionesMouseClicked
-       if(MVendedor.inmubleSeleccionado == null){
-       jTCondiciones.setText("");
-       }
+        if (MVendedor.inmubleSeleccionado == null) {
+            jTCondiciones.setText("");
+        }
     }//GEN-LAST:event_jTCondicionesMouseClicked
 
     /**
@@ -475,12 +480,48 @@ public class AdmInmuebles extends javax.swing.JDialog {
     private javax.swing.JTextField jTZona;
     private javax.swing.JComboBox<String> jcbEstado;
     // End of variables declaration//GEN-END:variables
-    private void cargarCombo(){
-    jcbEstado.addItem("DISPONIBLE");
-    jcbEstado.addItem("NO DISPONIBLE");
-    jcbEstado.addItem("RESERVADO");
-    
+    private void initFont() {
+        jBBuscar.setFont(button);
+        jBGuardar.setFont(button);
+        jBSalir.setFont(button);
+
+        jDCFechaCon.setFont(label);
+        jLAmbientes.setFont(label);
+        jLBanios.setFont(label);
+        jLDireccion.setFont(label);
+        jLEstado.setFont(label);
+        jLGarage.setFont(label);
+        jLSuperficie.setFont(label);
+        jLTipo.setFont(label);
+        jLZona.setFont(label);
+        jLabel1.setFont(label);
+        jLabel2.setFont(label);
+        jLabel3.setFont(label);
+        jLabel4.setFont(label);
+        jPanel.setFont(label);
+        jScrollPane1.setFont(label);
+        jTAmbientes.setFont(label);
+        jTApellido.setFont(label);
+        jTBanios.setFont(label);
+        jTCondiciones.setFont(label);
+        jTDireccion.setFont(label);
+        jTDni.setFont(label);
+        jTGarage.setFont(label);
+        jTNombre.setFont(label);
+        jTSuperficie.setFont(label);
+        jTTipoInmueble.setFont(label);
+        jTZona.setFont(label);
+        jcbEstado.setFont(label);
+
     }
+
+    private void cargarCombo() {
+        jcbEstado.addItem("DISPONIBLE");
+        jcbEstado.addItem("NO DISPONIBLE");
+        jcbEstado.addItem("RESERVADO");
+
+    }
+
     private void compruebaEdicion() {
         Date fechadate = null;
         Inmueble selec = MVendedor.inmubleSeleccionado;

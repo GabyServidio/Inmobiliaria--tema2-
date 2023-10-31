@@ -34,7 +34,6 @@ public class Inspeccionar extends javax.swing.JDialog {
         jDCFecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTADetalle = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -42,12 +41,18 @@ public class Inspeccionar extends javax.swing.JDialog {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setBackground(new java.awt.Color(45, 27, 66));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("FECHA DE INSPECCIÓN");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 79, -1, 40));
 
+        jLabel5.setBackground(new java.awt.Color(45, 27, 66));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Detalle de Inspección");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 146, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(45, 27, 66));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/guardar.png"))); // NOI18N
         jButton1.setToolTipText("Guardar");
         jButton1.setName(""); // NOI18N
@@ -56,20 +61,25 @@ public class Inspeccionar extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 330, -1, -1));
 
+        jDCFecha.setBackground(new java.awt.Color(45, 27, 66));
+        jDCFecha.setForeground(new java.awt.Color(255, 255, 255));
         jDCFecha.setDateFormatString("dd/MM/aaaa");
-        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+        jPanel1.add(jDCFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 79, 190, 40));
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(224, 83));
+
+        jTADetalle.setBackground(new java.awt.Color(45, 27, 66));
         jTADetalle.setColumns(20);
+        jTADetalle.setForeground(new java.awt.Color(255, 255, 255));
         jTADetalle.setRows(5);
         jScrollPane1.setViewportView(jTADetalle);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 300, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 364, 143));
 
-        jLabel1.setText("INSPECCIÓN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 80, 50));
-
+        jButton3.setBackground(new java.awt.Color(45, 27, 66));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/salida2.png"))); // NOI18N
         jButton3.setToolTipText("Salir");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -77,9 +87,9 @@ public class Inspeccionar extends javax.swing.JDialog {
                 jButton3MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo3.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_Inspeccionar.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,7 +186,6 @@ public class Inspeccionar extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDCFecha;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

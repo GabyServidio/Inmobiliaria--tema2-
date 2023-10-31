@@ -36,38 +36,37 @@ public class DetalleInspeccion extends javax.swing.JDialog {
         jTADetalle = new javax.swing.JTextArea();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTADetalle.setBackground(new java.awt.Color(45, 27, 66));
         jTADetalle.setColumns(20);
+        jTADetalle.setForeground(new java.awt.Color(255, 255, 255));
         jTADetalle.setLineWrap(true);
         jTADetalle.setRows(5);
         jScrollPane1.setViewportView(jTADetalle);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 380, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 43, 380, 270));
 
+        jbGuardar.setBackground(new java.awt.Color(45, 27, 66));
+        jbGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 330, 100, -1));
+        getContentPane().add(jbGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 337, 100, -1));
 
+        jbSalir.setBackground(new java.awt.Color(45, 27, 66));
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
-        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 100, -1));
+        getContentPane().add(jbSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 337, 100, -1));
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 153));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel1.setText("Detalle de Inspección");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
-
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/fondo4.png"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/BG_DetalleInspeccion.png"))); // NOI18N
         getContentPane().add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 380));
 
         pack();
@@ -121,7 +120,6 @@ public class DetalleInspeccion extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTADetalle;
     private javax.swing.JButton jbGuardar;
